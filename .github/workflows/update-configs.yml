@@ -1,0 +1,79 @@
+name: Update Configs
+permissions: write-all
+
+on:
+  schedule:
+    - cron: '0 */24 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.21'
+        cache: true
+
+    - name: Download sing-box
+      run: |
+        SINGBOX_VERSION=$(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep '"tag_name"' | cut -d'"' -f4 | tr -d 'v')
+        echo "Downloading sing-box v${SINGBOX_VERSION}"
+        wget -q "https://github.com/SagerNet/sing-box/releases/download/v${SINGBOX_VERSION}/sing-box-${SINGBOX_VERSION}-linux-amd64.tar.gz"
+        tar -xzf "sing-box-${SINGBOX_VERSION}-linux-amd64.tar.gz"
+        cp "sing-box-${SINGBOX_VERSION}-linux-amd64/sing-box" ./sing-box
+        chmod +x ./sing-box
+        rm -rf "sing-box-${SINGBOX_VERSION}-linux-amd64"*
+        ./sing-box version
+
+    - name: Build
+      run: |
+        export GOPROXY=https://goproxy.io,direct
+        go mod tidy
+        go build -ldflags="-s -w" -o aggregator main.go
+
+    - name: Run
+      run: |
+        ulimit -n 65535
+        mkdir -p logs
+        ./aggregator
+
+    - name: Verify
+      run: |
+        echo "=== Config Output ==="
+        ls -lh config/
+        ls -lh config/protocols/ 2>/dev/null || true
+        if [ -f "config/all_configs.txt" ]; then
+          echo "Total configs: $(wc -l < config/all_configs.txt)"
+        fi
+        if [ -f "config/clash.yaml" ]; then
+          echo "Clash proxies: $(grep -c '  - name:' config/clash.yaml || echo 0)"
+        fi
+        echo "=== Logs ==="
+        ls -lh logs/ 2>/dev/null || echo "No logs directory"
+        if ls logs/*.log 2>/dev/null | head -1 | xargs -I{} tail -30 {}; then
+          true
+        fi
+
+    - name: Upload Validation Logs
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: validation-logs-${{ github.run_number }}
+        path: logs/
+        retention-days: 14
+        if-no-files-found: warn
+
+    - name: Commit and Push
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add config/ UPDATE_SUMMARY.md
+        git diff --staged --quiet || git commit -m "Update configs [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+        git push
