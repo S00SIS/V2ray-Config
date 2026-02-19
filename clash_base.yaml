@@ -126,17 +126,17 @@ proxy-groups:
   - name: "PROXY"
     type: select
     proxies:
-      - "Load Balance"
-      - "Auto"
       - "Fallback"
+      - "Auto"
+      - "Load Balance"
     
 
   - name: "Load Balance"
     type: load-balance
     strategy: consistent-hashing
     url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 150
+    interval: 60
+    tolerance: 50
     lazy: true
     proxies:
 # ---PROXY-NAMES---
@@ -145,7 +145,7 @@ proxy-groups:
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 60
-    tolerance: 10
+    tolerance: 50
     lazy: true
     proxies:
 # ---PROXY-NAMES---
@@ -153,7 +153,7 @@ proxy-groups:
   - name: "Fallback"
     type: fallback
     url: http://www.gstatic.com/generate_204
-    interval: 300
+    interval: 60
     lazy: true
     proxies:
 # ---PROXY-NAMES---
