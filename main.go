@@ -1789,19 +1789,12 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	repoBase := "https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main"
 	now := time.Now().UTC()
 
-	fmt.Fprintf(w, "# V2ray-Config — Delta-Kronecker\n\n")
 	fmt.Fprintf(w, "> Last updated: %s\n\n", now.Format("2006-01-02 15:04 UTC"))
 
-	w.WriteString("## About\n\n")
-	w.WriteString("Automatically updated every 24 hours. Configs are fetched from multiple sources, validated with sing-box, deduplicated, and published.\n\n")
-	w.WriteString("**Supported protocols:** VMess · VLess · Trojan · Shadowsocks · Hysteria2 · Hysteria · TUIC\n\n")
-	w.WriteString("Clash configs are Iran-optimized with layered DNS, GeoIP rules, and intelligent proxy groups.\n\n")
-
-	w.WriteString("---\n\n")
 	w.WriteString("## Statistics\n\n")
 
 	w.WriteString("### Per-Protocol Input & Output\n\n")
-	fmt.Fprintf(w, "| Protocol | Input (unique) | Output (valid) | Pass Rate |\n|---|---|---|---|\n")
+	fmt.Fprintf(w, "| Protocol | Tested (unique) | valid | Pass Rate |\n|---|---|---|---|\n")
 	totalIn := 0
 	totalOut := 0
 	for _, p := range cfg.ProtocolOrder {
@@ -1856,17 +1849,6 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	}
 	w.WriteString("\n")
 
-	w.WriteString("### Clash — Advanced Structure (Recommended)\n\n")
-	fmt.Fprintf(w, "Groups: **PROXY-BEST** → SCEN-OPEN · SCEN-CDN → LB-ALL · LB-CDN · FAST-ALL · FAST-CDN · UDP-BEST · MANUAL\n\n")
-	fmt.Fprintf(w, "| File | Link |\n|---|---|\n")
-	fmt.Fprintf(w, "| clash_advanced.yaml (all protocols) | [clash_advanced.yaml](%s/config/clash_advanced.yaml) |\n", repoBase)
-	for _, p := range cfg.ProtocolOrder {
-		if byProtoOut[p] > 0 {
-			fmt.Fprintf(w, "| %s_clash_advanced.yaml | [%s_clash_advanced.yaml](%s/config/protocols/%s_clash_advanced.yaml) |\n",
-				p, p, repoBase, p)
-		}
-	}
-	w.WriteString("\n")
 
 	w.WriteString("---\n\n")
 	w.WriteString("## Batch Files — Random 500-Config Groups\n\n")
@@ -1890,82 +1872,7 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	for i := 1; i <= clashBatches; i++ {
 		fmt.Fprintf(w, "| Batch %03d | [batch_%03d.yaml](%s/config/batches/clash/batch_%03d.yaml) |\n",
 			i, i, repoBase, i)
-	}
-	w.WriteString("\n")
 
-	w.WriteString("### Clash Advanced Batches\n\n")
-	fmt.Fprintf(w, "| Batch | Link |\n|---|---|\n")
-	for i := 1; i <= clashAdvBatches; i++ {
-		fmt.Fprintf(w, "| Batch %03d | [batch_%03d.yaml](%s/config/batches/clash_advanced/batch_%03d.yaml) |\n",
-			i, i, repoBase, i)
-	}
-	w.WriteString("\n")
-
-	w.WriteString("---\n\n")
-	w.WriteString("## Usage\n\n")
-	w.WriteString("### V2ray / Xray / Sing-box\n\n")
-	fmt.Fprintf(w, "```\n%s/config/all_configs.txt\n```\n\n", repoBase)
-	w.WriteString("### Clash / Mihomo — Standard\n\n")
-	fmt.Fprintf(w, "```\n%s/config/clash.yaml\n```\n\n", repoBase)
-	w.WriteString("### Clash / Mihomo — Advanced (Recommended)\n\n")
-	fmt.Fprintf(w, "```\n%s/config/clash_advanced.yaml\n```\n\n", repoBase)
-	w.WriteString("### 500-Config Batches\n\n")
-	fmt.Fprintf(w, "```\n%s/config/batches/v2ray/batch_001.txt\n%s/config/batches/clash/batch_001.yaml\n%s/config/batches/clash_advanced/batch_001.yaml\n```\n\n", repoBase, repoBase, repoBase)
-
-	w.WriteString("---\n\n")
-	w.WriteString("## Advanced Clash Architecture\n\n")
-	w.WriteString("```\nPROXY-BEST (final fallback)\n")
-	w.WriteString("├── SCEN-OPEN  → LB-ALL + FAST-ALL   (open internet)\n")
-	w.WriteString("├── SCEN-CDN   → LB-CDN + FAST-CDN   (CDN whitelist)\n")
-	w.WriteString("├── FAST-ALL   → url-test all proxies\n")
-	w.WriteString("└── FAST-CDN   → url-test via Cloudflare endpoint\n\n")
-	w.WriteString("UDP-BEST  → url-test for UDP traffic\n")
-	w.WriteString("LB-ALL    → load-balance consistent-hashing (session-aware)\n")
-	w.WriteString("LB-CDN    → load-balance round-robin (stateless CDN)\n")
-	w.WriteString("MANUAL    → manual select (all groups + DIRECT)\n```\n\n")
-
-	w.WriteString("## Standard Clash Architecture\n\n")
-	w.WriteString("```\nPROXY (manual selector)\n")
-	w.WriteString("├── Load-Balance  → consistent-hashing across all proxies\n")
-	w.WriteString("├── Auto          → url-test (fastest)\n")
-	w.WriteString("└── Fallback      → automatic failover\n```\n\n")
-
-	w.WriteString("---\n\n")
-	w.WriteString("## Iran-Optimized DNS\n\n")
-	fmt.Fprintf(w, "| Server | Address |\n|---|---|\n")
-	w.WriteString("| Shecan (primary) | 178.22.122.100 / 185.51.200.2 |\n")
-	w.WriteString("| TCI / Zirsakht | 217.218.155.155 / 217.218.127.127 |\n")
-	w.WriteString("| 403.online | 185.55.225.25 / 185.55.227.22 |\n\n")
-	w.WriteString("`.ir` domains resolve via Iranian DNS servers directly. Foreign domains use DoH/DoT.\n\n")
-
-	w.WriteString("---\n\n")
-	w.WriteString("## File Structure\n\n")
-	w.WriteString("```\nconfig/\n")
-	w.WriteString("├── all_configs.txt              ← all V2ray configs\n")
-	w.WriteString("├── clash.yaml                   ← Clash standard\n")
-	w.WriteString("├── clash_advanced.yaml          ← Clash advanced (recommended)\n")
-	w.WriteString("├── protocols/\n")
-	w.WriteString("│   ├── vmess.txt\n")
-	w.WriteString("│   ├── vmess_clash.yaml\n")
-	w.WriteString("│   ├── vmess_clash_advanced.yaml\n")
-	w.WriteString("│   └── (other protocols)\n")
-	w.WriteString("└── batches/\n")
-	w.WriteString("    ├── v2ray/batch_001.txt        ← 500 random V2ray configs\n")
-	w.WriteString("    ├── clash/batch_001.yaml       ← 500 random Clash standard\n")
-	w.WriteString("    └── clash_advanced/batch_001.yaml\n")
-	w.WriteString("```\n\n")
-
-	if len(failedLinks) > 0 {
-		w.WriteString("---\n\n")
-		w.WriteString("## Failed Sources\n\n")
-		for _, l := range failedLinks {
-			fmt.Fprintf(w, "- %s\n", l)
-		}
-		w.WriteString("\n")
-	}
-
-	w.WriteString("---\n\n")
-	w.WriteString("*Auto-generated by GitHub Actions.*\n")
 }
 
 
