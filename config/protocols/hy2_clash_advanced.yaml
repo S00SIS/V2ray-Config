@@ -61,10 +61,10 @@ dns:
 proxies:
   - name: "Delta-Kronecker-hy2-001"
     type: hysteria2
-    server: "130.61.50.75"
-    port: 6443
-    password: "zhangyang"
-    sni: "dash.cloudflare.com"
+    server: "91.132.51.160"
+    port: 844
+    password: "5046SHWqk6"
+    sni: "91.132.51.160"
     skip-cert-verify: true
     udp: true
 
