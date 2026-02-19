@@ -1,6 +1,6 @@
 # V2ray-Config — Delta-Kronecker
 
-> Last updated: 2026-02-19 09:29 UTC
+> Last updated: 2026-02-19 09:31 UTC
 
 ## About
 
@@ -18,21 +18,21 @@ Clash configs are Iran-optimized with layered DNS, GeoIP rules, and intelligent 
 
 | Protocol | Input (unique) | Output (valid) | Pass Rate |
 |---|---|---|---|
-| VMESS | 240 | 76 | 31.7% |
-| VLESS | 507 | 101 | 19.9% |
-| TROJAN | 762 | 144 | 18.9% |
-| SS | 207 | 73 | 35.3% |
+| VMESS | 240 | 71 | 29.6% |
+| VLESS | 507 | 104 | 20.5% |
+| TROJAN | 762 | 140 | 18.4% |
+| SS | 207 | 70 | 33.8% |
 | HY2 | 16 | 1 | 6.2% |
 | HY | 0 | 0 | 0.0% |
 | TUIC | 2 | 0 | 0.0% |
-| **Total** | **1734** | **395** | **22.8%** |
+| **Total** | **1734** | **386** | **22.3%** |
 
 | Metric | Value |
 |---|---|
 | Raw fetched lines | 2327 |
 | Unique after dedup | 1734 |
-| Valid configs | 395 |
-| Processing time | 32.03s |
+| Valid configs | 386 |
+| Processing time | 32.44s |
 
 ---
 
@@ -48,10 +48,10 @@ Clash configs are Iran-optimized with layered DNS, GeoIP rules, and intelligent 
 
 | Protocol | Count | Link |
 |---|---|---|
-| VMESS | 76 | [vmess.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vmess.txt) |
-| VLESS | 101 | [vless.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vless.txt) |
-| TROJAN | 144 | [trojan.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/trojan.txt) |
-| SS | 73 | [ss.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/ss.txt) |
+| VMESS | 71 | [vmess.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vmess.txt) |
+| VLESS | 104 | [vless.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vless.txt) |
+| TROJAN | 140 | [trojan.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/trojan.txt) |
+| SS | 70 | [ss.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/ss.txt) |
 | HY2 | 1 | [hy2.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/hy2.txt) |
 
 ### Clash — Standard Structure
@@ -90,7 +90,7 @@ Groups: **PROXY-BEST** → SCEN-OPEN · SCEN-CDN → LB-ALL · LB-CDN · FAST-AL
 
 | Batch | Count | Link |
 |---|---|---|
-| Batch 001 | 395 | [batch_001.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_001.txt) |
+| Batch 001 | 386 | [batch_001.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_001.txt) |
 
 ### Clash Standard Batches
 
@@ -102,6 +102,7 @@ Groups: **PROXY-BEST** → SCEN-OPEN · SCEN-CDN → LB-ALL · LB-CDN · FAST-AL
 
 | Batch | Link |
 |---|---|
+| Batch 001 | [batch_001.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/clash_advanced/batch_001.yaml) |
 
 ---
 
