@@ -119,21 +119,13 @@ proxies:
 proxies:
   - name: "Delta-Kronecker-trojan-001"
     type: trojan
-    server: "v1.dabache.top"
-    port: 443
-    password: "humanity"
-    sni: "www.multiplydose.com"
+    server: "160.16.124.17"
+    port: 3423
+    password: "9372cb81c7b0ad903f91f2f8a4d3f02b"
+    sni: "www.nintendogames.net"
     skip-cert-verify: true
     udp: true
   - name: "Delta-Kronecker-trojan-002"
-    type: trojan
-    server: "172.64.152.23"
-    port: 443
-    password: "humanity"
-    sni: "www.gossipglove.com"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-003"
     type: trojan
     server: "188.114.98.0"
     port: 443
@@ -141,31 +133,15 @@ proxies:
     sni: "www.calmlunch.com"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-004"
+  - name: "Delta-Kronecker-trojan-003"
     type: trojan
-    server: "160.16.124.17"
-    port: 3423
-    password: "9372cb81c7b0ad903f91f2f8a4d3f02b"
-    sni: "www.nintendogames.net"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-005"
-    type: trojan
-    server: "www.calmlunch.com"
+    server: "172.64.152.23"
     port: 443
     password: "humanity"
-    sni: "www.calmlunch.com"
+    sni: "www.gossipglove.com"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-006"
-    type: trojan
-    server: "15.237.153.245"
-    port: 22222
-    password: "telegram-id-privatevpns"
-    sni: "trojan.burgerip.co.uk"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-007"
+  - name: "Delta-Kronecker-trojan-004"
     type: trojan
     server: "58.152.25.208"
     port: 443
@@ -173,7 +149,23 @@ proxies:
     sni: "t.me/ripaojiedian"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-008"
+  - name: "Delta-Kronecker-trojan-005"
+    type: trojan
+    server: "v1.dabache.top"
+    port: 443
+    password: "humanity"
+    sni: "www.multiplydose.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-006"
+    type: trojan
+    server: "www.calmlunch.com"
+    port: 443
+    password: "humanity"
+    sni: "www.calmlunch.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-007"
     type: trojan
     server: "yyyhhjki.taipei101.indevs.in"
     port: 443
@@ -181,7 +173,7 @@ proxies:
     sni: "YyYhHjKI.TAIPEi101.INdEVs.in"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-009"
+  - name: "Delta-Kronecker-trojan-008"
     type: trojan
     server: "ooiuyt.890699.xyz"
     port: 443
@@ -189,7 +181,7 @@ proxies:
     sni: "OOIuyT.890699.xYZ"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-010"
+  - name: "Delta-Kronecker-trojan-009"
     type: trojan
     server: "www.creationlong.org"
     port: 443
@@ -197,7 +189,7 @@ proxies:
     sni: "www.creationlong.org"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-011"
+  - name: "Delta-Kronecker-trojan-010"
     type: trojan
     server: "172.66.47.169"
     port: 443
@@ -205,15 +197,7 @@ proxies:
     sni: "10-BPB-worKer-paNEl.PaGes.deV"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-012"
-    type: trojan
-    server: "188.114.96.3"
-    port: 443
-    password: "humanity"
-    sni: "www.calmlunch.com"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-013"
+  - name: "Delta-Kronecker-trojan-011"
     type: trojan
     server: "172.67.180.92"
     port: 443
@@ -221,12 +205,28 @@ proxies:
     sni: "www.multiplydose.com"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-014"
+  - name: "Delta-Kronecker-trojan-012"
+    type: trojan
+    server: "188.116.22.217"
+    port: 2083
+    password: "0zmdDXd0Qt5ff_7Qg67R-Rtq4Tmt4c"
+    sni: "xo.e0f.cx"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-013"
     type: trojan
     server: "220.128.110.108"
     port: 43
     password: "5a2c16f9"
     sni: "5c.hhhhh.eu.org"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-014"
+    type: trojan
+    server: "188.114.96.3"
+    port: 443
+    password: "humanity"
+    sni: "www.calmlunch.com"
     skip-cert-verify: true
     udp: true
   - name: "Delta-Kronecker-trojan-015"
@@ -255,13 +255,21 @@ proxies:
     udp: true
   - name: "Delta-Kronecker-trojan-018"
     type: trojan
+    server: "153.121.38.213"
+    port: 1281
+    password: "9372cb81c7b0ad903f91f2f8a4d3f02b"
+    sni: "www.nintendogames.net"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-019"
+    type: trojan
     server: "125.228.236.138"
     port: 443
     password: "5a2c16f9"
     sni: "5c.hhhhh.eu.org"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-019"
+  - name: "Delta-Kronecker-trojan-020"
     type: trojan
     server: "104.18.32.47"
     port: 443
@@ -269,36 +277,28 @@ proxies:
     sni: "www.calmlunch.com"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-020"
-    type: trojan
-    server: "153.121.38.213"
-    port: 1281
-    password: "9372cb81c7b0ad903f91f2f8a4d3f02b"
-    sni: "www.nintendogames.net"
-    skip-cert-verify: true
-    udp: true
   - name: "Delta-Kronecker-trojan-021"
     type: trojan
-    server: "153.121.39.240"
-    port: 3901
-    password: "9372cb81c7b0ad903f91f2f8a4d3f02b"
-    sni: "www.nintendogames.net"
+    server: "212.193.18.144"
+    port: 36158
+    password: "ZblhWr0mqMakCPg.N"
+    sni: "api.avito.ru"
     skip-cert-verify: true
     udp: true
   - name: "Delta-Kronecker-trojan-022"
-    type: trojan
-    server: "167.17.185.228"
-    port: 10889
-    password: "cTv.9PDdCt-wybBrG1qlxI5UJuaEj"
-    sni: "web.max"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-023"
     type: trojan
     server: "172.67.136.117"
     port: 443
     password: "4115f84d-3b03-4b03-babf-21b36b2f9c03"
     sni: "nnMJkI9.191262.xYz"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-023"
+    type: trojan
+    server: "160.16.117.182"
+    port: 193
+    password: "9372cb81c7b0ad903f91f2f8a4d3f02b"
+    sni: "www.nintendogames.net"
     skip-cert-verify: true
     udp: true
   - name: "Delta-Kronecker-trojan-024"
@@ -311,26 +311,26 @@ proxies:
     udp: true
   - name: "Delta-Kronecker-trojan-025"
     type: trojan
-    server: "188.116.22.217"
-    port: 2083
-    password: "0zmdDXd0Qt5ff_7Qg67R-Rtq4Tmt4c"
-    sni: "xo.e0f.cx"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-026"
-    type: trojan
     server: "114.33.57.170"
     port: 443
     password: "5a2c16f9"
     sni: "5c.hhhhh.eu.org"
     skip-cert-verify: true
     udp: true
+  - name: "Delta-Kronecker-trojan-026"
+    type: trojan
+    server: "160.16.132.38"
+    port: 193
+    password: "9372cb81c7b0ad903f91f2f8a4d3f02b"
+    sni: "www.nintendogames.net"
+    skip-cert-verify: true
+    udp: true
   - name: "Delta-Kronecker-trojan-027"
     type: trojan
-    server: "167.17.185.172"
-    port: 10889
-    password: "cTv.9PDdCt-wybBrG1qlxI5UJuaEj"
-    sni: "web.max.ru"
+    server: "141.193.213.107"
+    port: 443
+    password: "519d06a5-f3a5-41bd-8f95-519ab65e20ed"
+    sni: "yss2o9nzv7hsgw2z.sggogo202510.top"
     skip-cert-verify: true
     udp: true
   - name: "Delta-Kronecker-trojan-028"
@@ -343,21 +343,13 @@ proxies:
     udp: true
   - name: "Delta-Kronecker-trojan-029"
     type: trojan
-    server: "141.193.213.107"
-    port: 443
-    password: "519d06a5-f3a5-41bd-8f95-519ab65e20ed"
-    sni: "yss2o9nzv7hsgw2z.sggogo202510.top"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-030"
-    type: trojan
     server: "www.multiplydose.com"
     port: 443
     password: "humanity"
     sni: "www.multiplydose.com"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-031"
+  - name: "Delta-Kronecker-trojan-030"
     type: trojan
     server: "172.66.44.87"
     port: 443
@@ -365,15 +357,7 @@ proxies:
     sni: "10-bPb-woRKEr-panEL.PaGES.dev"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-032"
-    type: trojan
-    server: "160.16.117.182"
-    port: 193
-    password: "9372cb81c7b0ad903f91f2f8a4d3f02b"
-    sni: "www.nintendogames.net"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-033"
+  - name: "Delta-Kronecker-trojan-031"
     type: trojan
     server: "172.64.80.1"
     port: 443
@@ -381,63 +365,7 @@ proxies:
     sni: "nMk.288288.sHOP"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-034"
-    type: trojan
-    server: "160.16.138.24"
-    port: 3901
-    password: "9372cb81c7b0ad903f91f2f8a4d3f02b"
-    sni: "www.nintendogames.net"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-035"
-    type: trojan
-    server: "172.67.134.185"
-    port: 443
-    password: "POORIARED"
-    sni: "reDfRee8.REDFree8.ir"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-036"
-    type: trojan
-    server: "160.16.132.38"
-    port: 193
-    password: "9372cb81c7b0ad903f91f2f8a4d3f02b"
-    sni: "www.nintendogames.net"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-037"
-    type: trojan
-    server: "167.17.185.152"
-    port: 10889
-    password: "cTv.9PDdCt-wybBrG1qlxI5UJuaEj"
-    sni: "ozon.ru"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-038"
-    type: trojan
-    server: "3.124.221.203"
-    port: 22222
-    password: "telegram-id-privatevpns"
-    sni: "trojan.burgerip.co.uk"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-039"
-    type: trojan
-    server: "212.193.18.144"
-    port: 36158
-    password: "ZblhWr0mqMakCPg.N"
-    sni: "api.avito.ru"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-040"
-    type: trojan
-    server: "666.cloudflare.182682.xyz"
-    port: 443
-    password: "519d06a5-f3a5-41bd-8f95-519ab65e20ed"
-    sni: "yss2o9nzv7hsgw2z.sggogo202510.top"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-041"
+  - name: "Delta-Kronecker-trojan-032"
     type: trojan
     server: "5.34.222.4"
     port: 43642
@@ -445,7 +373,31 @@ proxies:
     sni: "iepl.usq1.cat.bilibili.com"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-042"
+  - name: "Delta-Kronecker-trojan-033"
+    type: trojan
+    server: "172.67.134.185"
+    port: 443
+    password: "POORIARED"
+    sni: "reDfRee8.REDFree8.ir"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-034"
+    type: trojan
+    server: "3.124.221.203"
+    port: 22222
+    password: "telegram-id-privatevpns"
+    sni: "trojan.burgerip.co.uk"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-035"
+    type: trojan
+    server: "666.cloudflare.182682.xyz"
+    port: 443
+    password: "519d06a5-f3a5-41bd-8f95-519ab65e20ed"
+    sni: "yss2o9nzv7hsgw2z.sggogo202510.top"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-036"
     type: trojan
     server: "ggbnh.7777198.xyz"
     port: 443
@@ -453,7 +405,7 @@ proxies:
     sni: "GGbNH.7777198.xyZ"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-043"
+  - name: "Delta-Kronecker-trojan-037"
     type: trojan
     server: "104.21.44.213"
     port: 443
@@ -461,31 +413,7 @@ proxies:
     sni: "GGGNHHY.huanGshANg.ONlinE"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-044"
-    type: trojan
-    server: "63.183.53.84"
-    port: 22222
-    password: "telegram-id-privatevpns"
-    sni: "trojan.burgerip.co.uk"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-045"
-    type: trojan
-    server: "23.227.38.43"
-    port: 443
-    password: "fNDv88j5jz"
-    sni: "stream.motortaktaz.ir"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-046"
-    type: trojan
-    server: "104.21.17.25"
-    port: 443
-    password: "2bfe58f7-da1d-45df-ab43-7c665b20ee29"
-    sni: "vvvbnj.taipei102.indevs.in"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-047"
+  - name: "Delta-Kronecker-trojan-038"
     type: trojan
     server: "160.16.236.32"
     port: 1281
@@ -493,7 +421,39 @@ proxies:
     sni: "www.nintendogames.net"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-048"
+  - name: "Delta-Kronecker-trojan-039"
+    type: trojan
+    server: "63.183.53.84"
+    port: 22222
+    password: "telegram-id-privatevpns"
+    sni: "trojan.burgerip.co.uk"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-040"
+    type: trojan
+    server: "167.17.185.228"
+    port: 10889
+    password: "cTv.9PDdCt-wybBrG1qlxI5UJuaEj"
+    sni: "web.max"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-041"
+    type: trojan
+    server: "23.227.38.43"
+    port: 443
+    password: "fNDv88j5jz"
+    sni: "stream.motortaktaz.ir"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-042"
+    type: trojan
+    server: "104.21.17.25"
+    port: 443
+    password: "2bfe58f7-da1d-45df-ab43-7c665b20ee29"
+    sni: "vvvbnj.taipei102.indevs.in"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-043"
     type: trojan
     server: "www.gossipglove.com"
     port: 443
@@ -501,7 +461,7 @@ proxies:
     sni: "www.gossipglove.com"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-049"
+  - name: "Delta-Kronecker-trojan-044"
     type: trojan
     server: "194.150.166.151"
     port: 52047
@@ -509,7 +469,23 @@ proxies:
     sni: "aws.amazon.com"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-050"
+  - name: "Delta-Kronecker-trojan-045"
+    type: trojan
+    server: "167.17.185.172"
+    port: 10889
+    password: "cTv.9PDdCt-wybBrG1qlxI5UJuaEj"
+    sni: "web.max.ru"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-046"
+    type: trojan
+    server: "www.speedtest.net"
+    port: 443
+    password: "%3FM%7C%24pIEDnf8N"
+    sni: "www.speedtest.net"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-047"
     type: trojan
     server: "gkh7imomi--3t3xcstzt8pp4dlzueskn.pages.dev"
     port: 443
@@ -517,15 +493,7 @@ proxies:
     sni: "gkh7imomi--3t3xcstzt8pp4dlzueskn.pages.dev"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-051"
-    type: trojan
-    server: "www.speedtest.net"
-    port: 443
-    password: "%3FM%7C%24pIEDnf8N"
-    sni: "www.speedtest.net"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-052"
+  - name: "Delta-Kronecker-trojan-048"
     type: trojan
     server: "188.114.98.0"
     port: 443
@@ -533,23 +501,15 @@ proxies:
     sni: "188.114.98.0"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-053"
+  - name: "Delta-Kronecker-trojan-049"
     type: trojan
-    server: "88.214.24.235"
-    port: 9443
-    password: "02948bde80594712b974368035f294dd"
-    sni: "88.214.24.235"
+    server: "167.17.185.152"
+    port: 10889
+    password: "cTv.9PDdCt-wybBrG1qlxI5UJuaEj"
+    sni: "ozon.ru"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-054"
-    type: trojan
-    server: "132.145.51.172"
-    port: 443
-    password: "02e653c9-7c93-46a9-999d-11834bd0c577"
-    sni: "132.145.51.172"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-055"
+  - name: "Delta-Kronecker-trojan-050"
     type: trojan
     server: "162.159.138.232"
     port: 443
@@ -557,7 +517,23 @@ proxies:
     sni: "162.159.138.232"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-056"
+  - name: "Delta-Kronecker-trojan-051"
+    type: trojan
+    server: "88.214.24.235"
+    port: 9443
+    password: "02948bde80594712b974368035f294dd"
+    sni: "88.214.24.235"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-052"
+    type: trojan
+    server: "132.145.51.172"
+    port: 443
+    password: "02e653c9-7c93-46a9-999d-11834bd0c577"
+    sni: "132.145.51.172"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-053"
     type: trojan
     server: "144.22.250.122"
     port: 443
@@ -565,7 +541,7 @@ proxies:
     sni: "144.22.250.122"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-057"
+  - name: "Delta-Kronecker-trojan-054"
     type: trojan
     server: "www.speedtest.net"
     port: 2083
@@ -573,7 +549,7 @@ proxies:
     sni: "www.speedtest.net"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-058"
+  - name: "Delta-Kronecker-trojan-055"
     type: trojan
     server: "45.144.51.81"
     port: 443
@@ -581,15 +557,7 @@ proxies:
     sni: "45.144.51.81"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-059"
-    type: trojan
-    server: "104.17.147.11"
-    port: 443
-    password: "0ab6c98dae3b48e8b9c4a776b6c9c19a"
-    sni: "104.17.147.11"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-060"
+  - name: "Delta-Kronecker-trojan-056"
     type: trojan
     server: "www.visa.com.sg"
     port: 2053
@@ -597,7 +565,15 @@ proxies:
     sni: "www.visa.com.sg"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-061"
+  - name: "Delta-Kronecker-trojan-057"
+    type: trojan
+    server: "104.17.147.11"
+    port: 443
+    password: "0ab6c98dae3b48e8b9c4a776b6c9c19a"
+    sni: "104.17.147.11"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-058"
     type: trojan
     server: "uk1.test3.net"
     port: 443
@@ -605,7 +581,7 @@ proxies:
     sni: "uk1.test3.net"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-062"
+  - name: "Delta-Kronecker-trojan-059"
     type: trojan
     server: "www.speedtest.net"
     port: 8443
@@ -613,7 +589,7 @@ proxies:
     sni: "www.speedtest.net"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-063"
+  - name: "Delta-Kronecker-trojan-060"
     type: trojan
     server: "217.79.184.18"
     port: 443
@@ -621,7 +597,7 @@ proxies:
     sni: "217.79.184.18"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-064"
+  - name: "Delta-Kronecker-trojan-061"
     type: trojan
     server: "uk1.test3.net"
     port: 443
@@ -629,15 +605,15 @@ proxies:
     sni: "uk1.test3.net"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-065"
+  - name: "Delta-Kronecker-trojan-062"
     type: trojan
-    server: "uk1.test3.net"
-    port: 443
-    password: "0ff2ecf0-4684-11f0-b33e-1239d0255272"
-    sni: "uk1.test3.net"
+    server: "220.130.58.136"
+    port: 31103
+    password: "0a169d7d-a30f-4d90-af1b-55f6ef6afcb7"
+    sni: "green2.cdntencentmusic.com"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-066"
+  - name: "Delta-Kronecker-trojan-063"
     type: trojan
     server: "104.17.74.206"
     port: 443
@@ -645,7 +621,15 @@ proxies:
     sni: "104.17.74.206"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-067"
+  - name: "Delta-Kronecker-trojan-064"
+    type: trojan
+    server: "uk1.test3.net"
+    port: 443
+    password: "0ff2ecf0-4684-11f0-b33e-1239d0255272"
+    sni: "uk1.test3.net"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-065"
     type: trojan
     server: "162.159.137.232"
     port: 443
@@ -653,7 +637,7 @@ proxies:
     sni: "162.159.137.232"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-068"
+  - name: "Delta-Kronecker-trojan-066"
     type: trojan
     server: "usa.test3.net"
     port: 443
@@ -661,7 +645,7 @@ proxies:
     sni: "usa.test3.net"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-069"
+  - name: "Delta-Kronecker-trojan-067"
     type: trojan
     server: "104.16.122.175"
     port: 443
@@ -669,7 +653,7 @@ proxies:
     sni: "104.16.122.175"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-070"
+  - name: "Delta-Kronecker-trojan-068"
     type: trojan
     server: "104.16.123.175"
     port: 443
@@ -677,7 +661,95 @@ proxies:
     sni: "104.16.123.175"
     skip-cert-verify: true
     udp: true
+  - name: "Delta-Kronecker-trojan-069"
+    type: trojan
+    server: "trs12.bolab.net"
+    port: 443
+    password: "14bdba6dede262387ebdebaa706e1c90"
+    sni: "trs12.bolab.net"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-070"
+    type: trojan
+    server: "91.192.81.167"
+    port: 443
+    password: "16132fb0-4945-11f0-a95e-1239d0255272"
+    sni: "91.192.81.167"
+    skip-cert-verify: true
+    udp: true
   - name: "Delta-Kronecker-trojan-071"
+    type: trojan
+    server: "49.212.204.123"
+    port: 443
+    password: "18844%40zxcvbn"
+    sni: "49.212.204.123"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-072"
+    type: trojan
+    server: "sg4.6n6.net"
+    port: 443
+    password: "16132fb0-4945-11f0-a95e-1239d0255272"
+    sni: "sg4.6n6.net"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-073"
+    type: trojan
+    server: "uk1.test3.net"
+    port: 443
+    password: "19e8f800-4684-11f0-a89c-1239d0255272"
+    sni: "uk1.test3.net"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-074"
+    type: trojan
+    server: "103.224.182.210"
+    port: 443
+    password: "1bf16b43-0ad5-4512-a0e8-34bb8966278e"
+    sni: "103.224.182.210"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-075"
+    type: trojan
+    server: "chatbuzzteambhm.chatbuzzt7150.workers.dev"
+    port: 443
+    password: "22f86840-bcac-11ee-abea-1239d0255272"
+    sni: "chatbuzzteambhm.chatbuzzt7150.workers.dev"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-076"
+    type: trojan
+    server: "usla.mjt000.com"
+    port: 443
+    password: "1ba48a0e-af2e-45fb-9e15-2b2d4134657c"
+    sni: "usla.mjt000.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-077"
+    type: trojan
+    server: "ni.mjt000.com"
+    port: 443
+    password: "172b2279-f7f5-4542-ab6c-9e96ad7dd5be"
+    sni: "ni.mjt000.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-078"
+    type: trojan
+    server: "51.38.65.155"
+    port: 443
+    password: "255a0a50-3f10-11f0-b0d6-1239d0255272"
+    sni: "51.38.65.155"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-079"
+    type: trojan
+    server: "165.22.55.206"
+    port: 443
+    password: "253bc477d4e43c209f2d427272968280"
+    sni: "165.22.55.206"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-080"
     type: trojan
     server: "ghj.ok7.ccwu.cc"
     port: 443
@@ -690,94 +762,32 @@ proxies:
       path: "/XCLcnSashhgSVE3HOw1VI85y"
       headers:
         Host: "ghj.ok7.ccwu.cc"
-  - name: "Delta-Kronecker-trojan-072"
-    type: trojan
-    server: "trs12.bolab.net"
-    port: 443
-    password: "14bdba6dede262387ebdebaa706e1c90"
-    sni: "trs12.bolab.net"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-073"
-    type: trojan
-    server: "91.192.81.167"
-    port: 443
-    password: "16132fb0-4945-11f0-a95e-1239d0255272"
-    sni: "91.192.81.167"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-074"
-    type: trojan
-    server: "49.212.204.123"
-    port: 443
-    password: "18844%40zxcvbn"
-    sni: "49.212.204.123"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-075"
-    type: trojan
-    server: "103.224.182.210"
-    port: 443
-    password: "1bf16b43-0ad5-4512-a0e8-34bb8966278e"
-    sni: "103.224.182.210"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-076"
-    type: trojan
-    server: "uk1.test3.net"
-    port: 443
-    password: "19e8f800-4684-11f0-a89c-1239d0255272"
-    sni: "uk1.test3.net"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-077"
-    type: trojan
-    server: "sg4.6n6.net"
-    port: 443
-    password: "16132fb0-4945-11f0-a95e-1239d0255272"
-    sni: "sg4.6n6.net"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-078"
-    type: trojan
-    server: "chatbuzzteambhm.chatbuzzt7150.workers.dev"
-    port: 443
-    password: "22f86840-bcac-11ee-abea-1239d0255272"
-    sni: "chatbuzzteambhm.chatbuzzt7150.workers.dev"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-079"
-    type: trojan
-    server: "usla.mjt000.com"
-    port: 443
-    password: "1ba48a0e-af2e-45fb-9e15-2b2d4134657c"
-    sni: "usla.mjt000.com"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-080"
-    type: trojan
-    server: "ni.mjt000.com"
-    port: 443
-    password: "172b2279-f7f5-4542-ab6c-9e96ad7dd5be"
-    sni: "ni.mjt000.com"
-    skip-cert-verify: true
-    udp: true
   - name: "Delta-Kronecker-trojan-081"
     type: trojan
-    server: "51.38.65.155"
+    server: "ilop.uk2033.ccwu.cc"
     port: 443
-    password: "255a0a50-3f10-11f0-b0d6-1239d0255272"
-    sni: "51.38.65.155"
+    password: "1338f666-2fcc-4538-bc29-1ebf89624383"
+    sni: "ilop.uk2033.ccwu.cc"
     skip-cert-verify: true
     udp: true
+    network: ws
+    ws-opts:
+      path: "/XCLcnSashhgSVE3HOw1VI85y"
+      headers:
+        Host: "ilop.uk2033.ccwu.cc"
   - name: "Delta-Kronecker-trojan-082"
     type: trojan
-    server: "uk1.test3.net"
+    server: "u8.ok8.ccwu.cc"
     port: 443
-    password: "2543a880-48a1-11f0-8578-1239d0255272"
-    sni: "uk1.test3.net"
+    password: "1338f666-2fcc-4538-bc29-1ebf89624383"
+    sni: "u8.ok8.ccwu.cc"
     skip-cert-verify: true
     udp: true
+    network: ws
+    ws-opts:
+      path: "/XCLcnSashhgSVE3HOw1VI85y"
+      headers:
+        Host: "u8.ok8.ccwu.cc"
   - name: "Delta-Kronecker-trojan-083"
     type: trojan
     server: "uk1.test3.net"
@@ -788,21 +798,13 @@ proxies:
     udp: true
   - name: "Delta-Kronecker-trojan-084"
     type: trojan
-    server: "165.22.55.206"
+    server: "uk1.test3.net"
     port: 443
-    password: "253bc477d4e43c209f2d427272968280"
-    sni: "165.22.55.206"
+    password: "2543a880-48a1-11f0-8578-1239d0255272"
+    sni: "uk1.test3.net"
     skip-cert-verify: true
     udp: true
   - name: "Delta-Kronecker-trojan-085"
-    type: trojan
-    server: "dddfghyju.taipei102.indevs.in"
-    port: 443
-    password: "2bfe58f7-da1d-45df-ab43-7c665b20ee29"
-    sni: "dddfghyju.taipei102.indevs.in"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-086"
     type: trojan
     server: "104.17.215.8"
     port: 443
@@ -810,20 +812,41 @@ proxies:
     sni: "104.17.215.8"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-087"
+  - name: "Delta-Kronecker-trojan-086"
     type: trojan
-    server: "bbbnmju.932.pp.ua"
+    server: "dddfghyju.taipei102.indevs.in"
     port: 443
     password: "2bfe58f7-da1d-45df-ab43-7c665b20ee29"
-    sni: "bbbnmju.932.pp.ua"
+    sni: "dddfghyju.taipei102.indevs.in"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-087"
+    type: trojan
+    server: "104.21.23.210"
+    port: 443
+    password: "2bfe58f7-da1d-45df-ab43-7c665b20ee29"
+    sni: "ggbnhj.932.pp.ua"
     skip-cert-verify: true
     udp: true
     network: ws
     ws-opts:
       path: "/2cO5FH0xUmT9oqnbBhmKb8nOkg"
       headers:
-        Host: "bbbnmju.932.pp.ua"
+        Host: "ggbnhj.932.pp.ua"
   - name: "Delta-Kronecker-trojan-088"
+    type: trojan
+    server: "104.21.40.66"
+    port: 443
+    password: "2bfe58f7-da1d-45df-ab43-7c665b20ee29"
+    sni: "gbnh.7777112.xyz"
+    skip-cert-verify: true
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/2cO5FH0xUmT9oqnbBhmKb8nOkg"
+      headers:
+        Host: "gbnh.7777112.xyz"
+  - name: "Delta-Kronecker-trojan-089"
     type: trojan
     server: "hhhhhhhhj.191266.xyz"
     port: 443
@@ -836,7 +859,7 @@ proxies:
       path: "/2cO5FH0xUmT9oqnbBhmKb8nOkg"
       headers:
         Host: "hhhhhhhhj.191266.xyz"
-  - name: "Delta-Kronecker-trojan-089"
+  - name: "Delta-Kronecker-trojan-090"
     type: trojan
     server: "ggbnhj.932.pp.ua"
     port: 443
@@ -849,19 +872,6 @@ proxies:
       path: "/2cO5FH0xUmT9oqnbBhmKb8nOkg"
       headers:
         Host: "ggbnhj.932.pp.ua"
-  - name: "Delta-Kronecker-trojan-090"
-    type: trojan
-    server: "hhhnmju.932.pp.ua"
-    port: 443
-    password: "2bfe58f7-da1d-45df-ab43-7c665b20ee29"
-    sni: "hhhnmju.932.pp.ua"
-    skip-cert-verify: true
-    udp: true
-    network: ws
-    ws-opts:
-      path: "/2cO5FH0xUmT9oqnbBhmKb8nOkg"
-      headers:
-        Host: "hhhnmju.932.pp.ua"
   - name: "Delta-Kronecker-trojan-091"
     type: trojan
     server: "hhhnmjki.932.pp.ua"
@@ -877,6 +887,32 @@ proxies:
         Host: "hhhnmjki.932.pp.ua"
   - name: "Delta-Kronecker-trojan-092"
     type: trojan
+    server: "bbbnmju.932.pp.ua"
+    port: 443
+    password: "2bfe58f7-da1d-45df-ab43-7c665b20ee29"
+    sni: "bbbnmju.932.pp.ua"
+    skip-cert-verify: true
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/2cO5FH0xUmT9oqnbBhmKb8nOkg"
+      headers:
+        Host: "bbbnmju.932.pp.ua"
+  - name: "Delta-Kronecker-trojan-093"
+    type: trojan
+    server: "hhhnmju.932.pp.ua"
+    port: 443
+    password: "2bfe58f7-da1d-45df-ab43-7c665b20ee29"
+    sni: "hhhnmju.932.pp.ua"
+    skip-cert-verify: true
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/2cO5FH0xUmT9oqnbBhmKb8nOkg"
+      headers:
+        Host: "hhhnmju.932.pp.ua"
+  - name: "Delta-Kronecker-trojan-094"
+    type: trojan
     server: "jjjkkk.2030.pp.ua"
     port: 443
     password: "2bfe58f7-da1d-45df-ab43-7c665b20ee29"
@@ -888,27 +924,6 @@ proxies:
       path: "/2cO5FH0xUmT9oqnbBhmKb8nOkg"
       headers:
         Host: "jjjkkk.2030.pp.ua"
-  - name: "Delta-Kronecker-trojan-093"
-    type: trojan
-    server: "nnnmjku.932.pp.ua"
-    port: 443
-    password: "2bfe58f7-da1d-45df-ab43-7c665b20ee29"
-    sni: "nnnmjku.932.pp.ua"
-    skip-cert-verify: true
-    udp: true
-    network: ws
-    ws-opts:
-      path: "/2cO5FH0xUmT9oqnbBhmKb8nOkg"
-      headers:
-        Host: "nnnmjku.932.pp.ua"
-  - name: "Delta-Kronecker-trojan-094"
-    type: trojan
-    server: "15.204.248.103"
-    port: 443
-    password: "2ee85121-31de-4581-a492-eb00f606e392"
-    sni: "15.204.248.103"
-    skip-cert-verify: true
-    udp: true
   - name: "Delta-Kronecker-trojan-095"
     type: trojan
     server: "92.38.145.145"
@@ -927,28 +942,33 @@ proxies:
     udp: true
   - name: "Delta-Kronecker-trojan-097"
     type: trojan
+    server: "15.204.248.103"
+    port: 443
+    password: "2ee85121-31de-4581-a492-eb00f606e392"
+    sni: "15.204.248.103"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-098"
+    type: trojan
     server: "198.23.229.250"
     port: 443
     password: "2ee85121-31de-4581-a492-eb00f606e392"
     sni: "198.23.229.250"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-098"
-    type: trojan
-    server: "220.130.58.136"
-    port: 31103
-    password: "0a169d7d-a30f-4d90-af1b-55f6ef6afcb7"
-    sni: "green2.cdntencentmusic.com"
-    skip-cert-verify: true
-    udp: true
   - name: "Delta-Kronecker-trojan-099"
     type: trojan
-    server: "uk2-full.privateip.net"
+    server: "nnnmjku.932.pp.ua"
     port: 443
-    password: "30761083-5dcd-49d6-85b5-33756ef1f7ed"
-    sni: "uk2-full.privateip.net"
+    password: "2bfe58f7-da1d-45df-ab43-7c665b20ee29"
+    sni: "nnnmjku.932.pp.ua"
     skip-cert-verify: true
     udp: true
+    network: ws
+    ws-opts:
+      path: "/2cO5FH0xUmT9oqnbBhmKb8nOkg"
+      headers:
+        Host: "nnnmjku.932.pp.ua"
   - name: "Delta-Kronecker-trojan-100"
     type: trojan
     server: "uk1.test3.net"
@@ -959,10 +979,10 @@ proxies:
     udp: true
   - name: "Delta-Kronecker-trojan-101"
     type: trojan
-    server: "103.188.235.3"
-    port: 321
-    password: "2f653ecd-c290-451e-a848-f8f525bc5a21"
-    sni: "103.188.235.3"
+    server: "uk2-full.privateip.net"
+    port: 443
+    password: "30761083-5dcd-49d6-85b5-33756ef1f7ed"
+    sni: "uk2-full.privateip.net"
     skip-cert-verify: true
     udp: true
   - name: "Delta-Kronecker-trojan-102"
@@ -975,39 +995,21 @@ proxies:
     udp: true
   - name: "Delta-Kronecker-trojan-103"
     type: trojan
+    server: "103.188.235.3"
+    port: 321
+    password: "2f653ecd-c290-451e-a848-f8f525bc5a21"
+    sni: "103.188.235.3"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-104"
+    type: trojan
     server: "103.252.116.138"
     port: 443
     password: "2ee85121-31de-4581-a492-eb00f606e392"
     sni: "103.252.116.138"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-104"
-    type: trojan
-    server: "104.21.23.210"
-    port: 443
-    password: "2bfe58f7-da1d-45df-ab43-7c665b20ee29"
-    sni: "ggbnhj.932.pp.ua"
-    skip-cert-verify: true
-    udp: true
-    network: ws
-    ws-opts:
-      path: "/2cO5FH0xUmT9oqnbBhmKb8nOkg"
-      headers:
-        Host: "ggbnhj.932.pp.ua"
   - name: "Delta-Kronecker-trojan-105"
-    type: trojan
-    server: "104.21.40.66"
-    port: 443
-    password: "2bfe58f7-da1d-45df-ab43-7c665b20ee29"
-    sni: "gbnh.7777112.xyz"
-    skip-cert-verify: true
-    udp: true
-    network: ws
-    ws-opts:
-      path: "/2cO5FH0xUmT9oqnbBhmKb8nOkg"
-      headers:
-        Host: "gbnh.7777112.xyz"
-  - name: "Delta-Kronecker-trojan-106"
     type: trojan
     server: "35.168.124.79"
     port: 443
@@ -1015,7 +1017,7 @@ proxies:
     sni: "35.168.124.79"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-107"
+  - name: "Delta-Kronecker-trojan-106"
     type: trojan
     server: "54.36.191.211"
     port: 443
@@ -1023,12 +1025,20 @@ proxies:
     sni: "54.36.191.211"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-108"
+  - name: "Delta-Kronecker-trojan-107"
     type: trojan
     server: "195.133.93.135"
     port: 443
     password: "3747000103274291200"
     sni: "195.133.93.135"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-108"
+    type: trojan
+    server: "35.75.186.204"
+    port: 443
+    password: "3669023846591373312"
+    sni: "35.75.186.204"
     skip-cert-verify: true
     udp: true
   - name: "Delta-Kronecker-trojan-109"
@@ -1041,29 +1051,13 @@ proxies:
     udp: true
   - name: "Delta-Kronecker-trojan-110"
     type: trojan
-    server: "35.75.186.204"
-    port: 443
-    password: "3669023846591373312"
-    sni: "35.75.186.204"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-111"
-    type: trojan
     server: "dl-hk3.steamdownload.top"
     port: 443
     password: "3bc392b4-ab17-4870-ace6-e968f93c4ac6"
     sni: "dl-hk3.steamdownload.top"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-112"
-    type: trojan
-    server: "104.17.61.7"
-    port: 443
-    password: "4732adfa16c6450bbef87264e41332db"
-    sni: "104.17.61.7"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-113"
+  - name: "Delta-Kronecker-trojan-111"
     type: trojan
     server: "uk1.test3.net"
     port: 443
@@ -1071,7 +1065,7 @@ proxies:
     sni: "uk1.test3.net"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-114"
+  - name: "Delta-Kronecker-trojan-112"
     type: trojan
     server: "217.79.184.76"
     port: 443
@@ -1079,7 +1073,7 @@ proxies:
     sni: "217.79.184.76"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-115"
+  - name: "Delta-Kronecker-trojan-113"
     type: trojan
     server: "104.16.159.7"
     port: 443
@@ -1087,7 +1081,31 @@ proxies:
     sni: "104.16.159.7"
     skip-cert-verify: true
     udp: true
+  - name: "Delta-Kronecker-trojan-114"
+    type: trojan
+    server: "104.17.61.7"
+    port: 443
+    password: "4732adfa16c6450bbef87264e41332db"
+    sni: "104.17.61.7"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-115"
+    type: trojan
+    server: "usa.test3.net"
+    port: 443
+    password: "4796ddd0-489f-11f0-a6bf-1239d0255272"
+    sni: "usa.test3.net"
+    skip-cert-verify: true
+    udp: true
   - name: "Delta-Kronecker-trojan-116"
+    type: trojan
+    server: "cf.dalazhi.eu.org"
+    port: 443
+    password: "4807b8ab-d74a-445e-9556-45a7ace4f6d6"
+    sni: "cf.dalazhi.eu.org"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-117"
     type: trojan
     server: "103.224.182.208"
     port: 443
@@ -1095,49 +1113,7 @@ proxies:
     sni: "103.224.182.208"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-117"
-    type: trojan
-    server: "bbnhmjk.191262.xyz"
-    port: 443
-    password: "4115f84d-3b03-4b03-babf-21b36b2f9c03"
-    sni: "BbNHmJK.191262.xYZ"
-    skip-cert-verify: true
-    udp: true
-    client-fingerprint: "chrome"
-    network: ws
-    ws-opts:
-      path: "/r862SIwqItkD5XgXAL"
-      headers:
-        Host: "BbNhMjk.191262.xYz"
   - name: "Delta-Kronecker-trojan-118"
-    type: trojan
-    server: "bbbhny.191268.xyz"
-    port: 443
-    password: "4115f84d-3b03-4b03-babf-21b36b2f9c03"
-    sni: "BBbhNY.191268.xYz"
-    skip-cert-verify: true
-    udp: true
-    client-fingerprint: "chrome"
-    network: ws
-    ws-opts:
-      path: "/r862SIwqItkD5XgXAL"
-      headers:
-        Host: "BBBHNY.191268.XyZ"
-  - name: "Delta-Kronecker-trojan-119"
-    type: trojan
-    server: "cccvbgt6.890634.xyz"
-    port: 443
-    password: "4115f84d-3b03-4b03-babf-21b36b2f9c03"
-    sni: "cCcVBGt6.890634.xyz"
-    skip-cert-verify: true
-    udp: true
-    client-fingerprint: "chrome"
-    network: ws
-    ws-opts:
-      path: "/r862SIwqItkD5XgXAL"
-      headers:
-        Host: "CcCVbgT6.890634.XYz"
-  - name: "Delta-Kronecker-trojan-120"
     type: trojan
     server: "bbgtr.7777198.xyz"
     port: 443
@@ -1151,15 +1127,7 @@ proxies:
       path: "/r862SIwqItkD5XgXAL"
       headers:
         Host: "BbGTr.7777198.Xyz"
-  - name: "Delta-Kronecker-trojan-121"
-    type: trojan
-    server: "uk1.test3.net"
-    port: 443
-    password: "432f85e0-4684-11f0-b5ac-1239d0255272"
-    sni: "uk1.test3.net"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-122"
+  - name: "Delta-Kronecker-trojan-119"
     type: trojan
     server: "nnmjki9.191262.xyz"
     port: 443
@@ -1173,7 +1141,21 @@ proxies:
       path: "/r862SIwqItkD5XgXAL"
       headers:
         Host: "nnMJKi9.191262.xYz"
-  - name: "Delta-Kronecker-trojan-123"
+  - name: "Delta-Kronecker-trojan-120"
+    type: trojan
+    server: "bbbhny.191268.xyz"
+    port: 443
+    password: "4115f84d-3b03-4b03-babf-21b36b2f9c03"
+    sni: "BBbhNY.191268.xYz"
+    skip-cert-verify: true
+    udp: true
+    client-fingerprint: "chrome"
+    network: ws
+    ws-opts:
+      path: "/r862SIwqItkD5XgXAL"
+      headers:
+        Host: "BBBHNY.191268.XyZ"
+  - name: "Delta-Kronecker-trojan-121"
     type: trojan
     server: "vvbght.932.pp.ua"
     port: 443
@@ -1187,20 +1169,7 @@ proxies:
       path: "/r862SIwqItkD5XgXAL"
       headers:
         Host: "vvbght.932.pp.ua"
-  - name: "Delta-Kronecker-trojan-124"
-    type: trojan
-    server: "vvbghy.huangshang.online"
-    port: 443
-    password: "4115f84d-3b03-4b03-babf-21b36b2f9c03"
-    sni: "vvbghy.huangshang.online"
-    skip-cert-verify: true
-    udp: true
-    network: ws
-    ws-opts:
-      path: "/r862SIwqItkD5XgXAL"
-      headers:
-        Host: "vvbghy.huangshang.online"
-  - name: "Delta-Kronecker-trojan-125"
+  - name: "Delta-Kronecker-trojan-122"
     type: trojan
     server: "ggbnhy.191262.xyz"
     port: 443
@@ -1214,23 +1183,56 @@ proxies:
       path: "/r862SIwqItkD5XgXAL"
       headers:
         Host: "GGbNhy.191262.xYZ"
+  - name: "Delta-Kronecker-trojan-123"
+    type: trojan
+    server: "vvbghy.huangshang.online"
+    port: 443
+    password: "4115f84d-3b03-4b03-babf-21b36b2f9c03"
+    sni: "vvbghy.huangshang.online"
+    skip-cert-verify: true
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/r862SIwqItkD5XgXAL"
+      headers:
+        Host: "vvbghy.huangshang.online"
+  - name: "Delta-Kronecker-trojan-124"
+    type: trojan
+    server: "cccvbgt6.890634.xyz"
+    port: 443
+    password: "4115f84d-3b03-4b03-babf-21b36b2f9c03"
+    sni: "cCcVBGt6.890634.xyz"
+    skip-cert-verify: true
+    udp: true
+    client-fingerprint: "chrome"
+    network: ws
+    ws-opts:
+      path: "/r862SIwqItkD5XgXAL"
+      headers:
+        Host: "CcCVbgT6.890634.XYz"
+  - name: "Delta-Kronecker-trojan-125"
+    type: trojan
+    server: "uk1.test3.net"
+    port: 443
+    password: "432f85e0-4684-11f0-b5ac-1239d0255272"
+    sni: "uk1.test3.net"
+    skip-cert-verify: true
+    udp: true
   - name: "Delta-Kronecker-trojan-126"
     type: trojan
-    server: "cf.dalazhi.eu.org"
+    server: "bbnhmjk.191262.xyz"
     port: 443
-    password: "4807b8ab-d74a-445e-9556-45a7ace4f6d6"
-    sni: "cf.dalazhi.eu.org"
+    password: "4115f84d-3b03-4b03-babf-21b36b2f9c03"
+    sni: "BbNHmJK.191262.xYZ"
     skip-cert-verify: true
     udp: true
+    client-fingerprint: "chrome"
+    network: ws
+    ws-opts:
+      path: "/r862SIwqItkD5XgXAL"
+      headers:
+        Host: "BbNhMjk.191262.xYz"
   - name: "Delta-Kronecker-trojan-127"
-    type: trojan
-    server: "usa.test3.net"
-    port: 443
-    password: "4796ddd0-489f-11f0-a6bf-1239d0255272"
-    sni: "usa.test3.net"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-128"
     type: trojan
     server: "nextstepcareer.online"
     port: 443
@@ -1238,7 +1240,7 @@ proxies:
     sni: "nextstepcareer.online"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-129"
+  - name: "Delta-Kronecker-trojan-128"
     type: trojan
     server: "104.19.159.144"
     port: 443
@@ -1246,12 +1248,20 @@ proxies:
     sni: "104.19.159.144"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-trojan-130"
+  - name: "Delta-Kronecker-trojan-129"
     type: trojan
     server: "188.114.97.58"
     port: 443
     password: "4b040268-f3a5-4136-b1a9-506012e8e3d9"
     sni: "188.114.97.58"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-130"
+    type: trojan
+    server: "104.19.235.14"
+    port: 443
+    password: "4d706727-996f-4427-930d-60f3bd414cf9"
+    sni: "104.19.235.14"
     skip-cert-verify: true
     udp: true
   - name: "Delta-Kronecker-trojan-131"
@@ -1264,20 +1274,25 @@ proxies:
     udp: true
   - name: "Delta-Kronecker-trojan-132"
     type: trojan
-    server: "104.19.235.14"
-    port: 443
-    password: "4d706727-996f-4427-930d-60f3bd414cf9"
-    sni: "104.19.235.14"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-trojan-133"
-    type: trojan
     server: "uk1.test3.net"
     port: 443
     password: "4bf21530-4684-11f0-ad62-1239d0255272"
     sni: "uk1.test3.net"
     skip-cert-verify: true
     udp: true
+  - name: "Delta-Kronecker-trojan-133"
+    type: trojan
+    server: "kk9.89060004.xyz"
+    port: 443
+    password: "4c205c81-5694-43fe-a287-af563a2ebc05"
+    sni: "kk9.89060004.xyz"
+    skip-cert-verify: true
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/P23lDbkARo4gds7cXpDB5nO5"
+      headers:
+        Host: "kk9.89060004.xyz"
   - name: "Delta-Kronecker-trojan-134"
     type: trojan
     server: "bhy.89060004.xyz"
@@ -1293,23 +1308,18 @@ proxies:
         Host: "bhy.89060004.xyz"
   - name: "Delta-Kronecker-trojan-135"
     type: trojan
-    server: "kk9.89060004.xyz"
-    port: 443
-    password: "4c205c81-5694-43fe-a287-af563a2ebc05"
-    sni: "kk9.89060004.xyz"
-    skip-cert-verify: true
-    udp: true
-    network: ws
-    ws-opts:
-      path: "/P23lDbkARo4gds7cXpDB5nO5"
-      headers:
-        Host: "kk9.89060004.xyz"
-  - name: "Delta-Kronecker-trojan-136"
-    type: trojan
     server: "103.168.56.77"
     port: 443
     password: "4f2c305b-9a03-4493-b3e4-2dff2f1af8c9"
     sni: "103.168.56.77"
+    skip-cert-verify: true
+    udp: true
+  - name: "Delta-Kronecker-trojan-136"
+    type: trojan
+    server: "220.130.58.136"
+    port: 31102
+    password: "4250b3bb-d1ae-4e77-bf71-4069e0d2c383"
+    sni: "220.130.58.136"
     skip-cert-verify: true
     udp: true
 
