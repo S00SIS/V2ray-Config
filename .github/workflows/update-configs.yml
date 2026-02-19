@@ -46,16 +46,32 @@ jobs:
 
     - name: Verify
       run: |
-        echo "=== Config Output ==="
+        echo "=== Main Config Output ==="
         ls -lh config/
-        ls -lh config/protocols/ 2>/dev/null || true
+        echo ""
+        echo "=== Protocol Files ==="
+        ls -lh config/protocols/ 2>/dev/null || echo "No protocols directory"
+        echo ""
+        echo "=== Batch Files ==="
+        echo "V2Ray batches:"
+        ls config/batches/v2ray/ 2>/dev/null | wc -l || echo 0
+        echo "Clash batches:"
+        ls config/batches/clash/ 2>/dev/null | wc -l || echo 0
+        echo "Clash Advanced batches:"
+        ls config/batches/clash_advanced/ 2>/dev/null | wc -l || echo 0
+        echo ""
+        echo "=== Stats ==="
         if [ -f "config/all_configs.txt" ]; then
-          echo "Total configs: $(wc -l < config/all_configs.txt)"
+          echo "Total V2Ray configs: $(wc -l < config/all_configs.txt)"
         fi
         if [ -f "config/clash.yaml" ]; then
           echo "Clash proxies: $(grep -c '  - name:' config/clash.yaml || echo 0)"
         fi
-        echo "=== Logs ==="
+        if [ -f "config/clash_advanced.yaml" ]; then
+          echo "Clash Advanced proxies: $(grep -c '  - name:' config/clash_advanced.yaml || echo 0)"
+        fi
+        echo ""
+        echo "=== Validation Logs ==="
         ls -lh logs/ 2>/dev/null || echo "No logs directory"
         if ls logs/*.log 2>/dev/null | head -1 | xargs -I{} tail -30 {}; then
           true
@@ -74,6 +90,6 @@ jobs:
       run: |
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
-        git add config/ UPDATE_SUMMARY.md
+        git add config/ README.md
         git diff --staged --quiet || git commit -m "Update configs [$(date -u '+%Y-%m-%d %H:%M UTC')]"
         git push
