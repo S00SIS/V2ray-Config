@@ -129,7 +129,7 @@ proxy-groups:
       - "Load Balance"
       - "Auto"
       - "Fallback"
-      - DIRECT
+    
 
   - name: "Load Balance"
     type: load-balance
@@ -144,8 +144,8 @@ proxy-groups:
   - name: "Auto"
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
+    interval: 60
+    tolerance: 10
     lazy: true
     proxies:
 # ---PROXY-NAMES---
