@@ -93,9 +93,6 @@ dns:
     - tls://family-filter-dns.cleanbrowsing.org:853
     - tls://adult-filter-dns.cleanbrowsing.org:853
     - tls://security-filter-dns.cleanbrowsing.org:853
-    - h3://cloudflare-dns.com/dns-query
-    - h3://dns.google/dns-query
-    - h3://dns.quad9.net/dns-query
     - 1.1.1.1
     - 1.0.0.1
     - 8.8.8.8
