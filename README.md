@@ -1,6 +1,6 @@
 # V2ray-Config — Delta-Kronecker
 
-> Last updated: 2026-02-19 10:28 UTC
+> Last updated: 2026-02-19 12:24 UTC
 
 ## About
 
@@ -18,21 +18,21 @@ Clash configs are Iran-optimized with layered DNS, GeoIP rules, and intelligent 
 
 | Protocol | Input (unique) | Output (valid) | Pass Rate |
 |---|---|---|---|
-| VMESS | 31490 | 285 | 0.9% |
-| VLESS | 37530 | 2314 | 6.2% |
-| TROJAN | 11568 | 663 | 5.7% |
-| SS | 16252 | 1250 | 7.7% |
+| VMESS | 31476 | 375 | 1.2% |
+| VLESS | 37469 | 2178 | 5.8% |
+| TROJAN | 11560 | 667 | 5.8% |
+| SS | 16268 | 1252 | 7.7% |
 | HY2 | 16 | 0 | 0.0% |
 | HY | 0 | 0 | 0.0% |
 | TUIC | 2 | 0 | 0.0% |
-| **Total** | **96858** | **4512** | **4.7%** |
+| **Total** | **96791** | **4472** | **4.6%** |
 
 | Metric | Value |
 |---|---|
-| Raw fetched lines | 253518 |
-| Unique after dedup | 96858 |
-| Valid configs | 4512 |
-| Processing time | 1781.41s |
+| Raw fetched lines | 250829 |
+| Unique after dedup | 96791 |
+| Valid configs | 4472 |
+| Processing time | 1766.90s |
 
 ---
 
@@ -48,10 +48,10 @@ Clash configs are Iran-optimized with layered DNS, GeoIP rules, and intelligent 
 
 | Protocol | Count | Link |
 |---|---|---|
-| VMESS | 285 | [vmess.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vmess.txt) |
-| VLESS | 2314 | [vless.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vless.txt) |
-| TROJAN | 663 | [trojan.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/trojan.txt) |
-| SS | 1250 | [ss.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/ss.txt) |
+| VMESS | 375 | [vmess.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vmess.txt) |
+| VLESS | 2178 | [vless.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vless.txt) |
+| TROJAN | 667 | [trojan.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/trojan.txt) |
+| SS | 1252 | [ss.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/ss.txt) |
 
 ### Clash — Standard Structure
 
@@ -95,8 +95,7 @@ Groups: **PROXY-BEST** → SCEN-OPEN · SCEN-CDN → LB-ALL · LB-CDN · FAST-AL
 | Batch 006 | 500 | [batch_006.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_006.txt) |
 | Batch 007 | 500 | [batch_007.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_007.txt) |
 | Batch 008 | 500 | [batch_008.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_008.txt) |
-| Batch 009 | 500 | [batch_009.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_009.txt) |
-| Batch 010 | 12 | [batch_010.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_010.txt) |
+| Batch 009 | 472 | [batch_009.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_009.txt) |
 
 ### Clash Standard Batches
 
@@ -111,7 +110,6 @@ Groups: **PROXY-BEST** → SCEN-OPEN · SCEN-CDN → LB-ALL · LB-CDN · FAST-AL
 | Batch 007 | [batch_007.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/clash/batch_007.yaml) |
 | Batch 008 | [batch_008.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/clash/batch_008.yaml) |
 | Batch 009 | [batch_009.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/clash/batch_009.yaml) |
-| Batch 010 | [batch_010.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/clash/batch_010.yaml) |
 
 ### Clash Advanced Batches
 
@@ -126,7 +124,6 @@ Groups: **PROXY-BEST** → SCEN-OPEN · SCEN-CDN → LB-ALL · LB-CDN · FAST-AL
 | Batch 007 | [batch_007.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/clash_advanced/batch_007.yaml) |
 | Batch 008 | [batch_008.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/clash_advanced/batch_008.yaml) |
 | Batch 009 | [batch_009.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/clash_advanced/batch_009.yaml) |
-| Batch 010 | [batch_010.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/clash_advanced/batch_010.yaml) |
 
 ---
 
