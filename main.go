@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"math/rand"
 	"net"
 	"net/http"
 	"net/url"
@@ -54,17 +55,9 @@ type OutputSettings struct {
 	ProtocolsDir string `json:"protocols_dir"`
 }
 
-var cfg Settings
-var portPool chan int
-
-var fetchHTTPClient = &http.Client{
-	Timeout: 30 * time.Second,
-	Transport: &http.Transport{
-		MaxIdleConns:          20,
-		MaxIdleConnsPerHost:   5,
-		IdleConnTimeout:       30 * time.Second,
-		ResponseHeaderTimeout: 25 * time.Second,
-	},
+type clashBase struct {
+	header string
+	rules  string
 }
 
 type protoStat struct {
@@ -89,7 +82,146 @@ type Logger struct {
 	protoStats map[string]*protoStat
 }
 
+type fetchResult struct {
+	url        string
+	content    string
+	statusCode int
+	err        error
+}
+
+type validationResult struct {
+	totalScore int
+	latency    time.Duration
+	failReason string
+}
+
+type configResult struct {
+	line    string
+	proto   string
+	latency time.Duration
+}
+
+var cfg Settings
+var portPool chan int
 var gLog *Logger
+var gClash clashBase
+var gClashAdvanced clashBase
+
+var fetchHTTPClient = &http.Client{
+	Timeout: 30 * time.Second,
+	Transport: &http.Transport{
+		MaxIdleConns:          20,
+		MaxIdleConnsPerHost:   5,
+		IdleConnTimeout:       30 * time.Second,
+		ResponseHeaderTimeout: 25 * time.Second,
+	},
+}
+
+func main() {
+	if err := loadSettings("settings.json"); err != nil {
+		fmt.Printf("❌ Failed to load settings.json: %v\n", err)
+		os.Exit(1)
+	}
+
+	if err := loadClashBase("clash_base.yaml"); err != nil {
+		fmt.Printf("⚠️  %v — Simple Clash output will be skipped\n", err)
+	}
+
+	if err := loadClashAdvancedBase("clash_advanced_base.yaml"); err != nil {
+		fmt.Printf("⚠️  %v — Advanced Clash output will be skipped\n", err)
+	}
+
+	var logErr error
+	gLog, logErr = newLogger("logs")
+	if logErr != nil {
+		fmt.Printf("⚠️  Log file error: %v\n", logErr)
+	}
+	if gLog != nil {
+		defer gLog.close()
+	}
+
+	initPortPool()
+
+	start := time.Now()
+	v := cfg.Validation
+	fmt.Println("🚀 Starting V2Ray config aggregator...")
+	fmt.Printf("⚙️  Workers=%d | Timeout=%.0fs | Retries=%d\n",
+		v.NumWorkers, v.GlobalTimeoutSec, v.MaxRetries)
+
+	if err := prepareOutputDirs(); err != nil {
+		fmt.Printf("❌ Error creating directories: %v\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Println("📡 Fetching configurations from sources...")
+	allConfigs, failedLinks := fetchAll(cfg.Base64Links, cfg.TextLinks)
+	fmt.Printf("📊 Total fetched: %d | Failed sources: %d\n", len(allConfigs), len(failedLinks))
+
+	if gLog != nil {
+		gLog.logStart(len(allConfigs), len(failedLinks))
+	}
+
+	fmt.Println("🔍 Validating...")
+	results := validateAll(allConfigs)
+
+	elapsed := time.Since(start).Seconds()
+	fmt.Printf("\n✅ Valid configurations: %d\n", len(results))
+
+	if gLog != nil {
+		gLog.logSummary(elapsed, results, failedLinks)
+	}
+
+	writeOutputFiles(results)
+	writeSummary(results, failedLinks, elapsed, len(allConfigs))
+	fmt.Println("✅ Done!")
+}
+
+func loadSettings(path string) error {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return err
+	}
+	return json.Unmarshal(data, &cfg)
+}
+
+func loadClashBase(path string) error {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return fmt.Errorf("clash_base.yaml: %w", err)
+	}
+	const sep = "# ---RULES---"
+	idx := strings.Index(string(data), sep)
+	if idx == -1 {
+		return fmt.Errorf("clash_base.yaml: missing separator '# ---RULES---'")
+	}
+	gClash.header = strings.TrimRight(string(data[:idx]), "\n ") + "\n"
+	gClash.rules = strings.TrimLeft(string(data[idx+len(sep):]), "\n")
+	return nil
+}
+
+func loadClashAdvancedBase(path string) error {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return fmt.Errorf("clash_advanced_base.yaml: %w", err)
+	}
+	const sep = "# ---RULES---"
+	idx := strings.Index(string(data), sep)
+	if idx == -1 {
+		return fmt.Errorf("clash_advanced_base.yaml: missing separator '# ---RULES---'")
+	}
+	gClashAdvanced.header = strings.TrimRight(string(data[:idx]), "\n ") + "\n"
+	gClashAdvanced.rules = strings.TrimLeft(string(data[idx+len(sep):]), "\n")
+	return nil
+}
+
+func initPortPool() {
+	v := cfg.Validation
+	size := v.NumWorkers + 10
+	portPool = make(chan int, size)
+	for i := 0; i < size; i++ {
+		portPool <- v.BasePort + i
+	}
+}
 
 func newLogger(dir string) (*Logger, error) {
 	if err := os.MkdirAll(dir, 0755); err != nil {
@@ -223,14 +355,25 @@ func (l *Logger) logSummary(duration float64, results []configResult, failedLink
 		}
 	}
 
+	batchCount := 0
+	if len(results) > 0 {
+		batchCount = (len(results) + 499) / 500
+	}
+
 	l.writeLine("\n  Output Files:")
 	for _, p := range cfg.ProtocolOrder {
 		if n := byProto[p]; n > 0 {
-			l.writeLine(fmt.Sprintf("    %-6s: %d → %s/%s.txt + %s/%s_clash.yaml",
-				p, n, cfg.Output.ProtocolsDir, p, cfg.Output.ProtocolsDir, p))
+			l.writeLine(fmt.Sprintf("    %-6s: %d → %s/%s.txt | %s/%s_clash.yaml | %s/%s_clash_advanced.yaml",
+				p, n,
+				cfg.Output.ProtocolsDir, p,
+				cfg.Output.ProtocolsDir, p,
+				cfg.Output.ProtocolsDir, p))
 		}
 	}
-	l.writeLine(fmt.Sprintf("  Total  : %d → %s", len(results), cfg.Output.MainFile))
+	l.writeLine(fmt.Sprintf("  Total  : %d → %s | config/clash.yaml | config/clash_advanced.yaml", len(results), cfg.Output.MainFile))
+	if batchCount > 0 {
+		l.writeLine(fmt.Sprintf("  Batches: %d × 500 configs → config/batches/v2ray/ | config/batches/clash/ | config/batches/clash_advanced/", batchCount))
+	}
 	l.writeLine("==========================================================")
 }
 
@@ -252,122 +395,16 @@ func truncate(s string, n int) string {
 	return s[:n] + "..."
 }
 
-type clashBase struct {
-	header string
-	rules  string
-}
-
-var gClash clashBase
-
-func loadClashBase(path string) error {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return fmt.Errorf("clash_base.yaml: %w", err)
-	}
-	const sep = "# ---RULES---"
-	idx := strings.Index(string(data), sep)
-	if idx == -1 {
-		return fmt.Errorf("clash_base.yaml: missing separator '# ---RULES---'")
-	}
-	gClash.header = strings.TrimRight(string(data[:idx]), "\n ") + "\n"
-	gClash.rules = strings.TrimLeft(string(data[idx+len(sep):]), "\n")
-	return nil
-}
-
-func loadSettings(path string) error {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return err
-	}
-	return json.Unmarshal(data, &cfg)
-}
-
-func initPortPool() {
-	v := cfg.Validation
-	size := v.NumWorkers + 10
-	portPool = make(chan int, size)
-	for i := 0; i < size; i++ {
-		portPool <- v.BasePort + i
-	}
-}
-
-type fetchResult struct {
-	url        string
-	content    string
-	statusCode int
-	err        error
-}
-
-type validationResult struct {
-	totalScore int
-	latency    time.Duration
-	failReason string
-}
-
-type configResult struct {
-	line    string
-	proto   string
-	latency time.Duration
-}
-
-func main() {
-	if err := loadSettings("settings.json"); err != nil {
-		fmt.Printf("❌ Failed to load settings.json: %v\n", err)
-		os.Exit(1)
-	}
-
-	if err := loadClashBase("clash_base.yaml"); err != nil {
-		fmt.Printf("⚠️  %v — Clash output will be skipped\n", err)
-	}
-
-	var logErr error
-	gLog, logErr = newLogger("logs")
-	if logErr != nil {
-		fmt.Printf("⚠️  Log file error: %v\n", logErr)
-	}
-	if gLog != nil {
-		defer gLog.close()
-	}
-
-	initPortPool()
-
-	start := time.Now()
-	v := cfg.Validation
-	fmt.Println("🚀 Starting V2Ray config aggregator...")
-	fmt.Printf("⚙️  Workers=%d | Timeout=%.0fs | Retries=%d\n",
-		v.NumWorkers, v.GlobalTimeoutSec, v.MaxRetries)
-
-	if err := prepareOutputDirs(); err != nil {
-		fmt.Printf("❌ Error creating directories: %v\n", err)
-		os.Exit(1)
-	}
-
-	fmt.Println("📡 Fetching configurations from sources...")
-	allConfigs, failedLinks := fetchAll(cfg.Base64Links, cfg.TextLinks)
-	fmt.Printf("📊 Total fetched: %d | Failed sources: %d\n", len(allConfigs), len(failedLinks))
-
-	if gLog != nil {
-		gLog.logStart(len(allConfigs), len(failedLinks))
-	}
-
-	fmt.Println("🔍 Validating...")
-	results := validateAll(allConfigs)
-
-	elapsed := time.Since(start).Seconds()
-	fmt.Printf("\n✅ Valid configurations: %d\n", len(results))
-
-	if gLog != nil {
-		gLog.logSummary(elapsed, results, failedLinks)
-	}
-
-	writeOutputFiles(results)
-	writeSummary(results, failedLinks, elapsed, len(allConfigs))
-	fmt.Println("✅ Done!")
-}
-
 func prepareOutputDirs() error {
 	os.RemoveAll("config")
-	for _, dir := range []string{"config", cfg.Output.ProtocolsDir} {
+	dirs := []string{
+		"config",
+		cfg.Output.ProtocolsDir,
+		"config/batches/v2ray",
+		"config/batches/clash",
+		"config/batches/clash_advanced",
+	}
+	for _, dir := range dirs {
 		if err := os.MkdirAll(dir, 0755); err != nil {
 			return err
 		}
@@ -728,7 +765,6 @@ func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRet
 			}
 			resp, err := client.Do(req)
 			if err != nil {
-				// Network/tunnel error = proxy is dead or unreachable
 				lastErr = shortenErr(err.Error())
 				continue
 			}
@@ -736,25 +772,15 @@ func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRet
 			code := resp.StatusCode
 			resp.Body.Close()
 
-			// With HTTPS (CONNECT tunnel): reaching here means:
-			// 1) proxy tunnel was established successfully
-			// 2) TLS with the target completed
-			// 3) HTTP response came from the TARGET, not the proxy
-			// => any of these codes = proxy is alive
-
-			// 200/204: ideal - target fully reachable
 			if code == 200 || code == 204 {
 				return true, latency, ""
 			}
-			// 3xx redirects: target responded, proxy works
 			if code == 301 || code == 302 || code == 307 || code == 308 {
 				return true, latency, ""
 			}
-			// 400/403/404/429: target rejected our IP/request but proxy tunnel works
 			if code == 400 || code == 403 || code == 404 || code == 429 {
 				return true, latency, ""
 			}
-			// 5xx and anything else: ambiguous (could be proxy-level error), treat as fail
 			lastErr = fmt.Sprintf("HTTP_%d", code)
 		}
 	}
@@ -1214,6 +1240,15 @@ func writeOutputFiles(results []configResult) {
 			writeClashConfig(filepath.Join(cfg.Output.ProtocolsDir, proto+"_clash.yaml"), entries, byProtoClashNames[proto])
 		}
 	}
+
+	if gClashAdvanced.header != "" {
+		writeAdvancedClashConfig(filepath.Join(filepath.Dir(cfg.Output.MainFile), "clash_advanced.yaml"), allClash, allClashNames)
+		for proto, entries := range byProtoClash {
+			writeAdvancedClashConfig(filepath.Join(cfg.Output.ProtocolsDir, proto+"_clash_advanced.yaml"), entries, byProtoClashNames[proto])
+		}
+	}
+
+	writeBatchFiles(all, allClash, allClashNames, allClash, allClashNames)
 }
 
 func writeFile(path string, lines []string) {
@@ -1272,6 +1307,136 @@ func writeClashGroup(w *bufio.Writer, name, groupType, testURL string, interval,
 		fmt.Fprintf(w, "      - %s\n", yamlQuote(p))
 	}
 	w.WriteString("\n")
+}
+
+func writeAdvancedClashConfig(path string, proxyEntries, proxyNames []string) {
+	if len(proxyEntries) == 0 {
+		return
+	}
+	f, err := os.Create(path)
+	if err != nil {
+		fmt.Printf("❌ Cannot write %s: %v\n", path, err)
+		return
+	}
+	defer f.Close()
+	w := bufio.NewWriterSize(f, 512*1024)
+	defer w.Flush()
+
+	w.WriteString(gClashAdvanced.header)
+	w.WriteString("\nproxies:\n")
+	for _, e := range proxyEntries {
+		w.WriteString(e)
+	}
+	w.WriteString("\nproxy-groups:\n")
+
+	writeAdvancedClashGroup(w, "FAST-OPEN", "url-test", "http://www.gstatic.com/generate_204", 180, 100, true, "", proxyNames)
+	writeAdvancedClashGroup(w, "FAST-CDN", "url-test", "http://cp.cloudflare.com/generate_204", 180, 150, true, "", proxyNames)
+	writeAdvancedClashGroup(w, "LB-OPEN", "load-balance", "http://www.gstatic.com/generate_204", 300, 150, true, "consistent-hashing", proxyNames)
+	writeAdvancedClashGroup(w, "LB-CDN", "load-balance", "http://cp.cloudflare.com/generate_204", 300, 200, true, "round-robin", proxyNames)
+	writeAdvancedClashGroup(w, "UDP-BEST", "url-test", "http://www.gstatic.com/generate_204", 180, 100, true, "", proxyNames)
+	writeAdvancedClashGroup(w, "TEST-IRAN-DIRECT", "url-test", "http://www.aparat.com", 120, 500, true, "", []string{"DIRECT"})
+	writeAdvancedClashGroup(w, "SCEN-OPEN", "fallback", "http://www.gstatic.com/generate_204", 120, 150, true, "", []string{"LB-OPEN", "FAST-OPEN"})
+	writeAdvancedClashGroup(w, "SCEN-CDN", "fallback", "http://cp.cloudflare.com/generate_204", 120, 200, true, "", []string{"LB-CDN", "FAST-CDN"})
+	writeAdvancedClashGroup(w, "SCEN-IRAN-ONLY", "fallback", "http://www.aparat.com", 120, 500, true, "", []string{"TEST-IRAN-DIRECT", "FAST-CDN", "LB-CDN"})
+	writeAdvancedClashGroup(w, "PROXY-BEST", "fallback", "http://www.gstatic.com/generate_204", 180, 200, true, "", []string{"SCEN-OPEN", "SCEN-CDN", "SCEN-IRAN-ONLY", "FAST-OPEN", "FAST-CDN"})
+
+	manualProxies := make([]string, 0, 10+len(proxyNames))
+	manualProxies = append(manualProxies, "PROXY-BEST", "SCEN-OPEN", "SCEN-CDN", "SCEN-IRAN-ONLY", "LB-OPEN", "LB-CDN", "FAST-OPEN", "FAST-CDN", "UDP-BEST", "DIRECT")
+	manualProxies = append(manualProxies, proxyNames...)
+	writeAdvancedClashGroup(w, "MANUAL", "select", "", 0, 0, false, "", manualProxies)
+
+	w.WriteString("\n")
+	w.WriteString(gClashAdvanced.rules)
+}
+
+func writeAdvancedClashGroup(w *bufio.Writer, name, groupType, testURL string, interval, tolerance int, lazy bool, strategy string, proxies []string) {
+	fmt.Fprintf(w, "  - name: %s\n    type: %s\n", yamlQuote(name), groupType)
+	if strategy != "" {
+		fmt.Fprintf(w, "    strategy: %s\n", strategy)
+	}
+	if testURL != "" {
+		fmt.Fprintf(w, "    url: %s\n    interval: %d\n", testURL, interval)
+	}
+	if tolerance > 0 {
+		fmt.Fprintf(w, "    tolerance: %d\n", tolerance)
+	}
+	if lazy {
+		w.WriteString("    lazy: true\n")
+	}
+	w.WriteString("    proxies:\n")
+	for _, p := range proxies {
+		fmt.Fprintf(w, "      - %s\n", yamlQuote(p))
+	}
+	w.WriteString("\n")
+}
+
+func writeBatchFiles(all []string, clashEntries []string, clashNames []string, advEntries []string, advNames []string) {
+	v2rayShuffled := make([]string, len(all))
+	copy(v2rayShuffled, all)
+	rand.Shuffle(len(v2rayShuffled), func(i, j int) {
+		v2rayShuffled[i], v2rayShuffled[j] = v2rayShuffled[j], v2rayShuffled[i]
+	})
+	for b := 0; b*500 < len(v2rayShuffled); b++ {
+		start := b * 500
+		end := start + 500
+		if end > len(v2rayShuffled) {
+			end = len(v2rayShuffled)
+		}
+		fname := fmt.Sprintf("config/batches/v2ray/batch_%03d.txt", b+1)
+		writeFile(fname, v2rayShuffled[start:end])
+	}
+
+	if len(clashEntries) > 0 && gClash.header != "" {
+		idx := make([]int, len(clashEntries))
+		for i := range idx {
+			idx[i] = i
+		}
+		rand.Shuffle(len(idx), func(i, j int) {
+			idx[i], idx[j] = idx[j], idx[i]
+		})
+		for b := 0; b*500 < len(idx); b++ {
+			start := b * 500
+			end := start + 500
+			if end > len(idx) {
+				end = len(idx)
+			}
+			batch := idx[start:end]
+			bEntries := make([]string, len(batch))
+			bNames := make([]string, len(batch))
+			for i, bi := range batch {
+				bEntries[i] = clashEntries[bi]
+				bNames[i] = clashNames[bi]
+			}
+			fname := fmt.Sprintf("config/batches/clash/batch_%03d.yaml", b+1)
+			writeClashConfig(fname, bEntries, bNames)
+		}
+	}
+
+	if len(advEntries) > 0 && gClashAdvanced.header != "" {
+		idx := make([]int, len(advEntries))
+		for i := range idx {
+			idx[i] = i
+		}
+		rand.Shuffle(len(idx), func(i, j int) {
+			idx[i], idx[j] = idx[j], idx[i]
+		})
+		for b := 0; b*500 < len(idx); b++ {
+			start := b * 500
+			end := start + 500
+			if end > len(idx) {
+				end = len(idx)
+			}
+			batch := idx[start:end]
+			bEntries := make([]string, len(batch))
+			bNames := make([]string, len(batch))
+			for i, bi := range batch {
+				bEntries[i] = advEntries[bi]
+				bNames[i] = advNames[bi]
+			}
+			fname := fmt.Sprintf("config/batches/clash_advanced/batch_%03d.yaml", b+1)
+			writeAdvancedClashConfig(fname, bEntries, bNames)
+		}
+	}
 }
 
 func configToClashYAML(line, proto, name string) (string, bool) {
@@ -1658,7 +1823,8 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	for _, r := range results {
 		byProto[r.proto]++
 	}
-	f, err := os.Create("UPDATE_SUMMARY.md")
+
+	f, err := os.Create("README.md")
 	if err != nil {
 		return
 	}
@@ -1666,37 +1832,150 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	w := bufio.NewWriter(f)
 	defer w.Flush()
 
-	fmt.Fprintf(w, "# Update Summary\nGenerated: %s\n\n", time.Now().Format("2006-01-02 15:04:05 MST"))
-	fmt.Fprintf(w, "- Valid configs: %d\n- Processing time: %.2fs\n", len(results), duration)
-	if originalTotal > 0 {
-		fmt.Fprintf(w, "- Reduction: %.1f%% (from %d)\n", float64(originalTotal-len(results))/float64(originalTotal)*100, originalTotal)
+	const baseURL = "https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/"
+
+	batchCount := 0
+	if len(results) > 0 {
+		batchCount = (len(results) + 499) / 500
 	}
-	w.WriteString("\n### By Protocol\n")
+
+	fmt.Fprintf(w, "# V2Ray Config Aggregator\n\n")
+	fmt.Fprintf(w, "**آخرین بروزرسانی:** %s UTC\n\n", time.Now().Format("2006-01-02 15:04:05"))
+	fmt.Fprintf(w, "این پروژه به صورت خودکار کانفیگ‌های V2Ray را از منابع مختلف جمع‌آوری، اعتبارسنجی و دسته‌بندی می‌کند.\n\n")
+	fmt.Fprintf(w, "---\n\n")
+
+	fmt.Fprintf(w, "## آمار کلی\n\n")
+	fmt.Fprintf(w, "| شاخص | مقدار |\n")
+	fmt.Fprintf(w, "|------|-------|\n")
+	fmt.Fprintf(w, "| کل دریافت‌شده (ورودی) | %d |\n", originalTotal)
+	fmt.Fprintf(w, "| کانفیگ‌های معتبر (خروجی) | %d |\n", len(results))
+	if originalTotal > 0 {
+		fmt.Fprintf(w, "| کاهش (تکراری + نامعتبر) | %.1f%% |\n", float64(originalTotal-len(results))/float64(originalTotal)*100)
+	}
+	fmt.Fprintf(w, "| زمان پردازش | %.2f ثانیه |\n", duration)
+	fmt.Fprintf(w, "| تعداد دسته‌های ۵۰۰تایی | %d |\n\n", batchCount)
+
+	fmt.Fprintf(w, "## آمار به تفکیک پروتکل\n\n")
+	fmt.Fprintf(w, "| پروتکل | تعداد ورودی (تخمین) | تعداد خروجی (معتبر) |\n")
+	fmt.Fprintf(w, "|--------|---------------------|---------------------|\n")
+	total := 0
 	for _, p := range cfg.ProtocolOrder {
 		if n := byProto[p]; n > 0 {
-			fmt.Fprintf(w, "- %s: %d\n", p, n)
+			fmt.Fprintf(w, "| %s | - | %d |\n", strings.ToUpper(p), n)
+			total += n
 		}
 	}
-	w.WriteString("\n### Output Files\n")
-	fmt.Fprintf(w, "- `%s`\n", cfg.Output.MainFile)
-	if gClash.header != "" {
-		fmt.Fprintf(w, "- `%s/clash.yaml` (Clash/Mihomo — Iran optimized)\n", filepath.Dir(cfg.Output.MainFile))
-	}
+	fmt.Fprintf(w, "| **مجموع** | **%d** | **%d** |\n\n", originalTotal, total)
+
+	fmt.Fprintf(w, "---\n\n")
+
+	fmt.Fprintf(w, "## فایل‌های اصلی\n\n")
+	fmt.Fprintf(w, "### V2Ray — همه پروتکل‌ها\n\n")
+	fmt.Fprintf(w, "| توضیح | لینک دانلود |\n")
+	fmt.Fprintf(w, "|-------|-------------|\n")
+	fmt.Fprintf(w, "| همه کانفیگ‌ها (text) | [all_configs.txt](%sconfig/all_configs.txt) |\n\n", baseURL)
+
+	fmt.Fprintf(w, "### Clash / Mihomo — ساختار معمولی\n\n")
+	fmt.Fprintf(w, "| توضیح | لینک دانلود |\n")
+	fmt.Fprintf(w, "|-------|-------------|\n")
+	fmt.Fprintf(w, "| Clash همه پروتکل‌ها | [clash.yaml](%sconfig/clash.yaml) |\n\n", baseURL)
+
+	fmt.Fprintf(w, "### Clash / Mihomo — ساختار پیشرفته (بهینه‌شده برای ایران)\n\n")
+	fmt.Fprintf(w, "> دارای DNS چندلایه با سرورهای ایرانی (Shecan/TCI/403online)، تشخیص خودکار سناریو فیلترینگ، load-balancing و fallback هوشمند\n\n")
+	fmt.Fprintf(w, "| توضیح | لینک دانلود |\n")
+	fmt.Fprintf(w, "|-------|-------------|\n")
+	fmt.Fprintf(w, "| Clash Advanced همه پروتکل‌ها | [clash_advanced.yaml](%sconfig/clash_advanced.yaml) |\n\n", baseURL)
+
+	fmt.Fprintf(w, "---\n\n")
+
+	fmt.Fprintf(w, "## فایل‌های جداگانه به تفکیک پروتکل\n\n")
+	fmt.Fprintf(w, "| پروتکل | V2Ray Text | Clash معمولی | Clash پیشرفته |\n")
+	fmt.Fprintf(w, "|--------|-----------|--------------|----------------|\n")
 	for _, p := range cfg.ProtocolOrder {
 		if byProto[p] > 0 {
-			fmt.Fprintf(w, "- `%s/%s.txt`\n", cfg.Output.ProtocolsDir, p)
-			if gClash.header != "" {
-				fmt.Fprintf(w, "- `%s/%s_clash.yaml`\n", cfg.Output.ProtocolsDir, p)
-			}
+			v2Link := fmt.Sprintf("[%s.txt](%sconfig/protocols/%s.txt)", p, baseURL, p)
+			clLink := fmt.Sprintf("[%s_clash.yaml](%sconfig/protocols/%s_clash.yaml)", p, baseURL, p)
+			adLink := fmt.Sprintf("[%s_clash_advanced.yaml](%sconfig/protocols/%s_clash_advanced.yaml)", p, baseURL, p)
+			fmt.Fprintf(w, "| **%s** | %s | %s | %s |\n", strings.ToUpper(p), v2Link, clLink, adLink)
 		}
 	}
-	fmt.Fprintf(w, "- `logs/` (validation logs artifact)\n")
+	fmt.Fprintf(w, "\n")
+
+	if batchCount > 0 {
+		fmt.Fprintf(w, "---\n\n")
+		fmt.Fprintf(w, "## فایل‌های دسته‌ای — ۵۰۰ کانفیگ تصادفی\n\n")
+		fmt.Fprintf(w, "هر دسته شامل ۵۰۰ کانفیگ به صورت تصادفی از میان تمام کانفیگ‌های معتبر انتخاب شده است.\n\n")
+
+		fmt.Fprintf(w, "### V2Ray Batches\n\n")
+		fmt.Fprintf(w, "| دسته | تعداد | لینک دانلود |\n")
+		fmt.Fprintf(w, "|------|-------|-------------|\n")
+		for i := 1; i <= batchCount; i++ {
+			count := 500
+			if i == batchCount && len(results)%500 != 0 {
+				count = len(results) % 500
+			}
+			fmt.Fprintf(w, "| دسته %d | %d | [batch_%03d.txt](%sconfig/batches/v2ray/batch_%03d.txt) |\n",
+				i, count, i, baseURL, i)
+		}
+		fmt.Fprintf(w, "\n")
+
+		fmt.Fprintf(w, "### Clash Batches — معمولی\n\n")
+		fmt.Fprintf(w, "| دسته | تعداد | لینک دانلود |\n")
+		fmt.Fprintf(w, "|------|-------|-------------|\n")
+		for i := 1; i <= batchCount; i++ {
+			count := 500
+			if i == batchCount && len(results)%500 != 0 {
+				count = len(results) % 500
+			}
+			fmt.Fprintf(w, "| دسته %d | %d | [batch_%03d.yaml](%sconfig/batches/clash/batch_%03d.yaml) |\n",
+				i, count, i, baseURL, i)
+		}
+		fmt.Fprintf(w, "\n")
+
+		fmt.Fprintf(w, "### Clash Batches — پیشرفته\n\n")
+		fmt.Fprintf(w, "| دسته | تعداد | لینک دانلود |\n")
+		fmt.Fprintf(w, "|------|-------|-------------|\n")
+		for i := 1; i <= batchCount; i++ {
+			count := 500
+			if i == batchCount && len(results)%500 != 0 {
+				count = len(results) % 500
+			}
+			fmt.Fprintf(w, "| دسته %d | %d | [batch_%03d.yaml](%sconfig/batches/clash_advanced/batch_%03d.yaml) |\n",
+				i, count, i, baseURL, i)
+		}
+		fmt.Fprintf(w, "\n")
+	}
+
+	fmt.Fprintf(w, "---\n\n")
+
+	fmt.Fprintf(w, "## نحوه استفاده\n\n")
+	fmt.Fprintf(w, "### V2Ray / Xray / Nekoray / Hiddify\n\n")
+	fmt.Fprintf(w, "لینک subscription زیر را در اپلیکیشن وارد کنید:\n\n")
+	fmt.Fprintf(w, "```\n%sconfig/all_configs.txt\n```\n\n", baseURL)
+
+	fmt.Fprintf(w, "### Clash / Mihomo — ساختار معمولی\n\n")
+	fmt.Fprintf(w, "```\n%sconfig/clash.yaml\n```\n\n", baseURL)
+
+	fmt.Fprintf(w, "### Clash / Mihomo — ساختار پیشرفته\n\n")
+	fmt.Fprintf(w, "این نسخه پیشنهادی برای کاربران ایران است. دارای گروه‌بندی هوشمند:\n\n")
+	fmt.Fprintf(w, "- **PROXY-BEST**: انتخاب خودکار بهترین مسیر\n")
+	fmt.Fprintf(w, "- **SCEN-OPEN / SCEN-CDN / SCEN-IRAN-ONLY**: تشخیص سناریو فیلترینگ\n")
+	fmt.Fprintf(w, "- **LB-OPEN / LB-CDN**: توزیع بار چندمسیره\n")
+	fmt.Fprintf(w, "- **UDP-BEST**: بهترین پروکسی برای تماس صوتی/تصویری\n")
+	fmt.Fprintf(w, "- **MANUAL**: انتخاب دستی برای کاربران پیشرفته\n\n")
+	fmt.Fprintf(w, "```\n%sconfig/clash_advanced.yaml\n```\n\n", baseURL)
+
 	if len(failedLinks) > 0 {
-		w.WriteString("\n### Failed Sources\n")
+		fmt.Fprintf(w, "---\n\n")
+		fmt.Fprintf(w, "## منابع ناموفق در آخرین اجرا\n\n")
 		for _, l := range failedLinks {
 			fmt.Fprintf(w, "- %s\n", l)
 		}
+		fmt.Fprintf(w, "\n")
 	}
+
+	fmt.Fprintf(w, "---\n\n")
+	fmt.Fprintf(w, "*این فایل به صورت خودکار توسط GitHub Actions تولید می‌شود.*\n")
 }
 
 func decodeBase64(encoded []byte) (string, error) {
