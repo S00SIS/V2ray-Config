@@ -4706,7 +4706,7 @@ proxy-groups:
   - name: "Auto"
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 60
+    interval: 10
     tolerance: 10
     lazy: true
     proxies:
