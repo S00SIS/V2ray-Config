@@ -4,21 +4,21 @@
 
 | Protocol | Tested (unique) | valid | Pass Rate |
 |---|---|---|---|
-| VMESS | 80876 | 246 | 0.3% |
-| VLESS | 175054 | 2321 | 1.3% |
-| TROJAN | 24252 | 1723 | 7.1% |
-| SS | 79499 | 2965 | 3.7% |
-| HY2 | 2380 | 2 | 0.1% |
+| VMESS | 79636 | 265 | 0.3% |
+| VLESS | 175265 | 2544 | 1.5% |
+| TROJAN | 24277 | 1730 | 7.1% |
+| SS | 73398 | 2857 | 3.9% |
+| HY2 | 2385 | 2 | 0.1% |
 | HY | 0 | 0 | 0.0% |
 | TUIC | 182 | 0 | 0.0% |
-| **Total** | **362243** | **7257** | **2.0%** |
+| **Total** | **355143** | **7398** | **2.1%** |
 
 | Metric | Value |
 |---|---|
-| Raw fetched lines | 3760631 |
-| Unique after dedup | 362243 |
-| Valid configs | 7257 |
-| Processing time | 9954.96s |
+| Raw fetched lines | 4664871 |
+| Unique after dedup | 355143 |
+| Valid configs | 7398 |
+| Processing time | 10044.30s |
 
 ---
 
@@ -34,10 +34,10 @@
 
 | Protocol | Count | Link |
 |---|---|---|
-| VMESS | 246 | [vmess.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vmess.txt) |
-| VLESS | 2321 | [vless.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vless.txt) |
-| TROJAN | 1723 | [trojan.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/trojan.txt) |
-| SS | 2965 | [ss.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/ss.txt) |
+| VMESS | 265 | [vmess.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vmess.txt) |
+| VLESS | 2544 | [vless.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vless.txt) |
+| TROJAN | 1730 | [trojan.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/trojan.txt) |
+| SS | 2857 | [ss.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/ss.txt) |
 | HY2 | 2 | [hy2.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/hy2.txt) |
 
 ### Clash 
@@ -77,7 +77,7 @@ Groups: **PROXY** (selector) → **Load-Balance** · **Auto** · **Fallback**
 | Batch 012 | 500 | [batch_012.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_012.txt) |
 | Batch 013 | 500 | [batch_013.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_013.txt) |
 | Batch 014 | 500 | [batch_014.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_014.txt) |
-| Batch 015 | 257 | [batch_015.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_015.txt) |
+| Batch 015 | 398 | [batch_015.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_015.txt) |
 
 ### Clash Batches
 
