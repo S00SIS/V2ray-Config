@@ -1772,8 +1772,7 @@ func min500(batchIdx, total int) int {
 	return end - start
 }
 
-
-func writeSummary(results []configResult, failedLinks []string, duration float64, originalTotal int) {
+func writeSummary(results []configResult, failedLinks []string, duration float64, originalTotal int, cfg *Config, inputByProto map[string]int) error {
 	byProtoOut := make(map[string]int)
 	for _, r := range results {
 		byProtoOut[r.proto]++
@@ -1781,22 +1780,48 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 
 	f, err := os.Create("README.md")
 	if err != nil {
-		return
+		return fmt.Errorf("failed to create README.md: %w", err)
 	}
 	defer f.Close()
+	
 	w := bufio.NewWriter(f)
 	defer w.Flush()
 
 	repoBase := "https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main"
 
-	w.WriteString("## Statistics\n\n")
+	// Write statistics
+	if err := writeStatistics(w, inputByProto, byProtoOut, results, originalTotal, duration, cfg); err != nil {
+		return err
+	}
 
+	// Write main files section
+	if err := writeMainFiles(w, byProtoOut, repoBase, cfg); err != nil {
+		return err
+	}
+
+	// Write batch files section
+	if err := writeBatchFiles(w, repoBase, len(results)); err != nil {
+		return err
+	}
+
+	// Write support section
+	if err := writeSupportSection(w); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func writeStatistics(w *bufio.Writer, inputByProto map[string]int, byProtoOut map[string]int, 
+                     results []configResult, originalTotal int, duration float64, cfg *Config) error {
+	w.WriteString("## Statistics\n\n")
 	w.WriteString("### Per-Protocol Input & Output\n\n")
 	fmt.Fprintf(w, "| Protocol | Tested (unique) | valid | Pass Rate |\n|---|---|---|---|\n")
+	
 	totalIn := 0
 	totalOut := 0
 	for _, p := range cfg.ProtocolOrder {
-		in := gInputByProto[p]
+		in := inputByProto[p]
 		out := byProtoOut[p]
 		totalIn += in
 		totalOut += out
@@ -1806,6 +1831,7 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 		}
 		fmt.Fprintf(w, "| %s | %d | %d | %.1f%% |\n", strings.ToUpper(p), in, out, rate)
 	}
+	
 	overallRate := 0.0
 	if totalIn > 0 {
 		overallRate = float64(totalOut) / float64(totalIn) * 100
@@ -1817,7 +1843,11 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	fmt.Fprintf(w, "| Unique after dedup | %d |\n", totalIn)
 	fmt.Fprintf(w, "| Valid configs | %d |\n", len(results))
 	fmt.Fprintf(w, "| Processing time | %.2fs |\n\n", duration)
+	
+	return nil
+}
 
+func writeMainFiles(w *bufio.Writer, byProtoOut map[string]int, repoBase string, cfg *Config) error {
 	w.WriteString("---\n\n")
 	w.WriteString("## Main Files\n\n")
 
@@ -1846,7 +1876,11 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 		}
 	}
 	w.WriteString("\n")
+	
+	return nil
+}
 
+func writeBatchFiles(w *bufio.Writer, repoBase string, totalResults int) error {
 	w.WriteString("---\n\n")
 	w.WriteString("## Batch Files — Random 500-Config Groups\n\n")
 	w.WriteString("> Each file contains 500 randomly selected configs from all protocols.\n\n")
@@ -1857,7 +1891,7 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	w.WriteString("### V2ray Batches\n\n")
 	fmt.Fprintf(w, "| Batch | Count | Link |\n|---|---|---|\n")
 	for i := 1; i <= v2rayBatches; i++ {
-		cnt := min500(i, len(results))
+		cnt := min500(i, totalResults)
 		fmt.Fprintf(w, "| Batch %03d | %d | [batch_%03d.txt](%s/config/batches/v2ray/batch_%03d.txt) |\n",
 			i, cnt, i, repoBase, i)
 	}
@@ -1870,7 +1904,36 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 			i, i, repoBase, i)
 	}
 	w.WriteString("\n")
+	
+	return nil
 }
+
+func writeSupportSection(w *bufio.Writer) error {
+	w.WriteString("---\n\n")
+	w.WriteString("## 🔥 Keep This Project Going!\n\n")
+	w.WriteString("If you're finding this useful, please show your support:\n\n")
+	w.WriteString("⭐ **Star the repository on GitHub**\n\n")
+	w.WriteString("⭐ **Star our [Telegram posts](https://t.me/DeltaKroneckerGithub)** \n\n")
+	w.WriteString("Your stars fuel our motivation to keep improving!\n")
+	
+	return nil
+}
+
+func countBatchFiles(pattern string) int {
+	matches, err := filepath.Glob(pattern + "/*")
+	if err != nil {
+		return 0
+	}
+	return len(matches)
+}
+
+func min500(i, total int) int {
+	if i*500 <= total {
+		return 500
+	}
+	return total - (i-1)*500
+}
+
 
 func decodeBase64(encoded []byte) (string, error) {
 	s := strings.TrimSpace(strings.ReplaceAll(strings.ReplaceAll(string(encoded), "\n", ""), "\r", ""))
