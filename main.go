@@ -59,12 +59,13 @@ var cfg Settings
 var portPool chan int
 
 var fetchHTTPClient = &http.Client{
-	Timeout: 30 * time.Second,
+	// Timeout is set per-request via context; this is a fallback only.
 	Transport: &http.Transport{
-		MaxIdleConns:          20,
-		MaxIdleConnsPerHost:   5,
-		IdleConnTimeout:       30 * time.Second,
-		ResponseHeaderTimeout: 25 * time.Second,
+		MaxIdleConns:          100,
+		MaxIdleConnsPerHost:   10,
+		IdleConnTimeout:       15 * time.Second,
+		ResponseHeaderTimeout: 4 * time.Second,
+		DisableKeepAlives:     false,
 	},
 }
 
@@ -410,80 +411,93 @@ func prepareOutputDirs() error {
 	return nil
 }
 
+// fetchAll fetches all URLs in parallel batches of 20 with a 5s timeout each.
+// base64Links are decoded after fetching; textLinks are returned as-is.
 func fetchAll(base64Links, textLinks []string) ([]string, []string) {
-	const fetchWorkers = 10
-	total := len(base64Links) + len(textLinks)
-	resultsCh := make(chan fetchResult, total)
-	sem := make(chan struct{}, fetchWorkers)
-	var wg sync.WaitGroup
+	const batchSize    = 20
+	const fetchTimeout = 5 * time.Second
 
-	dispatch := func(rawURL string, isBase64 bool) {
-		wg.Add(1)
-		go func() {
-			defer wg.Done()
-			sem <- struct{}{}
-			defer func() { <-sem }()
-			if isBase64 {
-				resultsCh <- fetchBase64(rawURL)
-			} else {
-				resultsCh <- fetchText(rawURL)
-			}
-		}()
+	type urlJob struct {
+		url      string
+		isBase64 bool
 	}
 
+	var jobs []urlJob
 	for _, u := range base64Links {
-		dispatch(u, true)
+		jobs = append(jobs, urlJob{u, true})
 	}
 	for _, u := range textLinks {
-		dispatch(u, false)
+		jobs = append(jobs, urlJob{u, false})
 	}
 
-	go func() {
-		wg.Wait()
-		close(resultsCh)
-	}()
+	total := len(jobs)
+	numBatches := (total + batchSize - 1) / batchSize
+	fmt.Printf("📡 Fetching %d sources in %d batches of %d (timeout=%s per source)\n",
+		total, numBatches, batchSize, fetchTimeout)
 
+	var mu sync.Mutex
 	var lines []string
 	var failed []string
-	for r := range resultsCh {
-		if r.err != nil || r.statusCode != http.StatusOK {
-			status := "error"
-			if r.statusCode > 0 {
-				status = fmt.Sprintf("HTTP %d", r.statusCode)
+	var okCount, failCount int
+
+	for batchIdx := 0; batchIdx < numBatches; batchIdx++ {
+		start := batchIdx * batchSize
+		end := start + batchSize
+		if end > total {
+			end = total
+		}
+		batch := jobs[start:end]
+
+		var wg sync.WaitGroup
+		results := make([]fetchResult, len(batch))
+
+		for i, job := range batch {
+			wg.Add(1)
+			go func(idx int, j urlJob) {
+				defer wg.Done()
+				results[idx] = fetchRaw(j.url, fetchTimeout)
+				if results[idx].err == nil && results[idx].statusCode == http.StatusOK && j.isBase64 {
+					decoded, err := decodeBase64([]byte(results[idx].content))
+					if err != nil {
+						results[idx].err = err
+					} else {
+						results[idx].content = decoded
+					}
+				}
+			}(i, job)
+		}
+		wg.Wait()
+
+		mu.Lock()
+		for _, r := range results {
+			if r.err != nil || r.statusCode != http.StatusOK {
+				status := "error"
+				if r.statusCode > 0 {
+					status = fmt.Sprintf("HTTP %d", r.statusCode)
+				}
+				failCount++
+				failed = append(failed, fmt.Sprintf("%s (%s)", r.url, status))
+				if gLog != nil {
+					gLog.writeLine(fmt.Sprintf("[FETCH] FAIL  %s  status=%s", r.url, status))
+				}
+				continue
 			}
-			failed = append(failed, fmt.Sprintf("%s (%s)", r.url, status))
+			okCount++
 			if gLog != nil {
-				gLog.writeLine(fmt.Sprintf("[FETCH] FAIL  %s  status=%s", r.url, status))
+				gLog.writeLine(fmt.Sprintf("[FETCH] OK    %s", r.url))
 			}
-			continue
+			lines = append(lines, strings.Split(strings.TrimSpace(r.content), "\n")...)
 		}
-		if gLog != nil {
-			gLog.writeLine(fmt.Sprintf("[FETCH] OK    %s", r.url))
-		}
-		lines = append(lines, strings.Split(strings.TrimSpace(r.content), "\n")...)
+		mu.Unlock()
+
+		fmt.Printf("  batch %3d/%d  ok=%-4d fail=%-4d  total_lines=%d\n",
+			batchIdx+1, numBatches, okCount, failCount, len(lines))
 	}
 	return lines, failed
 }
 
-func fetchBase64(rawURL string) fetchResult {
-	r := fetchRaw(rawURL)
-	if r.err != nil || r.statusCode != http.StatusOK {
-		return r
-	}
-	decoded, err := decodeBase64([]byte(r.content))
-	if err != nil {
-		return fetchResult{url: rawURL, err: err}
-	}
-	r.content = decoded
-	return r
-}
-
-func fetchText(rawURL string) fetchResult {
-	return fetchRaw(rawURL)
-}
-
-func fetchRaw(rawURL string) fetchResult {
-	ctx, cancel := context.WithTimeout(context.Background(), 25*time.Second)
+func fetchRaw(rawURL string, timeout time.Duration) fetchResult {
+	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 	req, err := http.NewRequestWithContext(ctx, "GET", rawURL, nil)
 	if err != nil {
@@ -568,57 +582,10 @@ func validateAll(lines []string) []configResult {
 		protoFails[p] = &failDetail{reasons: make(map[string]int)}
 	}
 
-	// normalizeReason converts a raw failReason into a short, groupable key.
+	// normalizeReason classifies a raw failReason into a precise, groupable key.
+	// Unknown/rare reasons fall into the "OTHER" bucket.
 	normalizeReason := func(reason string) string {
-		switch {
-		case strings.HasPrefix(reason, "PARSE: base64:"):
-			return "PARSE: base64 decode error"
-		case strings.HasPrefix(reason, "PARSE: json:"):
-			return "PARSE: json decode error"
-		case strings.HasPrefix(reason, "PARSE: url parse:"):
-			return "PARSE: url parse error"
-		case strings.HasPrefix(reason, "PARSE: unsupported cipher:"):
-			return "PARSE: unsupported cipher"
-		case strings.HasPrefix(reason, "PARSE:"):
-			msg := strings.TrimPrefix(reason, "PARSE: ")
-			if len(msg) > 50 {
-				msg = msg[:50]
-			}
-			return "PARSE: " + msg
-		case strings.HasPrefix(reason, "SINGBOX_START:"), strings.HasPrefix(reason, "START:"):
-			r := reason
-			if i := strings.Index(r, ": "); i != -1 {
-				r = r[i+2:]
-			}
-			// Strip ANSI escape codes
-			r = strings.Map(func(c rune) rune {
-				if c == 0x1b {
-					return -1
-				}
-				return c
-			}, r)
-			if strings.Contains(r, "port not open") {
-				return "START: port not open (timeout)"
-			}
-			if strings.Contains(r, "decode config") || strings.Contains(r, "outbound") {
-				return "START: invalid config (sing-box rejected)"
-			}
-			if len(r) > 60 {
-				r = r[:60]
-			}
-			return "START: " + r
-		case strings.HasPrefix(reason, "CONN:"):
-			r := strings.TrimPrefix(reason, "CONN: ")
-			if i := strings.Index(r, " | "); i != -1 {
-				r = r[:i]
-			}
-			if len(r) > 60 {
-				r = r[:60]
-			}
-			return "CONN: " + r
-		default:
-			return reason
-		}
+		return classifyFailReason(reason)
 	}
 
 	resultsCh := make(chan configResult, cfg.Validation.NumWorkers*4)
@@ -718,60 +685,256 @@ func validateAll(lines []string) []configResult {
 }
 
 // printFailureReport prints a detailed statistical breakdown of failures per protocol.
+// classifyFailReason maps a raw fail reason to a precise, groupable category key.
+func classifyFailReason(reason string) string {
+	stripANSI := func(s string) string {
+		return strings.Map(func(r rune) rune {
+			if r == 0x1b { return -1 }
+			return r
+		}, s)
+	}
+	r := stripANSI(reason)
+
+	switch {
+	// ── PARSE failures ───────────────────────────────────────────────────────
+	case strings.HasPrefix(r, "PARSE: base64:"):
+		return "PARSE › base64 decode error"
+	case strings.HasPrefix(r, "PARSE: json:"):
+		return "PARSE › json decode error"
+	case strings.HasPrefix(r, "PARSE: url parse:"):
+		return "PARSE › url parse error"
+	case strings.HasPrefix(r, "PARSE: unsupported cipher:"):
+		return "PARSE › unsupported SS cipher"
+	case r == "PARSE: missing @" || r == "PARSE: missing server" ||
+		r == "PARSE: missing uuid" || r == "PARSE: missing password" ||
+		r == "PARSE: missing port" || r == "PARSE: missing auth":
+		return "PARSE › " + strings.TrimPrefix(r, "PARSE: ")
+	case strings.HasPrefix(r, "PARSE: port:"):
+		return "PARSE › invalid port value"
+	case strings.HasPrefix(r, "PARSE: reality:"):
+		return "PARSE › reality missing public key"
+	case strings.HasPrefix(r, "PARSE: unknown security:"):
+		return "PARSE › unknown security type"
+	case strings.HasPrefix(r, "PARSE:"):
+		msg := strings.TrimPrefix(r, "PARSE: ")
+		if len(msg) > 48 { msg = msg[:48] + "…" }
+		return "PARSE › " + msg
+
+	// ── SINGBOX_START / START failures ───────────────────────────────────────
+	case strings.HasPrefix(r, "SINGBOX_START:"), strings.HasPrefix(r, "START:"):
+		body := r
+		if i := strings.Index(body, ": "); i != -1 { body = body[i+2:] }
+		switch {
+		case strings.Contains(body, "port not open"):
+			return "START › port timeout (sing-box didn't listen)"
+		case strings.Contains(body, "decode config"), strings.Contains(body, "outbound"):
+			if strings.Contains(body, "flow") {
+				return "START › invalid flow (requires TLS)"
+			}
+			return "START › invalid config JSON (sing-box rejected)"
+		case strings.Contains(body, "address already in use"):
+			return "START › port already in use"
+		case strings.Contains(body, "no such file"), strings.Contains(body, "not found"):
+			return "START › sing-box binary not found"
+		case strings.Contains(body, "permission denied"):
+			return "START › permission denied"
+		case strings.Contains(body, "method"):
+			return "START › unsupported SS method"
+		default:
+			if len(body) > 55 { body = body[:55] + "…" }
+			return "START › " + body
+		}
+
+	// ── CONN failures ────────────────────────────────────────────────────────
+	case strings.HasPrefix(r, "CONN:"):
+		body := strings.TrimPrefix(r, "CONN: ")
+		if i := strings.Index(body, " | SINGBOX:"); i != -1 { body = body[:i] }
+		switch {
+		case strings.Contains(body, "context deadline exceeded"), strings.Contains(body, "context canceled"):
+			return "CONN › timeout (global deadline exceeded)"
+		case strings.Contains(body, "connection refused"):
+			return "CONN › connection refused (proxy died)"
+		case strings.Contains(body, "EOF"):
+			return "CONN › EOF (proxy closed connection)"
+		case strings.Contains(body, "no such host"), strings.Contains(body, "lookup"):
+			return "CONN › DNS resolution failed"
+		case strings.Contains(body, "i/o timeout"):
+			return "CONN › i/o timeout"
+		case strings.Contains(body, "tls:"), strings.Contains(body, "TLS"), strings.Contains(body, "certificate"):
+			return "CONN › TLS handshake failed"
+		case strings.Contains(body, "HTTP_"):
+			return "CONN › unexpected HTTP status: " + body
+		case strings.Contains(body, "proxyconnect"):
+			return "CONN › proxy CONNECT failed"
+		case strings.Contains(body, "context expired"):
+			return "CONN › context expired before request"
+		default:
+			if len(body) > 55 { body = body[:55] + "…" }
+			return "CONN › " + body
+		}
+
+	// ── FILE / internal errors ────────────────────────────────────────────────
+	case strings.HasPrefix(r, "FILE:"):
+		return "OTHER › temp file error"
+	case r == "unknown":
+		return "OTHER › unknown (no reason captured)"
+	default:
+		if len(r) > 55 { r = r[:55] + "…" }
+		return "OTHER › " + r
+	}
+}
+
 func printFailureReport(protoFails map[string]*failDetail, byProto map[string][]string) {
+	type kv struct{ key string; val int }
+
+	const W = 78 // total report width
+
+	line := func(s string) { fmt.Println(s) }
+	hr   := func(ch string) { fmt.Println(strings.Repeat(ch, W)) }
+
 	fmt.Println()
-	fmt.Println("╔══════════════════════════════════════════════════════════════════════╗")
-	fmt.Println("║              FAILURE ANALYSIS REPORT (per protocol)                 ║")
-	fmt.Println("╚══════════════════════════════════════════════════════════════════════╝")
+	hr("═")
+	title := "  FAILURE ANALYSIS REPORT"
+	fmt.Printf("%-*s%s\n", W-len(title)-1, title, "")
+	fmt.Printf("  %-*s\n", W-3, "Detailed breakdown of why each config failed, grouped by root cause.")
+	hr("═")
+
+	// Gather overall stats for the global summary table
+	type protoRow struct {
+		name      string
+		total     int
+		passed    int
+		parseFail int
+		startFail int
+		connFail  int
+		otherFail int
+	}
+	var rows []protoRow
 
 	for _, proto := range cfg.ProtocolOrder {
 		fd := protoFails[proto]
-		if fd == nil {
-			continue
-		}
+		if fd == nil { continue }
 		total := len(byProto[proto])
-		if total == 0 {
-			continue
+		if total == 0 { continue }
+
+		var pf, sf, cf, of int
+		for key, cnt := range fd.reasons {
+			switch {
+			case strings.HasPrefix(key, "PARSE"):
+				pf += cnt
+			case strings.HasPrefix(key, "START"):
+				sf += cnt
+			case strings.HasPrefix(key, "CONN"):
+				cf += cnt
+			default:
+				of += cnt
+			}
 		}
+		totalFail := pf + sf + cf + of
+		rows = append(rows, protoRow{proto, total, total - totalFail, pf, sf, cf, of})
+	}
+
+	// ── Global summary table ─────────────────────────────────────────────────
+	fmt.Println()
+	fmt.Printf("  %-7s %7s %7s %6s  %9s %9s %9s %8s  %s\n",
+		"PROTO", "TOTAL", "PASSED", "PASS%", "PARSE✗", "START✗", "CONN✗", "OTHER✗", "PASS-RATE BAR")
+	fmt.Println("  " + strings.Repeat("─", W-2))
+	for _, row := range rows {
+		passRate := float64(row.passed) / float64(row.total) * 100
+		barLen   := int(passRate / 5)
+		bar      := strings.Repeat("▓", barLen) + strings.Repeat("░", 20-barLen)
+		fmt.Printf("  %-7s %7d %7d %5.1f%%  %9d %9d %9d %8d  %s\n",
+			strings.ToUpper(row.name),
+			row.total, row.passed, passRate,
+			row.parseFail, row.startFail, row.connFail, row.otherFail,
+			bar)
+	}
+	fmt.Println()
+
+	// ── Per-protocol detail ──────────────────────────────────────────────────
+	for _, proto := range cfg.ProtocolOrder {
+		fd := protoFails[proto]
+		if fd == nil { continue }
+		total := len(byProto[proto])
+		if total == 0 { continue }
+
 		totalFails := 0
-		for _, c := range fd.reasons {
-			totalFails += c
-		}
-		passed := total - totalFails
+		for _, c := range fd.reasons { totalFails += c }
+		passed   := total - totalFails
 		passRate := float64(passed) / float64(total) * 100
 
-		fmt.Printf("\n┌─ %s ─── total=%d  passed=%d  failed=%d  pass_rate=%.1f%%\n",
-			strings.ToUpper(proto), total, passed, totalFails, passRate)
+		// Section header
+		fmt.Printf("┌─ %-6s ─────────────────────────────────────────────────────────────\n",
+			strings.ToUpper(proto))
+		fmt.Printf("│  Total: %-6d  Passed: %-6d  Failed: %-6d  Pass rate: %.1f%%\n",
+			total, passed, totalFails, passRate)
 
 		if totalFails == 0 {
-			fmt.Println("│  (no failures)")
-			fmt.Println("└" + strings.Repeat("─", 70))
+			fmt.Println("│  ✓ No failures recorded.")
+			fmt.Println("└" + strings.Repeat("─", W-1))
 			continue
 		}
 
-		// Sort reasons by count descending
-		type kv struct {
-			key string
-			val int
+		// Group into PARSE / START / CONN / OTHER sub-sections
+		sections := []struct{ prefix, label string }{
+			{"PARSE", "Parse Failures  (config could not be decoded/interpreted)"},
+			{"START", "Start Failures  (sing-box refused or couldn't start)"},
+			{"CONN",  "Conn Failures   (proxy started but connection failed)"},
+			{"OTHER", "Other / Unknown"},
 		}
-		var sorted []kv
-		for k, v := range fd.reasons {
-			sorted = append(sorted, kv{k, v})
-		}
-		sort.Slice(sorted, func(i, j int) bool { return sorted[i].val > sorted[j].val })
 
-		for i, item := range sorted {
-			prefix := "│  ├"
-			if i == len(sorted)-1 {
-				prefix = "│  └"
+		for _, sec := range sections {
+			var items []kv
+			secTotal := 0
+			for k, v := range fd.reasons {
+				if strings.HasPrefix(k, sec.prefix) {
+					items = append(items, kv{k, v})
+					secTotal += v
+				}
 			}
-			pct := float64(item.val) / float64(totalFails) * 100
-			bar := strings.Repeat("█", int(pct/5))
-			fmt.Printf("%s %-42s %5d (%5.1f%%) %s\n",
-				prefix, item.key, item.val, pct, bar)
+			if len(items) == 0 { continue }
+			sort.Slice(items, func(i, j int) bool { return items[i].val > items[j].val })
+
+			secPct := float64(secTotal) / float64(totalFails) * 100
+			fmt.Printf("│\n│  ▶ %s\n", sec.label)
+			fmt.Printf("│    Sub-total: %d configs (%.1f%% of all failures)\n", secTotal, secPct)
+			fmt.Printf("│    %-52s %7s  %6s  %s\n", "Reason", "Count", "of-sec", "Bar")
+			fmt.Printf("│    %s\n", strings.Repeat("·", 72))
+
+			for _, item := range items {
+				pct    := float64(item.val) / float64(secTotal) * 100
+				barLen := int(pct / 5)
+				if barLen > 20 { barLen = 20 }
+				bar := strings.Repeat("█", barLen)
+
+				// Strip the prefix from the display key (e.g. "PARSE › " -> shown under PARSE section)
+				displayKey := item.key
+				if i := strings.Index(displayKey, " › "); i != -1 {
+					displayKey = displayKey[i+3:]
+				}
+				if len(displayKey) > 51 { displayKey = displayKey[:51] + "…" }
+
+				fmt.Printf("│    %-52s %7d  %5.1f%%  %s\n",
+					displayKey, item.val, pct, bar)
+			}
 		}
-		fmt.Println("└" + strings.Repeat("─", 70))
+
+		fmt.Println("└" + strings.Repeat("─", W-1))
 	}
+
+	// ── Overall totals ───────────────────────────────────────────────────────
+	var grandTotal, grandPassed, grandFail int
+	for _, row := range rows {
+		grandTotal  += row.total
+		grandPassed += row.passed
+		grandFail   += row.total - row.passed
+	}
+	fmt.Println()
+	hr("═")
+	fmt.Printf("  OVERALL  Total=%-7d  Passed=%-7d  Failed=%-7d  Pass rate=%.1f%%\n",
+		grandTotal, grandPassed, grandFail,
+		float64(grandPassed)/float64(grandTotal)*100)
+	hr("═")
 	fmt.Println()
 }
 
