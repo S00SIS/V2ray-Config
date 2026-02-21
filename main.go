@@ -872,14 +872,82 @@ func encodeUserInfo(s string) string {
 	return buf.String()
 }
 
-func parseVMess(raw string) (string, string) {
-	decoded, err := decodeBase64([]byte(strings.TrimPrefix(raw, "vmess://")))
+// parseVMessURItoD parses vmess://uuid@host:port?params into a map
+// compatible with the base64-JSON path so the rendering code is shared.
+func parseVMessURItoD(data string) (map[string]interface{}, string) {
+	u, err := url.Parse("vmess://" + data)
 	if err != nil {
-		return "", "base64: " + err.Error()
+		return nil, "uri parse: " + err.Error()
 	}
+	uuid := u.User.Username()
+	if uuid == "" {
+		return nil, "missing uuid"
+	}
+	host := u.Hostname()
+	if host == "" {
+		return nil, "missing server"
+	}
+	portStr := u.Port()
+	if portStr == "" {
+		portStr = "443"
+	}
+	q := u.Query()
+	sec := strings.ToLower(q.Get("security"))
+	tlsVal := ""
+	if sec == "tls" || sec == "xtls" {
+		tlsVal = "tls"
+	}
+	d := map[string]interface{}{
+		"id": uuid, "add": host, "port": portStr,
+		"aid": first(q.Get("aid"), q.Get("alterId"), "0"),
+		"scy": first(q.Get("encryption"), q.Get("scy"), "auto"),
+		"net": first(q.Get("type"), q.Get("net"), "tcp"),
+		"tls": tlsVal,
+		"sni": first(q.Get("sni"), q.Get("peer"), host),
+		"path": q.Get("path"),
+		"host": q.Get("host"),
+		"serviceName": q.Get("serviceName"),
+		"fp": q.Get("fp"),
+	}
+	return d, ""
+}
+
+func parseVMess(raw string) (string, string) {
+	data := strings.TrimPrefix(raw, "vmess://")
+	// Strip fragment
+	if idx := strings.LastIndex(data, "#"); idx != -1 {
+		data = data[:idx]
+	}
+	data = strings.TrimSpace(data)
+
+	// Detect URI format: vmess://uuid@host:port?...
+	// The @ must appear before any ? and before { (not a JSON)
+	atIdx := strings.Index(data, "@")
+	qIdx := strings.Index(data, "?")
+	isURI := atIdx != -1 && !strings.HasPrefix(data, "{") && (qIdx == -1 || atIdx < qIdx)
+
 	var d map[string]interface{}
-	if err := json.Unmarshal([]byte(decoded), &d); err != nil {
-		return "", "json: " + err.Error()
+	if isURI {
+		var parseErr string
+		d, parseErr = parseVMessURItoD(data)
+		if parseErr != "" {
+			return "", parseErr
+		}
+	} else {
+		var jsonStr string
+		// Some sources provide vmess://{ raw JSON } without base64
+		if strings.HasPrefix(data, "{") {
+			jsonStr = data
+		} else {
+			decoded, err := decodeBase64([]byte(data))
+			if err != nil {
+				return "", "base64: " + err.Error()
+			}
+			jsonStr = decoded
+		}
+		if err := json.Unmarshal([]byte(jsonStr), &d); err != nil {
+			return "", "json: " + err.Error()
+		}
 	}
 	server := strings.TrimSpace(fmt.Sprintf("%v", d["add"]))
 	if server == "" {
@@ -931,6 +999,14 @@ func vmessTransport(d map[string]interface{}, network string) string {
 	return buildTransportJSON(network, path, host, svcName)
 }
 
+// singboxSupportedFlows contains vless flow values supported by sing-box.
+// Others (xtls-rprx-direct, xtls-rprx-splice, etc.) cause FATAL JSON decode errors.
+var singboxSupportedFlows = map[string]bool{
+	"":                    true,
+	"xtls-rprx-vision":   true,
+	"xtls-rprx-vision-udp443": true,
+}
+
 func parseVLess(raw string) (string, string) {
 	u, err := url.Parse(sanitizeProxyURL(raw))
 	if err != nil {
@@ -955,7 +1031,12 @@ func parseVLess(raw string) (string, string) {
 		network = "tcp"
 	}
 	sni := first(q.Get("sni"), q.Get("peer"), server)
-	tlsJSON, tlsErr := vlessTLS(security, sni, q.Get("flow"), q)
+	// Filter flow: sing-box only supports xtls-rprx-vision; others cause FATAL config errors
+	flow := q.Get("flow")
+	if !singboxSupportedFlows[flow] {
+		flow = ""
+	}
+	tlsJSON, tlsErr := vlessTLS(security, sni, flow, q)
 	if tlsErr != "" {
 		return "", tlsErr
 	}
@@ -989,7 +1070,8 @@ func vlessTLS(security, sni, flow string, q url.Values) (string, string) {
 		return flowJSON + fmt.Sprintf(`,"tls":{"enabled":true,"server_name":%q,"utls":{"enabled":true,"fingerprint":%q},"reality":{"enabled":true,"public_key":%q,"short_id":%q}}`,
 			sni, first(q.Get("fp"), "chrome"), pbk, q.Get("sid")), ""
 	case "none", "":
-		return flowJSON, ""
+		// flow requires TLS - don't include it for plaintext connections
+		return "", ""
 	}
 	return "", "unknown security: " + security
 }
@@ -1074,75 +1156,127 @@ var singboxSupportedSSCiphers = map[string]bool{
 
 func parseShadowsocks(raw string) (string, string) {
 	trimmed := strings.TrimPrefix(raw, "ss://")
-	if idx := strings.Index(trimmed, "#"); idx != -1 {
+	// Strip fragment
+	if idx := strings.LastIndex(trimmed, "#"); idx != -1 {
 		trimmed = trimmed[:idx]
 	}
+	trimmed = strings.TrimSpace(trimmed)
+
+	var method, password, server string
+	var port int
+
 	atIdx := strings.LastIndex(trimmed, "@")
-	var userInfo, hostInfo string
 	if atIdx == -1 {
+		// Format: ss://BASE64(method:password@host:port)
 		decoded, err := decodeBase64([]byte(trimmed))
 		if err != nil {
-			return "", "base64: " + err.Error()
+			// Not valid base64 - treat as plaintext method:password@host:port
+			decoded = trimmed
 		}
-		atIdx = strings.LastIndex(decoded, "@")
-		if atIdx == -1 {
+		atIdx2 := strings.LastIndex(decoded, "@")
+		if atIdx2 == -1 {
 			return "", "missing @"
 		}
-		userInfo = decoded[:atIdx]
-		hostInfo = decoded[atIdx+1:]
-	} else {
-		userInfo = trimmed[:atIdx]
-		hostInfo = trimmed[atIdx+1:]
-	}
-	if idx := strings.Index(hostInfo, "?"); idx != -1 {
-		hostInfo = hostInfo[:idx]
-	}
-	decoded, err := decodeBase64([]byte(userInfo))
-	if err != nil {
-		// Try URL-decoding first (some SS links use percent-encoded method:password)
-		if unescaped, uerr := url.PathUnescape(userInfo); uerr == nil && unescaped != userInfo {
-			if d, berr := decodeBase64([]byte(unescaped)); berr == nil {
-				decoded = d
-				err = nil
-			} else {
-				decoded = unescaped
-				err = nil
-			}
-		} else {
-			decoded = userInfo
+		userPart := decoded[:atIdx2]
+		hostPart := decoded[atIdx2+1:]
+		if idx := strings.Index(hostPart, "?"); idx != -1 {
+			hostPart = hostPart[:idx]
 		}
+		m, p, s, po, e := ssParseUserAndHost(userPart, hostPart)
+		if e != "" {
+			return "", e
+		}
+		method, password, server, port = m, p, s, po
+	} else {
+		userPart := trimmed[:atIdx]
+		hostPart := trimmed[atIdx+1:]
+		if idx := strings.Index(hostPart, "?"); idx != -1 {
+			hostPart = hostPart[:idx]
+		}
+		// Handle IPv6 host in brackets for hostPart
+		m, p, s, po, e := ssParseUserAndHost(userPart, hostPart)
+		if e != "" {
+			return "", e
+		}
+		method, password, server, port = m, p, s, po
 	}
-	parts := strings.SplitN(decoded, ":", 2)
-	if len(parts) != 2 {
-		return "", "invalid user info"
-	}
-	lastColon := strings.LastIndex(hostInfo, ":")
-	if lastColon == -1 {
-		return "", "missing port"
-	}
-	portStr := hostInfo[lastColon+1:]
-	if s := strings.Index(portStr, "/"); s != -1 {
-		portStr = portStr[:s]
-	}
-	// Strip any non-digit characters after the port number (e.g., '\2}', newlines)
-	if s := strings.IndexFunc(portStr, func(r rune) bool { return r < '0' || r > '9' }); s != -1 {
-		portStr = portStr[:s]
-	}
-	portStr = strings.TrimSpace(portStr)
-	server := hostInfo[:lastColon]
-	port, err := toPort(portStr)
-	if err != nil {
-		return "", "port: " + err.Error()
+
+	method = strings.ToLower(method)
+	if !singboxSupportedSSCiphers[method] {
+		return "", fmt.Sprintf("unsupported cipher: %s", method)
 	}
 	if server == "" {
 		return "", "missing server"
 	}
-	method := strings.ToLower(parts[0])
-	if !singboxSupportedSSCiphers[method] {
-		return "", fmt.Sprintf("unsupported cipher: %s", method)
-	}
 	return fmt.Sprintf(`{"type":"shadowsocks","tag":"proxy","server":%q,"server_port":%d,"method":%q,"password":%q}`,
-		server, port, method, parts[1]), ""
+		server, port, method, password), ""
+}
+
+// ssParseUserAndHost extracts method, password, server, port from the two halves of an SS URL.
+func ssParseUserAndHost(userPart, hostPart string) (method, password, server string, port int, errMsg string) {
+	// Decode userPart: may be plain "method:password" or base64("method:password")
+	decoded := userPart
+	if !strings.Contains(userPart, ":") {
+		// Probably base64
+		if d, err := decodeBase64([]byte(userPart)); err == nil {
+			decoded = d
+		} else if unescaped, err := url.PathUnescape(userPart); err == nil {
+			if d2, err2 := decodeBase64([]byte(unescaped)); err2 == nil {
+				decoded = d2
+			} else {
+				decoded = unescaped
+			}
+		}
+	} else {
+		// Might still be base64 if it has "=" at end and looks encoded
+		if d, err := decodeBase64([]byte(userPart)); err == nil && strings.Contains(d, ":") {
+			decoded = d
+		}
+	}
+
+	parts := strings.SplitN(decoded, ":", 2)
+	if len(parts) != 2 {
+		return "", "", "", 0, "invalid user info"
+	}
+	method = parts[0]
+	password = parts[1]
+
+	// Parse host:port
+	// Handle IPv6 in brackets
+	hostPart = strings.TrimSpace(hostPart)
+	var portStr string
+	if strings.HasPrefix(hostPart, "[") {
+		// IPv6
+		closeBracket := strings.Index(hostPart, "]")
+		if closeBracket == -1 {
+			return "", "", "", 0, "invalid IPv6 host"
+		}
+		server = hostPart[1:closeBracket]
+		rest := hostPart[closeBracket+1:]
+		if strings.HasPrefix(rest, ":") {
+			portStr = rest[1:]
+		} else {
+			portStr = "443"
+		}
+	} else {
+		lastColon := strings.LastIndex(hostPart, ":")
+		if lastColon == -1 {
+			return "", "", "", 0, "missing port"
+		}
+		server = hostPart[:lastColon]
+		portStr = hostPart[lastColon+1:]
+	}
+
+	// Clean portStr: strip non-digit chars (e.g., '\2}', newlines)
+	if idx := strings.IndexFunc(portStr, func(r rune) bool { return r < '0' || r > '9' }); idx != -1 {
+		portStr = portStr[:idx]
+	}
+	portStr = strings.TrimSpace(portStr)
+	p, err := toPort(portStr)
+	if err != nil {
+		return "", "", "", 0, "port: " + err.Error()
+	}
+	return method, password, server, p, ""
 }
 
 func parseHysteria2(raw string) (string, string) {
@@ -1251,16 +1385,27 @@ func parseTUIC(raw string) (string, string) {
 func coreIdentity(line, protocol string) string {
 	switch protocol {
 	case "vmess":
-		decoded, err := decodeBase64([]byte(strings.TrimPrefix(line, "vmess://")))
-		if err != nil {
-			return line
+		data := strings.TrimPrefix(line, "vmess://")
+		if idx := strings.LastIndex(data, "#"); idx != -1 {
+			data = data[:idx]
+		}
+		data = strings.TrimSpace(data)
+		var jsonStr string
+		if strings.HasPrefix(data, "{") {
+			jsonStr = data
+		} else {
+			decoded, err := decodeBase64([]byte(data))
+			if err != nil {
+				return line
+			}
+			jsonStr = decoded
 		}
 		var d struct {
 			Add  string      `json:"add"`
 			Port interface{} `json:"port"`
 			ID   string      `json:"id"`
 		}
-		json.Unmarshal([]byte(decoded), &d)
+		json.Unmarshal([]byte(jsonStr), &d)
 		return fmt.Sprintf("vmess://%s:%v#%s", d.Add, d.Port, d.ID)
 	default:
 		u, err := url.Parse(sanitizeProxyURL(line))
@@ -1441,12 +1586,23 @@ func configToClashYAML(line, proto, name string) (string, bool) {
 }
 
 func vmessClashYAML(raw, name string) (string, bool) {
-	decoded, err := decodeBase64([]byte(strings.TrimPrefix(raw, "vmess://")))
-	if err != nil {
-		return "", false
+	data := strings.TrimPrefix(raw, "vmess://")
+	if idx := strings.LastIndex(data, "#"); idx != -1 {
+		data = data[:idx]
+	}
+	data = strings.TrimSpace(data)
+	var jsonStr string
+	if strings.HasPrefix(data, "{") {
+		jsonStr = data
+	} else {
+		decoded, err := decodeBase64([]byte(data))
+		if err != nil {
+			return "", false
+		}
+		jsonStr = decoded
 	}
 	var d map[string]interface{}
-	if err := json.Unmarshal([]byte(decoded), &d); err != nil {
+	if err := json.Unmarshal([]byte(jsonStr), &d); err != nil {
 		return "", false
 	}
 	server := strings.TrimSpace(fmt.Sprintf("%v", d["add"]))
@@ -1763,12 +1919,23 @@ func strDefault(v interface{}, def string) string {
 func renameTo(config, protocol, newName string) string {
 	switch protocol {
 	case "vmess":
-		decoded, err := decodeBase64([]byte(strings.TrimPrefix(config, "vmess://")))
-		if err != nil {
-			return config
+		data := strings.TrimPrefix(config, "vmess://")
+		if idx := strings.LastIndex(data, "#"); idx != -1 {
+			data = data[:idx]
+		}
+		data = strings.TrimSpace(data)
+		var jsonStr string
+		if strings.HasPrefix(data, "{") {
+			jsonStr = data
+		} else {
+			decoded, err := decodeBase64([]byte(data))
+			if err != nil {
+				return config
+			}
+			jsonStr = decoded
 		}
 		var d map[string]interface{}
-		if err := json.Unmarshal([]byte(decoded), &d); err != nil {
+		if err := json.Unmarshal([]byte(jsonStr), &d); err != nil {
 			return config
 		}
 		d["ps"] = newName
