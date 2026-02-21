@@ -510,6 +510,12 @@ func isProtocolSupported(proto string) bool {
 	return false
 }
 
+// failDetail holds per-protocol failure reason counts.
+type failDetail struct {
+	mu      sync.Mutex
+	reasons map[string]int
+}
+
 func validateAll(lines []string) []configResult {
 	seen := make(map[string]bool)
 	byProto := make(map[string][]string)
@@ -555,6 +561,66 @@ func validateAll(lines []string) []configResult {
 		gLog.writeLine("")
 	}
 
+
+	// ── Per-protocol failure detail tracking ──────────────────────────────────
+	protoFails := make(map[string]*failDetail)
+	for _, p := range cfg.ProtocolOrder {
+		protoFails[p] = &failDetail{reasons: make(map[string]int)}
+	}
+
+	// normalizeReason converts a raw failReason into a short, groupable key.
+	normalizeReason := func(reason string) string {
+		switch {
+		case strings.HasPrefix(reason, "PARSE: base64:"):
+			return "PARSE: base64 decode error"
+		case strings.HasPrefix(reason, "PARSE: json:"):
+			return "PARSE: json decode error"
+		case strings.HasPrefix(reason, "PARSE: url parse:"):
+			return "PARSE: url parse error"
+		case strings.HasPrefix(reason, "PARSE: unsupported cipher:"):
+			return "PARSE: unsupported cipher"
+		case strings.HasPrefix(reason, "PARSE:"):
+			msg := strings.TrimPrefix(reason, "PARSE: ")
+			if len(msg) > 50 {
+				msg = msg[:50]
+			}
+			return "PARSE: " + msg
+		case strings.HasPrefix(reason, "SINGBOX_START:"), strings.HasPrefix(reason, "START:"):
+			r := reason
+			if i := strings.Index(r, ": "); i != -1 {
+				r = r[i+2:]
+			}
+			// Strip ANSI escape codes
+			r = strings.Map(func(c rune) rune {
+				if c == 0x1b {
+					return -1
+				}
+				return c
+			}, r)
+			if strings.Contains(r, "port not open") {
+				return "START: port not open (timeout)"
+			}
+			if strings.Contains(r, "decode config") || strings.Contains(r, "outbound") {
+				return "START: invalid config (sing-box rejected)"
+			}
+			if len(r) > 60 {
+				r = r[:60]
+			}
+			return "START: " + r
+		case strings.HasPrefix(reason, "CONN:"):
+			r := strings.TrimPrefix(reason, "CONN: ")
+			if i := strings.Index(r, " | "); i != -1 {
+				r = r[:i]
+			}
+			if len(r) > 60 {
+				r = r[:60]
+			}
+			return "CONN: " + r
+		default:
+			return reason
+		}
+	}
+
 	resultsCh := make(chan configResult, cfg.Validation.NumWorkers*4)
 	sem := make(chan struct{}, cfg.Validation.NumWorkers)
 
@@ -564,23 +630,26 @@ func validateAll(lines []string) []configResult {
 	var failedStart int64
 	var failedConn int64
 
-	var outerWg sync.WaitGroup
+	// ── Sequential per-protocol processing ────────────────────────────────────
+	// Each protocol is fully completed before the next one starts.
+	// Within each protocol, workers run in parallel up to NumWorkers.
+	go func() {
+		for _, proto := range cfg.ProtocolOrder {
+			protoLines := byProto[proto]
+			if len(protoLines) == 0 {
+				continue
+			}
+			if gLog != nil {
+				gLog.logProtoStart(proto, len(protoLines))
+			}
+			protoStart := time.Now()
+			fmt.Printf("\n🔵 [%s] Starting — %d configs\n", strings.ToUpper(proto), len(protoLines))
 
-	for _, proto := range cfg.ProtocolOrder {
-		protoLines := byProto[proto]
-		if len(protoLines) == 0 {
-			continue
-		}
-		if gLog != nil {
-			gLog.logProtoStart(proto, len(protoLines))
-		}
-		fmt.Printf("\n🔵 %s (%d configs)\n", proto, len(protoLines))
-
-		outerWg.Add(1)
-		go func(p string, pLines []string) {
-			defer outerWg.Done()
 			var wg sync.WaitGroup
-			for _, line := range pLines {
+			var protoPassed int64
+			var protoFailed int64
+
+			for _, line := range protoLines {
 				l := line
 				wg.Add(1)
 				sem <- struct{}{}
@@ -589,18 +658,25 @@ func validateAll(lines []string) []configResult {
 					defer func() { <-sem }()
 
 					idx := atomic.AddInt64(&testedCount, 1)
-					res := validate(l, p)
+					res := validate(l, proto)
 
 					if gLog != nil {
-						gLog.logResult(idx, p, l, res)
+						gLog.logResult(idx, proto, l, res)
 					}
 
 					if res.totalScore >= cfg.Validation.MinPassScore {
 						atomic.AddInt64(&passedCount, 1)
-						fmt.Printf("✅ [%d] PASS | %s | %dms\n", idx, p, res.latency.Milliseconds())
-						resultsCh <- configResult{line: l, proto: p, latency: res.latency}
+						atomic.AddInt64(&protoPassed, 1)
+						resultsCh <- configResult{line: l, proto: proto, latency: res.latency}
 					} else {
+						atomic.AddInt64(&protoFailed, 1)
 						reason := res.failReason
+						norm := normalizeReason(reason)
+						fd := protoFails[proto]
+						fd.mu.Lock()
+						fd.reasons[norm]++
+						fd.mu.Unlock()
+
 						if strings.HasPrefix(reason, "PARSE:") {
 							atomic.AddInt64(&failedParse, 1)
 						} else if strings.HasPrefix(reason, "SINGBOX_START:") || strings.HasPrefix(reason, "START:") {
@@ -608,19 +684,17 @@ func validateAll(lines []string) []configResult {
 						} else {
 							atomic.AddInt64(&failedConn, 1)
 						}
-						if idx <= 30 || strings.HasPrefix(reason, "PARSE:") || strings.HasPrefix(reason, "SINGBOX_START:") {
-							fmt.Printf("❌ [%d] FAIL | %s | %s\n", idx, p, shortenErr(reason))
-						}
 					}
 				}()
 			}
 			wg.Wait()
-			fmt.Printf("✔️  %s done.\n", p)
-		}(proto, protoLines)
-	}
 
-	go func() {
-		outerWg.Wait()
+			elapsed := time.Since(protoStart).Seconds()
+			total := int64(len(protoLines))
+			passRate := float64(protoPassed) / float64(total) * 100
+			fmt.Printf("✅ [%s] Done — passed=%d/%d (%.1f%%) in %.1fs\n",
+				strings.ToUpper(proto), protoPassed, total, passRate, elapsed)
+		}
 		close(resultsCh)
 	}()
 
@@ -629,6 +703,7 @@ func validateAll(lines []string) []configResult {
 		out = append(out, r)
 	}
 
+	// ── Global summary line ────────────────────────────────────────────────────
 	fmt.Printf("\n📊 Tested=%d | Passed=%d | ParseFail=%d | StartFail=%d | ConnFail=%d\n",
 		atomic.LoadInt64(&testedCount),
 		atomic.LoadInt64(&passedCount),
@@ -636,7 +711,68 @@ func validateAll(lines []string) []configResult {
 		atomic.LoadInt64(&failedStart),
 		atomic.LoadInt64(&failedConn))
 
+	// ── Detailed per-protocol failure report ─────────────────────────────────
+	printFailureReport(protoFails, byProto)
+
 	return out
+}
+
+// printFailureReport prints a detailed statistical breakdown of failures per protocol.
+func printFailureReport(protoFails map[string]*failDetail, byProto map[string][]string) {
+	fmt.Println()
+	fmt.Println("╔══════════════════════════════════════════════════════════════════════╗")
+	fmt.Println("║              FAILURE ANALYSIS REPORT (per protocol)                 ║")
+	fmt.Println("╚══════════════════════════════════════════════════════════════════════╝")
+
+	for _, proto := range cfg.ProtocolOrder {
+		fd := protoFails[proto]
+		if fd == nil {
+			continue
+		}
+		total := len(byProto[proto])
+		if total == 0 {
+			continue
+		}
+		totalFails := 0
+		for _, c := range fd.reasons {
+			totalFails += c
+		}
+		passed := total - totalFails
+		passRate := float64(passed) / float64(total) * 100
+
+		fmt.Printf("\n┌─ %s ─── total=%d  passed=%d  failed=%d  pass_rate=%.1f%%\n",
+			strings.ToUpper(proto), total, passed, totalFails, passRate)
+
+		if totalFails == 0 {
+			fmt.Println("│  (no failures)")
+			fmt.Println("└" + strings.Repeat("─", 70))
+			continue
+		}
+
+		// Sort reasons by count descending
+		type kv struct {
+			key string
+			val int
+		}
+		var sorted []kv
+		for k, v := range fd.reasons {
+			sorted = append(sorted, kv{k, v})
+		}
+		sort.Slice(sorted, func(i, j int) bool { return sorted[i].val > sorted[j].val })
+
+		for i, item := range sorted {
+			prefix := "│  ├"
+			if i == len(sorted)-1 {
+				prefix = "│  └"
+			}
+			pct := float64(item.val) / float64(totalFails) * 100
+			bar := strings.Repeat("█", int(pct/5))
+			fmt.Printf("%s %-42s %5d (%5.1f%%) %s\n",
+				prefix, item.key, item.val, pct, bar)
+		}
+		fmt.Println("└" + strings.Repeat("─", 70))
+	}
+	fmt.Println()
 }
 
 func validate(configURL, protocol string) validationResult {
