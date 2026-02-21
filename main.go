@@ -789,8 +789,7 @@ func printFailureReport(protoFails map[string]*failDetail, byProto map[string][]
 
 	const W = 78 // total report width
 
-	line := func(s string) { fmt.Println(s) }
-	hr   := func(ch string) { fmt.Println(strings.Repeat(ch, W)) }
+	hr := func(ch string) { fmt.Println(strings.Repeat(ch, W)) }
 
 	fmt.Println()
 	hr("═")
