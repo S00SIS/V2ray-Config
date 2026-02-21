@@ -69,18 +69,18 @@ proxies:
     udp: true
   - name: "Delta-Kronecker-hy2-002"
     type: hysteria2
-    server: "130.61.50.75"
-    port: 6443
-    password: "zhangyang"
-    sni: "130.61.50.75"
+    server: "129.151.251.122"
+    port: 35000
+    password: "545fb4e9-5794-4e20-be0c-e6d8689f91ac"
+    sni: "www.lamer.com.hk"
     skip-cert-verify: true
     udp: true
   - name: "Delta-Kronecker-hy2-003"
     type: hysteria2
-    server: "129.151.251.122"
+    server: "143.47.32.143"
     port: 35000
     password: "545fb4e9-5794-4e20-be0c-e6d8689f91ac"
-    sni: "129.151.251.122"
+    sni: "www.lamer.com.hk"
     skip-cert-verify: true
     udp: true
 

@@ -1,500 +1,500 @@
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@46.32.185.253:8443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40%40jdfxq#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@51.77.140.38:8443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-vmess://eyJhZGQiOiI1Ny4xMjkuNjQuMjM4IiwiYWlkIjoiMCIsImFscG4iOiIiLCJmcCI6IiIsImhvc3QiOiJrYXBlbGxlbmcuY29tIiwiaWQiOiIwM2ZjYzYxOC1iOTNkLTY3OTYtNmFlZC04YTM4Yzk3NWQ1ODEiLCJuZXQiOiJ3cyIsInBhdGgiOiIvbGlua3Z3cyIsInBvcnQiOiI0NDMiLCJwcyI6IkRlbHRhLUtyb25lY2tlciIsInNjeSI6ImF1dG8iLCJzbmkiOiJrYXBlbGxlbmcuY29tIiwidGxzIjoidGxzIiwidHlwZSI6Ii0tLSIsInYiOiIyIn0=
-vless://0c12a9c3-24f0-42fb-89db-d92534a2ec2b@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=%2F192.227.178.102%3D8443&sni=afrcloud22.mmv.kr#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@156.38.168.58:990 #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@38.89.142.56:990 #Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@87.98.235.174:8443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=/?ed=2560&Telegram🇨🇳@WangCai2#Delta-Kronecker
-trojan://redfree8@104.17.147.22:443/?type=tcp&security=tls&sni=ipsychO.SUEx12.Ir#Delta-Kronecker
-trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@88.216.66.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
-vless://eb071647-72a6-46be-8e89-ff3d228d52f6@nl.jojack.ru:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=nl.jojack.ru&fp=chrome&pbk=sxyxV0_y1o09gKJBL9AJJyRSEg6MiYK0j-kb5unzHh4&sid=6bb3c7f9f97b45b8&type=tcp&headerType=none#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@173.212.207.89:443?path=%2F%3Fed%3D2560%2640oPiran%F0%9F%8E%96%40oPiran&security=tls&encryption=none&host=sni.111000.indevs.in&type=ws&sni=sni.111000.indevs.in#Delta-Kronecker
-trojan://a7c7bbf0-48a1-11f0-b880-1239d0255272@uk1.test3.net:443?security=tls&headerType=none&type=tcp #Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.20:38388 #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpoYkdycGZ2TnJKc1VtS21QYlIzaVky@tinkered-pennies-puppies.freesocks.work:443 #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToyZTVjNzVjMzVkN2VlOTI5@163.171.213.47:19702 #Delta-Kronecker
-trojan://dd2f25b4c70689de8bc0f7fa9d6591cb@160.16.150.76:3093?security=tls&sni=www.nintendogames.net#Delta-Kronecker
-vless://66a3771c-6f8f-4990-9459-23568891dfde@154.31.114.125:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
-vless://57ba2ab1-a283-42eb-82ee-dc3561a805b8@104.21.3.219:8443?path=%2F57ba2ab1&security=tls&encryption=none&host=ovhwuxian.pai50288.uk&fp=chrome&type=ws&sni=ovhwuxian.pai50288.uk#Delta-Kronecker
-vmess://eyJhZGQiOiI1Ny4xMjguMTg5LjIxMSIsImFpZCI6MCwiaG9zdCI6InlpY2h1ZW5nLm9yZyIsImlkIjoiMDNmY2M2MTgtYjkzZC02Nzk2LTZhZWQtOGEzOGM5NzVkNTgxIiwibmV0Ijoid3MiLCJwYXRoIjoibGlua3Z3cyIsInBvcnQiOjQ0MywicHMiOiJEZWx0YS1Lcm9uZWNrZXIiLCJzZWN1cml0eSI6ImF1dG8iLCJza2lwLWNlcnQtdmVyaWZ5IjpmYWxzZSwic25pIjoieWljaHVlbmcub3JnIiwidGxzIjoidGxzIiwidHlwZSI6ImF1dG8ifQ==
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNWQDEwMy4xODYuMTU0LjMwOjM4Mzg4#Delta-Kronecker
-vless://b8509ba9-3359-44ae-a36b-3ba329a43c7c@osn.takovpn.ru:443?encryption=none&security=reality&sni=google.com&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=97&spx=%2Fhci4yLrMfy2SATl&type=tcp&headerType=none#Delta-Kronecker
-vless://ec71af34-e588-4681-b66b-e50305ed6ff8@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=%2F192.3.30.175%3D8443&sni=afrcloud22.mmv.kr#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToxNWIwNTczODMwMDgxZDAx@51.89.119.213:11201#Delta-Kronecker
-trojan://blue2024@104.16.8.32:443/?type=tcp&security=tls&sni=hb.lii2010.us.kg&allowInsecure=1#Delta-Kronecker
-vless://aaaaaabb-4ddd-4eee-9fff-ffffffffffff@votewa.gov:443?path=%2F185.186.245.40%3A81&security=tls&encryption=none&insecure=1&host=afrcloud22.mmv.kr&type=ws&allowInsecure=1&sni=afrcloud22.mmv.kr#Delta-Kronecker
-vless://9a6f3933-590c-4fa6-8957-298a8b8a94bd@142.111.162.39:443?security=reality&encryption=none&pbk=4SvSS7EqHyV_LDW4vB2f7UIj6x_GXsR3vMnqnaxspHo&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=www.mozilla.org&sid=42237f32aba8#Delta-Kronecker
-ss://YWVzLTI1Ni1nY206TFlYaUlVSjBGdXRuVHpCRw==@62.146.172.130:80 #Delta-Kronecker
-trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@45.153.7.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
-trojan://auto@108.162.195.148:443/?type=tcp&security=tls&sni=trojanfree-76s.pages.dev#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@193.123.253.225:4333?encryption=none&security=tls&sni=sni.jpmj.dev&insecure=0&allowInsecure=0&type=ws&host=sni.jpmj.dev&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-ss://YWVzLTI1Ni1nY206akpIcTgwN2JRN1RNMHlPaA@94.72.127.58:80 #Delta-Kronecker
-ss://MjAyMi1ibGFrZTMtYWVzLTI1Ni1nY206ZXQxc2doMWlRYVd6c3cyMDFKWDJlZXhOMUFpNlFtSUdjWklsdmxDNUw1ND0@57.131.42.19:8390#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@82.38.31.35:8080#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.47:38388#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpsanFkYWx1MTMuLkAzLjEuMTk1LjE0ODo4MzEz#Delta-Kronecker
-trojan://c7bd43eb-009d-404e-9969-877397004733@jp03.170203.xyz:443#Delta-Kronecker
-ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M=@156.146.38.170:443#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@172.174.11.248:443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
-vless://c8b45c0b-623d-434f-a0da-9ad7e05845ae@154.31.114.125:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
-vless://532a9115-aee7-4d39-9638-1e5146de075b@muddy-math-c1fc.tmpnriqueau89.workers.dev:443?encryption=none&security=tls&sni=muddy-math-c1fc.tmpnriqueau89.workers.dev&insecure=0&allowInsecure=0&type=ws&host=muddy-math-c1fc.tmpnriqueau89.workers.dev&path=%2F#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6QndjQVVaazhoVUZBa0RHTg@217.30.10.18:9031 #Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6U0JNN1I4ODNqQm1ucWU2Qw@217.30.10.18:9053#Delta-Kronecker
-trojan://6e1b9a65-884f-3aa9-9469-bf6ec0f08610@14.215.39.158:3462/?type=tcp&security=tls&sni=45.32.28.232&allowInsecure=1&fp=chrome#Delta-Kronecker
-trojan://Aimer@108.165.152.202:2083/?type=tcp&security=tls&sni=epgb.aimercc.dpdns.org#Delta-Kronecker
-vless://ad2879c1-7f77-4a4c-ba50-c24dd5ceffa4@81.19.141.190:51529?security=reality&encryption=none&pbk=9smFk5QZXifHGrtwDwhbROsLBh179bExNWABnvUCvSw&headerType=none&fp=chrome&spx=/&type=tcp&sni=yandex.ru&sid=b77a294515ecc200#Delta-Kronecker
-vless://09748875-9da3-440e-9809-9752e1dda1e4@38.244.137.198:443?security=reality&encryption=none&pbk=QXGsw1KqljvUiarkvFdBs3T1TeUQq4skwHFlsmbj31o&headerType=none&fp=chrome&spx=/&type=tcp&sni=google.com&sid=365c07ed#Delta-Kronecker
-vless://03dd7e7c-8d2a-4cd2-b920-f5ed564fc8c4@193.233.231.162:448?type=grpc&security=reality&fp=&pbk=wSQIBnAc0cYO9JitaNcgZ2LwkTix0_dXVpDjnZxDrCE&sid=6ba85179e30d4fc2&sni=eh.vk.ru&mode=gun&serviceName=xyz&authority=#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@185.81.28.95:30503?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
-vless://9e0fe137-0da7-45b0-9a6d-a767f109d666@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=768c60&sni=google.com#Delta-Kronecker
-vless://88ad1982-d31e-4e53-886d-f30111e4ae0e@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=54c71eb172a3&sni=www.google.com#Delta-Kronecker
-vless://a90f4742-2f30-47b5-9f17-b6ab04cc98e8@93.94.51.13:25451/?type=tcp&encryption=none&flow=&sni=yandex.ru&fp=chrome&security=reality&pbk=JlMOb8hVg1VOrRlMLdXpv8IADp-R4I-cIT856hz_Cg0&sid=f686d19cd7b8b3df#Delta-Kronecker
-vless://00d1eaf8-14a6-4ea7-a939-e80ad114a819@104.26.14.21:443?security=tls&encryption=none&sni=afrcloud22.mmv.kr&type=ws&host=afrcloud22.mmv.kr&path=/130.185.164.217=8443#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@45.40.149.238:2096?&security=tls&fp=chrome&sni=sni.jpmj.dev&type=ws&headerType=none&host=sni.jpmj.dev&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@157.230.244.86:443?type=ws&encryption=none&flow=&host=sni.111000.dynv6.net&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&sni=sni.111000.dynv6.net&fp=chrome#Delta-Kronecker
-vless://94a03e9a-74d5-4036-95e9-563cc19355de@144.31.4.36:443?security=tls&encryption=none&insecure=1&headerType=none&type=tcp&allowInsecure=1&sni=plcdn13.suio.me#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.141:38388 #Delta-Kronecker
-vless://a9ee8b76-6a94-4c25-9705-76d9bd38771e@afrcloud22.mmv.kr:443?security=tls&encryption=none&sni=afrcloud22.mmv.kr&type=ws&host=afrcloud22.mmv.kr&path=/35.230.79.26=443#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@185.47.255.22:989 #Delta-Kronecker
-vless://87f25004-a0d6-42df-aac0-915e21b035b5@87.239.252.186:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.foxsports.com&fp=chrome&pbk=uf64ptbhMNcLWuwEfOzQB7qgn725h6w9DmKRteQQPwg&sid=32f1ee9b6dc5&packetEncoding=xudp#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@51.77.140.254:443?encryption=none&security=tls&sni=sni.111000.indevs.in&fp=chrome&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%8E%96%40AliXTso#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@162.19.79.57:2053?path=/?ed=2560&Telegram🇨🇳 @WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.72:38388#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@138.186.142.80:990 #Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@92.119.124.171:2053?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@51.91.100.9:8443/?type=ws&encryption=none&flow=&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2&security=tls&sni=sni.111000.v6.navy#Delta-Kronecker
-vless://6dfbef3b-f718-4053-806f-c9657e2fd943@209.141.52.138:11225?security=reality&flow=xtls-rprx-vision&sni=python.org&type=tcp&fp=chrome&pbk=nRUFKXfldeXh6hIoO6hAeBC3NtUHhaHyNkOeNGyjsjk&sid=fcc5f0e9#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6d2ZMQzJ5N3J6WnlDbXV5dA@217.30.10.18:9093 #Delta-Kronecker
-trojan://aa4f4054-2b52-4fdc-a089-7f7bf17db98e@kr02.170203.xyz:443#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@134.209.30.166:443?path=/?ed=2560&Telegram🎖@AliXTso&security=tls&encryption=none&host=sni.111000.indevs.in&type=ws&sni=sni.111000.indevs.in#Delta-Kronecker
-vless://b5b8fbbb-5e9c-4dc1-a394-4b120b2e8766@45.67.231.106:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=BJmTbh_kG28fi0o1Fo6Zo9yu7TG6zrfWSaiDYM6AUhY&sid=54e84bdac5&sni=nrstr.strelkavpn.com&spx=/#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@193.135.174.135:990#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@44.228.63.60:80?&security=tls&fp=chrome&sni=sni.111000.indevs.in&type=ws&headerType=none&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-vmess://eyJhZGQiOiIxMDQuMTkuMTc0LjY4IiwiYWlkIjoiMCIsImFscG4iOiIiLCJmcCI6IiIsImhvc3QiOiJuYXNuZXQtNTcxMjk5NjY3LnJhaGF2YXJkMzY1LmNvIiwiaWQiOiJlOGIxNTAwYi1lOWU4LTU0OTItODMxMi1mNGVhZGY3ZDA3NjciLCJuYW1lIjoiXHUwMDNlXHUwMDNlQG9uZWNsaWNrdnBua2V5czo6WFg6OlhYOjpYWDo6WFg6OlhYOjpYWCIsIm5ldCI6IndzIiwicGF0aCI6Ii9OQVNORVQvY2RuIiwicG9ydCI6ODA4MCwicHMiOiJEZWx0YS1Lcm9uZWNrZXIiLCJzY3kiOiJhdXRvIiwic25pIjoiIiwidGxzIjoiIiwidHlwZSI6IiIsInYiOiIyIn0=
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToyQUtuOUE5WGJNVWJORzlpOHhNN1E0RUt3d2ZUNXBTb3BaRVFVTEEyZURyUWl6MkM1bk1RVDdmNXMzczVUbUJ4SkZZREI2RWdwMlhjaHRBNWFTV0RpUzlwQVNOZWJNR3Y@185.5.38.111:55988#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@138.186.142.81:990#Delta-Kronecker
-vless://9523a24b-f6bf-339e-9950-32829162ffc2@vip2.kaixincloud.top:443/?type=ws&encryption=none&flow=&host=dabaif0.webn.cc&path=%2Fdb1024f4e56f542c&security=tls&sni=dabaif0.webn.cc&allowInsecure=1#Delta-Kronecker
-ss://YWVzLTI1Ni1nY206UXpNME5mdU1ObmdiVm5aS0AxNDQuMTI2LjE0NS43Nzo4MA== #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@45.82.252.109:990#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@153.121.45.101:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=/?ed=2560&Telegram🇨🇳+@WangCai2#Delta-Kronecker
-vmess://eyJhZGQiOiI5MS4xMzQuOC44OCIsImFpZCI6MCwiaG9zdCI6ImxhbW1hbGFuZC5vcmciLCJpZCI6IjAzZmNjNjE4LWI5M2QtNjc5Ni02YWVkLThhMzhjOTc1ZDU4MSIsIm5ldCI6IndzIiwicGF0aCI6Imxpbmt2d3MiLCJwb3J0Ijo0NDMsInBzIjoiRGVsdGEtS3JvbmVja2VyIiwic2VjdXJpdHkiOiJhdXRvIiwic2tpcC1jZXJ0LXZlcmlmeSI6ZmFsc2UsInNuaSI6ImxhbW1hbGFuZC5vcmciLCJ0bHMiOiJ0bHMiLCJ0eXBlIjoiYXV0byJ9
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpaRVoyYmZGYlZpQzl1c04xV0I0eHF2eXpFdVVoUEEydXVVWVptaktBV1RRYzNtRXJoQ2FWSG1aYmJXZ1ZHOW9pMVZIaHoxMktQMmdBV0M4TFpKNGltV2h5cEFEOVBHM3U@185.5.38.111:55988 #Delta-Kronecker
-vless://48ff2b70-e180-582f-8866-d9a2edeed5f5@15.204.97.216:23576/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=fuck.rkn&fp=chrome&security=reality&pbk=1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s&sid=01#Delta-Kronecker
-trojan://031322@masterserver1-masterserver1-masterserver1-masterserver1.nopere9229.workers.dev:2087?path=/?ed=2560&security=tls&host=masterserver1-masterserver1-masterserver1-masterserver1.nopere9229.workers.dev&fp=chrome&type=ws&sni=masterserver1-masterserver1-masterserver1-masterserver1.nopere9229.workers.dev#Delta-Kronecker
-vless://0285981a-178f-4fe2-b603-fc3e172b6bf2@51.250.117.173:5443?encryption=none&flow=xtls-rprx-vision&fp=qq&pbk=Z1PBEkRcz_GSf4D3452Y_PdZeEVr0XZ3pGZkMBleI3U&security=reality&sid=f16927958981f934&sni=yandex.ru&type=tcp#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw@147.78.1.230:989 #Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@91.223.123.210:443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=1&host=sni.111000.indevs.in&type=ws&allowInsecure=1&sni=sni.111000.indevs.in#Delta-Kronecker
-ss://cmM0LW1kNToxNGZGUHJiZXpFM0hEWnpzTU9yNg@137.184.174.93:8080 #Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.54:38388#Delta-Kronecker
-vless://a67841c8-018c-41dc-a429-747357658dcd@178.17.61.67:443?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=UZtZJYBxM0g0U7XXfu2mrD_l_oV2DjMoLVLP1qkNpDM&sid=ad33ae4273&sni=www.icloud.com#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@203.23.128.33:989#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.239:38388#Delta-Kronecker
+trojan://bpb-trojan@104.17.27.106:443/?type=tcp&security=tls&sni=fcspring.ggff.net#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.190:8080#Delta-Kronecker
+ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M%3D@37.19.198.236:443#Delta-Kronecker
+ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M@141.98.101.179:443#Delta-Kronecker
+trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@141.193.213.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
 vless://61febd2d-30fe-45b3-bb56-0ca137229df8@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
-vless://ccedb1b1-35f3-46d1-a85a-c699eef5f3e1@germany.scroogethebest.com:443?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=AYQOZFxjvHN-RIzKYEibwFiFsp03cdlWGdCmyFfuNVc&sid=4fa44664f6a566d3&sni=germany.scroogethebest.com#Delta-Kronecker
-vless://b370ee6c-986b-4a59-b4ef-7974c6c20f6f@46.224.13.54:41457/?type=tcp&encryption=none&flow=#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@3.67.232.136:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
-vless://26524cce-d514-4014-a426-365fb266a14d@208.103.161.52:2096?encryption=none&security=tls&sni=WangCai.443888.xyz&insecure=0&allowInsecure=0&type=ws&host=WangCai.443888.xyz&path=%2Fdanfeng%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo5dHFoTWRJclRrZ1E0NlB2aHlBdE1I@switcher-nick-croquet.freesocks.work:443 #Delta-Kronecker
-ss://YWVzLTI1Ni1nY206OHJiNTgwRUJHNGw3dE84Sw==@154.53.60.197:80 #Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw@185.47.255.22:989 #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpXeTlWbWNXSG85UXpUeHVZTXgtWDAxNG5RRlNhaDNXVA==@194.87.216.140:8388 #Delta-Kronecker
-trojan://64a59181551b5773e390bd717a7b7c06@160.16.72.33:3423?security=tls&sni=www.nintendogames.net#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@156.255.123.138:2096?encryption=none&security=tls&sni=sni.111000.indevs.in&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-vless://dac5ecb3-2ca8-4667-b630-75893cde81c0@L-i-qstream.khoone-khoobe-liqshowpars-q.ir:2002?security=reality&encryption=none&pbk=OUCuy7eLQ6hjd1YCAiYE669Hxylv1lNVfKNvtCbKjWs&headerType=none&fp=chrome&spx=/liqvps.ir&type=tcp&sni=tgju.org&sid=85b6875cdc4f468c#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToyMjRmYmFlYzM4YTJhMjEy@145.239.31.76:11203#Delta-Kronecker
-trojan://iM6JnhWs8l@104.19.53.221:443/?type=tcp&security=tls&sni=t1.rtx.al#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo4NjViYzgwOTE5YTQ4NGE1@57.129.89.142:11201#Delta-Kronecker
-trojan://1a17b19d-4896-4531-af79-6e91d8ef8228@18.179.202.62:6688?allowInsecure=1&peer=baidu.com&sni=baidu.com#Delta-Kronecker
-vless://f8692a50-9593-482f-9d33-4927df87f978@185.241.195.29:5443?encryption=none&flow=xtls-rprx-vision&fp=qq&pbk=GhzR6-mSTnA4t-2flSoiI8sC4jdAFqcAXCompYn71w0&security=reality&sid=598706ee32cea0ea&sni=yandex.ru&type=tcp#Delta-Kronecker
-vless://081efe27-f6b8-4f60-aedb-3c9effe9c67d@poe.com:443/?path=/&security=tls&alpn=http/1.1&encryption=none&host=80bab3a2.gon-7ye.pages.dev&type=ws&sni=80bab3a2.gon-7ye.pages.dev#Delta-Kronecker
-trojan://3123deb0-4684-11f0-8fc7-1239d0255272@uk1.test3.net:443?security=tls&headerType=none&type=tcp #Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@194.55.137.25:443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=1&host=sni.111000.indevs.in&type=ws&allowInsecure=1&sni=sni.111000.indevs.in#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTppeGZYQnE2ZGZNUVFGaUV6NlBCY1R5QDYyLjYwLjIzMy4yMjA6MTg2ODU= #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@185.93.173.60:990#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@89.168.68.57:2053/?type=ws&encryption=none&flow=&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2&security=tls&sni=sni.111000.v6.navy#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@45.133.74.6:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
-vless://aaaaaabb-4ddd-4eee-9fff-ffffffffffff@104.16.0.108:443/?type=ws&encryption=none&flow=&host=afrcloud22.mmv.kr&path=/5.223.47.32=443&security=tls&sni=afrcloud22.mmv.kr&allowInsecure=1#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.56:38388 #Delta-Kronecker
-trojan://juzi@91.107.233.151:8443?sni=juzi8186-sr1.pages.dev#Delta-Kronecker
-vless://100cf905-0d2b-4250-98d2-5a7029d8fcfc@osn.takovpn.ru:443?type=&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=9de7&sni=www.google.com#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.222:38388#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@57.128.183.6:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
-trojan://665c944d-047d-4659-80d5-3eaac70241a9@139.162.158.172:443?security=tls&sni=de2-full.privateip.net#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjdklJODVUclc2bjBPR3lmcEhWUzF1@193.29.139.227:8080#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.197:38388 #Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@150.230.5.34:45681?encryption=none&security=tls&sni=sni.111000.indevs.in&fp=chrome&insecure=1&type=ws&host=sni.111000.indevs.in&path=/?ed=2560&telegram🇨🇳+@wangcai2#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo5UVppVHRFUU10aFRnWlJESEVLVmpw@216.105.168.18:443 #Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.144:38388#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.150:38388#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.121:38388 #Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@185.192.124.188:989#Delta-Kronecker
-vless://9523a24b-f6bf-339e-9950-32829162ffc2@172.66.47.45:443/?type=ws&encryption=none&flow=&host=dabaihk.webn.cc&path=%2Fdb1024532f9883c8&security=tls&sni=dabaihk.webn.cc&allowInsecure=1#Delta-Kronecker
-trojan://NISHIKUITAN111@172.64.156.42:443?#Delta-Kronecker
-vless://e7bf2367-a233-4d37-b7ef-2c017413febe@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
-vless://5a7fd686-d60f-440a-9495-273b6a6f8755@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=768c60&sni=google.com&type=tcp#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpLYm0zeG9LMDRwNE9ob3FWcEV6ZGxqQDk1LjE2NC4xMTMuMTk4OjUzODI5#Delta-Kronecker
-vless://71afb2b4-e5fa-4e1c-a718-73a933fa9fbe@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=3d3c3fc7e9&sni=www.google.com#Delta-Kronecker
-vless://26524cce-d514-4014-a426-365fb266a14d@192.131.142.161:46639?encryption=none&security=tls&sni=WangCai.443888.xyz&insecure=0&allowInsecure=0&type=ws&host=WangCai.443888.xyz&path=%2Fdanfeng%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.31:38388#Delta-Kronecker
-vless://00000000-0000-4000-8000-000000000000@159.69.162.184:42122?type=ws&encryption=none&host=sub.mot.ip-ddns.com&path=/&security=tls&sni=sub.mot.ip-ddns.com&allowInsecure=1#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.142:38388#Delta-Kronecker
-vless://2b4c8da0-6593-41ff-b431-fbe813a130c4@174.136.205.68:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@2.56.179.89:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
-trojan://dVqpmoYvWGuP@104.21.54.208:2087/?type=tcp&security=tls&sni=leader.andishehnegariran.ir#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@51.79.158.58:8443?encryption=none&security=tls&sni=sni.jpmj.dev&insecure=0&allowInsecure=0&type=ws&host=sni.jpmj.dev&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
-trojan://ttfang@172.64.156.11:443/?type=tcp&security=tls&sni=ttfang.fange.me#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTphODIwMWJiZDc0MDQyMGJi@213.156.137.142:43659 #Delta-Kronecker
-vless://b532bbc9-d67b-4f18-bc57-189de08bfa1a@osn.takovpn.ru:443?encryption=none&security=reality&sni=www.google.com&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=47e4c3980f872e68&type=tcp&headerType=none#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0ZjAzMmQ5OTNkZmVjMzE4QDE0MS45NS4xMDQuMTQ1OjExMjAx#Delta-Kronecker
-vless://26524cce-d514-4014-a426-365fb266a14d@208.103.161.223:2096?encryption=none&security=tls&sni=WangCai.443888.xyz&insecure=0&allowInsecure=0&type=ws&host=WangCai.443888.xyz&path=%2Fdanfeng%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-vless://48ff2b70-e180-582f-8866-d9a2edeed5f5@15.204.97.195:23576?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=fuck.rkn&fp=chrome&security=reality&pbk=1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s&sid=01#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@138.186.143.32:989 #Delta-Kronecker
-vmess://eyJhZGQiOiI0Ny4yNDMuMjQ0LjE2NCIsImFpZCI6IjAiLCJhbHBuIjpudWxsLCJmcCI6bnVsbCwiaG9zdCI6Im4xNzYxMjE0OTA4LndwZzI3Lnh5eiIsImlkIjoiMzUxNGE5M2YtYmIyNi00NDQyLThmOTktOTcxYjJmZjMzODhhIiwibmFtZSI6IvCfh63wn4ewIEhLIDUiLCJuZXQiOiJ3cyIsInBhdGgiOiIvIiwicG9ydCI6NDQzLCJwcyI6IkRlbHRhLUtyb25lY2tlciIsInNjeSI6bnVsbCwic25pIjoiIiwidGxzIjoidGxzIiwidHlwZSI6bnVsbCwidiI6bnVsbH0=
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@160.153.138.138:2096?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTphNTg2YWU4ZDc3M2YyNTBmQDIxNy43Ny4zLjY4OjI4OTU0#Delta-Kronecker
-vless://3ea61064-dae6-4ce5-8e3b-451c7feab49f@104.18.32.47:443/?type=ws&encryption=none&flow=&host=sweet-sgv2ray.xihijop617-075.workers.dev&path=/eyJqdW5rIjoiMHF3bXNPUVFSYkwiLCJwcm90b2NvbCI6InZsIiwibW9kZSI6InByb3h5aXAiLCJwYW5lbElQcyI6W119&security=tls&sni=sWeEt-sgV2ray.XIHiJoP617-075.wOrKErs.DEv&alpn=http/1.1&allowInsecure=1#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.199:8080#Delta-Kronecker
-vless://8c6118b9-78a8-3b3b-a49a-6aa9cb5b1d4e@s504.okgg.top:443?encryption=none&type=tcp&headerType=none&fp=random&host=s504.okgg.top&path=&flow=xtls-rprx-vision&security=tls&sni=u708330u649as504.okgg.top&serviceName=&mode=&alpn=#Delta-Kronecker
-vless://e7f1a167-5017-4375-b498-f8ce968f7c7b@174.136.205.68:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3MzU1ODJlNTEzMjhhZjk5@163.171.206.24:28028 #Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@198.12.144.238:2096?encryption=none&security=tls&sni=sni.jpmj.dev&insecure=0&allowInsecure=0&type=ws&host=sni.jpmj.dev&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpkZWQ3MThmY2IyYmIxN2I3@154.26.132.38:27882 #Delta-Kronecker
-trojan://5a2c16f9@162.159.128.253:443/?type=tcp&security=tls&sni=snippets.kkii.eu.org#Delta-Kronecker
-vless://4e45c1b4-9107-45dd-9995-cdf7cbb44d9d@104.21.60.191:80?type=ws&encryption=none&flow=&host=nmjk.1hh.ccwu.cc&path=%2FhBasD7EdpBQ0zGAzsYHmsMrnO#Delta-Kronecker
-trojan://NISHIKUITAN222@188.114.97.98:443?#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@94.23.74.37:8443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@194.87.134.130:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@141.94.79.161:8443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
-trojan://c7dac38d-3f19-4c1a-8f69-27a19940ba70@kr02.170203.xyz:443?#Delta-Kronecker
-trojan://0f218d19-cdfa-475d-bf65-8f0d7e5331a5@dl-jp4.steamdownload.top:443#Delta-Kronecker
-trojan://81d93f62-15a2-4994-adb9-0b5d906aac7e@31.72img.xyz:443?allowInsecure=0#Delta-Kronecker
-ss://bm9uZTo3OTk2MGIwYi03ZDMxLTQyNjMtODkxNS02NTExYjBlMTM3YTg@store.ubi.com:443?#Delta-Kronecker
-vless://0341d8f2-99e0-4f6c-af0a-345ac26815cf@ab.fxgoldensignals.com:51269?mode=gun&security=&encryption=none&type=grpc#Delta-Kronecker
-ss://chacha20-ietf-poly1305:oZIoA69Q8yhcQV8ka3Pa3A@82.38.31.61:8080 #Delta-Kronecker
-ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M=@156.146.38.170:443 #Delta-Kronecker
-vless://9786aa59-861a-444e-b9fc-54740b432580@37.139.42.139:5443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=qq&pbk=gzRwDrnVPWTBAXs2CmGb9uE6H2pJH8lo4GZazGYNLRc&sid=18240b4c71f05887&sni=google.com&path=&host=#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@165.232.89.21:443?path=/?ed=2560&Telegram@AliXTso&security=tls&encryption=none&host=sni.111000.indevs.in&type=ws&sni=sni.111000.indevs.in#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@138.186.142.81:990 #Delta-Kronecker
-vless://e11e4a19-65a2-430c-a5af-170483ee019a@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=1283729a0a9c1f&sni=www.google.com#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@168.138.171.70:23280?type=ws&encryption=none&flow=&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&sni=sni.111000.indevs.in&fp=chrome#Delta-Kronecker
-vless://58639e02-d0ad-45cd-94fc-89a558b1dd8f@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=1283729a0a9c1f&sni=google.com&type=tcp#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@212.34.153.114:2053?encryption=none&security=tls&sni=sni.111000.dynv6.net&insecure=0&allowInsecure=0&type=ws&host=sni.111000.dynv6.net&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@185.93.173.60:990#Delta-Kronecker
-vless://1ed8d97a-6c8c-43a2-95f1-e2741d5f4437@154.31.114.125:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
-trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@159.242.242.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.53:38388 #Delta-Kronecker
-vless://d9a83363-40a6-4a21-9dbe-cb2b7d287048@afrcloud22.mmv.kr:443?path=%2F107.174.121.122%3D443&security=tls&encryption=none&insecure=0&host=afrcloud22.mmv.kr&type=ws&allowInsecure=0&sni=afrcloud22.mmv.kr#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@57.128.181.89:443?path=/?ed=2560&Telegram🎖@AliXTso&security=tls&encryption=none&insecure=0&host=sni.111000.indevs.in&type=ws&allowInsecure=0&sni=sni.111000.indevs.in#Delta-Kronecker
-vless://56e605ca-3192-4cb4-9465-cb67245e17fd@77.239.108.97:443/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=www.bing.com&fp=chrome&security=reality&pbk=ckRcueERkPqqjZABwxqni_J_Nbb70Q6k5fEEUAjoImw&sid=#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.30:38388#Delta-Kronecker
-trojan://f898ffcb-6417-4373-9640-0b66091e8206@104.21.22.159:443/?type=tcp&security=tls&sni=q12.11890604.xyz#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@89.110.110.110:2053?encryption=none&security=tls&sni=sni.111000.dynv6.net&insecure=0&allowInsecure=0&type=ws&host=sni.111000.dynv6.net&path=/?ed=2560&Telegram🇨🇳@WangCai2#Delta-Kronecker
-vless://1cec0a16-09c7-4c43-9383-a7f30a5798a2@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=%2F172.245.54.238%3D443&sni=afrcloud22.mmv.kr#Delta-Kronecker
-ss://cmM0LW1kNToxNGZGUHJiZXpFM0hEWnpzTU9yNg==@68.183.235.122:8080 #Delta-Kronecker
-vless://d22531a3-bd03-465f-a91a-efafdbbf8ce6@afrcloud22.mmv.kr:443?encryption=none&security=tls&sni=afrcloud22.mmv.kr&insecure=0&allowInsecure=0&type=ws&host=afrcloud22.mmv.kr&path=/132.145.127.203=8443#Delta-Kronecker
-vless://372b801a-cca6-4945-9d37-9682a4c1a972@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=47e4c3980f872e68&sni=www.google.com&type=tcp#Delta-Kronecker
-trojan://06e4425e-a8cb-4b63-929f-2105604ab0a9@23.227.38.33:443?sni=vk.ylka.dpdns.org#Delta-Kronecker
-vless://4e45c1b4-9107-45dd-9995-cdf7cbb44d9d@141.101.120.21:80?type=ws&host=ggbnh.1x5.indevs.in&path=%2FhBasD7EdpBQ0zGAzsYHmsMrnO&fp=chrome#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNBQDgyLjM4LjMxLjM1OjgwODA=#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@46.183.217.204:990#Delta-Kronecker
-trojan://fHngvzC1ut#Delta-Kronecker
-trojan://bd213170-c9cf-11ef-b198-1239d0255272@51.38.65.155:443?sni=telewebion.com#Delta-Kronecker
-trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@74.49.215.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
-trojan://6884d714-d3c4-4b49-aa20-767ea92837d6@212.183.88.172:443/?type=tcp&security=tls&sni=icecream.955850.xyz#Delta-Kronecker
-ss://YWVzLTI1Ni1nY206a0VWS2oxeHZnemVFbjhBVg@209.126.5.209:443 #Delta-Kronecker
-vless://8973c1d8-e183-4b5c-a854-341bbc156dec@osn.takovpn.ru:443?type=&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=768c60&sni=google.com#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.194:8080 #Delta-Kronecker
-trojan://36325a98-46a4-4770-977a-9a9570e0bcc6@green2.cdntencentmusic.com:35502?security=tls&sni=green2.cdntencentmusic.com&allowInsecure=1&type=tcp&headerType=none#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.252:38388 #Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.216:38388 #Delta-Kronecker
-vless://093ca6c0-e824-4d9d-ab1f-46294a2f3b5c@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=768c60&sni=www.google.com#Delta-Kronecker
-trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@194.36.55.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
-vless://53cddd30-34a1-32dd-b598-c1c4c8a0f813@vip2.kaixincloud.top:443?path=/db1024a105975707&security=tls&encryption=none&host=dabaihk.webn.cc&fp=chrome&type=ws&sni=dabaihk.webn.cc#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@91.197.0.131:8443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
-vless://b7039fbe-0359-4d91-977d-a926203b1936@172.67.73.14:443?path=%2F&security=tls&encryption=none&insecure=1&host=afrcloud22.mmv.kr&type=ws&allowInsecure=1&sni=afrcloud22.mmv.kr#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@178.128.86.3:443?type=ws&encryption=none&flow=&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&sni=sni.111000.indevs.in&fp=chrome#Delta-Kronecker
-ss://YWVzLTI1Ni1nY206Rm9PaUdsa0FBOXlQRUdQQDM4LjE4MC4yMTYuMTE0OjczMDc=#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTplZjcyMGY1Yjc5MWE2MGY3QDU0LjM3Ljc3LjIxMjoxMTIwMQ==#Delta-Kronecker
-trojan://4f435a3a-dfb8-4c90-b637-8df8c5d44550@104.21.26.17:443/?type=tcp&security=tls&sni=m9rrrfgh.459.pp.ua#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@193.29.139.227:8080#Delta-Kronecker
-trojan://HTrovQkamDxNfaD5@185.253.46.69:443?sni=cz5.v2ce.com#Delta-Kronecker
-vless://b821c290-c12a-4b33-8a89-7b03b87c7f5d@84.252.136.245:8443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=zii4nGNapnFKL6SN8GzWNqFlElBvUCUFUThEP0kFH04&security=reality&sid=e57932a42872a362&sni=yandex.ru&type=tcp#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@31.59.121.39:443?&security=tls&fp=chrome&sni=sni.111000.indevs.in&type=ws&headerType=none&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@193.135.174.135:990 #Delta-Kronecker
-ss://YWVzLTI1Ni1nY206d2xKU0YwZkM4dXFCNUdtNQ@94.72.127.55:443 #Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@57.129.137.81:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
-vless://aaaaaabb-4ddd-4eee-9fff-ffffffffffff@afrcloud22.mmv.kr:80?path=/185.186.245.90=443&security=none&encryption=none&host=chatgpt.com.afrcloud22.mmv.kr&type=ws#Delta-Kronecker
-trojan://f08d6a6b-a0b3-410e-a0ba-eae71b521904@us004.421421.xyz:20230?allowInsecure=1&sni=www.alibaba.com&ws=1#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@172.66.44.211:2096?encryption=none&security=tls&sni=sni.111000.indevs.in&fp=chrome&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560#Delta-Kronecker
-vless://4266ab4c-2c2b-4bba-ab8d-95e962fa0b45@212.233.95.129:4443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=qq&pbk=Uq4M_pBx5yHofg6ppHnrDdm9Y7nHv8mjsUtml3yIbzY&sid=8ed5501bb2cda70a&sni=max.ru&path=&host=#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjdklJODVUclc2bjBPR3lmcEhWUzF1@193.29.139.143:8080#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@194.60.134.249:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
-vless://2ad15591-8356-4f9e-b1bf-03becd0385a8@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=768c60&sni=google.com&type=tcp#Delta-Kronecker
-vless://e42fa468-4eef-49ca-9d94-dcbf25c30863@osn.takovpn.ru:443?encryption=none&security=reality&sni=www.google.com&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=3d3c3fc7e9&type=tcp&headerType=none#Delta-Kronecker
-vless://86b414b6-966e-4f6d-ab16-32049ef732d3@47.245.38.111:443?security=reality&encryption=none&pbk=y167aJhpgWWjltY4UCir_uu8Mj__Hkc1W4etD0QXYH4&headerType=none&fp=chrome&type=tcp&sni=www.autodesk.com&sid=860705e716cbe6ed#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@190.93.244.138:2096?encryption=none&security=tls&sni=sni.111000.indevs.in&type=ws&host=sni.111000.indevs.in&path=/?ed=2560#Delta-Kronecker
-trojan://36ebef7d1b1d6205fd0c55f28800e674@72.167.45.6:443#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjYTVhNWVmYWUwMGE4MzJi@112.197.26.106:45313#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PUAxMDMuMTA2LjIyOC4yNDc6OTkw#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.117:38388#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJRQDgyLjM4LjMxLjIwNTo4MDgw#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.169:38388 #Delta-Kronecker
-vless://dfb16e58-dc01-4a0b-8575-0c99d8e25735@afrcloud22.mmv.kr:443?security=tls&type=ws&path=%2F140.83.83.65%3D9872&host=afrcloud22.mmv.kr&sni=afrcloud22.mmv.kr&fp=chrome&encryption=none#Delta-Kronecker
-vless://6024f212-df57-4f88-b2ad-4f7256333fe7@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=352e3a94&sni=google.com&spx=/VSIhEIQ1BkkPLbW#Delta-Kronecker
-trojan://bpb-trojan@104.16.4.103:443/?type=tcp&security=tls&sni=bpb-hd.aaronchin.xyz#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@51.91.248.253:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@192.210.175.108:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@5.61.47.9:443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%8E%96%40AliXTso&security=tls&encryption=none&host=sni.111000.indevs.in&type=ws&sni=sni.111000.indevs.in#Delta-Kronecker
-vless://1b26d08a-9036-46fc-b2d7-a24a71c3ee34@212.233.92.3:5443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=qq&pbk=UZZZh7NCnRvU1y7D45FgrZFwIDVIrdLm8TVjx6IudGQ&sid=a1b2c3d4e5f60789&sni=yandex.ru&path=&host=#Delta-Kronecker
-vless://7f49e948-ca13-447a-a237-4d3192f4a5a3@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=768c60&sni=google.com&type=tcp#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpsanFkYWx1MTMuLg==@3.112.130.53:8319 #Delta-Kronecker
-vless://80e8f558-5c1f-41ea-b92b-0c3d805ac827@osn.takovpn.ru:443?type=&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=47e4c3980f872e68&sni=google.com#Delta-Kronecker
-vless://3f0f36f5-f091-45c5-88c9-4bcc545b922c@162.159.44.45:2096/?type=ws&encryption=none&flow=&host=hetz.x-smm.com&path=/45.76.183.217=49292&security=tls&sni=hetz.x-smm.com&allowInsecure=1#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo5ZDk3NDMzNjg4ZTdlZmQ1@163.171.206.24:44235 #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpkOTU0YmQ2ZGQ3NGE3ZjQ4@54.37.78.130:11201#Delta-Kronecker
-vless://957d2906-21b6-43d7-8abe-4ac7fce7b996@154.31.114.125:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@51.91.254.189:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
-vless://e6c7ed63-89db-4ae1-a3f8-7a722921b3b2@104.18.185.26:443?path=/O1w0n3vYgFKYs7EzNAvLPvOp&security=tls&encryption=none&insecure=0&host=apii.onlineshoppingez.ir&type=ws&allowInsecure=0&sni=apii.onlineshoppingez.ir#Delta-Kronecker
-vless://6c69a2c8-9d9e-41d9-83f5-83a8264cd00d@109.120.182.246:3443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=qq&pbk=E0v1eCplgozcf1FVIzwel92v7p-SjQbTY3beXtLQk0o&sid=99c3cbbde80525aa&sni=max.ru&path=&host=#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@74.119.195.68:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@51.91.248.251:443?path=/?ed=2560&security=tls&encryption=none&insecure=0&host=sni.111000.indevs.in&type=ws&allowInsecure=0&sni=sni.111000.indevs.in#Delta-Kronecker
-trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@176.124.223.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@167.71.136.139:443?encryption=none&security=tls&sni=sni.111000.indevs.in&fp=chrome&insecure=1&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNBQDgyLjM4LjMxLjYxOjgwODA=#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@78.159.131.90:443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
-vless://ee30dfba-cea1-47a0-96a1-4e8cf054420f@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=3d3c3fc7e9&sni=www.google.com#Delta-Kronecker
-ss://YWVzLTI1Ni1nY206TFlYaUlVSjBGdXRuVHpCRw==@62.146.172.130:80#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.156:38388 #Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@57.128.183.248:8443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3YWZhMzkwMTZkNWE0MDlj@194.233.73.51:48804 #Delta-Kronecker
-vmess://eyJhZGQiOiIyMDkuMTI2Ljg0LjE4OSIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoidjJyYXkuY29kZWZ5aW5jLmNvbSIsImlkIjoiMmM5ODExNjQtOWI5My00YmNhLTk0ZmYtYjc4ZDNmODQ5OGQ3IiwibmV0Ijoid3MiLCJwYXRoIjoiL3ZtZXNzd3MiLCJwb3J0Ijo0NDMsInBzIjoiRGVsdGEtS3JvbmVja2VyIiwic2N5IjoiYXV0byIsInNuaSI6IiIsInRscyI6IiIsInR5cGUiOiIiLCJ2IjoiMiJ9
-vless://aaaaaabb-4ddd-4eee-9fff-ffffffffffff@104.17.97.6:443?path=/103.6.207.108=8080&security=tls&encryption=none&insecure=0&host=afrcloud22.mmv.kr&type=ws&allowInsecure=0&sni=joinProxyVPN11.afrcloud22.mmv.kr#Delta-Kronecker
-vless://a17c5f3c-7af2-4b66-956f-87987dc113a7@154.31.114.125:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
-vless://3d8fccf1-bac8-4873-b5ef-67548c30b9ac@174.136.205.68:443?&security=reality&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc&sid=2da72ce6&fp=chrome&sni=navi.bankrate.com&type=tcp&headerType=none&host=navi.bankrate.com&path=%2F#Delta-Kronecker
-vless://cf95b75d-69fc-4a32-a0f8-8fc21c66a6e4@95.163.211.158:8443?encryption=none&pbk=wSQIBnAc0cYO9JitaNcgZ2LwkTix0_dXVpDjnZxDrCE&security=reality&serviceName=xyz&sni=eh.vk.ru&type=grpc#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo5N2ZlNmIwN2NiZmFmN2U3@157.185.173.60:18424 #Delta-Kronecker
-vless://51278ccf-c9ad-438c-b9e7-12de5a9ac021@89.169.162.214:8443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=zii4nGNapnFKL6SN8GzWNqFlElBvUCUFUThEP0kFH04&security=reality&sid=c6ef72e4635d15a5&sni=yandex.ru&type=tcp#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.131:38388#Delta-Kronecker
-vless://9576c9ca-1f2e-45fc-ad7f-bde397157df2@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=%2F64.44.177.238%3D10010&sni=afrcloud22.mmv.kr#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6UzdLd1V1N3lCeTU4UzNHYQ==@217.30.10.18:9042#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@185.36.143.64:443/?type=ws&encryption=none&flow=&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2&security=tls&sni=sni.111000.v6.navy#Delta-Kronecker
-vless://103b210d-c76d-488e-acd4-fed943ba025e@104.128.134.181:34816#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@77.91.126.58:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
-vless://76bd59cb-82ee-4ce3-9410-f7b19416318f@87.239.252.186:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.techradar.com&fp=chrome&pbk=uf64ptbhMNcLWuwEfOzQB7qgn725h6w9DmKRteQQPwg&sid=43c6f259e156&type=tcp&headerType=none#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@38.165.231.25:990#Delta-Kronecker
-vless://4962807b-e723-4273-a9c1-47658f46a0d8@dns1.bustyyetkin.monster:443?security=reality&encryption=none&pbk=4SvSS7EqHyV_LDW4vB2f7UIj6x_GXsR3vMnqnaxspHo&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=www.microsoft.com&sid=645c51cea93d#Delta-Kronecker
-trojan://Aimer@104.16.2.21:443?sni=epcca.ambercc.filegear-sg.me#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToxMGY5MGFmOTJiNmMxYTc0@141.95.109.94:11201 #Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@162.19.243.106:2053?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-vless://e6c7ed63-89db-4ae1-a3f8-7a722921b3b2@104.21.224.5:443/?type=ws&encryption=none&flow=&host=apii.onlineshoppingez.ir&path=%2FO1w0n3vYgFKYs7EzNAvLPvOp&security=tls&sni=apii.onlineshoppingez.ir&allowInsecure=1#Delta-Kronecker
-vless://2145a6d6-b772-4e96-843d-cc39754e73d0@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=768c60&sni=google.com#Delta-Kronecker
-vless://094e6187-ef8b-40aa-acde-ac73d30af2ef@154.31.114.125:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
-vless://79026d23-dbcf-40fc-9db8-65ecf850967f@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
-vless://c9fd0fb1-8251-4106-b09a-f4b426736f67@137.184.218.169:36925/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=www.cloudflare.com&fp=chrome&security=reality&pbk=lJ9INPpO4rdnm2Tek_yg0PGFyUrBB6MoKyvqt_Mfqm0&sid=#Delta-Kronecker
-vless://5b223b5b-b869-4b26-a43a-3b14fc2554d9@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=9de7&sni=google.com#Delta-Kronecker
-vless://c4be5399-3a11-46ad-a92a-294b4f7b2690@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=/64.176.36.17=443&sni=afrcloud22.mmv.kr#Delta-Kronecker
-vless://bb9f05cc-817c-4b22-9a82-bbbd5db57be9@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
-trojan://telegram-id-privatevpns@35.181.11.162:22222?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=trojan.burgerip.co.uk#Delta-Kronecker
-ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M@156.146.38.170:443 #Delta-Kronecker
-vless://48ff2b70-e180-582f-8866-d9a2edeed5f5@51.158.206.19:23576/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=fuck.rkn&fp=chrome&security=reality&pbk=1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s&sid=01#Delta-Kronecker
-vless://26f723a0-f87c-4616-8847-7cd26a53b534@154.31.114.125:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.252:38388#Delta-Kronecker
-vless://f62e3a25-c28c-432d-9cf9-86ec37dc145c@147.45.178.107:443?security=reality&type=tcp&headerType=&path=/&host=www.google.com&flow=xtls-rprx-vision&sni=www.google.com&fp=chrome&pbk=nPcUKydxoRI66O3tT9O4QCZpLjOBvkGsiXG7pDX1BBw&sid=6ba85179e30d4fc2#Delta-Kronecker
-vless://9cd1b59f-24e9-44a5-8ec3-f403ea961019@osn.takovpn.ru:443?type=&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=352e3a94&sni=google.com#Delta-Kronecker
-trojan://trojan@109.234.211.66:8443?security=tls&sni=store.timimi.dpdns.org#Delta-Kronecker
-vmess://eyJhZGQiOiJuMTc2MTIxNDkxNS5tdjd3aC50ZWNoIiwiYWlkIjoiMCIsImFscG4iOiIiLCJmcCI6IiIsImhvc3QiOiJuMTc2MTIxNDkxNS5tdjd3aC50ZWNoIiwiaWQiOiIxZjJkYWY0My1mZjkwLTRkZjktOTI3Ni1kZmI4NDg2ZDcyYmMiLCJpbnNlY3VyZSI6IjAiLCJuYW1lIjoi8J+PtOKAjVNoaW5lIiwibmV0Ijoid3MiLCJwYXRoIjoiLyIsInBvcnQiOjQ0MywicHMiOiJEZWx0YS1Lcm9uZWNrZXIiLCJzY3kiOiJhdXRvIiwic2tpcC1jZXJ0LXZlcmlmeSI6dHJ1ZSwic25pIjoibjE3NjEyMTQ5MTUubXY3d2gudGVjaCIsInRscyI6InRscyIsInR5cGUiOiItLS0iLCJ2IjoiMiJ9
-vless://686c62d9-17a7-43c9-a40a-f6747df60a9f@162.159.36.5:2096?encryption=none&security=tls&sni=ca.adobe-connect.top&fp=chrome&insecure=1&allowInsecure=1&type=ws&host=ca.adobe-connect.top&path=%2F#Delta-Kronecker
-vless://26524cce-d514-4014-a426-365fb266a14d@208.103.161.93:2096?encryption=none&security=tls&sni=WangCai.443888.xyz&insecure=0&allowInsecure=0&type=ws&host=WangCai.443888.xyz&path=%2Fdanfeng%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo1OWZhNTU0MWQxZDljY2NlQDE0MS45NS4xMDQuMzA6MTEyMDE=#Delta-Kronecker
-trojan://c85761bc-5d74-4ae5-b525-0d32443182fa@waphk.mjt000.com:443/?type=tcp&security=tls&sni=waphk.mjt000.com#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@78.40.197.85:443?security=tls&type=ws&path=%2F%3Fed%3D2560&host=sni.111000.dynv6.net&sni=sni.111000.dynv6.net&fp=chrome&encryption=none#Delta-Kronecker
-vless://2da42bb0-2599-4536-9cc0-64614a35bc01@37.139.42.139:5443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=gzRwDrnVPWTBAXs2CmGb9uE6H2pJH8lo4GZazGYNLRc&sid=18240b4c71f05887&packetEncoding=xudp#Delta-Kronecker
-ss://YWVzLTI1Ni1nY206U003V1l0QXd2Qk9SWEtqSUAxNTQuNTMuNjMuNDI6ODA=#Delta-Kronecker
-vless://2e1cc3db-f65f-4bb3-a619-01847671f289@reza.alphanet01.com:51349?path=%40PuLaFreeBOT%2C%40PuLaVPN%2C%40PuLaFreeBOT%2C%40PuLaVPN%2C%40PuLaFreeBOT%2C%40PuLaVPN%2C%40PuLaFreeBOT%2C%40PuLaVPN%2C%40PuLaFreeBOT%2C%40PuLaVPN%2C%40PuLaFreeBOT%2C%40PuLaVPN%2C%40PuLaFreeBOT%2C%40PuLaVPN%2C%40PuLaFreeBOT%2C%40PuLaVPN%2C&security=none&encryption=none&host=play.google.com&type=ws#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@185.135.9.138:2096?encryption=none&security=tls&sni=sni.111000.indevs.in&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpXYXZIZVNHRnhmdnJra2JRZDQ4UHJCQDUuMTgxLjIuNzM6NDMyNDgvP291dGxpbmU9MQ==#Delta-Kronecker
-trojan://dc2b3044-82ef-4ab3-a17f-add75a790d83@kr01.170203.xyz:443#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@166.62.105.238:2096?encryption=none&security=tls&sni=sni.jpmj.dev&insecure=0&allowInsecure=0&type=ws&host=sni.jpmj.dev&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@155.46.213.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
-ss://YWVzLTI1Ni1nY206WmZiUEZEZGVCajBCMVR4cw==@154.53.60.212:443#Delta-Kronecker
-trojan://4c68fce6-2b72-4ab6-8dd4-8e07139e2b2e@15.235.163.26:443/?type=tcp&security=tls&sni=sgt1.sshocean.net&allowInsecure=1#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.60:38388#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.52:38388 #Delta-Kronecker
-ss://YWVzLTI1Ni1nY206TUVtc1FlSnRQRjFHTXdKbUA2Mi4xNDYuMTcxLjU5OjQ0Mw==#Delta-Kronecker
-trojan://745654@89.117.158.245:8000?allowInsecure=1&sni=esla.cestbon.work#Delta-Kronecker
-trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@139.64.235.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@194.59.5.138:2096?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2&security=tls&encryption=none&host=sni.111000.indevs.in&type=ws&sni=sni.111000.indevs.in#Delta-Kronecker
-ss://YWVzLTI1Ni1nY206OHJiNTgwRUJHNGw3dE84S0AxNTQuNTMuNjAuMTk3Ojgw#Delta-Kronecker
-vless://3f0f36f5-f091-45c5-88c9-4bcc545b922c@108.162.194.176:2096?path=%2F45.76.183.217%3D49292&security=tls&encryption=none&host=hetz.x-smm.com&type=ws&sni=hetz.x-smm.com#Delta-Kronecker
-trojan://668561f4-3332-4b83-a382-da05975040f0@download2hkt.windowsupdatea.com:443?security=tls&sni=daxun-hkt2.windowsupdatea.com&type=tcp&headerType=none#Delta-Kronecker
-vless://ea0d50dd-d57e-4d77-91b7-94fcca564607@download.lastilhame.monster:443?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=WOPZy8oOnvHN21pLYobZAGa7sVp7op3q575B5BaFxkU&sid=7879649cbaa0&sni=www.hollywoodreporter.com#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@82.38.31.103:8080 #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@38.247.64.176:990 #Delta-Kronecker
-ss://YWVzLTI1Ni1nY206aGJoTzB4b21zSnpoTzI0Rg==@64.176.215.70:443 #Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@57.129.63.154:2053?path=/?ed=2560&Telegram@V2rayAlpha&security=tls&encryption=none&insecure=0&host=sni.111000.dynv6.net&fp=chrome&type=ws&allowInsecure=0&sni=sni.111000.dynv6.net#Delta-Kronecker
-vless://26524cce-d514-4014-a426-365fb266a14d@212.34.155.129:443/?type=ws&encryption=none&flow=&host=WangCai.443888.xyz&path=%2Fdanfeng%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&sni=WangCai.443888.xyz&allowInsecure=1#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@103.57.251.240:990#Delta-Kronecker
-vless://bf3e8944-8d26-47de-8748-b9aa74cce974@64.188.104.168:40721?security=reality&encryption=none&pbk=TUZgwzcTvoROSbgnqMh3WorXVMxQNIF2zsEM39FQbyk&headerType=none&fp=chrome&spx=/GozargahAzadi&type=tcp&sni=yahoo.com&sid=df8611c07d#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTowYmI0NDdjZWU3MjI4ZWIwQDkxLjEwNi4xMDkuMTc6NDEwMjI=#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@141.11.203.238:2096?encryption=none&security=tls&sni=sni.jpmj.dev&fp=chrome&insecure=1&type=ws&host=sni.jpmj.dev&path=%2F%3Fed%3D2560%26telegram%F0%9F%87%A8%F0%9F%87%B3%2B@wangcai2#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@162.120.94.138:2096?path=/&security=tls&encryption=none&host=sni.111000.indevs.in&type=ws&sni=sni.111000.indevs.in#Delta-Kronecker
-ss://YWVzLTI1Ni1nY206azZydUp1d2dBVXhJcmtIYg@154.53.63.32:443 #Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@88.210.13.136:8443?encryption=none&security=tls&sni=sni.111000.dynv6.net&insecure=0&allowInsecure=0&type=ws&host=sni.111000.dynv6.net&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@178.130.40.109:2053?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=1&host=sni.111000.indevs.in&type=ws&allowInsecure=1&sni=sni.111000.indevs.in#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo4NzdjM2IwNjljMzM1ZmZj@163.171.181.49:42933 #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo4NzdjM2IwNjljMzM1ZmZj@163.171.181.49:42935#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3YWZhMzkwMTZkNWE0MDljQDE5NC4yMzMuNzMuNTE6NDg4MDQ=#Delta-Kronecker
-trojan://c1d83c0c7d57cead4379ba14a82df69b@160.16.68.250:3423?security=tls&sni=www.nintendogames.net&insecure=0&allowInsecure=0&type=tcp&headerType=none#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@82.38.31.35:8080#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0NzUwOWJhMzY3OWI5ZGY5@154.205.145.37:11201 #Delta-Kronecker
-trojan://6e1b9a65-884f-3aa9-9469-bf6ec0f08610@120.241.226.94:3462?security=tls&sni=45.32.28.232&allowInsecure=1&fp=chrome&type=tcp#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpLYm0zeG9LMDRwNE9ob3FWcEV6ZGxq@95.164.113.198:53829#Delta-Kronecker
-ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M@149.22.95.183:443 #Delta-Kronecker
-trojan://kkzh2prsyr2ik47as615@64.94.95.118:57142?security=tls&sni=static.rutube.ru&allowInsecure=true#Delta-Kronecker
-vless://522bf915-a825-4670-a664-b4c2df378b81@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
-trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@108.165.216.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@57.129.47.72:8443?encryption=none&security=tls&sni=sni.111000.dynv6.net&insecure=0&allowInsecure=0&type=ws&host=sni.111000.dynv6.net&path=/?ed=2560&Telegram%F0%9F%87%A8%F0%9F%87%B3@WangCai2#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTozNTFxNnpRRUVnUDJoVkI4V09BWW1PWnp6WHFNcTVBRVZ1RERPTWpwbkFnSk1KS0c@92.38.149.110:31348 #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@185.47.255.213:990#Delta-Kronecker
-vless://99364b66-b7e2-4891-98b7-d9e0412431cf@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=9de7&sni=www.google.com#Delta-Kronecker
-trojan://NuL1nBAAaM@172.67.161.74:2083/?type=tcp&security=tls&sni=support.sabapardaziran.ir#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@193.29.139.151:8080 #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@193.29.139.141:8080 #Delta-Kronecker
-ss://cmM0LW1kNToxNGZGUHJiZXpFM0hEWnpzTU9yNg@172.105.199.111:8080 #Delta-Kronecker
-trojan://kkzh2prsyr2ik47as615@64.94.95.114:57142?security=tls&sni=static.rutube.ru&allowInsecure=true#Delta-Kronecker
-trojan://poTB9j1n12Tq@172.67.142.21:2053?sni=tasnim.andishehnegariran.ir&allowInsecure=0#Delta-Kronecker
-vless://3f06bf0c-d3c9-40dc-9218-dccb7a2b7f12@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=352e3a94&sni=google.com&type=tcp#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@57.129.63.60:2053?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@51.210.151.165:8443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpxUzNza3dtb2xyUTcwcTg0MmlyUUQwQDE3OC4xNy42MS42Nzo1Nzkw#Delta-Kronecker
-vless://3f9c8463-8610-3ed8-86c8-a26713067825@162.159.152.4:443?path=/db10240eb751d6ab&security=tls&encryption=none&insecure=0&host=dabaius2.sylu.net&fp=chrome&type=ws&allowInsecure=0&sni=dabaius2.sylu.net#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@45.42.214.153:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpOMXRheE5sSEJ4NG02a08xeWlvUE9XNjBC@basic-ru-1.undef.network:35615 #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTphNTg2YWU4ZDc3M2YyNTBm@217.77.3.68:28954#Delta-Kronecker
-vless://7df8c8e3-81e3-4779-84c6-555cb88e48b4@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=352e3a94&sni=www.google.com&type=tcp#Delta-Kronecker
-vless://ad6e47ed-11b2-455e-8763-4e492a8b3d16@v2ngfast-v2ngfast-v2ngfast-v2ngfast.bolot91687.workers.dev:443?path=ws&security=tls&encryption=none&host=v2ngfast-v2ngfast-v2ngfast-v2ngfast.bolot91687.workers.dev&fp=chrome&type=ws&sni=v2ngfast-v2ngfast-v2ngfast-v2ngfast.bolot91687.workers.dev#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@217.147.15.141:443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
-vless://5beacbc2-ecb7-4050-8787-42bb56048b94@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=1283729a0a9c1f&sni=google.com&type=tcp#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTozYmIwODIwNWNiNmM4YWYwQDM4LjU0Ljk3LjI0NzoyODAyNg==#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@78.41.109.69:443?ed=2560&eh=Sec-WebSocket-Protocol&encryption=none&host=sni.111000.dynv6.net&path=/?Telegram🇨🇳@WangCai2=&security=tls&sni=sni.111000.dynv6.net&type=ws#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTowY2RkZTY5NTg3MzU2NWVlQDM4LjU0LjU5LjM4OjExMjA0#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@154.59.110.193:443?path=/?ed=2560&Telegram@AliXTso&security=tls&encryption=none&host=sni.111000.indevs.in&type=ws&sni=sni.111000.indevs.in#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.46:38388#Delta-Kronecker
-vless://0e4e3a71-e712-49c6-a6a5-0b457764746e@104.26.15.21:443?security=tls&encryption=none&sni=afrcloud22.mmv.kr&type=ws&host=afrcloud22.mmv.kr&path=/3.86.231.180=443#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJRQDgyLjM4LjMxLjE3OTo4MDgw#Delta-Kronecker
-vless://03dd7e7c-8d2a-4cd2-b920-f5ed564fc8c4@83.147.255.213:8443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=&pbk=P-3bYKbPp5YeCefayC3S3PvLanBv_lp0p_5qfrjbM34&sid=39a1eb3ec417cd66&sni=api-maps.yandex.ru&path=&host=#Delta-Kronecker
-vless://b43a4472-0f70-478a-b6fe-bebb68a76c75@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=%2F18.222.50.18%3D443&sni=afrcloud22.mmv.kr#Delta-Kronecker
-vless://31ded4f6-2460-41b1-8922-94632c5c5543@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=/132.226.21.116=6056&sni=afrcloud22.mmv.kr#Delta-Kronecker
-vless://f4eee586-aa51-49d2-bb76-a44afee3dfcc@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=768c60&sni=www.google.com#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@57.128.181.221:8443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
-vless://46180545-952a-43ff-85b3-b53cf7002ca7@144.31.100.120:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=3d3c3fc7e9&sni=google.com#Delta-Kronecker
-vless://4aff5de5-83dc-43c9-a33e-10e6fdb90ed2@142.248.80.157:443/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=apple.com&fp=chrome&security=reality&pbk=Wvt6tuMcFY9rWF2BsdAD4DXgLAoxQJxHWlao2BPR23Y&sid=#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.27:38388#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@45.12.30.238:2096?encryption=none&security=tls&sni=sni.jpmj.dev&type=ws&host=sni.jpmj.dev&path=%2F%3Fed%3D2560#Delta-Kronecker
-vless://bbafc769-441b-4f06-9aae-9cc04ede1980@172.67.73.14:443?path=%2F198.98.61.220%3D443&security=tls&encryption=none&insecure=0&host=afrcloud22.mmv.kr&type=ws&allowInsecure=0&sni=afrcloud22.mmv.kr#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo5ZDk3NDMzNjg4ZTdlZmQ1@163.171.206.24:44236#Delta-Kronecker
-vless://87954652-c556-4400-a603-a1f82c0e9f19@174.136.205.68:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
-ss://YWVzLTI1Ni1nY206WlRpTzExS3daRzNTN2FFVA==@149.102.132.180:443#Delta-Kronecker
-vless://8a4b3f21-4160-4670-a0a1-88feb72324d8@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.214:8080 #Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@51.77.214.109:2053?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=1&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26telegram%F0%9F%87%A8%F0%9F%87%B3@wangcai2#Delta-Kronecker
-vless://fd8972d7-cf5e-11f0-9970-45e1d80c4039@78.153.139.68:8443?encryption=none&flow=xtls-rprx-vision&fp=random&pbk=pekfYPV5U8EjfQ4_zS5c6I2NnOZ2jUlyMGAWa4FWPF4&security=reality&sid=58c512b4422e2517&sni=images.apple.com&type=tcp#Delta-Kronecker
-vless://3f0f36f5-f091-45c5-88c9-4bcc545b922c@172.64.155.209:2096?type=ws&encryption=none&host=hetz.x-smm.com&path=/45.76.183.217=49292&security=tls&sni=hetz.x-smm.com&allowInsecure=1#Delta-Kronecker
-vless://2e0c37cf-d746-4264-89c6-76df8995218f@74.48.142.49:20299?security=reality&flow=xtls-rprx-vision&sni=apple.com&type=tcp&fp=chrome&pbk=dMSJb9t_gfHkMT9sQGSAjxVcX_Vc-JUSihPyd9JPNzc&sid=1a3236d7#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw@38.60.223.8:989#Delta-Kronecker
-vless://5ce146d6-0469-412e-8d96-0d27b41d96ea@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
+vless://af643a20-b21e-43f6-ac7f-7a358577c46f@79.137.175.56:8443?type=tcp&security=reality&sni=m.vk.ru&fp=random&flow=xtls-rprx-vision&pbk=Qddpg8luihgzgx4g4uMJklXzlrMCd8L1igJSWrRUvSc&sid=887c0d72e771a934#Delta-Kronecker
+trojan://bpb-trojan@104.17.159.75:443?security=tls&sni=fcspring.ggff.net&type=tcp#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.119:38388#Delta-Kronecker
+vmess://eyJhZGQiOiJkaWRkeS5jb20iLCJhaWQiOiIwIiwiaG9zdCI6Im5hc25ldC01MTE5NTI0MjQubWNpdGVsLmNvIiwiaWQiOiJuYXNuZXQiLCJuZXQiOiJ3cyIsInBhdGgiOiIvbmFzbmV0L2NkbiIsInBvcnQiOiI4MDgwIiwicHMiOiJEZWx0YS1Lcm9uZWNrZXIiLCJzY3kiOiJhdXRvIiwic25pIjoiIiwidGxzIjoiIiwidHlwZSI6Ii0tLSIsInYiOiIyIn0=
+vless://0417be58-2ea8-49de-8083-9eff9b0137e5@v2ray.codefyinc.com:443?path=%2Fvlessws&security=tls&encryption=none&host=v2ray.codefyinc.com&type=ws&sni=v2ray.codefyinc.com#Delta-Kronecker
+vless://6d5371e1-783f-446a-b3e1-284b5915b7a8@osn.takovpn.ru:443?encryption=none&security=reality&sni=www.google.com&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=768c60&type=tcp&headerType=none#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@23.95.76.59:990#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@159.100.19.144:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.236:38388%20 #Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.36:38388#Delta-Kronecker
+ss://YWVzLTEyOC1jZmI6c2hhZG93c29ja3M=@109.201.152.181:443#Delta-Kronecker
+vless://05a6897b-bdea-46d9-8654-89bceb208504@104.128.134.181:34816?security=none&allowInsecure=0&encryption=none&type=tcp&headerType=none#Delta-Kronecker
+vless://e08f1ad7-0c60-446d-baec-08b3b69bb3d0@nl-90w-c.southnetworks.cloud:80?path=/getWorkerUpdates&security=&encryption=none&type=ws#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@185.22.172.236:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40%40jdfxq#Delta-Kronecker
+vless://4e45c1b4-9107-45dd-9995-cdf7cbb44d9d@104.21.26.122:80?type=ws&encryption=none&flow=&host=nmju.1jj.ccwu.cc&path=%2FhBasD7EdpBQ0zGAzsYHmsMrnO#Delta-Kronecker
+vless://9a1f9f6b-dcf7-4102-be6e-a41bde8a7fe7@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=1283729a0a9c1f&sni=www.google.com#Delta-Kronecker
+vless://e5f8a9f6-f164-479b-b3b5-b90f213c7145@104.18.32.47:2053/?type=ws&encryption=none&flow=&host=ir1.airpanel.top&path=%2F&security=tls&sni=ir1.airpanel.top&allowInsecure=1#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.30:38388#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@37.59.96.48:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw@185.231.233.112:989%20 #Delta-Kronecker
+ss://YWVzLTI1Ni1nY206OHJiNTgwRUJHNGw3dE84Sw@154.53.60.197:80%20 #Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.19:38388#Delta-Kronecker
+vless://a67841c8-018c-41dc-a429-747357658dcd@178.17.61.67:443?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=UZtZJYBxM0g0U7XXfu2mrD_l_oV2DjMoLVLP1qkNpDM&sid=ad33ae4273&sni=www.icloud.com#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@104.168.35.194:56393?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+vless://26524cce-d514-4014-a426-365fb266a14d@208.103.161.43:2096?encryption=none&security=tls&sni=WangCai.443888.xyz&insecure=0&allowInsecure=0&type=ws&host=WangCai.443888.xyz&path=%2Fdanfeng%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+trojan://4e45c1b4-9107-45dd-9995-cdf7cbb44d9d@172.67.157.61:443?security=tls&sni=m9o0.1xq.indevs.in&type=ws&host=m9o0.1xq.indevs.in&path=%2Fy1moM5CyNvYMZlzsYHmsMrnO&alpn=http%2F1.1#Delta-Kronecker
+vless://003356ba-4661-41b5-a49e-4fd09dd268fc@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=%2F167.71.243.238%3D21857&sni=afrcloud22.mmv.kr#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTozZmQyNGIxNWY4NjE5Yzk3QDEzNS4xMjUuMjQ1LjEzMToxMjUyMg==#Delta-Kronecker
+trojan://de5a47b3e2@198.244.252.93:443/?type=tcp&security=tls&sni=uk1.connecton.surf&fp=chrome#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@109.120.177.193:443?encryption=none&host=sni.111000.indevs.in&fp=chrome&path=%2F%3Fed%3D2560%26TELEGRAM--KANAL--JKVPN--JKVPN--JKVPN--JKVPN--JKVPN--JKVPN&security=tls&sni=sni.111000.indevs.in&type=ws#Delta-Kronecker
+vless://4e580a1a-3ff5-456d-a1d6-b1640bea4e9e@51.254.142.162:443?security=tls&encryption=none&headerType=none&type=tcp&flow=xtls-rprx-vision#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@159.138.1.166:443?encryption=none&security=tls&sni=sni.111000.indevs.in&fp=chrome&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560#Delta-Kronecker
+trojan://%3FM%7C%24pIEDnf8N@172.66.47.197:443?allowInsecure=0&sni=gKh7ImOMi--3t3XCStzt8pP4DLZUesKN.paGes.dEv&ws=1&wspath=%2Ftr5yHAfAceu4MQZYYW%2FYnBiLnlvdXNlZi5pc2VnYXJvLmNvbQ%3D%3D#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@162.19.243.8:2053?encryption=none&security=tls&sni=sni.111000.indevs.in&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
 ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@203.23.128.92:990#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpXNzRYRkFMTEx1dzZtNUlB@series-a1.samanehha.co:443 #Delta-Kronecker
-vless://26524cce-d514-4014-a426-365fb266a14d@143.20.236.186:8443?encryption=none&security=tls&sni=WangCai.443888.xyz&insecure=0&allowInsecure=0&type=ws&host=WangCai.443888.xyz&path=%2Fdanfeng%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-trojan://20a3d819-ca7f-48a6-ba20-f7021e8dbbbe@220.130.58.136:31103?allowInsecure=0&sni=green2.cdntencentmusic.com#Delta-Kronecker
-ss://YWVzLTI1Ni1nY206UmV4bkJnVTdFVjVBRHhHQDE0MS4xNjQuNDUuMTg3OjcwMDE=#Delta-Kronecker
-vless://11cb61f5-0c63-4996-a665-54bc37d286cc@osn.takovpn.ru:443?encryption=none&security=reality&sni=www.google.com&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=47e4c3980f872e68&type=tcp&headerType=none#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@185.255.123.110:990 #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTphNDZhN2YxODc2NDcyNTUy@38.60.203.155:11201#Delta-Kronecker
-vless://7bf383de-f729-4735-af4d-27fa0716c35f@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=%2F43.153.78.145%3D443&sni=afrcloud22.mmv.kr#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@51.38.225.63:2053?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-trojan://humanity@188.114.96.3:443?path=%2Fassignment&security=tls&host=www.gossipglove.com&fp=chrome&type=ws&sni=www.gossipglove.com#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToyYjE5NWQ5MTZjYjg0MDA3@185.163.1.90:11201#Delta-Kronecker
-vless://e5f8a9f6-f164-479b-b3b5-b90f213c7145@141.101.120.153:2053/?type=ws&encryption=none&flow=&host=ir1.airpanel.top&path=%2F&security=tls&sni=ir1.airpanel.top&allowInsecure=1#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.42:38388#Delta-Kronecker
-vless://50ee0394-2647-4545-883d-2336d3970098@84.201.187.140:4443?encryption=none&flow=xtls-rprx-vision&fp=qq&pbk=g_akrJAfrYQ8E3TXBBMICs1hmG-anZHRg4izFbuJvxA&security=reality&sid=c7a6e3adc1a8fff8&sni=max.ru&type=tcp#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNBQDE5My4yOS4xMzkuMjM1OjgwODA=#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@38.54.4.87:990#Delta-Kronecker
-vless://9f83a3a7-3b62-482a-9f78-bc7884e2ed9a@osn.takovpn.ru:443?encryption=none&security=reality&sni=www.google.com&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=9de7&type=tcp&headerType=none#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@103.54.17.166:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
-vmess://eyJhZGQiOiIxNDkuODguOTUuOTQiLCJhaWQiOiIwIiwiaG9zdCI6IiIsImlkIjoiMTdlOTY3OTItZDhjMy00NzQxLTljMzQtZTVkMWMxMWQ3NTRmIiwibmV0Ijoibm9uZSIsInBhdGgiOiIvIiwicG9ydCI6MzU3NjAsInBzIjoiRGVsdGEtS3JvbmVja2VyIiwidGxzIjoiIiwidHlwZSI6IiIsInYiOiIyIn0=
-trojan://auto@108.162.195.159:443/?type=tcp&security=tls&sni=trojanmz.pages.dev#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.101:38388 #Delta-Kronecker
-trojan://ee3eeb70-c85c-11ef-a0ab-1239d0255272@51.38.65.155:443?security=tls&sni=uk1.test3.net&type=tcp&allowInsecure=1#Delta-Kronecker
-vless://4e45c1b4-9107-45dd-9995-cdf7cbb44d9d@172.67.210.82:443/?type=ws&encryption=none&flow=&host=bnhhy.1ll.ccwu.cc&path=%2FhBasD7EdpBQ0zGAzsYHmsMrnO&security=tls&sni=bnhhy.1ll.ccwu.cc&allowInsecure=1#Delta-Kronecker
-ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M=@156.146.38.169:443#Delta-Kronecker
-trojan://6e1b9a65-884f-3aa9-9469-bf6ec0f08610@120.241.226.93:2053?sni=45.32.28.232#Delta-Kronecker
-vless://26524cce-d514-4014-a426-365fb266a14d@208.103.161.90:2096?encryption=none&security=tls&sni=WangCai.443888.xyz&insecure=0&allowInsecure=0&type=ws&host=WangCai.443888.xyz&path=%2Fdanfeng%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@147.78.1.230:990 #Delta-Kronecker
-vless://26524cce-d514-4014-a426-365fb266a14d@208.103.161.87:2096?encryption=none&security=tls&sni=WangCai.443888.xyz&insecure=0&allowInsecure=0&type=ws&host=WangCai.443888.xyz&path=%2Fdanfeng%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-vless://bacd5ef2-cf1b-409d-90cd-5b889f39b1cf@185.86.147.96:5443?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&fp=qq&pbk=UZZZh7NCnRvU1y7D45FgrZFwIDVIrdLm8TVjx6IudGQ&sid=a1b2c3d4e5f60789&sni=yandex.ru#Delta-Kronecker
-vless://0a6dff44-1ed5-449d-aedc-690d258d000a@51.250.117.173:4443?encryption=none&flow=xtls-rprx-vision&fp=qq&pbk=ef9Xx816A-obDKokFDIV5acO4E8A23MErXdh5ki4wj4&security=reality&sid=63d703b12f253ffb&sni=ads.x5.ru&type=tcp#Delta-Kronecker
-vless://8a9c07c4-05e3-419c-875c-16893c28f1d8@107.149.184.209:20501?security=reality&flow=xtls-rprx-vision&sni=img14.360buyimg.com&type=tcp&fp=chrome&pbk=GwBhOiy3pLa73zga-wmG07xRfiI71_A9VDi-DiHeBWk&sid=9153#Delta-Kronecker
-vmess://eyJhZGQiOiJ0MS42MjA3MjAueHl6IiwiYWlkIjoiMCIsImhvc3QiOiJ0MS42MjA3MjAueHl6IiwiaWQiOiI1MTZkOGE3YS0zZjBiLTQxZDMtYmFkMC0yNDYxMTYzODE1MTYiLCJuZXQiOiJ3cyIsInBhdGgiOiIvIiwicG9ydCI6Ijg0NDMiLCJwcyI6IkRlbHRhLUtyb25lY2tlciIsInRscyI6InRscyIsInR5cGUiOiJub25lIiwidiI6IjIifQ==
-trojan://123456@192.65.217.53:8443?sni=top-azx.pages.dev&allowInsecure=0#Delta-Kronecker
-vless://e5f8a9f6-f164-479b-b3b5-b90f213c7145@141.101.121.32:2053?encryption=none&security=tls&sni=ir1.airpanel.top&allowInsecure=1&type=ws&host=ir1.airpanel.top&path=/#Delta-Kronecker
-vless://e08f1ad7-0c60-446d-baec-08b3b69bb3d0@146.103.102.82:80/?type=ws&encryption=none&flow=&path=/getWorkerUpdates#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@169.150.242.77:990#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpha3ZKUXpaQ2FUZGlzU3l1U3kzYVJteXZLQzUzWDFkM1BhQXNiOXhVOG41VFk5aFNCMURLNWU2U1BtOTIxaWdIY1JzQ1RDdmYxcFd1ZlRKNUxpOFBpaVFHNHZZZHl5TTc@94.131.22.134:40565 #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.186:8080 #Delta-Kronecker
-vless://3da368ca-69d9-4e77-87eb-05146747c6e2@84.201.187.140:4443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=qq&pbk=g_akrJAfrYQ8E3TXBBMICs1hmG-anZHRg4izFbuJvxA&sid=c7a6e3adc1a8fff8&sni=max.ru&path=&host=#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpiWjg3YW1QcGRHN0t1V002MmJLdG0xS0hvb3d1VmpuVjhDS3RxNjUzeW1IY2cyZFBZY1BKZm5hUTYxc3R1QWpyMlppTERhcUg1Nlhwa3hFWXV3RHp6UnJNV2llZWJXR3Q@mx2.drawnrisha.one:55988?#Delta-Kronecker
+ss://YWVzLTI1Ni1nY206bGRqbXdvTnFnUXFxYzQzakAxNDkuMTAyLjEzMi4xODQ6ODA=#Delta-Kronecker
+ss://YWVzLTI1Ni1nY206dXdtUlVPVk01bGpOQXRQag@154.53.57.143:80%20 #Delta-Kronecker
+vless://6fd9f786-d974-49d0-b5c4-397678de69a2@nld14.freednet.org:443?security=reality&encryption=none&pbk=BhTJ3phnq-Z-10aFKSsj1lzhA8mULR4L6leE4-0WTAs&headerType=none&fp=chrome&spx=/&type=tcp&flow=xtls-rprx-vision&sni=www.cybo.com#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpPcXQ5a2d5TUdCaU9BSlBHNHVaWGx2@31.210.50.196:12422/?outline=1#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@38.54.59.180:990%20 #Delta-Kronecker
+ss://YWVzLTI1Ni1nY206MGdyTHFLdkRUMzdxeWo1NGQ5UXhSbzFTS0lRTmF6Q3B4cEVDdDdzSElxND0=@51.195.203.247:8443#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.116:38388#Delta-Kronecker
+vless://b4819c49-6c7e-4b57-9b9b-c73031e1de11@pq-Albania1.09vpn.com:80?path=%2Fvless%2F&security=&encryption=none&type=ws#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@185.188.181.187:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
+vless://03dd7e7c-8d2a-4cd2-b920-f5ed564fc8c4@83.147.255.213:448?type=grpc&security=reality&fp=&pbk=wSQIBnAc0cYO9JitaNcgZ2LwkTix0_dXVpDjnZxDrCE&sid=6ba85179e30d4fc2&sni=eh.vk.ru&mode=gun&serviceName=xyz&authority=#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.250:38388%20 #Delta-Kronecker
+vmess://eyJhZGQiOiJuMTc2MTIxNDkwNS53cGcyNy54eXoiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6IiIsImlkIjoiYjFkMzAwN2MtNDQxYS00MmQ1LTg0YjUtMjAzMDFjNDZmYTJjIiwiaW5zZWN1cmUiOiIwIiwibmV0Ijoid3MiLCJwYXRoIjoiLyIsInBvcnQiOiI0NDMiLCJwcyI6IkRlbHRhLUtyb25lY2tlciIsInNjeSI6ImF1dG8iLCJzbmkiOiIiLCJ0bHMiOiJ0bHMiLCJ0eXBlIjoibm9uZSIsInYiOiIyIn0=
+vless://b7a5780f-3f7c-4f58-b9b2-32ba7d6fc7b2@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=54c71eb172a3&sni=google.com#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@160.153.1.211:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+hy2://545fb4e9-5794-4e20-be0c-e6d8689f91ac@143.47.32.143:35000/?insecure=1&sni=www.lamer.com.hk#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ%3D%3D@185.47.255.213:990#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@79.127.200.169:990#Delta-Kronecker
+vless://e5f8a9f6-f164-479b-b3b5-b90f213c7145@141.101.120.23:2053?encryption=none&security=tls&sni=ir1.airpanel.top&type=ws&host=ir1.airpanel.top&path=%2F#Delta-Kronecker
+vless://8ae49b54-7eba-435b-b410-514bffe7bd17@79.137.175.44:8443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=zr8_rtHm86s_G1gfRwNtunStGngYZSdYkA3PyBFXpDg&security=reality&sid=48fccabc158a4c22&sni=m.vk.ru&type=tcp#Delta-Kronecker
+trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@108.162.198.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.48:38388#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@166.62.114.250:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+vless://100cf905-0d2b-4250-98d2-5a7029d8fcfc@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=9de7&sni=www.google.com&type=tcp#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@103.106.228.247:990#Delta-Kronecker
+ss://MjAyMi1ibGFrZTMtYWVzLTI1Ni1nY206ZENtd2FUUXhLazZRQU16Rm5RZEhrUmh4SEYxZHVuaUJYNE9WOXhJekxFRT0=@51.38.141.210:8388%20 #Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6VWtYUnNYdlI2YnVETUcyWQ==@217.30.10.70:9001#Delta-Kronecker
+ss://YWVzLTI1Ni1nY206azZydUp1d2dBVXhJcmtIYg@154.53.63.32:80%20 #Delta-Kronecker
+vmess://eyJhZGQiOiIxNzIuNjcuMjA0Ljg0IiwiYWlkIjowLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoibmFzbmV0LTUxMTk1MjQyNC5tY2l0ZWwuY28iLCJpZCI6Im5hc25ldCIsIm5ldCI6IndzIiwicGF0aCI6Ii9uYXNuZXQvY2RuIiwicG9ydCI6ODA4MCwicHMiOiJEZWx0YS1Lcm9uZWNrZXIiLCJzY3kiOiJhdXRvIiwic25pIjoiIiwidGxzIjoiYXV0byIsInR5cGUiOiJub25lIiwidiI6IjIifQ==
+vless://00a1a0c0-483e-4fa1-b1b1-8578a64c7b85@109.120.182.246:3443/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=max.ru&fp=chrome&security=reality&pbk=E0v1eCplgozcf1FVIzwel92v7p-SjQbTY3beXtLQk0o&sid=99c3cbbde80525aa#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@46.183.217.204:990%20 #Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpsanFkYWx1MTMuLg==@3.1.195.148:8319%20 #Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@156.38.168.58:990#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@80.240.23.230:8443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+vless://4bc7d558-1943-44de-bd82-56920bc9383e@150.241.94.142:7443?type=grpc&security=reality&encryption=none&fp=chrome&pbk=9Ow4bZxApNkRwAjQxyr_aZsBcJGc__jemUA7__BbZTE&sid=ab1c1a11&sni=www.google.com&serviceName=vless#Delta-Kronecker
+vless://45ff0928-e65c-474b-900c-702f9f482ebe@osn.takovpn.ru:443?encryption=none&security=reality&sni=google.com&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=54c71eb172a3&spx=%2FFGILizhFlsmLaO0&type=tcp&headerType=none#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjdklJODVUclc2bjBPR3lmcEhWUzF1@193.29.139.162:8080#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo5dHFoTWRJclRrZ1E0NlB2aHlBdE1I@switcher-nick-croquet.freesocks.work:443#Delta-Kronecker
+ss://YWVzLTI1Ni1nY206OEpDc1Bzc2ZnUzh0aVJ3aU1saEFSZz09@144.217.164.29:12000%20 #Delta-Kronecker
+vmess://eyJhZGQiOiIxMDQuMjEuNjQuNDEiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6ImZyYy50ZWFtdi5pciIsImlkIjoiM2NjZGQyYWYtMzdlYS00NDM5LWEzNWMtNzA0MTZmZjM0MjExIiwibmFtZSI6IlZNLTEyMDItMDEiLCJuZXQiOiJ3cyIsInBhdGgiOiIvNk1CeVVvNk1ZdW9zQUdPQ2ZzdjRXIiwicG9ydCI6NDQzLCJwcyI6IkRlbHRhLUtyb25lY2tlciIsInNjeSI6ImF1dG8iLCJzbmkiOiJmcmMudGVhbXYuaXIiLCJ0bHMiOiJ0bHMiLCJ0eXBlIjoibm9uZSIsInYiOiIyIn0=
+vless://94a03e9a-74d5-4036-95e9-563cc19355de@lvcdn4.suio.me:443?security=tls&encryption=none&insecure=1&headerType=none&type=tcp&allowInsecure=1&sni=lvcdn4.suio.me#Delta-Kronecker
+vmess://eyJhZGQiOiJubm1qLjF4NS5pbmRldnMuaW4iLCJhaWQiOiIwIiwiaG9zdCI6Im5ubWouMXg1LmluZGV2cy5pbiIsImlkIjoiNGU0NWMxYjQtOTEwNy00NWRkLTk5OTUtY2RmN2NiYjQ0ZDlkIiwibmF0aW9uIjoiIiwibmV0Ijoid3MiLCJwYXRoIjoiL2lTUldTS1VKS051WHZWenNZSG1zTXJuTyIsInBvcnQiOiI4MCIsInBzIjoiRGVsdGEtS3JvbmVja2VyIiwic2N5IjoiYXV0byIsInNlcnZlclBvcnQiOjAsInNuaSI6IiIsInRscyI6IiIsInR5cGUiOiJhdXRvIiwidiI6IjIifQ==
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@175.29.22.90:35549?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
+vless://941fb356-dcc5-4feb-b8cb-e979c5ad2b5c@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=%2F91.236.230.237%3D443&sni=afrcloud22.mmv.kr#Delta-Kronecker
+vless://7df8c8e3-81e3-4779-84c6-555cb88e48b4@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=352e3a94&sni=www.google.com#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@156.243.83.138:2096/?path=/?ed=2560&security=tls&encryption=none&insecure=0&host=sni.111000.indevs.in&fp=chrome&type=ws&allowInsecure=0&sni=sni.111000.indevs.in#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@160.153.1.50:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+vless://309fa273-6579-4cb2-9143-7cad50401eba@45.12.133.61:8443?security=reality&encryption=none&pbk=gZGVp5PUdafgsmi1gawa1yLuha_XhXRc_W9SvPiGmTY&host=/?BIA_TELEGRAM@MARAMBASHI_MARAMBASHI_MARAMBASHI_MARAMBASHI_MARAMBASHI&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=www.cloudflare.com&sid=7cad5040#Delta-Kronecker
+ss://YWVzLTI1Ni1nY206N3ZaTzU1ZlhnWEFKWGEyRkAxNTQuMTIuMjQyLjE1MDo0NDM=#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@vip3.kaixincloud.top:2096?path=/?ed=2560&Telegram🇨🇳+@WangCai2&security=tls&encryption=none&host=sni.111000.indevs.in&fp=chrome&type=ws&sni=sni.111000.indevs.in#Delta-Kronecker
+vless://472b07d2-31e4-41ab-ae47-48914d9b7900@172.67.162.138:443?path=/Net3rffws&security=tls&encryption=none&insecure=0&host=fi.unoix.io&fp=chrome&type=ws&allowInsecure=0&sni=fi.unoix.io#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToyQUtuOUE5WGJNVWJORzlpOHhNN1E0RUt3d2ZUNXBTb3BaRVFVTEEyZURyUWl6MkM1bk1RVDdmNXMzczVUbUJ4SkZZREI2RWdwMlhjaHRBNWFTV0RpUzlwQVNOZWJNR3Y=@185.5.38.111:55988#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@160.153.1.146:443?encryption=none&security=tls&sni=sni.111000.dynv6.net&insecure=0&allowInsecure=0&type=ws&host=sni.111000.dynv6.net&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+ss://YWVzLTI1Ni1nY206NW1DSDQ2MjRRZmxPMWNGUkAxODUuMTExLjE1Ni4zMzo0NDM=#Delta-Kronecker
+trojan://vip@195.85.59.161:443?security=tls&sni=heihu880.pages.dev&type=tcp&allowInsecure=1#Delta-Kronecker
+trojan://Aimer@162.159.44.228:2053/?type=tcp&security=tls&sni=epgb.aimercc.dpdns.org#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpsanFkYWx1MTMuLg==@3.112.130.53:8316#Delta-Kronecker
+trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@45.12.31.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@213.21.253.63:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+vless://ef8b5afc-9ed3-46c5-a551-940232c59230@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@77.238.232.228:443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=1&host=sni.111000.indevs.in&type=ws&allowInsecure=1&sni=sni.111000.indevs.in#Delta-Kronecker
+vless://533ce090-76f8-49bb-bb55-8d516acf5116@jeff.ns.cloudflare.com:443?security=tls&sni=bekyx.michigan-wall.sbs&fp=&type=ws&path=/true&host=bekyx.michigan-wall.sbs&pbk=&sid=&flow=&encryption=none#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@144.124.235.107:8443/?type=ws&encryption=none&flow=&host=sni.111000.dynv6.net&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&sni=sni.111000.dynv6.net#Delta-Kronecker
+vless://3f0f36f5-f091-45c5-88c9-4bcc545b922c@173.245.59.91:2096/?path=/45.76.183.217=49292&security=tls&encryption=none&insecure=1&host=hetz.x-smm.com&fp=chrome&type=ws&allowInsecure=1&sni=hetz.x-smm.com#Delta-Kronecker
+vless://7dbc427e-1afd-4f76-b916-f7349e8131ce@104.26.15.21:443?security=tls&encryption=none&sni=afrcloud22.mmv.kr&type=ws&host=afrcloud22.mmv.kr&path=/44.217.235.114=8443#Delta-Kronecker
+trojan://5a2c16f9@104.19.55.205:443/?type=tcp&security=tls&sni=snippets.kkii.eu.org#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@38.60.250.107:990%20 #Delta-Kronecker
+vless://66ba4206-7093-4035-8b29-9ed1c827361f@nl.elementvpn.ru:443?security=reality&encryption=none&pbk=tvvBfRjMq8Wqxb8F0f5BehU_9rUZeNc8mwDPqpq4SFY&host=nl.elementvpn.ru&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=nl.elementvpn.ru&sid=083e4d81dbdd7358&note=Telegram---@Raiv2mmr---Telegram---@Raiv2mmr---Telegram---@Raiv2mmr---Telegram---@Raiv2mmr---Telegram---@Raiv2mmr---Telegram---@Raiv2mmr---Telegram---@Raiv2mmr---Telegram---@Raiv2mmr---Telegram---@Raiv2mmr---#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@188.130.207.92:8443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@206.237.120.143:443?&security=tls&fp=chrome&sni=sni.jpmj.dev&type=ws&headerType=none&host=sni.jpmj.dev&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpXNzRYRkFMTEx1dzZtNUlB@series-a1.samanehha.co:443#Delta-Kronecker
+vless://f557eadb-1715-4c0b-aaae-f9b9577d827d@185.156.72.124:52042?encryption=none&fp=chrome&pbk=Z23_1wSIy1CNUEB7YEJwPZzCEsMTmzTNGe_h5bzEMHY&security=reality&sid=8e8dcb9a67bf43f1&sni=yandex.ru&type=tcp#Delta-Kronecker
+vless://10c3ee03-20ed-44cc-ad7b-d3ffdf44bc40@51.250.117.173:4443?encryption=none&flow=xtls-rprx-vision&fp=qq&pbk=ef9Xx816A-obDKokFDIV5acO4E8A23MErXdh5ki4wj4&security=reality&sid=63d703b12f253ffb&sni=ads.x5.ru&type=tcp#Delta-Kronecker
+ss://YWVzLTI1Ni1nY206MGdyTHFLdkRUMzdxeWo1NGQ5UXhSbzFTS0lRTmF6Q3B4cEVDdDdzSElxND0=@51.195.203.247:8443%20 #Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNWQDEwMy4xODYuMTU0LjE5OjM4Mzg4#Delta-Kronecker
+trojan://blue2024@104.17.49.15:443?sni=ha.lii2010.us.kg#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@185.93.173.60:990%20 #Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToxYTE3YzFmNzRjZGM1MWQ1QDkxLjEwNi4xMDkuMTc6NDgyMTM=#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@156.59.243.6:990%20 #Delta-Kronecker
+trojan://CjqK8GFZ),D%3F@172.67.149.210:443/?type=tcp&security=tls&sni=7xVB-b9Ws5Zjp6cYjvW89zRKU9GMuPW6.maryAFArhUnI.WORkers.dEv&allowInsecure=1#Delta-Kronecker
+vless://3417e5e5-053b-48e5-ac86-4db1e871a416@57.129.43.33:2096?security=reality&sni=play.google.com&type=tcp&fp=firefox&pbk=K0iITauuYEqIayR3IB5Ny8MVKyORDJ65rUSHc3tLe1E&sid=42c0b628ba6a42a9#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@167.71.60.191:2053?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
+vless://a90f4742-2f30-47b5-9f17-b6ab04cc98e8@93.94.51.13:25451/?type=tcp&encryption=none&flow=&sni=yandex.ru&fp=chrome&security=reality&pbk=JlMOb8hVg1VOrRlMLdXpv8IADp-R4I-cIT856hz_Cg0&sid=f686d19cd7b8b3df#Delta-Kronecker
+trojan://bpb-trojan@104.27.97.121:443/?type=tcp&security=tls&sni=bpb.my79801.com&allowInsecure=1#Delta-Kronecker
+vless://b2019c04-5b7c-4be4-a65c-ca5ea90bf8fd@51.250.86.102:443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=FkmYFobwxLMLEktYXywmjthuEYCZggITsxwPNasTKUg&security=reality&sid=cd57a927f6b72d81&sni=api-maps.yandex.ru&type=tcp#Delta-Kronecker
+vmess://eyJhZGQiOiI1Ny4xMjkuNjQuMTk5IiwiYWlkIjowLCJob3N0IjoiIiwiaWQiOiIwM2ZjYzYxOC1iOTNkLTY3OTYtNmFlZC04YTM4Yzk3NWQ1ODEiLCJuZXQiOiJ3cyIsInBhdGgiOiJsaW5rdndzIiwicG9ydCI6NDQzLCJwcyI6IkRlbHRhLUtyb25lY2tlciIsInNlY3VyaXR5IjoiYXV0byIsInNraXAtY2VydC12ZXJpZnkiOmZhbHNlLCJzbmkiOiJwZWxhbmcub3JnIiwidGxzIjoidGxzIiwidHlwZSI6ImF1dG8ifQ==
+vless://48ff2b70-e180-582f-8866-d9a2edeed5f5@15.204.97.214:23576/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=fuck.rkn&fp=chrome&security=reality&pbk=1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s&sid=01#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpkNWI4NzhjYmI0NmYzZTMz@51.178.114.83:11202#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@193.29.139.206:8080#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTozZmY2ZDJmMDU2Mzg5MWE0@38.54.85.242:11201#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpMTVNOaDIxVHJYalIyb2syNVEybkU4RU5UMnpvQm1QdmthM1JDQ1VBSFpFTENuV29la1ZqdmFmODlxd2NSa2RieEVmZXAyYmMyYVV0bW54cXZGMWF5UVJlejFKSGpVTGo@exchange.gameaurela.click:52952#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.12:38388%20 #Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@156.38.168.58:990#Delta-Kronecker
+trojan://c1d83c0c7d57cead4379ba14a82df69b@160.16.144.208:3076?sni=www.nintendogames.net#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@95.215.8.237:2053?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
+vless://ec9d4f17-0677-43ea-8ddb-b91600ec1c6b@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
+trojan://af4d2493-9156-4514-9f6b-ee5d1a1e4713@15.197.162.184:443/?type=tcp&security=tls&sni=download2hkt.windowsupdate.lol&allowInsecure=1&fp=chrome#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@45.82.252.109:990#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@216.128.140.253:26376/?type=ws&encryption=none&flow=&host=sni.111000.indevs.in&path=/?ed=2560&telegram🇨🇳+@wangcai2&security=tls&sni=sni.111000.indevs.in&allowInsecure=1&fp=chrome#Delta-Kronecker
+vless://c98a3321-e9ab-4b83-9548-779614dbdc0f@174.136.205.68:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
+trojan://2YDH6ktJOt@172.67.161.74:8443?allowInsecure=0&sni=support.sabapardaziran.ir&ws=1&wspath=%2F%40M3HDIO1#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@185.112.82.28:443?path=/?ed=2560&Telegram🎖@AliXTso&security=tls&encryption=none&host=sni.111000.indevs.in&type=ws&sni=sni.111000.indevs.in#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PUAxNTYuMzguMTY4LjU4Ojk5MA==#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6SmRtUks5Z01FcUZnczhuUA@217.30.10.18:9003#Delta-Kronecker
+vless://e8b1500b-e9e8-5492-8312-f4eadf7d0767@162.19.10.94:443/?type=tcp&encryption=none&flow=xtls-rprx-vision&security=tls&sni=nasnet-162191094-direct.sharghdaily.co&allowInsecure=1&fp=chrome#Delta-Kronecker
+vless://b8509ba9-3359-44ae-a36b-3ba329a43c7c@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=97&sni=google.com&type=tcp#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToyOWFjZDk2MGFiOGUzNDA4@157.185.173.60:46727#Delta-Kronecker
+trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@114.129.43.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.151:38388#Delta-Kronecker
+vless://74880a39-bc7c-4dc6-8b2f-02984b7f8f51@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=47e4c3980f872e68&sni=www.google.com#Delta-Kronecker
+vless://0e90f352-e9bc-4834-8ff6-49ba887eded4@46.226.162.232:443?alpn=h2&encryption=none&fp=chrome&security=tls&sni=1323.world&type=tcp#Delta-Kronecker
+vless://4291e1dc-16d1-4dd3-ad43-4fc86ac19fce@87.239.111.144:443?encryption=none&flow=xtls-rprx-vision&fp=qq&pbk=685eO_buThx4UE7QzkEfP_r3RP5ccQHVUKSoUvHly3Y&security=reality&sid=d5ed7f0ec086cbd0&sni=max.ru&type=tcp#Delta-Kronecker
+vless://7644f5da-b9f0-4e38-aeb0-dc69e5ee1e8d@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.202:38388#Delta-Kronecker
+trojan://4478@103.224.182.213:443?security=tls&sni=s102.vpn724.net&alpn=h2,http/1.1&allowInsecure=1&fp=chrome&type=tcp#Delta-Kronecker
+vless://ccedb1b1-35f3-46d1-a85a-c699eef5f3e1@spb.scroogethebest.com:443?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=C3hc32Cknec2shasKJIH2DYVb7Fyu64RF9v71L3ipEg&sid=9c2378562188c3cb&sni=spb.scroogethebest.com#Delta-Kronecker
+trojan://aTArbZ2F0E@172.66.168.223:443/?type=tcp&security=tls&sni=uSa-vp-27.bLAzECLOUD.SITE#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@194.36.178.36:2053?type=ws&security=tls&encryption=none&sni=sni.111000.indevs.in&path=/%3FTelegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2%3D&host=sni.111000.indevs.in#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.67:38388%20 #Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@57.129.63.60:2053?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.64:38388%20 #Delta-Kronecker
+trojan://96983eb4-c8f1-316e-ab00-500014ed3d8b@official.seoulcitygovernment.com.ua:8443?security=tls#Delta-Kronecker
+vmess://eyJhZGQiOiI1Ny4xMjkuMjguMjEyIiwiYWlkIjowLCJob3N0IjoiIiwiaWQiOiIwM2ZjYzYxOC1iOTNkLTY3OTYtNmFlZC04YTM4Yzk3NWQ1ODEiLCJuZXQiOiJ3cyIsInBhdGgiOiJsaW5rdndzIiwicG9ydCI6NDQzLCJwcyI6IkRlbHRhLUtyb25lY2tlciIsInNlY3VyaXR5IjoiYXV0byIsInNraXAtY2VydC12ZXJpZnkiOmZhbHNlLCJzbmkiOiJmYXBlbmcub3JnIiwidGxzIjoidGxzIiwidHlwZSI6ImF1dG8ifQ==
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@45.135.235.238:2096?security=tls&type=ws&path=%2F%3Fed%3D2560&host=sni.jpmj.dev&sni=sni.jpmj.dev&fp=chrome&encryption=none#Delta-Kronecker
+trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@92.53.191.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@129.153.127.204:20756?encryption=none&security=tls&sni=sni.111000.indevs.in&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.210:8080#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprYVFIM2hHZGNQODBYRURJQGFkbWluLmMyLmhhdmlqLmNvOjQ0Mw==#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@157.180.16.20:443?encryption=none&security=tls&sni=sni.111000.indevs.in&fp=chrome&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560#Delta-Kronecker
+trojan://9yu6m5okr@104.21.50.5:443/?type=tcp&security=tls&sni=production.tj.ojan.workers.dev#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.176:38388#Delta-Kronecker
+vless://8dc7722c-2767-4eea-a28b-2f8daacc07e3@45.82.251.249:8880?mode=gun&security=none&encryption=none&type=grpc&sni=pqh29v4.globalfymain.com#Delta-Kronecker
 vless://6202b230-417c-4d8e-b624-0f71afa9c75d@185.238.228.138:2096?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=1&type=ws&host=sni.111000.indevs.in&path=/?ed=2560&telegram🇨🇳+@wangcai2#Delta-Kronecker
-ss://YWVzLTI1Ni1nY206aGJoTzB4b21zSnpoTzI0Rg==@64.176.215.70:80 #Delta-Kronecker
+vless://efbbca43-f75a-48aa-bfec-c2a7bf89ca7d@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo5Zjk5MTgwZmM5MjExYzQwQDUxLjE2MS44MC4xMzg6Mjc3OTc=#Delta-Kronecker
+vmess://eyJhZGQiOiI0NS4xNS4xODUuMTciLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6IiIsImlkIjoiYzUwM2E5NmEtYTJmNS00ODQ3LWEzMWYtMjBjMTdlY2YzYmU0IiwiaW5zZWN1cmUiOiIxIiwibmV0Ijoid3MiLCJwYXRoIjoiL3ZtZXNzLyIsInBvcnQiOiI4MCIsInBzIjoiRGVsdGEtS3JvbmVja2VyIiwic2N5IjoiYXV0byIsInNuaSI6IiIsInRscyI6IiIsInR5cGUiOiItLS0iLCJ2IjoiMiJ9
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpsanFkYWx1MTMuLg@3.1.195.148:8313%20 #Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpoYkdycGZ2TnJKc1VtS21QYlIzaVky@tinkered-pennies-puppies.freesocks.work:443%20 #Delta-Kronecker
+trojan://6417fbb0-489f-11f0-bb34-1239d0255272@usa.test3.net:443?security=tls&headerType=none&type=tcp #Delta-Kronecker
+vless://65fdb25e-bd71-4d94-bd05-bb234b1213b0@109.120.182.246:3443?encryption=none&flow=xtls-rprx-vision&fp=qq&pbk=E0v1eCplgozcf1FVIzwel92v7p-SjQbTY3beXtLQk0o&security=reality&sid=99c3cbbde80525aa&sni=max.ru&type=tcp#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@172.66.47.45:2096?encryption=none&security=tls&sni=sni.111000.indevs.in&fp=chrome&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560#Delta-Kronecker
+vless://047d8b86-0ce9-4571-b59f-39533ba69d15@185.86.147.61:8443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=qq&pbk=ukjMVSeOrTkdp5LPXUS1EbVOybjo58Z7FTV-9lixaVA&sid=2f3e4d5c6b7a8091&sni=max.ru&path=&host=#Delta-Kronecker
+trojan://bpb-trojan@188.114.97.3:443/?type=tcp&security=tls&sni=bPb-WORker-PanEL-aY6.PagEs.Dev#Delta-Kronecker
+vless://61bb581c-0864-4fd0-9d20-68959004e35c@osn.takovpn.ru:443?encryption=none&security=reality&sni=google.com&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=54c71eb172a3&type=tcp&headerType=none#Delta-Kronecker
+trojan://%7Dh0nlnM%7C%3FRTx%25uQd@188.114.97.11:2087?sni=Xlz767V2Ray.PAGEs.DEv#Delta-Kronecker
+trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@94.247.142.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
+trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@45.205.0.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
+vless://b0086eb4-06b4-47b2-b9cf-1ce2a1951591@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=%2F192.9.137.193%3D8443&sni=afrcloud22.mmv.kr#Delta-Kronecker
+trojan://b2891d60-a993-11ee-ab8b-1239d0255272@uk1.test3.net:443/chatbuzzteambhm.chatbuzzt7150.workers.dev?sni=chatbuzzteambhm.chatbuzzt7150.workers.dev#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PUAxNDcuNzguMS4yMzA6OTkw#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.31:38388%20 #Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjYjQyNThkYzFiNTM2MTNj@163.171.207.11:29464#Delta-Kronecker
+vmess://eyJhZGQiOiIxNDEuOTQuMTU1LjIyOSIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoicGVsYW5nLm9yZyIsImlkIjoiMDNmY2M2MTgtYjkzZC02Nzk2LTZhZWQtOGEzOGM5NzVkNTgxIiwiaW5zZWN1cmUiOiIxIiwibmV0Ijoid3MiLCJwYXRoIjoibGlua3Z3cyIsInBvcnQiOiI0NDMiLCJwcyI6IkRlbHRhLUtyb25lY2tlciIsInNjeSI6ImF1dG8iLCJzbmkiOiIiLCJ0bHMiOiJ0bHMiLCJ0eXBlIjoiLS0tIiwidiI6IjIifQ==
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@109.61.39.28:990%20 #Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@172.105.209.25:443?type=ws&encryption=none&flow=&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&sni=sni.111000.indevs.in&fp=chrome#Delta-Kronecker
+trojan://telegram-id-directvpn@35.181.11.162:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=🔒 [By EbraSha] 767 | Esf-02| MTSRVRS #Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6RVhOM1MzZVFwakU3RUp1OA@5.188.181.201:9027#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@88.210.9.239:443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=1&host=sni.111000.indevs.in&type=ws&allowInsecure=1&sni=sni.111000.indevs.in#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@51.91.250.152:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
+trojan://4968a003-8f81-4fab-aaf6-e8696c4659f5@kr02.170203.xyz:443#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.17:38388%20 #Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.134:38388%20 #Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.109:38388%20 #Delta-Kronecker
+vless://eb071647-72a6-46be-8e89-ff3d228d52f6@hu.jojack.ru:443?flow=xtls-rprx-vision&security=reality&sni=hu.jojack.ru&fp=qq&pbk=FkmYFobwxLMLEktYXywmjthuEYCZggITsxwPNasTKUg&sid=3f200574d011010f&spx=%2F&type=tcp&path=%2F#Delta-Kronecker
+vless://03dd7e7c-8d2a-4cd2-b920-f5ed564fc8c4@194.87.31.160:8443/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=st.okcdn.ru&fp=chrome&security=reality&pbk=P-3bYKbPp5YeCefayC3S3PvLanBv_lp0p_5qfrjbM34&sid=39a1eb3ec417cd66#Delta-Kronecker
+vless://c4fed342-68c4-48ec-b3b6-9c4397bd5569@afrcloud22.mmv.kr:443?encryption=none&security=tls&sni=afrcloud22.mmv.kr&insecure=0&allowInsecure=0&type=ws&host=afrcloud22.mmv.kr&path=#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@2.56.173.117:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.47:38388%20 #Delta-Kronecker
+trojan://telegram-id-directvpn@35.181.68.122:22223?security=tls&alpn=http/1.1&headerType=none&type=tcp&sni=🔒 [By EbraSha] 696 | Esf-02| MTSRVRS #Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.235:38388#Delta-Kronecker
+trojan://26224a7a-804d-48cc-bc95-cd86e6faf525@144.202.22.147:443?security=tls&sni=v12.nmcf.me&type=tcp#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTphN2MyMDU2NDJiMzAyYzIwQDUuMTg4LjQuMTAzOjExMjAy#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6SmRtUks5Z01FcUZnczhuUA==@217.30.10.18:9003#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@89.110.116.250:2053?encryption=none&security=tls&sni=sni.111000.dynv6.net&insecure=0&allowInsecure=0&type=ws&host=sni.111000.dynv6.net&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+ss://YWVzLTI1Ni1nY206NW1DSDQ2MjRRZmxPMWNGUg==@185.111.156.33:80#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@57.129.137.218:8443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=1&type=ws&host=sni.111000.indevs.in&path=/?ed=2560&telegram🇨🇳+@wangcai2#Delta-Kronecker
+vless://7d74eae4-8a06-4306-a923-ad686f30bf26@ov-germany1.09vpn.com:80?encryption=none&security=none&type=ws&path=%2Fvless%2F#Delta-Kronecker
+vless://18805ff3-b420-45de-af18-93be14024ae8@47.251.25.74:443/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=www.amazon.com&fp=chrome&security=reality&pbk=H56cOJhw0xw76lDEpt7IuJJmVGemK6_CK34KtHwDMX8&sid=#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@203.23.128.33:989#Delta-Kronecker
+vless://26524cce-d514-4014-a426-365fb266a14d@208.103.161.147:2096?encryption=none&security=tls&sni=WangCai.443888.xyz&insecure=0&allowInsecure=0&type=ws&host=WangCai.443888.xyz&path=%2Fdanfeng%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@45.77.52.102:8443?encryption=none&security=tls&sni=sni.111000.indevs.in&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M%3D@37.19.198.244:443#Delta-Kronecker
+vless://1d6705da-0790-49bf-bf47-b166d2e945cf@93.152.217.231:443?type=grpc&security=reality&fp=&pbk=YD5WWrYv-qy2P6Hu9dtImndERQBhf9uC928NigPOIjg&sid=&sni=stats.vk-portal.net&mode=gun&serviceName=&authority=#Delta-Kronecker
+vless://4bc191cc-591e-431d-949c-489fb34495d7@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=97&sni=google.com&type=tcp#Delta-Kronecker
+vless://10c3ee03-20ed-44cc-ad7b-d3ffdf44bc40@37.139.43.165:5443?encryption=none&flow=xtls-rprx-vision&fp=qq&pbk=_lcfyQtkjviQ8gAZLKJfbg9p2_UC4Voz5S5c3iL7SFM&security=reality&sid=6c0dc6f1a1e926de&sni=google.com&type=tcp#Delta-Kronecker
+trojan://biOrJGlcfX@104.20.6.134:443?allowInsecure=0&sni=ghasem.kotlet.org&ws=1&wspath=%2Fkos-madaret-khamneii#Delta-Kronecker
+vless://702e5c99-1540-4787-acba-d5f50f81cae9@51.250.117.173:4443?encryption=none&flow=xtls-rprx-vision&fp=qq&pbk=ef9Xx816A-obDKokFDIV5acO4E8A23MErXdh5ki4wj4&security=reality&sid=63d703b12f253ffb&sni=ads.x5.ru&type=tcp#Delta-Kronecker
+trojan://5a2c16f9@172.64.229.33:443/?type=tcp&security=tls&sni=snippets.kkii.eu.org#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@130.250.137.138:2096?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpkMTIxMzg1ZjcwMGE2OTE1@163.171.213.46:11201#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.42:38388%20 #Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjOTBkNjNkYzdhNjIwM2Fm@46.250.241.55:45720#Delta-Kronecker
+vless://26524cce-d514-4014-a426-365fb266a14d@208.103.161.217:2096?encryption=none&security=tls&sni=WangCai.443888.xyz&insecure=0&allowInsecure=0&type=ws&host=WangCai.443888.xyz&path=%2Fdanfeng%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.66:38388%20 #Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@194.60.134.249:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+trojan://NuL1nBAAaM@172.67.161.74:2083/?type=tcp&security=tls&sni=support.sabapardaziran.ir#Delta-Kronecker
+vless://05b544a4-d479-4ba4-8208-950bd4411453@pq-India1.09vpn.com:8443?path=%2Fvless%2F&security=tls&encryption=none&insecure=0&type=ws&allowInsecure=0#Delta-Kronecker
+trojan://Aimer@108.165.152.78:2083/?type=tcp&security=tls&sni=epgb.aimercc.dpdns.org#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@57.128.176.87:8443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
+vless://dfec089a-a2fc-4839-be56-784e57b61ea3@144.31.100.120:443?security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=97&sni=www.google.com#Delta-Kronecker
+ss://MjAyMi1ibGFrZTMtYWVzLTI1Ni1nY206UjUzMm1SQnYzYWNQQUdha2VJVERRV0pSeHl5bTBweHF2ekpQbVdDRndIVT0@57.128.191.90:8388%20 #Delta-Kronecker
+vless://d8dd94fd-540e-461d-b5d4-acebef02c22a@38.22.92.72:34045?type=tcp&encryption=none&flow=&sni=visit-this-invitation-link-to-join-tg-enkelte-notif.ekt.me&fp=chrome&security=reality&pbk=cDaDzPr3PlS3NM8lreHZbdo-Mhqz8vMBzMSkHXhGIUA&sid=e8ab71d0#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@89.110.105.81:8443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6Z1lDWVhma1VRRXMyVGFKUQ@217.30.10.18:9038%20 #Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@46.17.99.222:443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=1&host=sni.111000.indevs.in&type=ws&allowInsecure=1&sni=sni.111000.indevs.in#Delta-Kronecker
+vless://dd3f12c5-0a56-4758-8c9d-95666b39481e@174.136.205.68:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@135.84.64.157:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=/?ed=2560&Telegram🇨🇳+@WangCai2#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@88.198.82.151:443?encryption=none&security=tls&sni=sni.111000.indevs.in&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpiZzlyR056YTRkY21uREFYTWlCYWE0cFVmOXE4ZmMyRURlUFE5NlVEZkpybW9oZnZLN0wyN2JMc0pXMmppa0pQdzk3TFlXNzZ5cFlLMzQ3VHRVS1o2ZWJrdzVaZjZDNHM=@185.5.38.111:55988#Delta-Kronecker
+trojan://0a2bb2b0-fd1f-11ef-b88d-1239d0255272@51.38.65.155:443?allowInsecure=1&sni=uk1.test3.net#Delta-Kronecker
+ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M@37.19.198.160:443#Delta-Kronecker
+trojan://NISHIKUITAN222@104.19.155.27:443/?type=tcp&security=tls&allowInsecure=1#Delta-Kronecker
+vless://6670529b-265a-4ee9-b944-bdaee2638ef2@62.60.177.167:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=st.ozone.ru&fp=chrome&pbk=uI6NV8Mkk7kf864izhLcAnk6nVDH6cE-_5HRJwMQGXs&sid=0ea9a621ae03e231&packetEncoding=xudp#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@216.167.83.144:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@38.60.250.107:990%20 #Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@176.124.223.138:2096?path=/?ed=2560&telegram🇨🇳+@wangcai2&security=tls&encryption=none&host=sni.111000.indevs.in&fp=chrome&type=ws&sni=sni.111000.indevs.in#Delta-Kronecker
+vless://514f4d0f-fc98-4866-aa18-4bee56125e71@144.31.100.120:443?security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=1283729a0a9c1f&sni=www.google.com#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.183:38388#Delta-Kronecker
+vless://04d7aab0-0422-42f2-ba26-957b10ff53f0@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=352e3a94&sni=google.com&spx=/8UKWnYNnG6httmN#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@51.91.102.26:8443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
+trojan://NISHIKUITAN111@188.114.97.198:443?#Delta-Kronecker
+vmess://eyJhZGQiOiIyYmI5ZWJlZC10NzBmNDAtdDdoc2oyLTFnZXZnLmhrdC5nb3RvY2hpbmF0b3duLm5ldCIsImFpZCI6IjIiLCJob3N0IjoiYnJvYWRjYXN0bHYuY2hhdC5iaWxpYmlsaS5jb20iLCJpZCI6ImYwMmVlMmI0LWQ3NjAtMTFlYy1iZDdjLWYyM2M5MTNjOGQyYiIsIm5ldCI6IndzIiwicGF0aCI6Ii8iLCJwb3J0Ijo4MCwicHMiOiJEZWx0YS1Lcm9uZWNrZXIiLCJ0bHMiOiIiLCJ0eXBlIjoiIiwidiI6IjIifQ==
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@193.29.139.217:8080#Delta-Kronecker
+vmess://eyJhZGQiOiI5MS4xMzQuOC44OCIsImFpZCI6MCwiaG9zdCI6ImxhbW1hbGFuZC5vcmciLCJpZCI6IjAzZmNjNjE4LWI5M2QtNjc5Ni02YWVkLThhMzhjOTc1ZDU4MSIsIm5ldCI6IndzIiwicGF0aCI6Imxpbmt2d3MiLCJwb3J0Ijo0NDMsInBzIjoiRGVsdGEtS3JvbmVja2VyIiwic2VjdXJpdHkiOiJhdXRvIiwic2tpcC1jZXJ0LXZlcmlmeSI6ZmFsc2UsInNuaSI6ImxhbW1hbGFuZC5vcmciLCJ0bHMiOiJ0bHMiLCJ0eXBlIjoiYXV0byJ9
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@154.206.12.138:2096?path=/?ed=2560&security=tls&encryption=none&host=sni.111000.indevs.in&fp=chrome&type=ws&sni=sni.111000.indevs.in#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@129.158.198.241:8443?encryption=none&security=tls&sni=sni.111000.indevs.in&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+trojan://trojan@www.visa.com.sg:8443?allowInsecure=0&sni=sunnyfish.pages.dev&ws=1&wspath=%2F#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToyREdxM2p2VlJnNW4zQ2N4bXlzR0sya21yZ0plU05vZjEyQTc2Y1p2VnhxUHBldHlDMVhFY2lDRnVmcTV4S3ZSV0dHbktWZW1icFRodVVTUWhiWjdHTXNaWTRVVnhFQnc@backup.fleetfoxi.link:44884#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@144.124.238.212:443?encryption=none&security=tls&sni=sni.111000.dynv6.net&insecure=0&allowInsecure=0&type=ws&host=sni.111000.dynv6.net&path=/?ed=2560&Telegram🇨🇳@WangCai2#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@5.75.199.203:2087?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+vless://id8114764549@5.180.45.245:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.google.com&fp=chrome&pbk=eAYRUxYWFPrYyI5iVXTYSeQHBEW6yvv1__GAtGIlglA&sid=68&spx=%2FadB8OIp9onEQkMQ&type=tcp&headerType=none#Delta-Kronecker
+vless://64c329a3-2478-4729-94a5-e452e6259259@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=54c71eb172a3&sni=www.google.com&type=tcp#Delta-Kronecker
+trojan://4250b3bb-d1ae-4e77-bf71-4069e0d2c383@220.130.58.136:31101?allowInsecure=0&sni=green2.cdntencentmusic.com#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.190:38388#Delta-Kronecker
+vless://a8ea783c-dc54-4b17-96e4-144d1af2cb75@104.16.98.23:443?&security=tls&fp=chrome&alpn=h3&sni=sa.anjue39.qzz.io&type=ws&headerType=none&host=sa.anjue39.qzz.io&path=%2F#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@134.209.30.166:443?path=/?ed=2560&Telegram🎖@AliXTso&security=tls&encryption=none&host=sni.111000.indevs.in&type=ws&sni=sni.111000.indevs.in#Delta-Kronecker
+trojan://381f2e86233720eacda26d50e9aa26da@160.16.63.16:1281?security=tls&sni=www.nintendogames.net#Delta-Kronecker
+vless://31ded4f6-2460-41b1-8922-94632c5c5543@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=/132.226.21.116=6056&sni=afrcloud22.mmv.kr#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw@185.47.255.22:989#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToxNWIwNTczODMwMDgxZDAx@51.89.119.213:11201#Delta-Kronecker
+vless://f7ddcea8-95e3-48de-909f-bb5d3c47696b@89.107.59.81:888?type=tcp&security=none&path=&host=#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@31.56.146.127:2053?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@66.235.200.238:2096?encryption=none&security=tls&sni=sni.jpmj.dev&insecure=1&type=ws&host=sni.jpmj.dev&path=%2F%3Fed%3D2560%26telegram%F0%9F%87%A8%F0%9F%87%B3%2B@wangcai2#Delta-Kronecker
+trojan://vip@172.67.182.83:443/?type=tcp&security=tls&sni=heihu880.pages.dev#Delta-Kronecker
+trojan://T9BpZIVMNv@172.64.144.82:8443?security=tls&sni=sweden.vmaxpanel.com&type=ws&host=sweden.vmaxpanel.com&path=%2Famd#Delta-Kronecker
+trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@45.131.4.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@45.142.215.61:443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=1&host=sni.111000.indevs.in&type=ws&allowInsecure=1&sni=sni.111000.indevs.in#Delta-Kronecker
+trojan://07301100-4684-11f0-9ffa-1239d0255272@uk1.test3.net:443?security=tls&headerType=none&type=tcp#Delta-Kronecker
+vless://100cf905-0d2b-4250-98d2-5a7029d8fcfc@osn.takovpn.ru:443?type=&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=9de7&sni=www.google.com#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.211:38388#Delta-Kronecker
+trojan://68e98649-8090-4e70-a4b3-ebe21b9be6cb@dl-hk6.steamdownload.top:443#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@51.75.28.76:2053?path=/?ed=2560&Telegram🇨🇳 @WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@160.153.1.96:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.243:38388#Delta-Kronecker
+trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@45.131.208.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
+ss://YWVzLTI1Ni1nY206cHpvTmRQYmhxVDFYZDdXU0AxNDkuMjguMTY0LjU1OjQ0Mw==#Delta-Kronecker
+vless://0e90f352-e9bc-4834-8ff6-49ba887eded4@fr.1323.world:443?security=tls&alpn=h2&encryption=none&insecure=0&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=b12a6eea4807ca4e.1323.world#Delta-Kronecker
+vless://093ca6c0-e824-4d9d-ab1f-46294a2f3b5c@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=768c60&sni=www.google.com#Delta-Kronecker
+vless://e0817b60-8d76-421c-bc82-39a1680db13d@130.193.59.133:443?encryption=none&flow=xtls-rprx-vision&fp=random&pbk=_CjW0Khlrr5z5oc9Oy6-w2ZEanz-zMBktVn5EOX9oTM&security=reality&sid=f32140952ba18e18&sni=yandex.ru&type=tcp#Delta-Kronecker
+trojan://ppmk@104.18.32.47:8443?host=flat-firefly-6022.rixewi3168.workers.dev&path=%2F%3Fed%3D2560&security=tls&sni=flat-firefly-6022.rixewi3168.workers.dev&type=ws#Delta-Kronecker
+trojan://bpb-trojan@172.67.180.227:443?security=tls&sni=mashdt.pages.dev&alpn=h3&type=ws&host=mashdt.pages.dev&path=%2Ftr%3Fed%3D2560#Delta-Kronecker
+ss://YWVzLTI1Ni1nY206QmVkdWZnenRITzNCNUtxZUA0Ni4yNTAuMjU0LjE3MDo0NDM=#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpmNmM0NjAwZDRkNTEzODU3@51.161.33.111:11202#Delta-Kronecker
+vless://8475ccf8-2464-4e1f-bf1e-656d2fc77ff7@104.21.72.131:443?security=tls&type=ws&path=/ws&host=netv.amirshee9090.workers.dev&sni=netv.amirshee9090.workers.dev&fp=chrome&encryption=none#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@162.19.79.57:2053?path=/?ed=2560&Telegram🇨🇳 @WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
+trojan://5fb072e0ddd631cf66cf752b09210480@160.16.214.104:3423?type=tcp&security=tls&sni=www.nintendogames.net&fp=random&allowInsecure=1#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@80.240.20.43:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
+trojan://Aimer@188.164.159.43:2083/?type=tcp&security=tls&sni=epgb.aimercc.dpdns.org#Delta-Kronecker
+trojan://87ec85ad-8e8e-40a0-9b23-1fa8217c9647@147.182.135.198:443?security=tls&sni=us-full.privateip.net&allowInsecure=1&fp=chrome&type=tcp#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@95.182.97.125:8443?encryption=none&security=tls&sni=sni.111000.dynv6.net&insecure=0&allowInsecure=0&type=ws&host=sni.111000.dynv6.net&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+vless://8d25e0fa-2046-4365-8c2d-8edd60d6d5b4@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=3d3c3fc7e9&sni=google.com&type=tcp#Delta-Kronecker
+vless://2568a187-c86b-491c-8f9e-ccf8ab016ecd@174.136.205.68:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
+vless://46c9bd28-82ab-4a50-9e20-dbf6a1eb1e47@158.160.105.121:8443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=Qddpg8luihgzgx4g4uMJklXzlrMCd8L1igJSWrRUvSc&security=reality&sid=887c0d72e771a934&sni=yandex.ru&type=tcp#Delta-Kronecker
+vless://b824f264-8cc3-4669-9f60-47b51ed1aa11@185.234.57.216:443?type=tcp&security=reality&pbk=2Z2meC9rRAMD3k52ne8dh8PdfRNpOs5T9yObPyFkXyQ&fp=chrome&sni=yahoo.com&sid=f9fe&spx=%2F#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@195.123.211.205:2053?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
+ss://YWVzLTI1Ni1nY206VHFkOUdwcFhwWEI4cnBjOA@46.250.254.174:80#Delta-Kronecker
+ss://YWVzLTI1Ni1nY206bktlRTJaRldWYUU0RHlqUkAxNTQuMzguMTc2Ljc6ODA=#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@172.64.155.209:2053?security=tls&type=ws&path=%2F%3Fed%3D2560&host=sni.111000.indevs.in&sni=sni.111000.indevs.in&fp=chrome&encryption=none#Delta-Kronecker
+vless://1067894b-b8ac-427c-b3d6-dfb52c100489@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=47e4c3980f872e68&sni=www.google.com#Delta-Kronecker
+vless://e5f8a9f6-f164-479b-b3b5-b90f213c7145@141.101.120.179:2053/?type=ws&encryption=none&flow=&host=ir1.airpanel.top&path=%2F&security=tls&sni=ir1.airpanel.top&allowInsecure=1#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.253:38388%20 #Delta-Kronecker
+trojan://92953fc6-f497-43af-9d6d-f3b5589df318@220.130.58.136:31103?sni=green2.cdntencentmusic.com#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@82.152.98.200:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+vless://9e42e2c5-a306-4df3-979c-4c24af58cf9f@174.136.205.68:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.152:38388#Delta-Kronecker
+vmess://eyJhZGQiOiIxNjIuMTkuMjQ4LjIzOCIsImFpZCI6IjAiLCJob3N0IjoiIiwiaWQiOiJlZGUyN2E3OS1iMDM5LTQ5MGItOTMyYy00OTVkZTRiNjg4ODAiLCJuYXRpb24iOiIiLCJuZXQiOiJ0Y3AiLCJwYXRoIjoiIiwicG9ydCI6IjU1MCIsInBzIjoiRGVsdGEtS3JvbmVja2VyIiwic2N5IjoiYXV0byIsInNlcnZlclBvcnQiOjAsInNuaSI6IiIsInRscyI6IiIsInR5cGUiOiJub25lIiwidiI6IjIifQ==
+vless://b31ba66a-31a4-4b29-a029-d14c834a9e9b@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=768c60&sni=www.google.com#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.170:38388%20 #Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@91.107.158.77:443?path=/?ed=2560&telegram🇨🇳+@wangcai2&security=tls&encryption=none&host=sni.111000.indevs.in&type=ws&sni=sni.111000.indevs.in#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@132.145.232.171:443/?type=ws&encryption=none&flow=&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2&security=tls&sni=sni.111000.indevs.in#Delta-Kronecker
+trojan://NISHIKUITAN222@104.18.252.56:443/?type=tcp&security=tls&allowInsecure=1#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@104.254.140.238:2096?path=/?ed=2560&telegram🇨🇳+@wangcai2&security=tls&encryption=none&host=sni.jpmj.dev&fp=chrome&type=ws&sni=sni.jpmj.dev#Delta-Kronecker
+vless://20b0976f-3b0d-4e29-a629-ce119d2b3da2@osn.takovpn.ru:443?encryption=none&security=reality&sni=www.google.com&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=352e3a94&type=tcp&headerType=none#Delta-Kronecker
+vless://b8509ba9-3359-44ae-a36b-3ba329a43c7c@osn.takovpn.ru:443?encryption=none&security=reality&sni=google.com&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=97&spx=%2Fhci4yLrMfy2SATl&type=tcp&headerType=none#Delta-Kronecker
+vless://ba388b8e-4740-4ac8-beab-e99bf8c5c322@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.42:38388#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@158.180.69.78:12198?encryption=none&security=tls&sni=sni.jpmj.dev&insecure=0&allowInsecure=0&type=ws&host=sni.jpmj.dev&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.35:38388#Delta-Kronecker
+vless://26524cce-d514-4014-a426-365fb266a14d@104.21.55.178:2053?security=tls&sni=snippet.fgfw.eu.org&type=ws&host=snippet.fgfw.eu.org&path=%2Fdanfeng%3Fed%3D2560&fp=chrome#Delta-Kronecker
+vmess://eyJhZGQiOiJubmguMXgwLmluZGV2cy5pbiIsImFpZCI6IjAiLCJob3N0Ijoibm5oLjF4MC5pbmRldnMuaW4iLCJpZCI6IjRlNDVjMWI0LTkxMDctNDVkZC05OTk1LWNkZjdjYmI0NGQ5ZCIsIm5hdGlvbiI6IiIsIm5ldCI6IndzIiwicGF0aCI6Ii9pU1JXU0tVSktOdVh2VnpzWUhtc01ybk8iLCJwb3J0IjoiNDQzIiwicHMiOiJEZWx0YS1Lcm9uZWNrZXIiLCJzY3kiOiJhdXRvIiwic2VydmVyUG9ydCI6MCwic25pIjoiIiwidGxzIjoidGxzIiwidHlwZSI6ImF1dG8iLCJ2IjoiMiJ9
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTplNDA2ZGE1MGIzMzQzNDBl@51.89.10.151:11201#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.158:38388%20 #Delta-Kronecker
+trojan://0c6d0727-9424-4620-b6df-cd09f5cc21b8@t.sin1.skyinternet.vip:443?allowInsecure=0#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.144:38388#Delta-Kronecker
+vless://1e823993-86ac-3ead-89b5-227e73825fdb@104.18.38.47:443/?path=/db1024faebdb62e0&security=tls&encryption=none&host=dabaif0.webn.cc&type=ws&sni=dabaif0.webn.cc#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@185.213.23.63:990#Delta-Kronecker
+trojan://NISHIKUITAN111@104.17.244.30:443/?type=tcp&security=tls&allowInsecure=1#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToyRW1XUlMxVGtTM1RreEtBcG5yaWhiM2FIakRTWFJ2VDFUMUs5VTJCcnV4cm5wNUE4em1wVHh3d1ROamU2QmtWcW1uOUJnUkY2cHE4cW9SSENmWmRjYWg3QkxianJwVDE@185.5.38.111:55988#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.40:38388%20 #Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.54:38388%20 #Delta-Kronecker
+vless://9cd1b59f-24e9-44a5-8ec3-f403ea961019@osn.takovpn.ru:443?type=&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=352e3a94&sni=google.com#Delta-Kronecker
+trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@45.80.110.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.227:38388%20 #Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@159.65.30.136:443?path=/?ed=2560&security=tls&encryption=none&insecure=1&host=sni.111000.indevs.in&fp=chrome&type=ws&allowInsecure=1&sni=sni.111000.indevs.in#Delta-Kronecker
+trojan://9d0a75d2-f747-4afa-b43f-d208af9e8f9a@167.234.220.143:443?allowInsecure=1&sni=us01.ssr.ee#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.5:38388%20 #Delta-Kronecker
+vless://b2019c04-5b7c-4be4-a65c-ca5ea90bf8fd@51.250.4.119:443?encryption=none&flow=xtls-rprx-vision&fp=qq&pbk=FkmYFobwxLMLEktYXywmjthuEYCZggITsxwPNasTKUg&security=reality&sid=17802e8ff84f12df&sni=api-maps.yandex.ru&type=tcp#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@185.186.245.40:81?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.dynv6.net&type=ws&allowInsecure=0&sni=sni.111000.dynv6.net#Delta-Kronecker
+vmess://eyJhZGQiOiIxNS4yMzUuMTMuNjkiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6InZrdmQxMjcubXljZG4ubWUiLCJpZCI6IjAzZmNjNjE4LWI5M2QtNjc5Ni02YWVkLThhMzhjOTc1ZDU4MSIsIm5ldCI6IndzIiwicGF0aCI6Ii9saW5rdndzIiwicG9ydCI6IjQ0MyIsInBzIjoiRGVsdGEtS3JvbmVja2VyIiwic2N5IjoiYXV0byIsInNuaSI6InZrdmQxMjcubXljZG4ubWUiLCJ0bHMiOiJ0bHMiLCJ0eXBlIjoiIiwidiI6IjIifQ==
+trojan://96884680-77e6-11eb-8d67-1239d0255272@nl-trojan.bonds.id:443?allowInsecure=1#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@150.109.11.223:443?encryption=none&security=tls&sni=sni.jpmj.dev&insecure=0&allowInsecure=0&type=ws&host=sni.jpmj.dev&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+trojan://0a169d7d-a30f-4d90-af1b-55f6ef6afcb7@green2.cdntencentmusic.com:35501?allowInsecure=1&sni=green2.cdntencentmusic.com#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@188.166.39.239:443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.indevs.in&type=ws&allowInsecure=0&sni=sni.111000.indevs.in#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpWcEtBQmNPcE5OQTBsNUcyQVZPbXc4@213.109.147.242:62685#Delta-Kronecker
+vless://26524cce-d514-4014-a426-365fb266a14d@208.103.161.76:2096?encryption=none&security=tls&sni=WangCai.443888.xyz&insecure=0&allowInsecure=0&type=ws&host=WangCai.443888.xyz&path=%2Fdanfeng%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
 ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpiNTM3YmEzZTRmNGNkYTBj@144.126.158.195:12053#Delta-Kronecker
-ss://YWVzLTI1Ni1nY206bGRqbXdvTnFnUXFxYzQzag@149.102.132.184:443 #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMXY1ZzlGZWZkb08=@57.129.140.88:8388 #Delta-Kronecker
-vless://40cc9b52-25b8-4cd5-8b45-715ae26e6baf@SC-TheNetherlands1.09vpn.com:80?path=%2Fvless%2F&security=none&encryption=none&type=ws#Delta-Kronecker
-vless://f9411c2e-95a7-4458-a423-d9efa6c5d72e@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=%2F20.36.131.211%3D443&sni=afrcloud22.mmv.kr#Delta-Kronecker
-vless://3bab450a-5cd2-465d-8fcc-5b4e766ce908@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=47e4c3980f872e68&sni=google.com&spx=/TqVZomwuGZFZuEq#Delta-Kronecker
-vless://eb071647-72a6-46be-8e89-ff3d228d52f6@217.12.219.53:443?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=ozon.ru&fp=chrome&security=reality&pbk=FkmYFobwxLMLEktYXywmjthuEYCZggITsxwPNasTKUg&sid=43df3983229a1c73#Delta-Kronecker
-trojan://6884d714-d3c4-4b49-aa20-767ea92837d6@202.37.33.80:443?sni=icecream.955850.xyz#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@45.82.161.177:8443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@145.14.131.37:990#Delta-Kronecker
-vless://1f3b130d-7d29-45d1-b5aa-adc5cd94a885@194.35.120.116:19702?mode=gun&security=reality&encryption=none&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&fp=chrome&type=grpc&serviceName=xyz&sni=check-host.net&sid=6ba85179e30d4fc2#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@88.216.66.238:2096?encryption=none&security=tls&sni=sni.jpmj.dev&fp=chrome&insecure=1&type=ws&host=sni.jpmj.dev&path=/?ed=2560&telegram🇨🇳+@wangcai2#Delta-Kronecker
-vless://e5f8a9f6-f164-479b-b3b5-b90f213c7145@141.101.120.130:2053/?type=ws&encryption=none&flow=&host=ir1.airpanel.top&path=%2F&security=tls&sni=ir1.airpanel.top&allowInsecure=1#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@149.248.7.25:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=1&type=ws&host=sni.111000.indevs.in&path=/?ed=2560&telegram🇨🇳+@wangcai2#Delta-Kronecker
-vless://0fce1b7a-3fe9-4f68-99a2-0a370d0f173f@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=9de7&sni=google.com&type=tcp#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@116.203.233.255:443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
-vless://66d387a0-bf3a-45d1-b6f9-6209b2432a48@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
-trojan://6884d714-d3c4-4b49-aa20-767ea92837d6@217.163.76.254:443/?type=tcp&security=tls&sni=icecream.955850.xyz#Delta-Kronecker
-vless://071b0597-ce5e-4877-86c3-85ba71521a3d@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
-ss://YWVzLTI1Ni1nY206YzY5Mzc0ZGEtMjIwOC00Y2JkLWI4MWUtY2RmODhiNWU3ZjUz@ss.038.node-for-bigairport.win:16689#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.208:8080#Delta-Kronecker
+vless://c59529ff-22ed-488e-abe6-70d55f1b1e0d@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=%2F47.74.254.191%3D8900&sni=afrcloud22.mmv.kr#Delta-Kronecker
+vless://9523a24b-f6bf-339e-9950-32829162ffc2@104.21.227.134:443?encryption=none&security=tls&sni=dabaif0.webn.cc&fp=chrome&insecure=0&allowInsecure=0&type=ws&host=dabaif0.webn.cc&path=%2Fdb1024f4e56f542c#Delta-Kronecker
+ss://YWVzLTI1Ni1nY206MTRDTEJhRkJxd3F4Qkp5Ng==@66.94.125.178:443#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WkVUNTlMRjZEdkNDOEtWdA==@217.30.10.18:9005#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.153:38388%20 #Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@77.238.228.151:2053?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
+vless://3c1e8b63-5369-47f6-9185-145f64215034@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=%2F216.128.140.218%3D443&sni=afrcloud22.mmv.kr#Delta-Kronecker
+trojan://2fec7227-9abe-46f2-af18-78302b836c45@104.21.30.167:443?security=tls&sni=3y.2032.pp.ua#Delta-Kronecker
+vless://7ddcdda5-6a0a-4fdc-8316-cda2f666f8ee@174.136.205.68:443?security=reality&sni=navi.bankrate.com&type=tcp&fp=chrome&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc&sid=2da72ce6#Delta-Kronecker
+trojan://79314e99f0a473fe86efc7827942ad00@160.16.144.208:3145/?type=tcp&security=tls&sni=www.nintendogames.net#Delta-Kronecker
+vless://d35900ef-0dbc-4e38-bab3-d6169b180c96@87.239.106.153:443?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=m.vk.ru&fp=chrome&security=reality&pbk=zr8_rtHm86s_G1gfRwNtunStGngYZSdYkA3PyBFXpDg&sid=48fccabc158a4c22#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@165.232.104.116:443?path=/?ed=2560&Telegram🎖@AliXTso&security=tls&encryption=none&insecure=0&host=sni.111000.indevs.in&type=ws&allowInsecure=0&sni=sni.111000.indevs.in#Delta-Kronecker
+vless://afc82775-380f-498b-aad3-0f7737e415bc@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
+vless://26524cce-d514-4014-a426-365fb266a14d@208.103.161.127:2096?encryption=none&security=tls&sni=WangCai.443888.xyz&insecure=0&allowInsecure=0&type=ws&host=WangCai.443888.xyz&path=%2Fdanfeng%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@195.85.23.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
+trojan://d76294c5-a31f-408d-ba0b-89880107cab5@5.75.152.12:443?security=tls&allowInsecure=1&type=tcp#Delta-Kronecker
+vless://b4fb9bd9-db8b-4537-b61f-019fb43b0951@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=%2F130.185.164.214%3D8443&sni=afrcloud22.mmv.kr#Delta-Kronecker
+vmess://eyJhZGQiOiIxMDQuMjEuNTYuMjUxIiwiYWlkIjoiMCIsImhvc3QiOiJtOW8wLjF4cS5pbmRldnMuaW4iLCJpZCI6IjRlNDVjMWI0LTkxMDctNDVkZC05OTk1LWNkZjdjYmI0NGQ5ZCIsIm5hdGlvbiI6IiIsIm5ldCI6IndzIiwicGF0aCI6Ii9pU1JXU0tVSktOdVh2VnpzWUhtc01ybk8iLCJwb3J0IjoiODAiLCJwcyI6IkRlbHRhLUtyb25lY2tlciIsInNjeSI6ImF1dG8iLCJzZXJ2ZXJQb3J0IjowLCJzbmkiOiIiLCJ0bHMiOiJhdXRvIiwidHlwZSI6Im5vbmUiLCJ2IjoiMiJ9
+vless://1e823993-86ac-3ead-89b5-227e73825fdb@vip2.kaixincloud.top:443?security=tls&type=ws&path=/db1024faebdb62e0&host=dabaif0.webn.cc&sni=dabaif0.webn.cc&fp=chrome#Delta-Kronecker
+vless://efbbca43-f75a-48aa-bfec-c2a7bf89ca7d@84.201.184.6:1443?encryption=none&flow=xtls-rprx-vision&fp=qq&pbk=BEgBilN7HvIeYQ0Izm3TAhAAab1-XM3Ipp1Rt0aH-XY&security=reality&sid=8c87926485c77224&sni=eh.vk.com&type=tcp#Delta-Kronecker
+trojan://trojan@109.234.211.66:2087?security=tls&sni=store.timimi.dpdns.org#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@188.241.241.29:2053?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
+vless://20fe73d2-c308-4a43-95bc-71b0a4687b3f@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=768c60&sni=www.google.com&type=tcp#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@142.132.178.99:443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
+vless://26524cce-d514-4014-a426-365fb266a14d@146.56.140.79:22561?encryption=none&security=tls&sni=WangCai.443888.xyz&insecure=0&allowInsecure=0&type=ws&host=WangCai.443888.xyz&path=%2Fdanfeng%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpnZGpkRkVhc2hoVzJCbHFT@82.26.150.238:2053#Delta-Kronecker
+vless://b8a44195-0860-4312-a0df-dae178585a48@89.106.89.112:2053?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=WckOSneVajAzpH0sZSAFAWPnmwuuEXKZrTICNj5_hHU&sid=423bccc9c13fb509&sni=www.ibm.com#Delta-Kronecker
+vless://5d42cfef-0556-4f0c-bfb7-161aef500ab5@121.154.180.50:51698?encryption=none&security=reality&sni=lenovoglobal.com&fp=chrome&pbk=PPZbDAYSwCYnPCF8BxguTFfAAZTnLnzpsHePCkGZYxo&sid=34&type=grpc&packetEncoding=xudp#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.44:38388%20 #Delta-Kronecker
+vless://ef14978e-33e8-43a4-a2e4-a7b6dc1e5f1c@sos2.iranapi.site:9090?security=none&encryption=none&headerType=none&type=tcp#Delta-Kronecker
+vless://d85ea913-7dfa-44b0-bd66-33414e897991@104.26.14.21:443?encryption=none&security=tls&sni=afrcloud22.mmv.kr&insecure=0&allowInsecure=0&type=ws&host=afrcloud22.mmv.kr&path=%2F35.230.79.26%3D443%23TELEGRAM-anotherme_night---%23TELEGRAM-anotherme_night---%23TELEGRAM-anotherme_night---%23TELEGRAM-anotherme_night---%23TELEGRAM-anotherme_night#Delta-Kronecker
+vless://2d3e0e5a-9ef1-45ad-8a28-5f4125c2652b@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=qq&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
+vless://8d6814e0-e440-407a-94da-5faa8efa60d5@dns1.bustyyetkin.monster:443?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=4SvSS7EqHyV_LDW4vB2f7UIj6x_GXsR3vMnqnaxspHo&sid=868bc90acf43&sni=www.mozilla.org#Delta-Kronecker
+vless://46c9bd28-82ab-4a50-9e20-dbf6a1eb1e47@176.123.164.110:443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=Qddpg8luihgzgx4g4uMJklXzlrMCd8L1igJSWrRUvSc&security=reality&sid=1929ef620e9b34f5&sni=rbc.ru&type=tcp#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.147:38388#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.184:38388#Delta-Kronecker
+trojan://biS(YrwB,3L$@185.143.235.5:443/?type=tcp&security=tls&sni=mydigipay.com#Delta-Kronecker
+trojan://3723507166611775488@195.133.93.135:443?security=tls&sni=pleased-airedale.boa152.lol&type=tcp#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTowMDY1OTFiNDkyOGI0Mjgw@46.250.250.252:21607#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNBQDgyLjM4LjMxLjk5OjgwODA=#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTowY2RkZTY5NTg3MzU2NWVl@38.54.59.38:11202#Delta-Kronecker
+vless://643a3034-d3f9-4e03-acde-0e6ab3a238fb@172.64.155.209:443?path=%2F54.203.85.46&security=tls&encryption=none&host=afrcloud22.mmv.kr&fp=chrome&type=ws&sni=afrcloud22.mmv.kr#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.114:38388#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@160.153.137.91:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+vless://42a3bc73-c3c9-40e0-a402-ccf05848dea4@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=97&sni=google.com&type=tcp#Delta-Kronecker
+trojan://6e1b9a65-884f-3aa9-9469-bf6ec0f08610@14.215.39.158:3462/?type=tcp&security=tls&sni=45.32.28.232&allowInsecure=1&fp=chrome#Delta-Kronecker
+vless://jina@4.185.113.10:443?security=tls&alpn=h2,http/1.1&encryption=none&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=jina-418511310-direct.yektanet.co#Delta-Kronecker
+trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@45.12.30.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
+vless://mega1698@5.129.249.134:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ir.ozone.ru&fp=chrome&pbk=F14RpPKCKo_qPcW7EFVu1M18JsAT8c04O08cIi0Ghg4&sid=ab1cd2&type=tcp&headerType=none#Delta-Kronecker
+trojan://NISHIKUITAN222@188.114.99.239:443/?type=tcp&security=tls&allowInsecure=1#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.49:38388%20 #Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@151.242.183.166:35549?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.145:38388#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@46.17.107.199:443?encryption=none&security=tls&sni=sni.111000.indevs.in&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
 vless://6202b230-417c-4d8e-b624-0f71afa9c75d@213.202.218.198:2083?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
-vmess://eyJhZGQiOiJuMTc2MTIxNDkwOC53cGcyNy54eXoiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImhvc3QiOiJuMTc2MTIxNDkwOC53cGcyNy54eXoiLCJpZCI6IjM1MTRhOTNmLWJiMjYtNDQ0Mi04Zjk5LTk3MWIyZmYzMzg4YSIsIm5ldCI6IndzIiwicGF0aCI6Ii8iLCJwb3J0IjoiNDQzIiwicHMiOiJEZWx0YS1Lcm9uZWNrZXIiLCJzY3kiOiJhdXRvIiwic25pIjoiIiwidGxzIjoidGxzIiwidHlwZSI6ImF1dG8iLCJ2IjoiMiJ9
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo2ZmYxNDIzZjYxZmZlNjcz@38.54.59.16:11201?#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.56:38388#Delta-Kronecker
-trojan://9010950e-8e09-486a-bf96-3b0cf22097b4@tw1.sanfen001.pics:443?allowInsecure=0&sni=tw1.sanfen001.pics#Delta-Kronecker
-vless://4309abbb-9427-41e5-b3a0-cca6763f9964@104.16.248.61:8443?security=tls&sni=52yunwang.dpdns.org&type=ws&host=52yunwang.dpdns.org&path=%2F%3Fed%3D2560&fp=random#Delta-Kronecker
-trojan://Aimer@104.16.37.70:443?sni=epcca.ambercc.filegear-sg.me&allowInsecure=0#Delta-Kronecker
-trojan://90e7b2f3-fb61-4fd7-959f-176e9a51d8d7@jp005.421421.xyz:20230?allowInsecure=1&sni=www.alibaba.com&ws=1#Delta-Kronecker
-trojan://0q%2776Evm32qz%40Q%27(@172.66.44.226:2087/?type=tcp&security=tls&sni=JOInMahdiserver-11R.PaGES.dEv#Delta-Kronecker
-trojan://ad9c84af-e5aa-43e2-88df-7cfd99d4d0a0@bestcdn1.682637.xyz:443?allowInsecure=0&sni=b8-cdn.682637.xyz&ws=1&wspath=%252Fvideommuaawe#Delta-Kronecker
-trojan://bpb-trojan@198.41.204.23:443?security=tls&sni=bpb.my79801.com&type=tcp#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo2NTFkZjVkYzhmZDA4ZDBjQDM4LjYwLjIyNC4zNzoxMTIwMQ==#Delta-Kronecker
-vless://dddb39c1-25ee-4764-a2de-e1563c8a8569@83.166.238.101:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=&pbk=bKuUJhfy0OTxwLC92MOw8RDHN6cqHX40h-WoDjlCrSA&sid=6ee9370367ca16f2&sni=max.ru&path=&host=#Delta-Kronecker
-vless://d159a65d-51db-4b73-88bc-b665c10ee151@87.251.77.211:8443/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=ya.ru&fp=chrome&security=reality&pbk=PycIxLERS3Kg4Kh7TQuiD1Kf9pNySxp5jMKEaIb_PjU&sid=f740030928#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpUOVZQZXQxZkdoZGI0SlBtVVM2U1M1Uk5aN05TZ0J2UU5GNHJrb1FUZEZoR1d2bUdlZHN6ZmpCVGdlZm1yUVloamh5Qjg2N1A5UnZ5QlFtdEVqTFVlZ201Q055bUhDM2k=@mx2.drawnrisha.one:55988#Delta-Kronecker
-vless://405ba2d6-7fcb-4cdd-9c77-4ecc616d77c8@45.149.115.210:443/?type=tcp&encryption=none&flow=xtls-rprx-vision&security=tls&sni=deu549.worldbypass.org&allowInsecure=1#Delta-Kronecker
-trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@14.102.228.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.140:38388 #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo4ZTNjNzU1ODFhZGU0NzFkQDE0MS45NS4xMDEuMjAyOjExMjAx#Delta-Kronecker
-trojan://db467204-04c2-4f7a-909f-8daf6424fadc@dl-hk6.steamdownload.top:443#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo2Yjk3Mzc0NTBhYjdmYzk4@57.129.95.218:11201#Delta-Kronecker
-vless://94a03e9a-74d5-4036-95e9-563cc19355de@decdn12.suio.me:443/?type=tcp&encryption=none&flow=&security=tls&sni=decdn12.suio.me&allowInsecure=1#Delta-Kronecker
-ss://cmM0LW1kNToxNGZGUHJiZXpFM0hEWnpzTU9yNg@172.105.199.111:8080 #Delta-Kronecker
-vless://3f9c8463-8610-3ed8-86c8-a26713067825@188.114.98.0:443?encryption=none&security=tls&sni=dabaius2.sylu.net&insecure=1&type=ws&host=dabaius2.sylu.net&path=/db10240eb751d6ab#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@83.147.192.60:8443/?type=ws&encryption=none&flow=&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2&security=tls&sni=sni.111000.indevs.in#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@77.75.199.138:2096?path=%2F%3Fed%3D2560%26telegram%F0%9F%87%A8%F0%9F%87%B3%20%40wangcai2&security=tls&encryption=none&insecure=1&host=sni.111000.indevs.in&fp=chrome&type=ws&allowInsecure=1&sni=sni.111000.indevs.in#Delta-Kronecker
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@85.121.52.245:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
-ss://YWVzLTI1Ni1nY206dW1Xd29RSkVKR2Y3NFNMZQ@149.102.149.207:80 #Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3NTc4MjkyMWE4ZTcwODAy@195.7.6.160:18550#Delta-Kronecker
-vless://48ff2b70-e180-582f-8866-d9a2edeed5f5@57.129.53.182:23576?encryption=none&flow=xtls-rprx-vision&security=reality&sni=fuck.rkn&fp=chrome&pbk=1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s&sid=01&type=tcp&headerType=none&host=Join---i10VPN---Join---i10VPN---Join---i10VPN---Join---i10VPN#Delta-Kronecker
-ss://Y2hhY2hhMjAtaWV0Zjphc2QxMjM0NTY=@103.36.91.23:8388 #Delta-Kronecker
-trojan://3Ldo%2B%2C81m%5Bh)3Lb%2B@www.speedtest.net:443?allowInsecure=0&sni=azADnEt05.pagEs.Dev&ws=1&wspath=%2FtrVrbcKDR6nmgcC5z7%253Fed%253D2560#Delta-Kronecker
-ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.24:38388 #Delta-Kronecker
+vless://c98a3321-e9ab-4b83-9548-779614dbdc0f@154.31.114.125:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
+vless://46c9bd28-82ab-4a50-9e20-dbf6a1eb1e47@79.137.175.56:443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=Qddpg8luihgzgx4g4uMJklXzlrMCd8L1igJSWrRUvSc&security=reality&sid=1929ef620e9b34f5&sni=m.vk.ru&type=tcp#Delta-Kronecker
+vless://1de717eb-34ed-4592-b3e7-a5a067c85cd2@5.34.179.145:3443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=google.com&fp=chrome&pbk=CsUm6jBZvd5KzFN8Klm9KYF5kiUmztspcA9InbcnwXM&sid=e49b4e3d5f46d5c2&type=tcp&headerType=none#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.244:38388%20 #Delta-Kronecker
+vless://26524cce-d514-4014-a426-365fb266a14d@208.103.161.219:2096?encryption=none&security=tls&sni=WangCai.443888.xyz&insecure=0&allowInsecure=0&type=ws&host=WangCai.443888.xyz&path=%2Fdanfeng%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTplZjcyMGY1Yjc5MWE2MGY3@54.37.77.212:11201%20 #Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@169.150.242.77:990#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.50:38388#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@95.179.228.112:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6TnZTOE40VmY4cUFHUFNDTA==@217.30.10.18:9046#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@13.200.192.197:443?type=ws&encryption=none&flow=&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&sni=sni.111000.indevs.in&fp=chrome#Delta-Kronecker
+ss://YWVzLTI1Ni1nY206bktlRTJaRldWYUU0RHlqUg@154.38.176.7:443#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@83.147.216.31:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+trojan://T9BpZIVMNv@141.101.120.29:8443?security=tls&sni=sweden.vmaxpanel.com&type=ws&host=sweden.vmaxpanel.com&path=%2Famd&allowInsecure=1#Delta-Kronecker
+vless://ef37df8c-bde9-4288-b09d-5ada5124cf89@afrcloud22.mmv.kr:443?encryption=none&security=tls&type=ws&host=afrcloud22.mmv.kr&path=%2F142.171.233.183%3D443&sni=afrcloud22.mmv.kr#Delta-Kronecker
+vless://57313ede-d53b-4c2c-8639-a02ae154dc14@178.17.50.172:443/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=de.moktana.digital&fp=chrome&security=reality&pbk=XRfSpOsx2yMDCfnWMka8zVIxww4WpuJNYZH5Vs7EEWU&sid=5c188ae7c249c0e8#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@135.84.73.241:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@143.198.230.169:443?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.dynv6.net&type=ws&allowInsecure=0&sni=sni.111000.dynv6.net#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@109.107.164.141:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%2B%40WangCai2#Delta-Kronecker
+trojan://bpb-trojan@104.18.86.204:443?security=tls&sni=102.djR999998.Eu.orG&type=tcp#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@159.65.60.61:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=1&type=ws&host=sni.111000.indevs.in&path=/?ed=2560&telegram🎖@alixtso#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@46.17.97.207:2053?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=1&host=sni.111000.indevs.in&type=ws&allowInsecure=1&sni=sni.111000.indevs.in#Delta-Kronecker
+vless://18535741-e8b3-4b43-9348-785b55936751@ov-germany1.09vpn.com:80?encryption=none&type=ws&host=OV-Germany1.09vpn.com&path=%2Fvless%2F&security=none#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpsanFkYWx1MTMuLkAzLjExMi4xMzAuNTM6ODMxOQ==#Delta-Kronecker
+vless://0b13ab44-e749-4423-979e-b1a6c25c7d01@144.31.100.120:443?encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&security=reality&sid=1283729a0a9c1f&sni=google.com&type=tcp#Delta-Kronecker
+trojan://bpb-trojan@172.67.228.31:443/?type=tcp&security=tls&sni=bpb.my79801.com&allowInsecure=1#Delta-Kronecker
+vless://daf49b95-317c-4b72-8354-dc6cb89b10e9@osn.takovpn.ru:443?encryption=none&security=reality&sni=www.google.com&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=9de7&type=tcp&headerType=none#Delta-Kronecker
+trojan://d6b8011a-c725-435a-9fec-bf6d3530392c@104.234.239.178:2096?sni=vle.amclubdns.dpdns.org#Delta-Kronecker
+vless://48ff2b70-e180-582f-8866-d9a2edeed5f5@15.204.97.216:23576/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=fuck.rkn&fp=chrome&security=reality&pbk=1y5h2FGWKXTJ9xLPCqPo6Mw7RxoZzh6fGkEQKNxpZ3s&sid=01#Delta-Kronecker
+vless://3e7f67de-648e-4871-b51a-a225214d41ee@47.80.11.87:443?security=reality&encryption=none&sni=api.company-target.com&fp=chrome&pbk=TRP10HqKUXEQ3O-cfsq93DycfBmbJe9KM36yvSa8Mmw&type=tcp&path=/#Delta-Kronecker
+vless://034bd356-a017-490d-aae1-b460a50f9502@87.239.111.144:443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=685eO_buThx4UE7QzkEfP_r3RP5ccQHVUKSoUvHly3Y&security=reality&sid=d5ed7f0ec086cbd0&sni=max.ru&type=tcp#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.199:8080#Delta-Kronecker
+vless://138b5e4d-ec70-406c-8271-2ce5f467f9b0@osn.takovpn.ru:443?type=&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=768c60&sni=www.google.com#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ==@45.15.185.70:990#Delta-Kronecker
+vless://22a86baf-5aec-45a1-b8ce-e043001dd6eb@51.250.117.173:5443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=qq&pbk=Z1PBEkRcz_GSf4D3452Y_PdZeEVr0XZ3pGZkMBleI3U&sid=f16927958981f934&sni=yandex.ru&path=&host=#Delta-Kronecker
+trojan://df1f7e80-48a2-11f0-8b4b-1239d0255272@sg4.6n6.net:443?security=tls&headerType=none&type=tcp #Delta-Kronecker
+trojan://45d5fe0e-5a37-4881-ace7-df1c9046ba91@green2.cdntencentmusic.com:31101?allowInsecure=1&sni=green2.cdntencentmusic.com#Delta-Kronecker
+trojan://fa050497-fc2a-45ee-89c0-96670c4ecb65@104.21.63.135:443/?type=tcp&security=tls&sni=Rrr4.8906004.xYZ#Delta-Kronecker
+vless://98e10e51-3410-43b4-8cff-3438c81603ca@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=768c60&sni=www.google.com#Delta-Kronecker
+vless://65a3be30-e29d-478b-acd4-7c260c7e313c@osn.takovpn.ru:443?encryption=none&security=reality&sni=google.com&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=3d3c3fc7e9&type=tcp&headerType=none#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.231:38388#Delta-Kronecker
+trojan://d7fdbf6d-6c9b-41af-924f-5944cd88dcf5@dl-us2.steamdownload.top:443#Delta-Kronecker
+vless://bcc53d6e-4ff9-4e19-8145-7fbb298f2c56@174.136.205.68:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
+vmess://eyJhZGQiOiI0NS45MC4xMDYuMjQiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiY2hyb21lIiwiaG9zdCI6IiIsImlkIjoiNWMwNDBmMWQtNDVkYi00M2JkLThkNDYtZTQ5NTBlNDMzNzM1IiwiaW5zZWN1cmUiOiIxIiwibmV0IjoidGNwIiwicGF0aCI6IiIsInBvcnQiOiIxMjM0IiwicHMiOiJEZWx0YS1Lcm9uZWNrZXIiLCJzY3kiOiJhZXMtMTI4LWdjbSIsInNuaSI6InN1cGVydnBuLnN1cGVyLmNvbSIsInRscyI6InRscyIsInR5cGUiOiJub25lIiwidiI6IjIifQ==
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.113:38388#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.129:38388#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@217.60.252.232:2053?path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&encryption=none&insecure=0&host=sni.111000.v6.navy&type=ws&allowInsecure=0&sni=sni.111000.v6.navy#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.232:38388%20 #Delta-Kronecker
+ss://YWVzLTI1Ni1nY206bktlRTJaRldWYUU0RHlqUg@154.38.176.7:80%20 #Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.155.133:38388%20 #Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.21:38388#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@185.241.41.72:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@193.29.139.157:8080#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@154.38.116.8:443?encryption=none&security=tls&sni=sni.111000.indevs.in&fp=chrome&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560#Delta-Kronecker
+vless://eaca6b0a-9728-5766-8fb0-0be81c1b7c91@5.129.249.134:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ir.ozone.ru&fp=chrome&pbk=F14RpPKCKo_qPcW7EFVu1M18JsAT8c04O08cIi0Ghg4&sid=ab1cd2&packetEncoding=xudp#Delta-Kronecker
+trojan://bpb-trojan@172.67.238.207:443/?type=tcp&security=tls&sni=bpb.my79801.com&allowInsecure=1#Delta-Kronecker
+vless://26524cce-d514-4014-a426-365fb266a14d@208.103.161.232:2096?encryption=none&security=tls&sni=WangCai.443888.xyz&insecure=0&allowInsecure=0&type=ws&host=WangCai.443888.xyz&path=%2Fdanfeng%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@198.11.175.88:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+trojan://4843e94d205f3893f588255a591abe94@160.16.72.205:1933?security=tls&sni=www.nintendogames.net#Delta-Kronecker
+vless://a5db5a13-1bf2-4b28-88d4-5b385ece52ed@58.152.58.216:20295?security=reality&flow=xtls-rprx-vision&sni=swdist.apple.com&type=tcp&fp=ios&pbk=uw3OxiklmD3l7W_KaOWu9GpNxJwvxErfVZQHyL1IH0s&sid=01af1ac2395e#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTp4WWFVc01MeThPSjFoOHpwZ0k1RXJ3@216.105.168.18:443/?outline=1&prefix= ¨#Delta-Kronecker
+vless://853d23ee-38c6-41bb-a51c-8aea6a25b0bd@tes1.api-tel.xyz:50855?encryption=none&security=reality&sni=ea.com&fp=chrome&pbk=3iQ5QX52pIjouDXoPSfrQRvpqaOTqG26IJLctU7McAY&sid=02&spx=/&type=tcp&headerType=none#Delta-Kronecker
+trojan://573bf780-4684-11f0-bda5-1239d0255272@uk1.test3.net:443?security=tls&headerType=none&type=tcp #Delta-Kronecker
+vless://001c68ea-7186-4d3e-863b-7b513e73e7a0@37.139.42.131:4443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=qq&pbk=dZhZUzUZazKuWXXVfDk5Vm1X7rMDlTLiGCVq1OechlY&sid=1421a22b7618d51d&sni=google.com&path=&host=#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.59:38388%20 #Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.148:38388#Delta-Kronecker
+vless://87f106c2-0c97-44ce-9047-8570bee51175@vpn.lumanetwork.cloud:10004?security=&encryption=none&headerType=&type=tcp#Delta-Kronecker
+vless://be795528-3696-49d6-9267-52e04420ed27@osn.takovpn.ru:443?type=tcp&security=reality&encryption=none&fp=chrome&pbk=ihtXyG0UidSbXjvCJXUhABwZGCCB62DUsVBFn_qVd3g&sid=9de7&sni=google.com#Delta-Kronecker
+trojan://ZblhWr0mqMakCPg.N@212.193.18.144:36158?security=tls&sni=ya.ru#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@66.253.7.79:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#Delta-Kronecker
+ss://YWVzLTI1Ni1jZmI6WG44aktkbURNMDBJZU8lIyQjZkpBTXRzRUFFVU9wSC9ZV1l0WXFERm5UMFNW@103.186.154.186:38388%20 #Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTowOGU0MDkwYmM0NmZkOGE2@163.171.213.47:46281#Delta-Kronecker
+trojan://3123deb0-4684-11f0-8fc7-1239d0255272@uk1.test3.net:443?security=tls&headerType=none&type=tcp #Delta-Kronecker
+vless://1be0abff-aa62-4e7a-bade-982c593be422@154.31.114.125:443?security=reality&type=tcp&sni=navi.bankrate.com&fp=chrome&sid=2da72ce6&pbk=UT9tFQOdy54SeW_tg-XQN3QkGYoWUpO_88XFXijkrXc#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@64.176.55.11:443?encryption=none&security=tls&sni=sni.111000.indevs.in&fp=chrome&insecure=1&type=ws&host=sni.111000.indevs.in&path=/?ed=2560&telegram🇨🇳#Delta-Kronecker
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpBUmd2R1p5d0ErZ2FjZ0dWMjZCdm11MDUrd1ptUlcvaitBZFUrWjhCdDQ0PQ@38.54.57.90:990#Delta-Kronecker
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@160.153.138.204:443?encryption=none&security=tls&sni=sni.111000.indevs.in&insecure=0&allowInsecure=0&type=ws&host=sni.111000.indevs.in&path=/?ed=2560&Telegram🇨🇳#Delta-Kronecker
