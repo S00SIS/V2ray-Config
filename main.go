@@ -109,16 +109,18 @@ type ClashProxy struct {
 	TLS            bool     `yaml:"tls"`
 	SkipCertVerify bool     `yaml:"skip-cert-verify"`
 	SNI            string   `yaml:"servername"`
+	SniAlt         string   `yaml:"sni"`
 	Fingerprint    string   `yaml:"client-fingerprint"`
+	FingerprintAlt string   `yaml:"fingerprint"`
 	ALPN           []string `yaml:"alpn"`
 
-	Network         string                `yaml:"network"`
-	WSOpts          *ClashWSOpts          `yaml:"ws-opts"`
-	GRPCOpts        *ClashGRPCOpts        `yaml:"grpc-opts"`
-	H2Opts          *ClashH2Opts          `yaml:"h2-opts"`
-	HTTPOpts        *ClashHTTPOpts        `yaml:"http-opts"`
-	HTTPUpgradeOpts *ClashHTTPUpgradeOpts `yaml:"httpupgrade-opts"`
-	SplitHTTPOpts   *ClashSplitHTTPOpts   `yaml:"splithttp-opts"`
+	Network           string                `yaml:"network"`
+	WSOpts            *ClashWSOpts          `yaml:"ws-opts"`
+	GRPCOpts          *ClashGRPCOpts        `yaml:"grpc-opts"`
+	H2Opts            *ClashH2Opts          `yaml:"h2-opts"`
+	HTTPOpts          *ClashHTTPOpts        `yaml:"http-opts"`
+	HTTPUpgradeOpts   *ClashHTTPUpgradeOpts `yaml:"httpupgrade-opts"`
+	SplitHTTPOpts     *ClashSplitHTTPOpts   `yaml:"splithttp-opts"`
 
 	Flow        string            `yaml:"flow"`
 	RealityOpts *ClashRealityOpts `yaml:"reality-opts"`
@@ -144,6 +146,7 @@ type ClashProxy struct {
 type clashConfigWrapper struct {
 	Proxies    []ClashProxy `yaml:"proxies"`
 	ProxiesOld []ClashProxy `yaml:"Proxy"`
+	ProxiesP   []ClashProxy `yaml:"proxy"`
 }
 
 var cfg Settings
@@ -596,6 +599,23 @@ func clashGRPCService(opts *ClashGRPCOpts) string {
 	return opts.ServiceName
 }
 
+func clashSNI(p ClashProxy) string {
+	if p.SNI != "" {
+		return p.SNI
+	}
+	if p.SniAlt != "" {
+		return p.SniAlt
+	}
+	return p.Server
+}
+
+func clashFingerprint(p ClashProxy) string {
+	if p.Fingerprint != "" {
+		return p.Fingerprint
+	}
+	return p.FingerprintAlt
+}
+
 func clashTransportParams(p ClashProxy, q url.Values) {
 	network := strings.ToLower(p.Network)
 	if network == "" {
@@ -677,10 +697,7 @@ func clashVMessToURI(p ClashProxy) string {
 		tlsVal = "tls"
 	}
 
-	sni := p.SNI
-	if sni == "" {
-		sni = p.Server
-	}
+	sni := clashSNI(p)
 
 	path := "/"
 	host := ""
@@ -751,10 +768,7 @@ func clashVLessToURI(p ClashProxy) string {
 		security = "tls"
 	}
 
-	sni := p.SNI
-	if sni == "" {
-		sni = p.Server
-	}
+	sni := clashSNI(p)
 
 	q := url.Values{}
 	clashTransportParams(p, q)
@@ -762,8 +776,8 @@ func clashVLessToURI(p ClashProxy) string {
 
 	if security != "none" {
 		q.Set("sni", sni)
-		if p.Fingerprint != "" {
-			q.Set("fp", p.Fingerprint)
+		if fp := clashFingerprint(p); fp != "" {
+			q.Set("fp", fp)
 		}
 		if len(p.ALPN) > 0 {
 			q.Set("alpn", strings.Join(p.ALPN, ","))
@@ -787,16 +801,13 @@ func clashTrojanToURI(p ClashProxy) string {
 	}
 	portStr := clashPortStr(p.Port)
 
-	sni := p.SNI
-	if sni == "" {
-		sni = p.Server
-	}
+	sni := clashSNI(p)
 
 	q := url.Values{}
 	clashTransportParams(p, q)
 	q.Set("sni", sni)
-	if p.Fingerprint != "" {
-		q.Set("fp", p.Fingerprint)
+	if fp := clashFingerprint(p); fp != "" {
+		q.Set("fp", fp)
 	}
 	if len(p.ALPN) > 0 {
 		q.Set("alpn", strings.Join(p.ALPN, ","))
@@ -812,13 +823,64 @@ func clashSSToURI(p ClashProxy) string {
 	}
 	portStr := clashPortStr(p.Port)
 
-	if p.Plugin == "v2ray-plugin" {
-		return ""
+	// SIP002 format: ss://BASE64(method:password)@host:port[/?plugin]#name
+	userInfo := base64.StdEncoding.EncodeToString([]byte(p.Cipher + ":" + p.Password))
+	q := url.Values{}
+
+	switch p.Plugin {
+	case "obfs":
+		mode := ""
+		host := ""
+		if p.PluginOpts != nil {
+			if m, ok := p.PluginOpts["mode"].(string); ok {
+				mode = m
+			}
+			if h, ok := p.PluginOpts["host"].(string); ok {
+				host = h
+			}
+		}
+		pluginStr := "obfs-local"
+		if mode != "" {
+			pluginStr += ";obfs=" + mode
+		}
+		if host != "" {
+			pluginStr += ";obfs-host=" + host
+		}
+		q.Set("plugin", pluginStr)
+	case "v2ray-plugin":
+		// v2ray-plugin with ws mode can be encoded in URI
+		if p.PluginOpts != nil {
+			mode, _ := p.PluginOpts["mode"].(string)
+			if mode == "websocket" || mode == "" {
+				pluginStr := "v2ray-plugin"
+				wsPath := "/"
+				if pt, ok := p.PluginOpts["path"].(string); ok && pt != "" {
+					wsPath = pt
+				}
+				wsHost := p.Server
+				if h, ok := p.PluginOpts["host"].(string); ok && h != "" {
+					wsHost = h
+				}
+				tls, _ := p.PluginOpts["tls"].(bool)
+				pluginStr += ";mode=websocket"
+				pluginStr += ";path=" + wsPath
+				pluginStr += ";host=" + wsHost
+				if tls {
+					pluginStr += ";tls"
+				}
+				q.Set("plugin", pluginStr)
+			} else {
+				// quic or other modes not universally supported
+				return ""
+			}
+		}
 	}
 
-	userInfo := base64.StdEncoding.EncodeToString([]byte(p.Cipher + ":" + p.Password))
-	return fmt.Sprintf("ss://%s@%s:%s#%s",
-		userInfo, p.Server, portStr, url.PathEscape(p.Name))
+	uri := fmt.Sprintf("ss://%s@%s:%s", userInfo, p.Server, portStr)
+	if len(q) > 0 {
+		uri += "?" + q.Encode()
+	}
+	return uri + "#" + url.PathEscape(p.Name)
 }
 
 func clashSSRToURI(p ClashProxy) string {
@@ -859,11 +921,7 @@ func clashHy2ToURI(p ClashProxy) string {
 		return ""
 	}
 	portStr := clashPortStr(p.Port)
-
-	sni := p.SNI
-	if sni == "" {
-		sni = p.Server
-	}
+	sni := clashSNI(p)
 
 	q := url.Values{}
 	q.Set("sni", sni)
@@ -894,14 +952,8 @@ func clashHyToURI(p ClashProxy) string {
 		return ""
 	}
 	portStr := clashPortStr(p.Port)
-
-	sni := p.SNI
-	if sni == "" {
-		sni = p.Server
-	}
-
+	sni := clashSNI(p)
 	up := clashBandwidthMbps(p.Up)
-	down := clashBandwidthMbps(p.Down)
 
 	q := url.Values{}
 	q.Set("peer", sni)
@@ -926,11 +978,7 @@ func clashTUICToURI(p ClashProxy) string {
 	if password == "" {
 		password = p.Token
 	}
-
-	sni := p.SNI
-	if sni == "" {
-		sni = p.Server
-	}
+	sni := clashSNI(p)
 
 	q := url.Values{}
 	q.Set("sni", sni)
@@ -968,15 +1016,29 @@ func clashProxyToURI(p ClashProxy) string {
 
 func isClashYAML(content string) bool {
 	limit := len(content)
-	if limit > 4096 {
-		limit = 4096
+	if limit > 8192 {
+		limit = 8192
 	}
 	head := content[:limit]
+	// Check for proxies list header in various formats
 	for _, line := range strings.Split(head, "\n") {
 		t := strings.TrimSpace(line)
-		if t == "proxies:" || strings.HasPrefix(t, "proxies:") ||
-			t == "Proxy:" || strings.HasPrefix(t, "Proxy:") ||
-			t == "proxy:" || strings.HasPrefix(t, "proxy:") {
+		switch t {
+		case "proxies:", "Proxies:", "proxy:", "Proxy:":
+			return true
+		}
+		if strings.HasPrefix(t, "proxies:") || strings.HasPrefix(t, "Proxy:") {
+			return true
+		}
+	}
+	// Check for inline proxy type markers (proxy-provider format)
+	for _, marker := range []string{
+		"type: vmess", "type: vless", "type: trojan",
+		"type: ss\n", "type: ss\r", "type: ssr",
+		"type: hysteria2", "type: hysteria\n", "type: hysteria\r",
+		"type: tuic",
+	} {
+		if strings.Contains(head, marker) {
 			return true
 		}
 	}
@@ -992,6 +1054,9 @@ func parseClashYAML(content string) []string {
 	proxies := wrapper.Proxies
 	if len(proxies) == 0 {
 		proxies = wrapper.ProxiesOld
+	}
+	if len(proxies) == 0 {
+		proxies = wrapper.ProxiesP
 	}
 	if len(proxies) == 0 {
 		return nil
@@ -1466,6 +1531,9 @@ func validateAll(lines []string) []configResult {
 			var wg sync.WaitGroup
 			batchStart := time.Now()
 
+			// CPU sample t0: taken right before workers start
+			cpuT0, cpuT0ok := readCPUSample()
+
 			for i, line := range batch {
 				wg.Add(1)
 				go func(idx int, l string) {
@@ -1481,40 +1549,45 @@ func validateAll(lines []string) []configResult {
 
 			wg.Wait()
 
-			cpuBefore, cpuOK := readCPUSample()
+			// CPU sample t1: right after workers finish (before kill) — interval is the batch duration
+			cpuT1, cpuT1ok := readCPUSample()
 			memBefore := readMemStats()
 			procsBefore := countSingboxProcs()
 			occupiedBefore := checkOccupiedPorts(v.BasePort, actualBatchSize)
+
+			var cpuBatchPct float64
+			if cpuT0ok && cpuT1ok {
+				cpuBatchPct = cpuPercent(cpuT0, cpuT1)
+			}
 
 			bt.killAll()
 			if v.ProcessKillWaitMs > 0 {
 				time.Sleep(time.Duration(v.ProcessKillWaitMs) * time.Millisecond)
 			}
 
-			var cpuAfterVal float64
+			// CPU sample t2: after kill+wait — compare with t1 to see drop
+			cpuT2, cpuT2ok := readCPUSample()
 			memAfter := readMemStats()
 			procsAfter := countSingboxProcs()
 			occupiedAfter := checkOccupiedPorts(v.BasePort, actualBatchSize)
 
-			if cpuOK {
-				cpuAfter, ok2 := readCPUSample()
-				if ok2 {
-					cpuAfterVal = cpuPercent(cpuBefore, cpuAfter)
-				}
+			var cpuAfterPct float64
+			if cpuT1ok && cpuT2ok {
+				cpuAfterPct = cpuPercent(cpuT1, cpuT2)
 			}
 
-			fmt.Printf("     🖥️  Before kill — procs:%d  occupied-ports:%d  RAM:%dMB/%dMB\n",
-				procsBefore, len(occupiedBefore), memBefore.usedMB, memBefore.totalMB)
+			fmt.Printf("     🖥️  Before kill — procs:%-3d  ports-busy:%-3d  RAM:%dMB/%dMB  CPU:%.1f%%\n",
+				procsBefore, len(occupiedBefore), memBefore.usedMB, memBefore.totalMB, cpuBatchPct)
 
 			if procsAfter > 0 || len(occupiedAfter) > 0 {
-				fmt.Printf("     ⚠️  After kill  — procs:%d  occupied-ports:%d  RAM:%dMB/%dMB  CPU:%.1f%%\n",
-					procsAfter, len(occupiedAfter), memAfter.usedMB, memAfter.totalMB, cpuAfterVal)
+				fmt.Printf("     ⚠️  After kill  — procs:%-3d  ports-busy:%-3d  RAM:%dMB/%dMB  CPU:%.1f%%\n",
+					procsAfter, len(occupiedAfter), memAfter.usedMB, memAfter.totalMB, cpuAfterPct)
 				if len(occupiedAfter) > 0 && len(occupiedAfter) <= 20 {
-					fmt.Printf("     ⚠️  Still-occupied ports: %v\n", occupiedAfter)
+					fmt.Printf("     ⚠️  Still-busy ports: %v\n", occupiedAfter)
 				}
 			} else {
-				fmt.Printf("     ✅ After kill  — procs:0  occupied-ports:0  RAM:%dMB/%dMB  CPU:%.1f%%\n",
-					memAfter.usedMB, memAfter.totalMB, cpuAfterVal)
+				fmt.Printf("     ✅ After kill  — procs:0    ports-busy:0    RAM:%dMB/%dMB  CPU:%.1f%%\n",
+					memAfter.usedMB, memAfter.totalMB, cpuAfterPct)
 			}
 
 			var bPassed, bFailed, bParse, bStart, bConn int
