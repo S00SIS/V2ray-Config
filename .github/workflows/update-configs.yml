@@ -16,6 +16,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0  # Fetch all history for proper merging
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Setup Go
       uses: actions/setup-go@v5
@@ -87,18 +88,19 @@ jobs:
 
     - name: Commit and Push
       run: |
+        # Configure git
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
+        
+        # First, pull latest changes
+        git pull origin main --rebase --autostash
+        
+        # Now add and commit our changes
         git add config/ README.md
         
         # Only commit if there are changes
         if ! git diff --staged --quiet; then
           git commit -m "Update configs [$(date -u '+%Y-%m-%d %H:%M UTC')]"
-          
-          # Pull latest changes with rebase to avoid merge conflicts
-          git pull --rebase origin main
-          
-          # Push changes
           git push origin main
         else
           echo "No changes to commit"
