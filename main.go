@@ -1494,14 +1494,16 @@ func parseShadowsocks(raw string) (string, string) {
 
 	// Fast path: try url.Parse for standard ss://method:pass@host:port format.
 	// This handles the case where userinfo contains `:` and is NOT base64.
+	fastPathOK := false
 	if fastU, err := url.Parse("ss://" + trimmed); err == nil &&
 		fastU.User != nil && fastU.Hostname() != "" {
 		uname := fastU.User.Username()
 		pwd, hasPwd := fastU.User.Password()
 		host := fastU.Hostname()
 		portStr := fastU.Port()
-		if portStr == "" { portStr = "443" }
-		// uname may be plain "method" or base64("method:pass") or "method" when hasPwd
+		if portStr == "" {
+			portStr = "443"
+		}
 		var m, p string
 		if hasPwd {
 			m, p = uname, pwd
@@ -1510,58 +1512,51 @@ func parseShadowsocks(raw string) (string, string) {
 			if d, derr := decodeBase64([]byte(uname)); derr == nil && strings.Contains(d, ":") {
 				parts := strings.SplitN(d, ":", 2)
 				m, p = parts[0], parts[1]
-			} else {
-				// fallthrough to legacy parsing below
-				goto legacyParseSS
 			}
 		}
 		if m != "" && host != "" {
-			pVal, perr := toPort(portStr)
-			if perr == nil {
-				method, password, server, port = strings.ToLower(m), p, host, pVal
-				goto validateSSCipher
+			if pVal, perr := toPort(portStr); perr == nil {
+				method, password, server, port = m, p, host, pVal
+				fastPathOK = true
 			}
 		}
 	}
-legacyParseSS:
 
-	atIdx := strings.LastIndex(trimmed, "@")
-	if atIdx == -1 {
-		// Format: ss://BASE64(method:password@host:port)
-		decoded, err := decodeBase64([]byte(trimmed))
-		if err != nil {
-			// Not valid base64 - treat as plaintext method:password@host:port
-			decoded = trimmed
+	if !fastPathOK {
+		atIdx := strings.LastIndex(trimmed, "@")
+		if atIdx == -1 {
+			decoded, err := decodeBase64([]byte(trimmed))
+			if err != nil {
+				decoded = trimmed
+			}
+			atIdx2 := strings.LastIndex(decoded, "@")
+			if atIdx2 == -1 {
+				return "", "missing @"
+			}
+			userPart := decoded[:atIdx2]
+			hostPart := decoded[atIdx2+1:]
+			if idx := strings.Index(hostPart, "?"); idx != -1 {
+				hostPart = hostPart[:idx]
+			}
+			m, p, s, po, e := ssParseUserAndHost(userPart, hostPart)
+			if e != "" {
+				return "", e
+			}
+			method, password, server, port = m, p, s, po
+		} else {
+			userPart := trimmed[:atIdx]
+			hostPart := trimmed[atIdx+1:]
+			if idx := strings.Index(hostPart, "?"); idx != -1 {
+				hostPart = hostPart[:idx]
+			}
+			m, p, s, po, e := ssParseUserAndHost(userPart, hostPart)
+			if e != "" {
+				return "", e
+			}
+			method, password, server, port = m, p, s, po
 		}
-		atIdx2 := strings.LastIndex(decoded, "@")
-		if atIdx2 == -1 {
-			return "", "missing @"
-		}
-		userPart := decoded[:atIdx2]
-		hostPart := decoded[atIdx2+1:]
-		if idx := strings.Index(hostPart, "?"); idx != -1 {
-			hostPart = hostPart[:idx]
-		}
-		m, p, s, po, e := ssParseUserAndHost(userPart, hostPart)
-		if e != "" {
-			return "", e
-		}
-		method, password, server, port = m, p, s, po
-	} else {
-		userPart := trimmed[:atIdx]
-		hostPart := trimmed[atIdx+1:]
-		if idx := strings.Index(hostPart, "?"); idx != -1 {
-			hostPart = hostPart[:idx]
-		}
-		// Handle IPv6 host in brackets for hostPart
-		m, p, s, po, e := ssParseUserAndHost(userPart, hostPart)
-		if e != "" {
-			return "", e
-		}
-		method, password, server, port = m, p, s, po
 	}
 
-validateSSCipher:
 	method = strings.ToLower(method)
 	if !singboxSupportedSSCiphers[method] {
 		return "", fmt.Sprintf("unsupported cipher: %s", method)
