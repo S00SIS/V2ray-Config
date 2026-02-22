@@ -751,7 +751,7 @@ func classifyFailReason(reason string) string {
 		if i := strings.Index(body, " | SINGBOX:"); i != -1 { body = body[:i] }
 		switch {
 		case strings.Contains(body, "context deadline exceeded"), strings.Contains(body, "context canceled"):
-			return "CONN › timeout (global deadline exceeded)"
+			return "CONN › request timed out (no response from proxy)"
 		case strings.Contains(body, "connection refused"):
 			return "CONN › connection refused (proxy died)"
 		case strings.Contains(body, "EOF"):
@@ -762,12 +762,16 @@ func classifyFailReason(reason string) string {
 			return "CONN › i/o timeout"
 		case strings.Contains(body, "tls:"), strings.Contains(body, "TLS"), strings.Contains(body, "certificate"):
 			return "CONN › TLS handshake failed"
+		case body == "HTTP_502":
+			return "CONN › HTTP 502 (proxy server rejected CONNECT)"
+		case body == "HTTP_501":
+			return "CONN › HTTP 501 (proxy server doesn't support CONNECT)"
 		case strings.Contains(body, "HTTP_"):
 			return "CONN › unexpected HTTP status: " + body
 		case strings.Contains(body, "proxyconnect"):
 			return "CONN › proxy CONNECT failed"
 		case strings.Contains(body, "context expired"):
-			return "CONN › context expired before request"
+			return "CONN › test URL timed out (proxy dead or unreachable)"
 		default:
 			if len(body) > 55 { body = body[:55] + "…" }
 			return "CONN › " + body
@@ -1051,15 +1055,15 @@ func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRet
 	// For proxy validation, HTTPS (CONNECT tunnel) must be used.
 	// Plain HTTP through proxy uses HTTP-forward mode which sing-box proxies
 	// don't support and return 502. Auto-upgrade any http:// → https://.
+	// Replace http:// with https:// — plain HTTP through proxy uses HTTP-forward
+	// mode which sing-box doesn't support (returns 502). HTTPS uses CONNECT tunnel.
+	// Do NOT keep the http:// version: trying both wastes time and causes
+	// "context expired" on the second URL when the HTTPS attempt times out.
 	effectiveURLs := make([]string, 0, len(testURLs))
 	seen := make(map[string]bool)
 	for _, u := range testURLs {
 		if strings.HasPrefix(u, "http://") {
-			httpsVer := "https://" + u[len("http://"):]
-			if !seen[httpsVer] {
-				effectiveURLs = append(effectiveURLs, httpsVer)
-				seen[httpsVer] = true
-			}
+			u = "https://" + u[len("http://"):]
 		}
 		if !seen[u] {
 			effectiveURLs = append(effectiveURLs, u)
@@ -1249,15 +1253,50 @@ func parseVMess(raw string) (string, string) {
 			return "", "json: " + err.Error()
 		}
 	} else {
-		// Try base64 → JSON first regardless of whether "@" appears in data.
-		// Some base64 payloads contain "=" padding followed by garbage (e.g., "@name"),
-		// which should still be decoded as base64 JSON.
-		decodedStr, b64Err := decodeBase64([]byte(data))
-		var tmp map[string]interface{}
-		if b64Err == nil && json.Unmarshal([]byte(decodedStr), &tmp) == nil {
-			// Valid base64 JSON
-			d = tmp
-		} else {
+		// Try base64 candidates in order:
+		//  1. Full data          (normal: vmess://eyJ...)
+		//  2. data[:lastAtIdx]   (channel-suffix: vmess://eyJ...==@ChannelName)
+		// For each candidate, try base64 → JSON. If both fail, fall to URI.
+		var tryB64 []string
+		tryB64 = append(tryB64, data)
+		if lastAt := strings.LastIndex(data, "@"); lastAt > 0 {
+			tryB64 = append(tryB64, data[:lastAt])
+		}
+		// Also try stripping from the first non-base64 character
+		// (handles: eyJ...==@name, eyJ...== name, etc.)
+		{
+			clean := data
+			for i, c := range data {
+				if c != '+' && c != '/' && c != '=' &&
+					c != '-' && c != '_' &&
+					!(c >= 'A' && c <= 'Z') &&
+					!(c >= 'a' && c <= 'z') &&
+					!(c >= '0' && c <= '9') {
+					clean = data[:i]
+					break
+				}
+			}
+			if clean != data && clean != "" {
+				tryB64 = append(tryB64, clean)
+			}
+		}
+
+		var parsed bool
+		var b64Err error
+		for _, candidate := range tryB64 {
+			var decoded string
+			decoded, b64Err = decodeBase64([]byte(candidate))
+			if b64Err != nil {
+				continue
+			}
+			var tmp map[string]interface{}
+			if json.Unmarshal([]byte(decoded), &tmp) == nil {
+				d = tmp
+				parsed = true
+				break
+			}
+		}
+		if !parsed {
 			// Fall back to URI format (vmess://uuid@host:port?params)
 			atIdx := strings.Index(data, "@")
 			qIdx := strings.Index(data, "?")
@@ -1268,11 +1307,11 @@ func parseVMess(raw string) (string, string) {
 					return "", parseErr
 				}
 			} else {
-				// Neither base64-JSON nor URI format — report root cause
+				// Report root cause
 				if b64Err != nil {
 					return "", "base64: " + b64Err.Error()
 				}
-				return "", "json: invalid (decoded but not a vmess JSON object)"
+				return "", "json: invalid vmess payload"
 			}
 		}
 	}
