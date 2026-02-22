@@ -1048,12 +1048,30 @@ func waitForPort(addr string, maxWait, interval, dialTimeout time.Duration) bool
 }
 
 func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRetries int) (bool, time.Duration, string) {
+	// For proxy validation, HTTPS (CONNECT tunnel) must be used.
+	// Plain HTTP through proxy uses HTTP-forward mode which sing-box proxies
+	// don't support and return 502. Auto-upgrade any http:// → https://.
+	effectiveURLs := make([]string, 0, len(testURLs))
+	seen := make(map[string]bool)
+	for _, u := range testURLs {
+		if strings.HasPrefix(u, "http://") {
+			httpsVer := "https://" + u[len("http://"):]
+			if !seen[httpsVer] {
+				effectiveURLs = append(effectiveURLs, httpsVer)
+				seen[httpsVer] = true
+			}
+		}
+		if !seen[u] {
+			effectiveURLs = append(effectiveURLs, u)
+			seen[u] = true
+		}
+	}
 	var lastErr string
 	for attempt := 0; attempt <= maxRetries; attempt++ {
 		if ctx.Err() != nil {
 			return false, 0, "context expired"
 		}
-		for _, testURL := range testURLs {
+		for _, testURL := range effectiveURLs {
 			if ctx.Err() != nil {
 				return false, 0, "context expired"
 			}
@@ -1218,33 +1236,44 @@ func parseVMess(raw string) (string, string) {
 	}
 	data = strings.TrimSpace(data)
 
-	// Detect URI format: vmess://uuid@host:port?...
-	// The @ must appear before any ? and before { (not a JSON)
-	atIdx := strings.Index(data, "@")
-	qIdx := strings.Index(data, "?")
-	isURI := atIdx != -1 && !strings.HasPrefix(data, "{") && (qIdx == -1 || atIdx < qIdx)
+	// Detection order:
+	//  1. Raw JSON  (vmess://{...})
+	//  2. Base64 JSON  (most common: vmess://eyJ...)
+	//  3. URI format  (vmess://uuid@host:port?...) - only if above fail
 
 	var d map[string]interface{}
-	if isURI {
-		var parseErr string
-		d, parseErr = parseVMessURItoD(data)
-		if parseErr != "" {
-			return "", parseErr
+
+	if strings.HasPrefix(data, "{") {
+		// Raw JSON
+		if err := json.Unmarshal([]byte(data), &d); err != nil {
+			return "", "json: " + err.Error()
 		}
 	} else {
-		var jsonStr string
-		// Some sources provide vmess://{ raw JSON } without base64
-		if strings.HasPrefix(data, "{") {
-			jsonStr = data
+		// Try base64 → JSON first regardless of whether "@" appears in data.
+		// Some base64 payloads contain "=" padding followed by garbage (e.g., "@name"),
+		// which should still be decoded as base64 JSON.
+		decodedStr, b64Err := decodeBase64([]byte(data))
+		var tmp map[string]interface{}
+		if b64Err == nil && json.Unmarshal([]byte(decodedStr), &tmp) == nil {
+			// Valid base64 JSON
+			d = tmp
 		} else {
-			decoded, err := decodeBase64([]byte(data))
-			if err != nil {
-				return "", "base64: " + err.Error()
+			// Fall back to URI format (vmess://uuid@host:port?params)
+			atIdx := strings.Index(data, "@")
+			qIdx := strings.Index(data, "?")
+			if atIdx != -1 && (qIdx == -1 || atIdx < qIdx) {
+				var parseErr string
+				d, parseErr = parseVMessURItoD(data)
+				if parseErr != "" {
+					return "", parseErr
+				}
+			} else {
+				// Neither base64-JSON nor URI format — report root cause
+				if b64Err != nil {
+					return "", "base64: " + b64Err.Error()
+				}
+				return "", "json: invalid (decoded but not a vmess JSON object)"
 			}
-			jsonStr = decoded
-		}
-		if err := json.Unmarshal([]byte(jsonStr), &d); err != nil {
-			return "", "json: " + err.Error()
 		}
 	}
 	server := strings.TrimSpace(fmt.Sprintf("%v", d["add"]))
@@ -1463,6 +1492,39 @@ func parseShadowsocks(raw string) (string, string) {
 	var method, password, server string
 	var port int
 
+	// Fast path: try url.Parse for standard ss://method:pass@host:port format.
+	// This handles the case where userinfo contains `:` and is NOT base64.
+	if fastU, err := url.Parse("ss://" + trimmed); err == nil &&
+		fastU.User != nil && fastU.Hostname() != "" {
+		uname := fastU.User.Username()
+		pwd, hasPwd := fastU.User.Password()
+		host := fastU.Hostname()
+		portStr := fastU.Port()
+		if portStr == "" { portStr = "443" }
+		// uname may be plain "method" or base64("method:pass") or "method" when hasPwd
+		var m, p string
+		if hasPwd {
+			m, p = uname, pwd
+		} else {
+			// uname might be base64(method:pass)
+			if d, derr := decodeBase64([]byte(uname)); derr == nil && strings.Contains(d, ":") {
+				parts := strings.SplitN(d, ":", 2)
+				m, p = parts[0], parts[1]
+			} else {
+				// fallthrough to legacy parsing below
+				goto legacyParseSS
+			}
+		}
+		if m != "" && host != "" {
+			pVal, perr := toPort(portStr)
+			if perr == nil {
+				method, password, server, port = strings.ToLower(m), p, host, pVal
+				goto validateSSCipher
+			}
+		}
+	}
+legacyParseSS:
+
 	atIdx := strings.LastIndex(trimmed, "@")
 	if atIdx == -1 {
 		// Format: ss://BASE64(method:password@host:port)
@@ -1499,6 +1561,7 @@ func parseShadowsocks(raw string) (string, string) {
 		method, password, server, port = m, p, s, po
 	}
 
+validateSSCipher:
 	method = strings.ToLower(method)
 	if !singboxSupportedSSCiphers[method] {
 		return "", fmt.Sprintf("unsupported cipher: %s", method)
@@ -1512,31 +1575,45 @@ func parseShadowsocks(raw string) (string, string) {
 
 // ssParseUserAndHost extracts method, password, server, port from the two halves of an SS URL.
 func ssParseUserAndHost(userPart, hostPart string) (method, password, server string, port int, errMsg string) {
-	// Decode userPart: may be plain "method:password" or base64("method:password")
-	decoded := userPart
-	if !strings.Contains(userPart, ":") {
-		// Probably base64
-		if d, err := decodeBase64([]byte(userPart)); err == nil {
-			decoded = d
-		} else if unescaped, err := url.PathUnescape(userPart); err == nil {
-			if d2, err2 := decodeBase64([]byte(unescaped)); err2 == nil {
-				decoded = d2
-			} else {
-				decoded = unescaped
+	// Decode userPart: may be:
+	//   1. plain "method:password"
+	//   2. base64("method:password")
+	//   3. URL-encoded plain or base64
+	//   4. "base64method:password" (rare split format)
+
+	decodeUser := func(s string) string {
+		// Try base64 decode of whole string (common SIP002 format)
+		if d, err := decodeBase64([]byte(s)); err == nil && strings.Contains(d, ":") {
+			return d
+		}
+		// Try URL-unescape first, then base64
+		if unescaped, err := url.PathUnescape(s); err == nil && unescaped != s {
+			if d, err2 := decodeBase64([]byte(unescaped)); err2 == nil && strings.Contains(d, ":") {
+				return d
+			}
+			if strings.Contains(unescaped, ":") {
+				return unescaped
 			}
 		}
-	} else {
-		// Might still be base64 if it has "=" at end and looks encoded
-		if d, err := decodeBase64([]byte(userPart)); err == nil && strings.Contains(d, ":") {
-			decoded = d
+		// Try base64 decode of only the part before ":" if present
+		if colonIdx := strings.Index(s, ":"); colonIdx != -1 {
+			prefix := s[:colonIdx]
+			suffix := s[colonIdx+1:]
+			if d, err := decodeBase64([]byte(prefix)); err == nil && !strings.Contains(d, ":") {
+				// prefix was base64-encoded method, suffix is password
+				return d + ":" + suffix
+			}
 		}
+		return s
 	}
 
+	decoded := decodeUser(userPart)
+
 	parts := strings.SplitN(decoded, ":", 2)
-	if len(parts) != 2 {
+	if len(parts) != 2 || parts[0] == "" {
 		return "", "", "", 0, "invalid user info"
 	}
-	method = parts[0]
+	method = strings.TrimSpace(parts[0])
 	password = parts[1]
 
 	// Parse host:port
