@@ -128,22 +128,6 @@ proxies:
     sni: "91.132.51.160"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-hy2-002"
-    type: hysteria2
-    server: "129.151.251.122"
-    port: 35000
-    password: "545fb4e9-5794-4e20-be0c-e6d8689f91ac"
-    sni: "www.lamer.com.hk"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-hy2-003"
-    type: hysteria2
-    server: "143.47.32.143"
-    port: 35000
-    password: "545fb4e9-5794-4e20-be0c-e6d8689f91ac"
-    sni: "www.lamer.com.hk"
-    skip-cert-verify: true
-    udp: true
 
 proxy-groups:
   - name: "PROXY"
@@ -163,8 +147,6 @@ proxy-groups:
     lazy: true
     proxies:
       - "Delta-Kronecker-hy2-001"
-      - "Delta-Kronecker-hy2-002"
-      - "Delta-Kronecker-hy2-003"
 
   - name: "Auto"
     type: url-test
@@ -174,8 +156,6 @@ proxy-groups:
     lazy: true
     proxies:
       - "Delta-Kronecker-hy2-001"
-      - "Delta-Kronecker-hy2-002"
-      - "Delta-Kronecker-hy2-003"
 
   - name: "Fallback"
     type: fallback
@@ -184,8 +164,6 @@ proxy-groups:
     lazy: true
     proxies:
       - "Delta-Kronecker-hy2-001"
-      - "Delta-Kronecker-hy2-002"
-      - "Delta-Kronecker-hy2-003"
 
 rules:
   - MATCH,PROXY

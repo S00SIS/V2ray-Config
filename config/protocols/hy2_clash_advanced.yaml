@@ -67,22 +67,6 @@ proxies:
     sni: "91.132.51.160"
     skip-cert-verify: true
     udp: true
-  - name: "Delta-Kronecker-hy2-002"
-    type: hysteria2
-    server: "129.151.251.122"
-    port: 35000
-    password: "545fb4e9-5794-4e20-be0c-e6d8689f91ac"
-    sni: "www.lamer.com.hk"
-    skip-cert-verify: true
-    udp: true
-  - name: "Delta-Kronecker-hy2-003"
-    type: hysteria2
-    server: "143.47.32.143"
-    port: 35000
-    password: "545fb4e9-5794-4e20-be0c-e6d8689f91ac"
-    sni: "www.lamer.com.hk"
-    skip-cert-verify: true
-    udp: true
 
 proxy-groups:
   # ── Top-level selector ────────────────────────────────────────────────────
@@ -126,8 +110,6 @@ proxy-groups:
     lazy: true
     proxies:
       - "Delta-Kronecker-hy2-001"
-      - "Delta-Kronecker-hy2-002"
-      - "Delta-Kronecker-hy2-003"
 
   - name: "LB-CDN"
     type: load-balance
@@ -138,8 +120,6 @@ proxy-groups:
     lazy: true
     proxies:
       - "Delta-Kronecker-hy2-001"
-      - "Delta-Kronecker-hy2-002"
-      - "Delta-Kronecker-hy2-003"
 
   # ── Fastest-proxy groups ──────────────────────────────────────────────────
   - name: "FAST-ALL"
@@ -150,8 +130,6 @@ proxy-groups:
     lazy: true
     proxies:
       - "Delta-Kronecker-hy2-001"
-      - "Delta-Kronecker-hy2-002"
-      - "Delta-Kronecker-hy2-003"
 
   - name: "FAST-CDN"
     type: url-test
@@ -161,8 +139,6 @@ proxy-groups:
     lazy: true
     proxies:
       - "Delta-Kronecker-hy2-001"
-      - "Delta-Kronecker-hy2-002"
-      - "Delta-Kronecker-hy2-003"
 
   # ── UDP group ─────────────────────────────────────────────────────────────
   - name: "UDP-BEST"
@@ -173,16 +149,12 @@ proxy-groups:
     lazy: true
     proxies:
       - "Delta-Kronecker-hy2-001"
-      - "Delta-Kronecker-hy2-002"
-      - "Delta-Kronecker-hy2-003"
 
   # ── Manual selector ───────────────────────────────────────────────────────
   - name: "MANUAL"
     type: select
     proxies:
       - "Delta-Kronecker-hy2-001"
-      - "Delta-Kronecker-hy2-002"
-      - "Delta-Kronecker-hy2-003"
 
 rules:
   - MATCH,PROXY-BEST
