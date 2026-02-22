@@ -725,23 +725,43 @@ func classifyFailReason(reason string) string {
 	case strings.HasPrefix(r, "CONN:"):
 		body := strings.TrimPrefix(r, "CONN: ")
 		if i := strings.Index(body, " | SINGBOX:"); i != -1 { body = body[:i] }
+		// Go http errors look like: Get "https://host/path": <real error>
+		// or: Get https://host/path: <real error>
+		// Strip the URL wrapper to expose the real cause.
+		if strings.HasPrefix(body, "Get ") {
+			real := body
+			if i := strings.Index(body, `": `); i != -1 {
+				real = body[i+3:]
+			} else if i := strings.LastIndex(body, ": "); i != -1 && i > 10 {
+				real = body[i+2:]
+			}
+			body = real
+		}
 		switch {
 		case strings.Contains(body, "context deadline exceeded"), strings.Contains(body, "context canceled"):
 			return "CONN › request timed out (no response from proxy)"
 		case strings.Contains(body, "connection refused"):
 			return "CONN › connection refused (proxy died)"
+		case body == "EOF" || strings.HasSuffix(body, ": EOF") || body == "unexpected EOF":
+			return "CONN › EOF (proxy closed connection)"
 		case strings.Contains(body, "EOF"):
 			return "CONN › EOF (proxy closed connection)"
 		case strings.Contains(body, "no such host"), strings.Contains(body, "lookup"):
 			return "CONN › DNS resolution failed"
 		case strings.Contains(body, "i/o timeout"):
 			return "CONN › i/o timeout"
+		case strings.Contains(body, "connection reset"):
+			return "CONN › connection reset by peer"
+		case strings.Contains(body, "no route to host"):
+			return "CONN › no route to host"
+		case strings.Contains(body, "network unreachable"):
+			return "CONN › network unreachable"
 		case strings.Contains(body, "tls:"), strings.Contains(body, "TLS"), strings.Contains(body, "certificate"):
 			return "CONN › TLS handshake failed"
 		case body == "HTTP_502":
-			return "CONN › HTTP 502 (proxy server rejected CONNECT)"
+			return "CONN › HTTP 502 (proxy rejected CONNECT)"
 		case body == "HTTP_501":
-			return "CONN › HTTP 501 (proxy server doesn't support CONNECT)"
+			return "CONN › HTTP 501 (no CONNECT support)"
 		case strings.Contains(body, "HTTP_"):
 			return "CONN › unexpected HTTP status: " + body
 		case strings.Contains(body, "proxyconnect"):
@@ -1054,8 +1074,16 @@ func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRet
 			}
 			resp, err := client.Do(req)
 			if err != nil {
-				// Network/tunnel error = proxy is dead or unreachable
-				lastErr = shortenErr(err.Error())
+				e := shortenErr(err.Error())
+				lastErr = e
+				// Connection refused / reset / no route = proxy is definitively dead.
+				// No point trying remaining test URLs.
+				if strings.Contains(e, "connection refused") ||
+					strings.Contains(e, "connection reset") ||
+					strings.Contains(e, "no route to host") ||
+					strings.Contains(e, "network unreachable") {
+					return false, 0, lastErr
+				}
 				continue
 			}
 			latency := time.Since(start)
@@ -2572,8 +2600,17 @@ func extractErr(stderr string) string {
 
 func shortenErr(s string) string {
 	s = strings.ReplaceAll(s, `"`, "")
-	if len(s) > 80 {
-		return s[:80] + "..."
+	// Strip "Get https://host/path: " prefix so the real cause isn't truncated away
+	if strings.HasPrefix(s, "Get ") {
+		if i := strings.Index(s, ": "); i != -1 && i > 10 {
+			real := s[i+2:]
+			// real may be "dial tcp x.x.x.x:443: connect: connection refused"
+			// keep it, it's more useful than the URL prefix
+			s = real
+		}
+	}
+	if len(s) > 100 {
+		return s[:100] + "..."
 	}
 	return s
 }
