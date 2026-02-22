@@ -333,6 +333,170 @@ type configResult struct {
 	proto string
 }
 
+func loadSubsFromFile(path string) []string {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil
+	}
+	var urls []string
+	for _, line := range strings.Split(string(data), "\n") {
+		line = strings.TrimSpace(line)
+		if line != "" && !strings.HasPrefix(line, "#") {
+			urls = append(urls, line)
+		}
+	}
+	return urls
+}
+
+func isLikelyBase64(s string) bool {
+	s = strings.TrimRight(strings.TrimSpace(s), "=")
+	if len(s) < 16 {
+		return false
+	}
+	valid := 0
+	for _, c := range s {
+		if (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') ||
+			(c >= '0' && c <= '9') || c == '+' || c == '/' || c == '-' || c == '_' {
+			valid++
+		} else if c == '\n' || c == '\r' || c == ' ' || c == '\t' {
+			continue
+		} else {
+			return false
+		}
+	}
+	return valid > len(s)/2
+}
+
+func hasProtoPrefix(s string) bool {
+	protos := []string{"vmess://", "vless://", "trojan://", "ss://", "ssr://",
+		"hy2://", "hysteria2://", "hy://", "hysteria://", "tuic://"}
+	for _, p := range protos {
+		if strings.Contains(s, p) {
+			return true
+		}
+	}
+	return false
+}
+
+func extractLines(content string) []string {
+	var lines []string
+	for _, line := range strings.Split(content, "\n") {
+		line = strings.TrimSpace(line)
+		if line != "" {
+			lines = append(lines, line)
+		}
+	}
+	return lines
+}
+
+func smartDecode(content string) []string {
+	trimmed := strings.TrimSpace(content)
+	if hasProtoPrefix(trimmed) {
+		return extractLines(trimmed)
+	}
+	if isLikelyBase64(trimmed) {
+		if decoded, err := decodeBase64([]byte(trimmed)); err == nil {
+			if hasProtoPrefix(decoded) {
+				return extractLines(decoded)
+			}
+			return extractLines(decoded)
+		}
+	}
+	lines := extractLines(trimmed)
+	var result []string
+	for _, line := range lines {
+		lineTrimmed := strings.TrimSpace(line)
+		if hasProtoPrefix(lineTrimmed) {
+			result = append(result, lineTrimmed)
+			continue
+		}
+		if isLikelyBase64(lineTrimmed) {
+			if decoded, err := decodeBase64([]byte(lineTrimmed)); err == nil {
+				for _, dl := range extractLines(decoded) {
+					if hasProtoPrefix(dl) || dl != "" {
+						result = append(result, dl)
+					}
+				}
+				continue
+			}
+		}
+		result = append(result, lineTrimmed)
+	}
+	return result
+}
+
+func fetchAllFromSubs(subURLs []string) ([]string, []string) {
+	const batchSize    = 20
+	const fetchTimeout = 8 * time.Second
+
+	total := len(subURLs)
+	numBatches := (total + batchSize - 1) / batchSize
+	fmt.Printf("📡 Fetching %d sources in %d batches (timeout=%s per source)\n",
+		total, numBatches, fetchTimeout)
+
+	var mu sync.Mutex
+	var lines []string
+	var failed []string
+	var okCount, failCount int
+
+	for batchIdx := 0; batchIdx < numBatches; batchIdx++ {
+		start := batchIdx * batchSize
+		end := start + batchSize
+		if end > total {
+			end = total
+		}
+		batch := subURLs[start:end]
+
+		var wg sync.WaitGroup
+		type batchResult struct {
+			url     string
+			lines   []string
+			err     error
+			status  int
+		}
+		results := make([]batchResult, len(batch))
+
+		for i, u := range batch {
+			wg.Add(1)
+			go func(idx int, rawURL string) {
+				defer wg.Done()
+				fr := fetchRaw(rawURL, fetchTimeout)
+				if fr.err != nil || fr.statusCode != http.StatusOK {
+					results[idx] = batchResult{url: rawURL, err: fr.err, status: fr.statusCode}
+					return
+				}
+				extracted := smartDecode(fr.content)
+				results[idx] = batchResult{url: rawURL, lines: extracted, status: fr.statusCode}
+			}(i, u)
+		}
+		wg.Wait()
+
+		mu.Lock()
+		for _, r := range results {
+			if r.err != nil || r.status != http.StatusOK {
+				status := "error"
+				if r.status > 0 {
+					status = fmt.Sprintf("HTTP %d", r.status)
+				}
+				failCount++
+				failed = append(failed, fmt.Sprintf("%s (%s)", r.url, status))
+				if gLog != nil {
+					gLog.writeLine(fmt.Sprintf("[FETCH] FAIL  %s  status=%s", r.url, status))
+				}
+				continue
+			}
+			okCount++
+			if gLog != nil {
+				gLog.writeLine(fmt.Sprintf("[FETCH] OK    %s  lines=%d", r.url, len(r.lines)))
+			}
+			lines = append(lines, r.lines...)
+		}
+		mu.Unlock()
+	}
+	fmt.Printf("  ✅ Fetch done — ok=%d  fail=%d  total_lines=%d\n", okCount, failCount, len(lines))
+	return lines, failed
+}
+
 func main() {
 	if err := loadSettings("settings.json"); err != nil {
 		fmt.Printf("❌ Failed to load settings.json: %v\n", err)
@@ -369,7 +533,16 @@ func main() {
 	}
 
 	fmt.Println("📡 Fetching configurations from sources...")
-	allConfigs, failedLinks := fetchAll(cfg.Base64Links, cfg.TextLinks)
+	var allConfigs []string
+	var failedLinks []string
+	subURLs := loadSubsFromFile("sub.txt")
+	if len(subURLs) > 0 {
+		fmt.Printf("📋 Loaded %d sources from sub.txt\n", len(subURLs))
+		allConfigs, failedLinks = fetchAllFromSubs(subURLs)
+	} else {
+		fmt.Println("⚠️  sub.txt not found or empty — falling back to settings.json links")
+		allConfigs, failedLinks = fetchAll(cfg.Base64Links, cfg.TextLinks)
+	}
 	fmt.Printf("📊 Total fetched: %d | Failed sources: %d\n", len(allConfigs), len(failedLinks))
 
 	if gLog != nil {
@@ -399,6 +572,7 @@ func prepareOutputDirs() error {
 		"config/batches/v2ray",
 		"config/batches/clash",
 		"config/batches/clash_advanced",
+		"config/special-protocols",
 	}
 	for _, dir := range dirs {
 		if err := os.MkdirAll(dir, 0755); err != nil {
@@ -487,9 +661,8 @@ func fetchAll(base64Links, textLinks []string) ([]string, []string) {
 		}
 		mu.Unlock()
 
-		fmt.Printf("  batch %3d/%d  ok=%-4d fail=%-4d  total_lines=%d\n",
-			batchIdx+1, numBatches, okCount, failCount, len(lines))
 	}
+	fmt.Printf("  ✅ Fetch done — ok=%d  fail=%d  total_lines=%d\n", okCount, failCount, len(lines))
 	return lines, failed
 }
 
@@ -546,6 +719,13 @@ func validateAll(lines []string) []configResult {
 		gInputByProto[p] = len(lines)
 	}
 
+	specialProtos := map[string]bool{"hy": true, "hy2": true, "tuic": true, "ssr": true}
+	for proto, lines := range byProto {
+		if specialProtos[proto] && len(lines) > 0 {
+			writeFile(filepath.Join("config/special-protocols", proto+"_all.txt"), lines)
+		}
+	}
+
 	if gLog != nil {
 		gLog.writeLine(fmt.Sprintf("[DEDUP] removed=%d duplicates", duplicates))
 		total := 0
@@ -588,10 +768,40 @@ func validateAll(lines []string) []configResult {
 				gLog.logProtoStart(proto, len(protoLines))
 			}
 			protoStart := time.Now()
-			fmt.Printf("\n🔵 [%s] Starting — %d configs\n", strings.ToUpper(proto), len(protoLines))
+			protoTotal := int64(len(protoLines))
+			fmt.Printf("\n🔵 [%s] Starting — %d configs\n", strings.ToUpper(proto), protoTotal)
 
 			var wg sync.WaitGroup
 			var protoPassed int64
+			var protoTested int64
+
+			stopBar := make(chan struct{})
+			go func() {
+				barWidth := 25
+				tick := time.NewTicker(200 * time.Millisecond)
+				defer tick.Stop()
+				for {
+					select {
+					case <-stopBar:
+						return
+					case <-tick.C:
+						tested := atomic.LoadInt64(&protoTested)
+						passed := atomic.LoadInt64(&protoPassed)
+						failed := tested - passed
+						pct := 0.0
+						if protoTotal > 0 {
+							pct = float64(tested) / float64(protoTotal) * 100
+						}
+						filled := int(pct / 100 * float64(barWidth))
+						if filled > barWidth {
+							filled = barWidth
+						}
+						bar := strings.Repeat("█", filled) + strings.Repeat("░", barWidth-filled)
+						fmt.Printf("\r  [%s] %5.1f%%  tested=%-7d  ✓%-6d  ✗%-6d",
+							bar, pct, tested, passed, failed)
+					}
+				}
+			}()
 
 			for _, line := range protoLines {
 				l := line
@@ -603,6 +813,7 @@ func validateAll(lines []string) []configResult {
 
 					idx := atomic.AddInt64(&testedCount, 1)
 					res := validate(l, proto)
+					atomic.AddInt64(&protoTested, 1)
 
 					if gLog != nil {
 						gLog.logResult(idx, proto, l, res)
@@ -631,12 +842,13 @@ func validateAll(lines []string) []configResult {
 				}()
 			}
 			wg.Wait()
+			close(stopBar)
+			fmt.Println()
 
 			elapsed := time.Since(protoStart).Seconds()
-			total := int64(len(protoLines))
-			passRate := float64(protoPassed) / float64(total) * 100
+			passRate := float64(protoPassed) / float64(protoTotal) * 100
 			fmt.Printf("✅ [%s] Done — passed=%d/%d (%.1f%%) in %.1fs\n",
-				strings.ToUpper(proto), protoPassed, total, passRate, elapsed)
+				strings.ToUpper(proto), protoPassed, protoTotal, passRate, elapsed)
 		}
 		close(resultsCh)
 	}()
@@ -1136,6 +1348,8 @@ func toSingBoxOutbound(configURL, protocol string) (string, string) {
 		return parseHysteria(configURL)
 	case "tuic":
 		return parseTUIC(configURL)
+	case "ssr":
+		return parseSSR(configURL)
 	}
 	return "", "unsupported protocol: " + protocol
 }
@@ -1786,6 +2000,49 @@ func parseTUIC(raw string) (string, string) {
 		server, port, uuid, password, first(u.Query().Get("sni"), server)), ""
 }
 
+func parseSSR(raw string) (string, string) {
+	// SSR format: ssr://BASE64(host:port:protocol:method:obfs:base64pass[/?params])
+	// sing-box does not support SSR natively — config is collected but not validated.
+	trimmed := strings.TrimPrefix(raw, "ssr://")
+	if trimmed == "" {
+		return "", "empty ssr url"
+	}
+	decoded, err := decodeBase64([]byte(trimmed))
+	if err != nil {
+		return "", "base64: " + err.Error()
+	}
+	// Split off query string
+	params := ""
+	if i := strings.Index(decoded, "/?"); i != -1 {
+		params = decoded[i+2:]
+		decoded = decoded[:i]
+	} else if i := strings.Index(decoded, "?"); i != -1 {
+		params = decoded[i+1:]
+		decoded = decoded[:i]
+	}
+	parts := strings.SplitN(decoded, ":", 6)
+	if len(parts) < 6 {
+		return "", "invalid ssr format (need host:port:protocol:method:obfs:password)"
+	}
+	host, portStr, protocol, method, obfs, b64pass := parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]
+	_ = protocol
+	_ = obfs
+	passDecoded, err := decodeBase64([]byte(b64pass))
+	if err != nil {
+		return "", "base64 password: " + err.Error()
+	}
+	_, err = toPort(portStr)
+	if err != nil {
+		return "", "port: " + err.Error()
+	}
+	_ = host
+	_ = method
+	_ = params
+	_ = passDecoded
+	// sing-box does not support ShadowsocksR — return error so it is skipped in validation
+	return "", "SSR not supported by sing-box (collect-only protocol)"
+}
+
 func coreIdentity(line, protocol string) string {
 	switch protocol {
 	case "vmess":
@@ -1811,6 +2068,20 @@ func coreIdentity(line, protocol string) string {
 		}
 		json.Unmarshal([]byte(jsonStr), &d)
 		return fmt.Sprintf("vmess://%s:%v#%s", d.Add, d.Port, d.ID)
+	case "ssr":
+		data := strings.TrimPrefix(line, "ssr://")
+		if idx := strings.LastIndex(data, "#"); idx != -1 {
+			data = data[:idx]
+		}
+		decoded, err := decodeBase64([]byte(strings.TrimSpace(data)))
+		if err != nil {
+			return line
+		}
+		parts := strings.SplitN(decoded, ":", 6)
+		if len(parts) < 2 {
+			return line
+		}
+		return fmt.Sprintf("ssr://%s:%s", parts[0], parts[1])
 	default:
 		u, err := url.Parse(sanitizeProxyURL(line))
 		if err != nil || u.Hostname() == "" {
@@ -1983,6 +2254,8 @@ func configToClashYAML(line, proto, name string) (string, bool) {
 		return hyClashYAML(line, name)
 	case "tuic":
 		return tuicClashYAML(line, name)
+	case "ssr":
+		return "", false // SSR not supported in Clash YAML
 	}
 	return "", false
 }
@@ -2464,6 +2737,20 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 		if byProtoOut[p] > 0 {
 			fmt.Fprintf(w, "| %s_clash.yaml | [%s_clash.yaml](%s/config/protocols/%s_clash.yaml) |\n",
 				p, p, repoBase, p)
+		}
+	}
+	w.WriteString("\n")
+
+	w.WriteString("---\n\n")
+	w.WriteString("## Special Protocols — All Collected Configs\n\n")
+	w.WriteString("> All collected configs (before validation) for hy, hy2, tuic, ssr.\n\n")
+	fmt.Fprintf(w, "| Protocol | All Collected | Link |\n|---|---|---|\n")
+	specialList := []string{"hy", "hy2", "tuic", "ssr"}
+	for _, p := range specialList {
+		n := gInputByProto[p]
+		if n > 0 {
+			fmt.Fprintf(w, "| %s | %d | [%s_all.txt](%s/config/special-protocols/%s_all.txt) |\n",
+				strings.ToUpper(p), n, p, repoBase, p)
 		}
 	}
 	w.WriteString("\n")
