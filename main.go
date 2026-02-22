@@ -94,9 +94,37 @@ func (bt *batchTracker) killAll() {
 	copy(cmds, bt.cmds)
 	bt.cmds = bt.cmds[:0]
 	bt.mu.Unlock()
+
+	var wg sync.WaitGroup
 	for _, cmd := range cmds {
-		killGroup(cmd)
+		cmd := cmd
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			if cmd.Process == nil {
+				return
+			}
+			pid := cmd.Process.Pid
+			if pgid, err := syscall.Getpgid(pid); err == nil {
+				syscall.Kill(-pgid, syscall.SIGKILL)
+			}
+			cmd.Process.Kill()
+			done := make(chan struct{})
+			go func() {
+				cmd.Wait()
+				close(done)
+			}()
+			select {
+			case <-done:
+			case <-time.After(2 * time.Second):
+				if pgid, err := syscall.Getpgid(pid); err == nil {
+					syscall.Kill(-pgid, syscall.SIGKILL)
+				}
+				syscall.Kill(pid, syscall.SIGKILL)
+			}
+		}()
 	}
+	wg.Wait()
 }
 
 type Logger struct {
@@ -830,6 +858,18 @@ func validateAll(lines []string) []configResult {
 			bt.killAll()
 			if v.ProcessKillWaitMs > 0 {
 				time.Sleep(time.Duration(v.ProcessKillWaitMs) * time.Millisecond)
+			}
+
+			sbProcs := countSingboxProcs()
+			openPorts := checkOpenPorts(v.BasePort, actualBatchSize, v.PortCheckTimeoutMs)
+			if sbProcs > 0 || len(openPorts) > 0 {
+				fmt.Printf("     ⚠️  Cleanup check — sing-box procs still alive: %d | ports still open: %d\n",
+					sbProcs, len(openPorts))
+				if len(openPorts) > 0 && len(openPorts) <= 10 {
+					fmt.Printf("     ⚠️  Open ports: %v\n", openPorts)
+				}
+			} else {
+				fmt.Printf("     ✅ Cleanup OK — 0 sing-box procs | 0 open ports\n")
 			}
 
 			var bPassed, bFailed, bParse, bStart, bConn int
@@ -2882,13 +2922,62 @@ func singBoxPath() string {
 }
 
 func killGroup(cmd *exec.Cmd) {
-	if cmd.Process != nil {
-		if pgid, err := syscall.Getpgid(cmd.Process.Pid); err == nil {
+	if cmd.Process == nil {
+		return
+	}
+	pid := cmd.Process.Pid
+	if pgid, err := syscall.Getpgid(pid); err == nil {
+		syscall.Kill(-pgid, syscall.SIGKILL)
+	}
+	cmd.Process.Kill()
+	done := make(chan struct{})
+	go func() {
+		cmd.Wait()
+		close(done)
+	}()
+	select {
+	case <-done:
+	case <-time.After(2 * time.Second):
+		if pgid, err := syscall.Getpgid(pid); err == nil {
 			syscall.Kill(-pgid, syscall.SIGKILL)
 		}
-		cmd.Process.Kill()
+		syscall.Kill(pid, syscall.SIGKILL)
 	}
-	cmd.Wait()
+}
+
+func countSingboxProcs() int {
+	out, err := exec.Command("pgrep", "-c", "sing-box").Output()
+	if err != nil {
+		return 0
+	}
+	n, _ := strconv.Atoi(strings.TrimSpace(string(out)))
+	return n
+}
+
+func checkOpenPorts(basePort, count int, dialTimeoutMs int) []int {
+	timeout := time.Duration(dialTimeoutMs) * time.Millisecond
+	if timeout <= 0 {
+		timeout = 100 * time.Millisecond
+	}
+	var open []int
+	var mu sync.Mutex
+	var wg sync.WaitGroup
+	for i := 0; i < count; i++ {
+		port := basePort + i
+		wg.Add(1)
+		go func(p int) {
+			defer wg.Done()
+			conn, err := net.DialTimeout("tcp", fmt.Sprintf("127.0.0.1:%d", p), timeout)
+			if err == nil {
+				conn.Close()
+				mu.Lock()
+				open = append(open, p)
+				mu.Unlock()
+			}
+		}(port)
+	}
+	wg.Wait()
+	return open
 }
 
 func extractErr(stderr string) string {
