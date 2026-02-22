@@ -46,6 +46,8 @@ type ValidationSettings struct {
 	BasePort               int      `json:"base_port"`
 	BatchRestMs            int      `json:"batch_rest_ms"`
 	ProcessKillWaitMs      int      `json:"process_kill_wait_ms"`
+	FetchRetryCount        int      `json:"fetch_retry_count"`
+	FetchRetryDelayMs      int      `json:"fetch_retry_delay_ms"`
 	TestURLs               []string `json:"test_urls"`
 }
 
@@ -470,10 +472,19 @@ func fetchAllFromSubs(subURLs []string) ([]string, []string) {
 	const batchSize    = 20
 	const fetchTimeout = 8 * time.Second
 
+	retryCount := cfg.Validation.FetchRetryCount
+	retryDelay := time.Duration(cfg.Validation.FetchRetryDelayMs) * time.Millisecond
+	if retryCount < 0 {
+		retryCount = 0
+	}
+	if retryDelay < 0 {
+		retryDelay = 0
+	}
+
 	total := len(subURLs)
 	numBatches := (total + batchSize - 1) / batchSize
-	fmt.Printf("📡 Fetching %d sources in %d batches (timeout=%s per source)\n",
-		total, numBatches, fetchTimeout)
+	fmt.Printf("📡 Fetching %d sources in %d batches (timeout=%s  retries=%d)\n",
+		total, numBatches, fetchTimeout, retryCount)
 
 	var mu sync.Mutex
 	var lines []string
@@ -501,7 +512,16 @@ func fetchAllFromSubs(subURLs []string) ([]string, []string) {
 			wg.Add(1)
 			go func(idx int, rawURL string) {
 				defer wg.Done()
-				fr := fetchRaw(rawURL, fetchTimeout)
+				var fr fetchResult
+				for attempt := 0; attempt <= retryCount; attempt++ {
+					if attempt > 0 && retryDelay > 0 {
+						time.Sleep(retryDelay)
+					}
+					fr = fetchRaw(rawURL, fetchTimeout)
+					if fr.err == nil && fr.statusCode == http.StatusOK {
+						break
+					}
+				}
 				if fr.err != nil || fr.statusCode != http.StatusOK {
 					results[idx] = batchResult{url: rawURL, err: fr.err, status: fr.statusCode}
 					return
@@ -621,11 +641,15 @@ func prepareOutputDirs() error {
 	return nil
 }
 
-// fetchAll fetches all URLs in parallel batches of 20 with a 5s timeout each.
-// base64Links are decoded after fetching; textLinks are returned as-is.
 func fetchAll(base64Links, textLinks []string) ([]string, []string) {
 	const batchSize    = 20
 	const fetchTimeout = 5 * time.Second
+
+	retryCount := cfg.Validation.FetchRetryCount
+	retryDelay := time.Duration(cfg.Validation.FetchRetryDelayMs) * time.Millisecond
+	if retryCount < 0 {
+		retryCount = 0
+	}
 
 	type urlJob struct {
 		url      string
@@ -642,8 +666,8 @@ func fetchAll(base64Links, textLinks []string) ([]string, []string) {
 
 	total := len(jobs)
 	numBatches := (total + batchSize - 1) / batchSize
-	fmt.Printf("📡 Fetching %d sources in %d batches of %d (timeout=%s per source)\n",
-		total, numBatches, batchSize, fetchTimeout)
+	fmt.Printf("📡 Fetching %d sources in %d batches of %d (timeout=%s  retries=%d)\n",
+		total, numBatches, batchSize, fetchTimeout, retryCount)
 
 	var mu sync.Mutex
 	var lines []string
@@ -665,15 +689,25 @@ func fetchAll(base64Links, textLinks []string) ([]string, []string) {
 			wg.Add(1)
 			go func(idx int, j urlJob) {
 				defer wg.Done()
-				results[idx] = fetchRaw(j.url, fetchTimeout)
-				if results[idx].err == nil && results[idx].statusCode == http.StatusOK && j.isBase64 {
-					decoded, err := decodeBase64([]byte(results[idx].content))
-					if err != nil {
-						results[idx].err = err
-					} else {
-						results[idx].content = decoded
+				var r fetchResult
+				for attempt := 0; attempt <= retryCount; attempt++ {
+					if attempt > 0 && retryDelay > 0 {
+						time.Sleep(retryDelay)
+					}
+					r = fetchRaw(j.url, fetchTimeout)
+					if r.err == nil && r.statusCode == http.StatusOK {
+						break
 					}
 				}
+				if r.err == nil && r.statusCode == http.StatusOK && j.isBase64 {
+					decoded, err := decodeBase64([]byte(r.content))
+					if err != nil {
+						r.err = err
+					} else {
+						r.content = decoded
+					}
+				}
+				results[idx] = r
 			}(i, job)
 		}
 		wg.Wait()
@@ -699,7 +733,6 @@ func fetchAll(base64Links, textLinks []string) ([]string, []string) {
 			lines = append(lines, strings.Split(strings.TrimSpace(r.content), "\n")...)
 		}
 		mu.Unlock()
-
 	}
 	fmt.Printf("  ✅ Fetch done — ok=%d  fail=%d  total_lines=%d\n", okCount, failCount, len(lines))
 	return lines, failed
@@ -797,11 +830,18 @@ func validateAll(lines []string) []configResult {
 		batchSize = 50
 	}
 
+	rng := rand.New(rand.NewSource(time.Now().UnixNano()))
+
 	for _, proto := range cfg.ProtocolOrder {
 		protoLines := byProto[proto]
 		if len(protoLines) == 0 {
 			continue
 		}
+
+		rng.Shuffle(len(protoLines), func(i, j int) {
+			protoLines[i], protoLines[j] = protoLines[j], protoLines[i]
+		})
+
 		if gLog != nil {
 			gLog.logProtoStart(proto, len(protoLines))
 		}
@@ -855,21 +895,40 @@ func validateAll(lines []string) []configResult {
 
 			wg.Wait()
 
+			cpuBefore, cpuOK := readCPUSample()
+			memBefore := readMemStats()
+			procsBefore := countSingboxProcs()
+			occupiedBefore := checkOccupiedPorts(v.BasePort, actualBatchSize)
+
 			bt.killAll()
 			if v.ProcessKillWaitMs > 0 {
 				time.Sleep(time.Duration(v.ProcessKillWaitMs) * time.Millisecond)
 			}
 
-			sbProcs := countSingboxProcs()
-			openPorts := checkOpenPorts(v.BasePort, actualBatchSize, v.PortCheckTimeoutMs)
-			if sbProcs > 0 || len(openPorts) > 0 {
-				fmt.Printf("     ⚠️  Cleanup check — sing-box procs still alive: %d | ports still open: %d\n",
-					sbProcs, len(openPorts))
-				if len(openPorts) > 0 && len(openPorts) <= 10 {
-					fmt.Printf("     ⚠️  Open ports: %v\n", openPorts)
+			var cpuAfterVal float64
+			memAfter := readMemStats()
+			procsAfter := countSingboxProcs()
+			occupiedAfter := checkOccupiedPorts(v.BasePort, actualBatchSize)
+
+			if cpuOK {
+				cpuAfter, ok2 := readCPUSample()
+				if ok2 {
+					cpuAfterVal = cpuPercent(cpuBefore, cpuAfter)
+				}
+			}
+
+			fmt.Printf("     🖥️  Before kill — procs:%d  occupied-ports:%d  RAM:%dMB/%dMB\n",
+				procsBefore, len(occupiedBefore), memBefore.usedMB, memBefore.totalMB)
+
+			if procsAfter > 0 || len(occupiedAfter) > 0 {
+				fmt.Printf("     ⚠️  After kill  — procs:%d  occupied-ports:%d  RAM:%dMB/%dMB  CPU:%.1f%%\n",
+					procsAfter, len(occupiedAfter), memAfter.usedMB, memAfter.totalMB, cpuAfterVal)
+				if len(occupiedAfter) > 0 && len(occupiedAfter) <= 20 {
+					fmt.Printf("     ⚠️  Still-occupied ports: %v\n", occupiedAfter)
 				}
 			} else {
-				fmt.Printf("     ✅ Cleanup OK — 0 sing-box procs | 0 open ports\n")
+				fmt.Printf("     ✅ After kill  — procs:0  occupied-ports:0  RAM:%dMB/%dMB  CPU:%.1f%%\n",
+					memAfter.usedMB, memAfter.totalMB, cpuAfterVal)
 			}
 
 			var bPassed, bFailed, bParse, bStart, bConn int
@@ -2946,38 +3005,164 @@ func killGroup(cmd *exec.Cmd) {
 }
 
 func countSingboxProcs() int {
-	out, err := exec.Command("pgrep", "-c", "sing-box").Output()
+	entries, err := os.ReadDir("/proc")
 	if err != nil {
-		return 0
+		out, err2 := exec.Command("pgrep", "-c", "sing-box").Output()
+		if err2 != nil {
+			return -1
+		}
+		n, _ := strconv.Atoi(strings.TrimSpace(string(out)))
+		return n
 	}
-	n, _ := strconv.Atoi(strings.TrimSpace(string(out)))
-	return n
+	count := 0
+	for _, e := range entries {
+		if !e.IsDir() {
+			continue
+		}
+		name := e.Name()
+		allDigit := true
+		for _, c := range name {
+			if c < '0' || c > '9' {
+				allDigit = false
+				break
+			}
+		}
+		if !allDigit {
+			continue
+		}
+		cmdline, err := os.ReadFile("/proc/" + name + "/cmdline")
+		if err != nil {
+			continue
+		}
+		comm := strings.ReplaceAll(string(cmdline), "\x00", " ")
+		if strings.Contains(comm, "sing-box") {
+			count++
+		}
+	}
+	return count
 }
 
-func checkOpenPorts(basePort, count int, dialTimeoutMs int) []int {
-	timeout := time.Duration(dialTimeoutMs) * time.Millisecond
-	if timeout <= 0 {
-		timeout = 100 * time.Millisecond
-	}
-	var open []int
-	var mu sync.Mutex
-	var wg sync.WaitGroup
-	for i := 0; i < count; i++ {
-		port := basePort + i
-		wg.Add(1)
-		go func(p int) {
-			defer wg.Done()
-			conn, err := net.DialTimeout("tcp", fmt.Sprintf("127.0.0.1:%d", p), timeout)
-			if err == nil {
-				conn.Close()
-				mu.Lock()
-				open = append(open, p)
-				mu.Unlock()
+func readProcNetTCPPorts() map[int]bool {
+	ports := make(map[int]bool)
+	for _, f := range []string{"/proc/net/tcp", "/proc/net/tcp6"} {
+		data, err := os.ReadFile(f)
+		if err != nil {
+			continue
+		}
+		for i, line := range strings.Split(string(data), "\n") {
+			if i == 0 || strings.TrimSpace(line) == "" {
+				continue
 			}
-		}(port)
+			fields := strings.Fields(line)
+			if len(fields) < 4 {
+				continue
+			}
+			stateHex := fields[3]
+			if stateHex != "0A" {
+				continue
+			}
+			localAddr := fields[1]
+			colonIdx := strings.LastIndex(localAddr, ":")
+			if colonIdx == -1 {
+				continue
+			}
+			portHex := localAddr[colonIdx+1:]
+			portVal, err := strconv.ParseInt(portHex, 16, 32)
+			if err != nil {
+				continue
+			}
+			ports[int(portVal)] = true
+		}
 	}
-	wg.Wait()
-	return open
+	return ports
+}
+
+func checkOccupiedPorts(basePort, count int) []int {
+	listeningPorts := readProcNetTCPPorts()
+	var occupied []int
+	for i := 0; i < count; i++ {
+		p := basePort + i
+		if listeningPorts[p] {
+			occupied = append(occupied, p)
+		}
+	}
+	return occupied
+}
+
+type cpuSample struct {
+	user, nice, system, idle, iowait, irq, softirq uint64
+}
+
+func readCPUSample() (cpuSample, bool) {
+	data, err := os.ReadFile("/proc/stat")
+	if err != nil {
+		return cpuSample{}, false
+	}
+	for _, line := range strings.Split(string(data), "\n") {
+		if !strings.HasPrefix(line, "cpu ") {
+			continue
+		}
+		fields := strings.Fields(line)
+		if len(fields) < 8 {
+			return cpuSample{}, false
+		}
+		parse := func(s string) uint64 { v, _ := strconv.ParseUint(s, 10, 64); return v }
+		return cpuSample{
+			user:    parse(fields[1]),
+			nice:    parse(fields[2]),
+			system:  parse(fields[3]),
+			idle:    parse(fields[4]),
+			iowait:  parse(fields[5]),
+			irq:     parse(fields[6]),
+			softirq: parse(fields[7]),
+		}, true
+	}
+	return cpuSample{}, false
+}
+
+func cpuPercent(a, b cpuSample) float64 {
+	totalA := a.user + a.nice + a.system + a.idle + a.iowait + a.irq + a.softirq
+	totalB := b.user + b.nice + b.system + b.idle + b.iowait + b.irq + b.softirq
+	totalDiff := float64(totalB - totalA)
+	if totalDiff <= 0 {
+		return 0
+	}
+	idleDiff := float64(b.idle+b.iowait) - float64(a.idle+a.iowait)
+	return (1.0 - idleDiff/totalDiff) * 100.0
+}
+
+type memStats struct {
+	totalMB     int
+	availableMB int
+	usedMB      int
+}
+
+func readMemStats() memStats {
+	data, err := os.ReadFile("/proc/meminfo")
+	if err != nil {
+		return memStats{}
+	}
+	var total, available uint64
+	for _, line := range strings.Split(string(data), "\n") {
+		fields := strings.Fields(line)
+		if len(fields) < 2 {
+			continue
+		}
+		val, _ := strconv.ParseUint(fields[1], 10, 64)
+		switch fields[0] {
+		case "MemTotal:":
+			total = val
+		case "MemAvailable:":
+			available = val
+		}
+	}
+	totalMB := int(total / 1024)
+	availMB := int(available / 1024)
+	return memStats{
+		totalMB:     totalMB,
+		availableMB: availMB,
+		usedMB:      totalMB - availMB,
+	}
 }
 
 func extractErr(stderr string) string {
