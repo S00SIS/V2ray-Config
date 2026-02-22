@@ -954,6 +954,7 @@ func clashHyToURI(p ClashProxy) string {
 	portStr := clashPortStr(p.Port)
 	sni := clashSNI(p)
 	up := clashBandwidthMbps(p.Up)
+	down := clashBandwidthMbps(p.Down)
 
 	q := url.Values{}
 	q.Set("peer", sni)
