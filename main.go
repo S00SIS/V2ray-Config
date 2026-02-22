@@ -128,8 +128,9 @@ type ClashProxy struct {
 	Plugin     string                 `yaml:"plugin"`
 	PluginOpts map[string]interface{} `yaml:"plugin-opts"`
 
-	AuthStr string      `yaml:"auth-str"`
-	Auth    string      `yaml:"auth"`
+	AuthStr    string      `yaml:"auth-str"`
+	AuthStrAlt string      `yaml:"auth_str"`
+	Auth       string      `yaml:"auth"`
 	Up      interface{} `yaml:"up"`
 	Down    interface{} `yaml:"down"`
 
@@ -946,6 +947,9 @@ func clashHyToURI(p ClashProxy) string {
 	}
 	auth := p.AuthStr
 	if auth == "" {
+		auth = p.AuthStrAlt
+	}
+	if auth == "" {
 		auth = p.Auth
 	}
 	if auth == "" {
@@ -963,6 +967,12 @@ func clashHyToURI(p ClashProxy) string {
 	q.Set("downmbps", strconv.Itoa(down))
 	if len(p.ALPN) > 0 {
 		q.Set("alpn", strings.Join(p.ALPN, ","))
+	}
+	if p.Obfs != "" {
+		q.Set("obfs", p.Obfs)
+	}
+	if p.Protocol != "" {
+		q.Set("protocol", p.Protocol)
 	}
 
 	return fmt.Sprintf("hy://%s@%s:%s?%s#%s",
@@ -985,6 +995,10 @@ func clashTUICToURI(p ClashProxy) string {
 	q.Set("sni", sni)
 	if len(p.ALPN) > 0 {
 		q.Set("alpn", strings.Join(p.ALPN, ","))
+	}
+	// Encode congestion-controller if set (non-default)
+	if congestion, ok := p.PluginOpts["congestion-controller"].(string); ok && congestion != "" {
+		q.Set("congestion_control", congestion)
 	}
 
 	return fmt.Sprintf("tuic://%s:%s@%s:%s?%s#%s",
@@ -2736,8 +2750,14 @@ func parseHysteria2(raw string) (string, string) {
 		return "", "missing server"
 	}
 	q, _ := url.ParseQuery(queryStr)
-	return fmt.Sprintf(`{"type":"hysteria2","tag":"proxy","server":%q,"server_port":%d,"password":%q,"tls":{"enabled":true,"insecure":true,"server_name":%q}}`,
-		server, port, password, first(q.Get("sni"), server)), ""
+	obfsJSON := ""
+	if obfs := q.Get("obfs"); obfs == "salamander" {
+		if obfsPwd := q.Get("obfs-password"); obfsPwd != "" {
+			obfsJSON = fmt.Sprintf(`,"obfs":{"type":"salamander","password":%q}`, obfsPwd)
+		}
+	}
+	return fmt.Sprintf(`{"type":"hysteria2","tag":"proxy","server":%q,"server_port":%d,"password":%q%s,"tls":{"enabled":true,"insecure":true,"server_name":%q}}`,
+		server, port, password, obfsJSON, first(q.Get("sni"), server)), ""
 }
 
 func parseHysteria(raw string) (string, string) {
@@ -2766,8 +2786,13 @@ func parseHysteria(raw string) (string, string) {
 	if down <= 0 {
 		down = 50
 	}
-	return fmt.Sprintf(`{"type":"hysteria","tag":"proxy","server":%q,"server_port":%d,"up_mbps":%d,"down_mbps":%d,"auth_str":%q,"tls":{"enabled":true,"insecure":true,"server_name":%q}}`,
-		server, port, up, down, auth, first(q.Get("peer"), q.Get("sni"), server)), ""
+	obfs := q.Get("obfs")
+	obfsJSON := ""
+	if obfs != "" {
+		obfsJSON = fmt.Sprintf(`,"obfs":%q`, obfs)
+	}
+	return fmt.Sprintf(`{"type":"hysteria","tag":"proxy","server":%q,"server_port":%d,"up_mbps":%d,"down_mbps":%d,"auth_str":%q%s,"tls":{"enabled":true,"insecure":true,"server_name":%q}}`,
+		server, port, up, down, auth, obfsJSON, first(q.Get("peer"), q.Get("sni"), server)), ""
 }
 
 func parseTUIC(raw string) (string, string) {
@@ -2788,8 +2813,16 @@ func parseTUIC(raw string) (string, string) {
 	if err != nil {
 		return "", "port: " + err.Error()
 	}
-	return fmt.Sprintf(`{"type":"tuic","tag":"proxy","server":%q,"server_port":%d,"uuid":%q,"password":%q,"tls":{"enabled":true,"insecure":true,"server_name":%q}}`,
-		server, port, uuid, password, first(u.Query().Get("sni"), server)), ""
+	q := u.Query()
+	sni := first(q.Get("sni"), server)
+	congestion := first(q.Get("congestion_control"), q.Get("congestion-controller"), "bbr")
+	udpRelayMode := q.Get("udp_relay_mode")
+	udpJSON := ""
+	if udpRelayMode != "" {
+		udpJSON = fmt.Sprintf(`,"udp_relay_mode":%q`, udpRelayMode)
+	}
+	return fmt.Sprintf(`{"type":"tuic","tag":"proxy","server":%q,"server_port":%d,"uuid":%q,"password":%q,"congestion_control":%q%s,"tls":{"enabled":true,"insecure":true,"server_name":%q}}`,
+		server, port, uuid, password, congestion, udpJSON, sni), ""
 }
 
 func parseSSR(raw string) (string, string) {
@@ -3202,6 +3235,16 @@ func trojanClashYAML(raw, name string) (string, bool) {
 
 func ssClashYAML(raw, name string) (string, bool) {
 	trimmed := strings.TrimPrefix(raw, "ss://")
+	// Capture query string before stripping fragment
+	queryStr := ""
+	if idx := strings.Index(trimmed, "?"); idx != -1 {
+		qEnd := len(trimmed)
+		if fragIdx := strings.Index(trimmed[idx:], "#"); fragIdx != -1 {
+			qEnd = idx + fragIdx
+		}
+		queryStr = trimmed[idx+1 : qEnd]
+		trimmed = trimmed[:idx] + trimmed[qEnd:]
+	}
 	if idx := strings.Index(trimmed, "#"); idx != -1 {
 		trimmed = trimmed[:idx]
 	}
@@ -3249,7 +3292,64 @@ func ssClashYAML(raw, name string) (string, bool) {
 	var sb strings.Builder
 	fmt.Fprintf(&sb, "  - name: %s\n    type: ss\n    server: %s\n    port: %d\n    cipher: %s\n    password: %s\n    udp: true\n",
 		yamlQuote(name), yamlQuote(server), port, yamlQuote(parts[0]), yamlQuote(parts[1]))
+
+	// Parse plugin info from query string
+	if queryStr != "" {
+		q, _ := url.ParseQuery(queryStr)
+		if pluginParam := q.Get("plugin"); pluginParam != "" {
+			// pluginParam format: "pluginName;opt1=val1;opt2=val2"
+			pluginParts := strings.SplitN(pluginParam, ";", 2)
+			pluginName := pluginParts[0]
+			// Map URI plugin names to Clash plugin names
+			switch {
+			case pluginName == "obfs-local" || pluginName == "obfs":
+				fmt.Fprintf(&sb, "    plugin: obfs\n    plugin-opts:\n")
+				if len(pluginParts) > 1 {
+					opts := parsePluginOpts(pluginParts[1])
+					if mode, ok := opts["obfs"]; ok {
+						fmt.Fprintf(&sb, "      mode: %s\n", yamlQuote(mode))
+					}
+					if host, ok := opts["obfs-host"]; ok {
+						fmt.Fprintf(&sb, "      host: %s\n", yamlQuote(host))
+					}
+				}
+			case pluginName == "v2ray-plugin":
+				fmt.Fprintf(&sb, "    plugin: v2ray-plugin\n    plugin-opts:\n")
+				if len(pluginParts) > 1 {
+					opts := parsePluginOpts(pluginParts[1])
+					mode := first(opts["mode"], "websocket")
+					fmt.Fprintf(&sb, "      mode: %s\n", yamlQuote(mode))
+					if path, ok := opts["path"]; ok {
+						fmt.Fprintf(&sb, "      path: %s\n", yamlQuote(path))
+					}
+					if host, ok := opts["host"]; ok {
+						fmt.Fprintf(&sb, "      host: %s\n", yamlQuote(host))
+					}
+					if _, hasTLS := opts["tls"]; hasTLS {
+						fmt.Fprintf(&sb, "      tls: true\n")
+					}
+				}
+			}
+		}
+	}
 	return sb.String(), true
+}
+
+// parsePluginOpts parses "key=val;key2=val2;flag" into a map.
+func parsePluginOpts(s string) map[string]string {
+	opts := make(map[string]string)
+	for _, part := range strings.Split(s, ";") {
+		part = strings.TrimSpace(part)
+		if part == "" {
+			continue
+		}
+		if idx := strings.Index(part, "="); idx != -1 {
+			opts[part[:idx]] = part[idx+1:]
+		} else {
+			opts[part] = "" // flag without value (e.g. "tls")
+		}
+	}
+	return opts
 }
 
 func hy2ClashYAML(raw, name string) (string, bool) {
@@ -3287,6 +3387,12 @@ func hy2ClashYAML(raw, name string) (string, bool) {
 	var sb strings.Builder
 	fmt.Fprintf(&sb, "  - name: %s\n    type: hysteria2\n    server: %s\n    port: %d\n    password: %s\n    sni: %s\n    skip-cert-verify: true\n    udp: true\n",
 		yamlQuote(name), yamlQuote(server), port, yamlQuote(password), yamlQuote(first(q.Get("sni"), server)))
+	if obfs := q.Get("obfs"); obfs != "" {
+		fmt.Fprintf(&sb, "    obfs: %s\n", yamlQuote(obfs))
+		if obfsPwd := q.Get("obfs-password"); obfsPwd != "" {
+			fmt.Fprintf(&sb, "    obfs-password: %s\n", yamlQuote(obfsPwd))
+		}
+	}
 	return sb.String(), true
 }
 
@@ -3320,6 +3426,20 @@ func hyClashYAML(raw, name string) (string, bool) {
 	fmt.Fprintf(&sb, "  - name: %s\n    type: hysteria\n    server: %s\n    port: %d\n    auth-str: %s\n    up: %d\n    down: %d\n    sni: %s\n    skip-cert-verify: true\n    udp: true\n",
 		yamlQuote(name), yamlQuote(server), port, yamlQuote(auth), up, down,
 		yamlQuote(first(q.Get("peer"), q.Get("sni"), server)))
+	if obfs := q.Get("obfs"); obfs != "" {
+		fmt.Fprintf(&sb, "    obfs: %s\n", yamlQuote(obfs))
+	}
+	if proto := q.Get("protocol"); proto != "" {
+		fmt.Fprintf(&sb, "    protocol: %s\n", yamlQuote(proto))
+	}
+	if alpnStr := q.Get("alpn"); alpnStr != "" {
+		parts := strings.Split(alpnStr, ",")
+		quoted := make([]string, len(parts))
+		for i, a := range parts {
+			quoted[i] = yamlQuote(strings.TrimSpace(a))
+		}
+		fmt.Fprintf(&sb, "    alpn: [%s]\n", strings.Join(quoted, ", "))
+	}
 	return sb.String(), true
 }
 
@@ -3335,10 +3455,15 @@ func tuicClashYAML(raw, name string) (string, bool) {
 	if err != nil || uuid == "" || server == "" {
 		return "", false
 	}
+	q := u.Query()
+	congestion := first(q.Get("congestion_control"), q.Get("congestion-controller"), "bbr")
 	var sb strings.Builder
-	fmt.Fprintf(&sb, "  - name: %s\n    type: tuic\n    server: %s\n    port: %d\n    uuid: %s\n    password: %s\n    sni: %s\n    skip-cert-verify: true\n    udp: true\n    congestion-controller: bbr\n    reduce-rtt: true\n",
+	fmt.Fprintf(&sb, "  - name: %s\n    type: tuic\n    server: %s\n    port: %d\n    uuid: %s\n    password: %s\n    sni: %s\n    skip-cert-verify: true\n    udp: true\n    congestion-controller: %s\n    reduce-rtt: true\n",
 		yamlQuote(name), yamlQuote(server), port, yamlQuote(uuid), yamlQuote(password),
-		yamlQuote(first(u.Query().Get("sni"), server)))
+		yamlQuote(first(q.Get("sni"), server)), congestion)
+	if udpRelay := first(q.Get("udp_relay_mode"), q.Get("udp-relay-mode")); udpRelay != "" {
+		fmt.Fprintf(&sb, "    udp-relay-mode: %s\n", yamlQuote(udpRelay))
+	}
 	return sb.String(), true
 }
 
