@@ -22,6 +22,8 @@ import (
 	"sync/atomic"
 	"syscall"
 	"time"
+
+	"gopkg.in/yaml.v3"
 )
 
 type Settings struct {
@@ -55,6 +57,93 @@ type OutputSettings struct {
 	ConfigName   string `json:"config_name"`
 	MainFile     string `json:"main_file"`
 	ProtocolsDir string `json:"protocols_dir"`
+}
+
+type ClashWSOpts struct {
+	Path    string            `yaml:"path"`
+	Headers map[string]string `yaml:"headers"`
+}
+
+type ClashGRPCOpts struct {
+	ServiceName string `yaml:"grpc-service-name"`
+}
+
+type ClashH2Opts struct {
+	Path []string `yaml:"path"`
+	Host []string `yaml:"host"`
+}
+
+type ClashHTTPOpts struct {
+	Method  string              `yaml:"method"`
+	Path    []string            `yaml:"path"`
+	Headers map[string][]string `yaml:"headers"`
+}
+
+type ClashHTTPUpgradeOpts struct {
+	Path    string            `yaml:"path"`
+	Host    string            `yaml:"host"`
+	Headers map[string]string `yaml:"headers"`
+}
+
+type ClashSplitHTTPOpts struct {
+	Path string `yaml:"path"`
+	Host string `yaml:"host"`
+}
+
+type ClashRealityOpts struct {
+	PublicKey string `yaml:"public-key"`
+	ShortID   string `yaml:"short-id"`
+}
+
+type ClashProxy struct {
+	Name   string      `yaml:"name"`
+	Type   string      `yaml:"type"`
+	Server string      `yaml:"server"`
+	Port   interface{} `yaml:"port"`
+
+	UUID     string      `yaml:"uuid"`
+	Password string      `yaml:"password"`
+	AlterID  interface{} `yaml:"alterId"`
+	Cipher   string      `yaml:"cipher"`
+
+	TLS            bool     `yaml:"tls"`
+	SkipCertVerify bool     `yaml:"skip-cert-verify"`
+	SNI            string   `yaml:"servername"`
+	Fingerprint    string   `yaml:"client-fingerprint"`
+	ALPN           []string `yaml:"alpn"`
+
+	Network         string                `yaml:"network"`
+	WSOpts          *ClashWSOpts          `yaml:"ws-opts"`
+	GRPCOpts        *ClashGRPCOpts        `yaml:"grpc-opts"`
+	H2Opts          *ClashH2Opts          `yaml:"h2-opts"`
+	HTTPOpts        *ClashHTTPOpts        `yaml:"http-opts"`
+	HTTPUpgradeOpts *ClashHTTPUpgradeOpts `yaml:"httpupgrade-opts"`
+	SplitHTTPOpts   *ClashSplitHTTPOpts   `yaml:"splithttp-opts"`
+
+	Flow        string            `yaml:"flow"`
+	RealityOpts *ClashRealityOpts `yaml:"reality-opts"`
+
+	Plugin     string                 `yaml:"plugin"`
+	PluginOpts map[string]interface{} `yaml:"plugin-opts"`
+
+	AuthStr string      `yaml:"auth-str"`
+	Auth    string      `yaml:"auth"`
+	Up      interface{} `yaml:"up"`
+	Down    interface{} `yaml:"down"`
+
+	Obfs         string `yaml:"obfs"`
+	ObfsPassword string `yaml:"obfs-password"`
+
+	Token string `yaml:"token"`
+
+	Protocol      string `yaml:"protocol"`
+	ObfsParam     string `yaml:"obfs-param"`
+	ProtocolParam string `yaml:"protocol-param"`
+}
+
+type clashConfigWrapper struct {
+	Proxies    []ClashProxy `yaml:"proxies"`
+	ProxiesOld []ClashProxy `yaml:"Proxy"`
 }
 
 var cfg Settings
@@ -432,13 +521,510 @@ func extractLines(content string) []string {
 	return lines
 }
 
+func clashPortStr(v interface{}) string {
+	if v == nil {
+		return "443"
+	}
+	switch x := v.(type) {
+	case int:
+		return strconv.Itoa(x)
+	case float64:
+		return strconv.Itoa(int(x))
+	case string:
+		s := strings.TrimSpace(x)
+		if s == "" {
+			return "443"
+		}
+		return s
+	}
+	return "443"
+}
+
+func clashBandwidthMbps(v interface{}) int {
+	if v == nil {
+		return 10
+	}
+	switch x := v.(type) {
+	case int:
+		if x <= 0 {
+			return 10
+		}
+		return x
+	case float64:
+		if int(x) <= 0 {
+			return 10
+		}
+		return int(x)
+	case string:
+		s := strings.ToLower(strings.TrimSpace(x))
+		for _, suffix := range []string{" mbps", "mbps", " mb/s", "mb/s", " mbit/s"} {
+			s = strings.TrimSuffix(s, suffix)
+		}
+		n, err := strconv.Atoi(strings.TrimSpace(s))
+		if err != nil || n <= 0 {
+			return 10
+		}
+		return n
+	}
+	return 10
+}
+
+func clashWsPath(opts *ClashWSOpts) string {
+	if opts == nil || opts.Path == "" {
+		return "/"
+	}
+	return opts.Path
+}
+
+func clashWsHost(opts *ClashWSOpts) string {
+	if opts == nil {
+		return ""
+	}
+	if h := opts.Headers["Host"]; h != "" {
+		return h
+	}
+	if h := opts.Headers["host"]; h != "" {
+		return h
+	}
+	return ""
+}
+
+func clashGRPCService(opts *ClashGRPCOpts) string {
+	if opts == nil {
+		return ""
+	}
+	return opts.ServiceName
+}
+
+func clashTransportParams(p ClashProxy, q url.Values) {
+	network := strings.ToLower(p.Network)
+	if network == "" {
+		network = "tcp"
+	}
+	q.Set("type", network)
+
+	switch network {
+	case "ws":
+		q.Set("path", clashWsPath(p.WSOpts))
+		if h := clashWsHost(p.WSOpts); h != "" {
+			q.Set("host", h)
+		}
+	case "grpc":
+		if svc := clashGRPCService(p.GRPCOpts); svc != "" {
+			q.Set("serviceName", svc)
+			q.Set("path", svc)
+		}
+	case "h2", "http":
+		if p.H2Opts != nil {
+			if len(p.H2Opts.Path) > 0 {
+				q.Set("path", p.H2Opts.Path[0])
+			}
+			if len(p.H2Opts.Host) > 0 {
+				q.Set("host", p.H2Opts.Host[0])
+			}
+		}
+	case "httpupgrade":
+		if p.HTTPUpgradeOpts != nil {
+			if p.HTTPUpgradeOpts.Path != "" {
+				q.Set("path", p.HTTPUpgradeOpts.Path)
+			}
+			if p.HTTPUpgradeOpts.Host != "" {
+				q.Set("host", p.HTTPUpgradeOpts.Host)
+			}
+		}
+	case "splithttp":
+		if p.SplitHTTPOpts != nil {
+			if p.SplitHTTPOpts.Path != "" {
+				q.Set("path", p.SplitHTTPOpts.Path)
+			}
+			if p.SplitHTTPOpts.Host != "" {
+				q.Set("host", p.SplitHTTPOpts.Host)
+			}
+		}
+	}
+}
+
+func clashVMessToURI(p ClashProxy) string {
+	if p.Server == "" || p.UUID == "" {
+		return ""
+	}
+	portStr := clashPortStr(p.Port)
+
+	alterId := 0
+	if p.AlterID != nil {
+		switch x := p.AlterID.(type) {
+		case int:
+			alterId = x
+		case float64:
+			alterId = int(x)
+		case string:
+			alterId, _ = strconv.Atoi(x)
+		}
+	}
+
+	cipher := p.Cipher
+	if cipher == "" {
+		cipher = "auto"
+	}
+
+	network := strings.ToLower(p.Network)
+	if network == "" {
+		network = "tcp"
+	}
+
+	tlsVal := ""
+	if p.TLS {
+		tlsVal = "tls"
+	}
+
+	sni := p.SNI
+	if sni == "" {
+		sni = p.Server
+	}
+
+	path := "/"
+	host := ""
+	grpcService := ""
+
+	switch network {
+	case "ws":
+		path = clashWsPath(p.WSOpts)
+		host = clashWsHost(p.WSOpts)
+	case "grpc":
+		grpcService = clashGRPCService(p.GRPCOpts)
+	case "h2", "http":
+		if p.H2Opts != nil {
+			if len(p.H2Opts.Path) > 0 {
+				path = p.H2Opts.Path[0]
+			}
+			if len(p.H2Opts.Host) > 0 {
+				host = p.H2Opts.Host[0]
+			}
+		}
+	case "httpupgrade":
+		if p.HTTPUpgradeOpts != nil {
+			path = p.HTTPUpgradeOpts.Path
+			host = p.HTTPUpgradeOpts.Host
+		}
+	case "splithttp":
+		if p.SplitHTTPOpts != nil {
+			path = p.SplitHTTPOpts.Path
+			host = p.SplitHTTPOpts.Host
+		}
+	}
+	if path == "" {
+		path = "/"
+	}
+
+	d := map[string]interface{}{
+		"v":           "2",
+		"ps":          p.Name,
+		"add":         p.Server,
+		"port":        portStr,
+		"id":          p.UUID,
+		"aid":         alterId,
+		"scy":         cipher,
+		"net":         network,
+		"tls":         tlsVal,
+		"sni":         sni,
+		"host":        host,
+		"path":        path,
+		"serviceName": grpcService,
+	}
+	data, err := json.Marshal(d)
+	if err != nil {
+		return ""
+	}
+	return "vmess://" + base64.StdEncoding.EncodeToString(data)
+}
+
+func clashVLessToURI(p ClashProxy) string {
+	if p.Server == "" || p.UUID == "" {
+		return ""
+	}
+	portStr := clashPortStr(p.Port)
+
+	security := "none"
+	if p.RealityOpts != nil {
+		security = "reality"
+	} else if p.TLS {
+		security = "tls"
+	}
+
+	sni := p.SNI
+	if sni == "" {
+		sni = p.Server
+	}
+
+	q := url.Values{}
+	clashTransportParams(p, q)
+	q.Set("security", security)
+
+	if security != "none" {
+		q.Set("sni", sni)
+		if p.Fingerprint != "" {
+			q.Set("fp", p.Fingerprint)
+		}
+		if len(p.ALPN) > 0 {
+			q.Set("alpn", strings.Join(p.ALPN, ","))
+		}
+	}
+	if security == "reality" && p.RealityOpts != nil {
+		q.Set("pbk", p.RealityOpts.PublicKey)
+		q.Set("sid", p.RealityOpts.ShortID)
+	}
+	if p.Flow != "" {
+		q.Set("flow", p.Flow)
+	}
+
+	return fmt.Sprintf("vless://%s@%s:%s?%s#%s",
+		url.PathEscape(p.UUID), p.Server, portStr, q.Encode(), url.PathEscape(p.Name))
+}
+
+func clashTrojanToURI(p ClashProxy) string {
+	if p.Server == "" || p.Password == "" {
+		return ""
+	}
+	portStr := clashPortStr(p.Port)
+
+	sni := p.SNI
+	if sni == "" {
+		sni = p.Server
+	}
+
+	q := url.Values{}
+	clashTransportParams(p, q)
+	q.Set("sni", sni)
+	if p.Fingerprint != "" {
+		q.Set("fp", p.Fingerprint)
+	}
+	if len(p.ALPN) > 0 {
+		q.Set("alpn", strings.Join(p.ALPN, ","))
+	}
+
+	return fmt.Sprintf("trojan://%s@%s:%s?%s#%s",
+		url.PathEscape(p.Password), p.Server, portStr, q.Encode(), url.PathEscape(p.Name))
+}
+
+func clashSSToURI(p ClashProxy) string {
+	if p.Server == "" || p.Cipher == "" || p.Password == "" {
+		return ""
+	}
+	portStr := clashPortStr(p.Port)
+
+	if p.Plugin == "v2ray-plugin" {
+		return ""
+	}
+
+	userInfo := base64.StdEncoding.EncodeToString([]byte(p.Cipher + ":" + p.Password))
+	return fmt.Sprintf("ss://%s@%s:%s#%s",
+		userInfo, p.Server, portStr, url.PathEscape(p.Name))
+}
+
+func clashSSRToURI(p ClashProxy) string {
+	if p.Server == "" || p.Password == "" {
+		return ""
+	}
+	portStr := clashPortStr(p.Port)
+
+	protocol := p.Protocol
+	if protocol == "" {
+		protocol = "origin"
+	}
+	cipher := p.Cipher
+	if cipher == "" {
+		cipher = "none"
+	}
+	obfs := p.Obfs
+	if obfs == "" {
+		obfs = "plain"
+	}
+
+	b64pass := base64.RawURLEncoding.EncodeToString([]byte(p.Password))
+	body := fmt.Sprintf("%s:%s:%s:%s:%s:%s",
+		p.Server, portStr, protocol, cipher, obfs, b64pass)
+
+	b64obfsParam := base64.RawURLEncoding.EncodeToString([]byte(p.ObfsParam))
+	b64protoParam := base64.RawURLEncoding.EncodeToString([]byte(p.ProtocolParam))
+	b64name := base64.RawURLEncoding.EncodeToString([]byte(p.Name))
+	params := fmt.Sprintf("obfsparam=%s&protoparam=%s&remarks=%s",
+		b64obfsParam, b64protoParam, b64name)
+
+	full := body + "/?" + params
+	return "ssr://" + base64.RawURLEncoding.EncodeToString([]byte(full))
+}
+
+func clashHy2ToURI(p ClashProxy) string {
+	if p.Server == "" || p.Password == "" {
+		return ""
+	}
+	portStr := clashPortStr(p.Port)
+
+	sni := p.SNI
+	if sni == "" {
+		sni = p.Server
+	}
+
+	q := url.Values{}
+	q.Set("sni", sni)
+	if len(p.ALPN) > 0 {
+		q.Set("alpn", strings.Join(p.ALPN, ","))
+	}
+	if p.Obfs == "salamander" && p.ObfsPassword != "" {
+		q.Set("obfs", "salamander")
+		q.Set("obfs-password", p.ObfsPassword)
+	} else if p.ObfsPassword != "" {
+		q.Set("obfs", "salamander")
+		q.Set("obfs-password", p.ObfsPassword)
+	}
+
+	return fmt.Sprintf("hy2://%s@%s:%s?%s#%s",
+		url.PathEscape(p.Password), p.Server, portStr, q.Encode(), url.PathEscape(p.Name))
+}
+
+func clashHyToURI(p ClashProxy) string {
+	if p.Server == "" {
+		return ""
+	}
+	auth := p.AuthStr
+	if auth == "" {
+		auth = p.Auth
+	}
+	if auth == "" {
+		return ""
+	}
+	portStr := clashPortStr(p.Port)
+
+	sni := p.SNI
+	if sni == "" {
+		sni = p.Server
+	}
+
+	up := clashBandwidthMbps(p.Up)
+	down := clashBandwidthMbps(p.Down)
+
+	q := url.Values{}
+	q.Set("peer", sni)
+	q.Set("sni", sni)
+	q.Set("upmbps", strconv.Itoa(up))
+	q.Set("downmbps", strconv.Itoa(down))
+	if len(p.ALPN) > 0 {
+		q.Set("alpn", strings.Join(p.ALPN, ","))
+	}
+
+	return fmt.Sprintf("hy://%s@%s:%s?%s#%s",
+		url.PathEscape(auth), p.Server, portStr, q.Encode(), url.PathEscape(p.Name))
+}
+
+func clashTUICToURI(p ClashProxy) string {
+	if p.Server == "" || p.UUID == "" {
+		return ""
+	}
+	portStr := clashPortStr(p.Port)
+
+	password := p.Password
+	if password == "" {
+		password = p.Token
+	}
+
+	sni := p.SNI
+	if sni == "" {
+		sni = p.Server
+	}
+
+	q := url.Values{}
+	q.Set("sni", sni)
+	if len(p.ALPN) > 0 {
+		q.Set("alpn", strings.Join(p.ALPN, ","))
+	}
+
+	return fmt.Sprintf("tuic://%s:%s@%s:%s?%s#%s",
+		url.PathEscape(p.UUID), url.PathEscape(password),
+		p.Server, portStr, q.Encode(), url.PathEscape(p.Name))
+}
+
+func clashProxyToURI(p ClashProxy) string {
+	ptype := strings.ToLower(strings.TrimSpace(p.Type))
+	switch ptype {
+	case "vmess":
+		return clashVMessToURI(p)
+	case "vless":
+		return clashVLessToURI(p)
+	case "trojan":
+		return clashTrojanToURI(p)
+	case "ss", "shadowsocks":
+		return clashSSToURI(p)
+	case "ssr", "shadowsocksr":
+		return clashSSRToURI(p)
+	case "hy2", "hysteria2":
+		return clashHy2ToURI(p)
+	case "hy", "hysteria":
+		return clashHyToURI(p)
+	case "tuic":
+		return clashTUICToURI(p)
+	}
+	return ""
+}
+
+func isClashYAML(content string) bool {
+	limit := len(content)
+	if limit > 4096 {
+		limit = 4096
+	}
+	head := content[:limit]
+	for _, line := range strings.Split(head, "\n") {
+		t := strings.TrimSpace(line)
+		if t == "proxies:" || strings.HasPrefix(t, "proxies:") ||
+			t == "Proxy:" || strings.HasPrefix(t, "Proxy:") ||
+			t == "proxy:" || strings.HasPrefix(t, "proxy:") {
+			return true
+		}
+	}
+	return false
+}
+
+func parseClashYAML(content string) []string {
+	var wrapper clashConfigWrapper
+	if err := yaml.Unmarshal([]byte(content), &wrapper); err != nil {
+		return nil
+	}
+
+	proxies := wrapper.Proxies
+	if len(proxies) == 0 {
+		proxies = wrapper.ProxiesOld
+	}
+	if len(proxies) == 0 {
+		return nil
+	}
+
+	var lines []string
+	for _, p := range proxies {
+		uri := clashProxyToURI(p)
+		if uri != "" {
+			lines = append(lines, uri)
+		}
+	}
+	return lines
+}
+
 func smartDecode(content string) []string {
 	trimmed := strings.TrimSpace(content)
+	if isClashYAML(trimmed) {
+		if lines := parseClashYAML(trimmed); len(lines) > 0 {
+			return lines
+		}
+	}
 	if hasProtoPrefix(trimmed) {
 		return extractLines(trimmed)
 	}
 	if isLikelyBase64(trimmed) {
 		if decoded, err := decodeBase64([]byte(trimmed)); err == nil {
+			decoded = strings.TrimSpace(decoded)
+			if isClashYAML(decoded) {
+				if lines := parseClashYAML(decoded); len(lines) > 0 {
+					return lines
+				}
+			}
 			if hasProtoPrefix(decoded) {
 				return extractLines(decoded)
 			}
