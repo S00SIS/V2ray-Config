@@ -44,6 +44,8 @@ type ValidationSettings struct {
 	PortCheckTimeoutMs     int      `json:"port_check_timeout_ms"`
 	MaxRetries             int      `json:"max_retries"`
 	BasePort               int      `json:"base_port"`
+	BatchRestMs            int      `json:"batch_rest_ms"`
+	ProcessKillWaitMs      int      `json:"process_kill_wait_ms"`
 	TestURLs               []string `json:"test_urls"`
 }
 
@@ -54,8 +56,6 @@ type OutputSettings struct {
 }
 
 var cfg Settings
-var portPool chan int
-
 var fetchHTTPClient = &http.Client{
 	// Timeout is set per-request via context; this is a fallback only.
 	Transport: &http.Transport{
@@ -75,6 +75,28 @@ type protoStat struct {
 	startFail  int
 	connFail   int
 	totalLatMs int64
+}
+
+type batchTracker struct {
+	mu   sync.Mutex
+	cmds []*exec.Cmd
+}
+
+func (bt *batchTracker) register(cmd *exec.Cmd) {
+	bt.mu.Lock()
+	bt.cmds = append(bt.cmds, cmd)
+	bt.mu.Unlock()
+}
+
+func (bt *batchTracker) killAll() {
+	bt.mu.Lock()
+	cmds := make([]*exec.Cmd, len(bt.cmds))
+	copy(cmds, bt.cmds)
+	bt.cmds = bt.cmds[:0]
+	bt.mu.Unlock()
+	for _, cmd := range cmds {
+		killGroup(cmd)
+	}
 }
 
 type Logger struct {
@@ -306,15 +328,6 @@ func loadSettings(path string) error {
 	return json.Unmarshal(data, &cfg)
 }
 
-func initPortPool() {
-	v := cfg.Validation
-	size := v.NumWorkers + 10
-	portPool = make(chan int, size)
-	for i := 0; i < size; i++ {
-		portPool <- v.BasePort + i
-	}
-}
-
 type fetchResult struct {
 	url        string
 	content    string
@@ -518,8 +531,6 @@ func main() {
 	if gLog != nil {
 		defer gLog.close()
 	}
-
-	initPortPool()
 
 	start := time.Now()
 	v := cfg.Validation
@@ -740,125 +751,145 @@ func validateAll(lines []string) []configResult {
 		gLog.writeLine("")
 	}
 
-	// ── Per-protocol failure detail tracking ──────────────────────────────────
 	protoFails := make(map[string]*failDetail)
 	for _, p := range cfg.ProtocolOrder {
 		protoFails[p] = &failDetail{reasons: make(map[string]int)}
 	}
-
-	resultsCh := make(chan configResult, cfg.Validation.NumWorkers*4)
-	sem := make(chan struct{}, cfg.Validation.NumWorkers)
 
 	var testedCount int64
 	var passedCount int64
 	var failedParse int64
 	var failedStart int64
 	var failedConn int64
-
-	// ── Sequential per-protocol processing ────────────────────────────────────
-	// Each protocol is fully completed before the next one starts.
-	// Within each protocol, workers run in parallel up to NumWorkers.
-	go func() {
-		for _, proto := range cfg.ProtocolOrder {
-			protoLines := byProto[proto]
-			if len(protoLines) == 0 {
-				continue
-			}
-			if gLog != nil {
-				gLog.logProtoStart(proto, len(protoLines))
-			}
-			protoStart := time.Now()
-			protoTotal := int64(len(protoLines))
-			fmt.Printf("\n🔵 [%s] Starting — %d configs\n", strings.ToUpper(proto), protoTotal)
-
-			var wg sync.WaitGroup
-			var protoPassed int64
-			var protoTested int64
-
-			stopBar := make(chan struct{})
-			go func() {
-				const barWidth = 25
-				tick := time.NewTicker(300 * time.Millisecond)
-				defer tick.Stop()
-				for {
-					select {
-					case <-stopBar:
-						return
-					case <-tick.C:
-						tested := atomic.LoadInt64(&protoTested)
-						passed := atomic.LoadInt64(&protoPassed)
-						failed := tested - passed
-						pct := 0.0
-						if protoTotal > 0 {
-							pct = float64(tested) / float64(protoTotal) * 100
-						}
-						filled := int(pct / 100 * float64(barWidth))
-						if filled > barWidth {
-							filled = barWidth
-						}
-						bar := strings.Repeat("█", filled) + strings.Repeat("░", barWidth-filled)
-						line := fmt.Sprintf("\r  [%s] %5.1f%%  tested=%-7d  ✓%-6d  ✗%-6d   ", bar, pct, tested, passed, failed)
-						os.Stdout.WriteString(line)
-					}
-				}
-			}()
-
-			for _, line := range protoLines {
-				l := line
-				wg.Add(1)
-				sem <- struct{}{}
-				go func() {
-					defer wg.Done()
-					defer func() { <-sem }()
-
-					idx := atomic.AddInt64(&testedCount, 1)
-					res := validate(l, proto)
-					atomic.AddInt64(&protoTested, 1)
-
-					if gLog != nil {
-						gLog.logResult(idx, proto, l, res)
-					}
-
-					if res.passed {
-						atomic.AddInt64(&passedCount, 1)
-						atomic.AddInt64(&protoPassed, 1)
-						resultsCh <- configResult{line: l, proto: proto}
-					} else {
-						reason := res.failReason
-						norm := classifyFailReason(reason)
-						fd := protoFails[proto]
-						fd.mu.Lock()
-						fd.reasons[norm]++
-						fd.mu.Unlock()
-
-						if strings.HasPrefix(reason, "PARSE:") {
-							atomic.AddInt64(&failedParse, 1)
-						} else if strings.HasPrefix(reason, "SINGBOX_START:") || strings.HasPrefix(reason, "START:") {
-							atomic.AddInt64(&failedStart, 1)
-						} else {
-							atomic.AddInt64(&failedConn, 1)
-						}
-					}
-				}()
-			}
-			wg.Wait()
-			close(stopBar)
-			fmt.Println()
-
-			elapsed := time.Since(protoStart).Seconds()
-			passRate := float64(protoPassed) / float64(protoTotal) * 100
-			fmt.Printf("✅ [%s] Done — passed=%d/%d (%.1f%%) in %.1fs\n",
-				strings.ToUpper(proto), protoPassed, protoTotal, passRate, elapsed)
-		}
-		close(resultsCh)
-	}()
-
 	var out []configResult
-	for r := range resultsCh {
-		out = append(out, r)
+
+	v := cfg.Validation
+	batchSize := v.NumWorkers
+	if batchSize <= 0 {
+		batchSize = 50
 	}
 
-	// ── Global summary line ────────────────────────────────────────────────────
+	for _, proto := range cfg.ProtocolOrder {
+		protoLines := byProto[proto]
+		if len(protoLines) == 0 {
+			continue
+		}
+		if gLog != nil {
+			gLog.logProtoStart(proto, len(protoLines))
+		}
+
+		protoTotal := len(protoLines)
+		totalBatches := (protoTotal + batchSize - 1) / batchSize
+		protoStart := time.Now()
+
+		fmt.Printf("\n🔵 [%s] Starting — %d configs in %d batches of %d\n",
+			strings.ToUpper(proto), protoTotal, totalBatches, batchSize)
+
+		var protoPassed int64
+
+		for batchIdx := 0; batchIdx < totalBatches; batchIdx++ {
+			start := batchIdx * batchSize
+			end := start + batchSize
+			if end > protoTotal {
+				end = protoTotal
+			}
+			batch := protoLines[start:end]
+			actualBatchSize := len(batch)
+
+			localPorts := make(chan int, actualBatchSize)
+			for i := 0; i < actualBatchSize; i++ {
+				localPorts <- v.BasePort + i
+			}
+
+			bt := &batchTracker{}
+
+			type workerResult struct {
+				line string
+				res  validationResult
+			}
+			workerResults := make([]workerResult, actualBatchSize)
+
+			var wg sync.WaitGroup
+			batchStart := time.Now()
+
+			for i, line := range batch {
+				wg.Add(1)
+				go func(idx int, l string) {
+					defer wg.Done()
+					globalIdx := atomic.AddInt64(&testedCount, 1)
+					res := validateWithTracker(l, proto, localPorts, bt)
+					if gLog != nil {
+						gLog.logResult(globalIdx, proto, l, res)
+					}
+					workerResults[idx] = workerResult{line: l, res: res}
+				}(i, line)
+			}
+
+			wg.Wait()
+
+			bt.killAll()
+			if v.ProcessKillWaitMs > 0 {
+				time.Sleep(time.Duration(v.ProcessKillWaitMs) * time.Millisecond)
+			}
+
+			var bPassed, bFailed, bParse, bStart, bConn int
+
+			for _, wr := range workerResults {
+				res := wr.res
+				if res.passed {
+					bPassed++
+					atomic.AddInt64(&passedCount, 1)
+					atomic.AddInt64(&protoPassed, 1)
+					out = append(out, configResult{line: wr.line, proto: proto})
+				} else {
+					bFailed++
+					reason := res.failReason
+					norm := classifyFailReason(reason)
+					fd := protoFails[proto]
+					fd.mu.Lock()
+					fd.reasons[norm]++
+					fd.mu.Unlock()
+
+					if strings.HasPrefix(reason, "PARSE:") {
+						bParse++
+						atomic.AddInt64(&failedParse, 1)
+					} else if strings.HasPrefix(reason, "SINGBOX_START:") || strings.HasPrefix(reason, "START:") {
+						bStart++
+						atomic.AddInt64(&failedStart, 1)
+					} else {
+						bConn++
+						atomic.AddInt64(&failedConn, 1)
+					}
+				}
+			}
+
+			batchElapsed := time.Since(batchStart).Seconds()
+			batchPassRate := 0.0
+			if actualBatchSize > 0 {
+				batchPassRate = float64(bPassed) / float64(actualBatchSize) * 100
+			}
+			totalDone := (batchIdx + 1) * batchSize
+			if totalDone > protoTotal {
+				totalDone = protoTotal
+			}
+
+			fmt.Printf("  📦 Batch %d/%d [%d configs]  ✅%d ❌%d  Rate:%.1f%%  Time:%.1fs\n",
+				batchIdx+1, totalBatches, actualBatchSize, bPassed, bFailed, batchPassRate, batchElapsed)
+			fmt.Printf("     Parse✗:%-5d  Start✗:%-5d  Conn✗:%-5d  Total:%d/%d\n",
+				bParse, bStart, bConn, totalDone, protoTotal)
+
+			if batchIdx < totalBatches-1 && v.BatchRestMs > 0 {
+				fmt.Printf("     💤 %dms rest...\n", v.BatchRestMs)
+				time.Sleep(time.Duration(v.BatchRestMs) * time.Millisecond)
+			}
+		}
+
+		protoElapsed := time.Since(protoStart).Seconds()
+		protoPassRate := float64(protoPassed) / float64(protoTotal) * 100
+		fmt.Printf("✅ [%s] Done — passed=%d/%d (%.1f%%) in %.1fs\n",
+			strings.ToUpper(proto), protoPassed, protoTotal, protoPassRate, protoElapsed)
+	}
+
 	fmt.Printf("\n📊 Tested=%d | Passed=%d | ParseFail=%d | StartFail=%d | ConnFail=%d\n",
 		atomic.LoadInt64(&testedCount),
 		atomic.LoadInt64(&passedCount),
@@ -1147,7 +1178,7 @@ func printFailureReport(protoFails map[string]*failDetail, byProto map[string][]
 	fmt.Println()
 }
 
-func validate(configURL, protocol string) validationResult {
+func validateWithTracker(configURL, protocol string, localPorts chan int, bt *batchTracker) validationResult {
 	var result validationResult
 
 	outboundJSON, parseErr := toSingBoxOutbound(configURL, protocol)
@@ -1156,8 +1187,8 @@ func validate(configURL, protocol string) validationResult {
 		return result
 	}
 
-	port := <-portPool
-	defer func() { portPool <- port }()
+	port := <-localPorts
+	defer func() { localPorts <- port }()
 
 	v := cfg.Validation
 	fullConfig := buildSingBoxConfig(outboundJSON, port)
@@ -1191,6 +1222,8 @@ func validate(configURL, protocol string) validationResult {
 		return result
 	}
 
+	bt.register(cmd)
+
 	addr := fmt.Sprintf("127.0.0.1:%d", port)
 	started := waitForPort(addr,
 		time.Duration(v.SingboxStartTimeoutMs)*time.Millisecond,
@@ -1202,7 +1235,7 @@ func validate(configURL, protocol string) validationResult {
 		killGroup(cmd)
 		sbErr := extractErr(stderr.String())
 		if sbErr == "" {
-			sbErr = fmt.Sprintf("port not open after %dms (ctx=%v)", v.SingboxStartTimeoutMs, ctx.Err())
+			sbErr = fmt.Sprintf("port not open after %dms", v.SingboxStartTimeoutMs)
 		}
 		result.failReason = "SINGBOX_START: " + sbErr
 		return result
