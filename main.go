@@ -42,9 +42,7 @@ type ValidationSettings struct {
 	HTTPDialTimeoutMs      int      `json:"http_dial_timeout_ms"`
 	HTTPResponseTimeoutMs  int      `json:"http_response_timeout_ms"`
 	PortCheckTimeoutMs     int      `json:"port_check_timeout_ms"`
-	PostStartDelayMs       int      `json:"post_start_delay_ms"`
 	MaxRetries             int      `json:"max_retries"`
-	MinPassScore           int      `json:"min_pass_score"`
 	BasePort               int      `json:"base_port"`
 	TestURLs               []string `json:"test_urls"`
 }
@@ -147,7 +145,7 @@ func (l *Logger) logResult(idx int64, proto, configURL string, res validationRes
 
 	st.mu.Lock()
 	st.tested++
-	if res.totalScore >= cfg.Validation.MinPassScore {
+	if res.passed {
 		st.passed++
 		st.totalLatMs += res.latency.Milliseconds()
 		atomic.AddInt64(&l.passed, 1)
@@ -165,7 +163,7 @@ func (l *Logger) logResult(idx int64, proto, configURL string, res validationRes
 	st.mu.Unlock()
 
 	ts := time.Now().Format("15:04:05.000")
-	if res.totalScore >= cfg.Validation.MinPassScore {
+	if res.passed {
 		l.writeLine(fmt.Sprintf("[%s] PASS  [%5d] %-6s lat=%dms  %s",
 			ts, idx, proto, res.latency.Milliseconds(), truncate(configURL, 120)))
 	} else {
@@ -325,15 +323,14 @@ type fetchResult struct {
 }
 
 type validationResult struct {
-	totalScore int
+	passed     bool
 	latency    time.Duration
 	failReason string
 }
 
 type configResult struct {
-	line    string
-	proto   string
-	latency time.Duration
+	line  string
+	proto string
 }
 
 func main() {
@@ -515,15 +512,6 @@ func fetchRaw(rawURL string, timeout time.Duration) fetchResult {
 	return fetchResult{url: rawURL, statusCode: resp.StatusCode, content: string(body)}
 }
 
-func isProtocolSupported(proto string) bool {
-	for _, p := range cfg.Protocols {
-		if p == proto {
-			return true
-		}
-	}
-	return false
-}
-
 // failDetail holds per-protocol failure reason counts.
 type failDetail struct {
 	mu      sync.Mutex
@@ -541,9 +529,6 @@ func validateAll(lines []string) []configResult {
 			continue
 		}
 		for _, proto := range cfg.Protocols {
-			if !isProtocolSupported(proto) {
-				continue
-			}
 			if strings.HasPrefix(line, proto+"://") {
 				id := coreIdentity(line, proto)
 				if !seen[id] {
@@ -575,17 +560,10 @@ func validateAll(lines []string) []configResult {
 		gLog.writeLine("")
 	}
 
-
 	// ── Per-protocol failure detail tracking ──────────────────────────────────
 	protoFails := make(map[string]*failDetail)
 	for _, p := range cfg.ProtocolOrder {
 		protoFails[p] = &failDetail{reasons: make(map[string]int)}
-	}
-
-	// normalizeReason classifies a raw failReason into a precise, groupable key.
-	// Unknown/rare reasons fall into the "OTHER" bucket.
-	normalizeReason := func(reason string) string {
-		return classifyFailReason(reason)
 	}
 
 	resultsCh := make(chan configResult, cfg.Validation.NumWorkers*4)
@@ -614,7 +592,6 @@ func validateAll(lines []string) []configResult {
 
 			var wg sync.WaitGroup
 			var protoPassed int64
-			var protoFailed int64
 
 			for _, line := range protoLines {
 				l := line
@@ -631,14 +608,13 @@ func validateAll(lines []string) []configResult {
 						gLog.logResult(idx, proto, l, res)
 					}
 
-					if res.totalScore >= cfg.Validation.MinPassScore {
+					if res.passed {
 						atomic.AddInt64(&passedCount, 1)
 						atomic.AddInt64(&protoPassed, 1)
-						resultsCh <- configResult{line: l, proto: proto, latency: res.latency}
+						resultsCh <- configResult{line: l, proto: proto}
 					} else {
-						atomic.AddInt64(&protoFailed, 1)
 						reason := res.failReason
-						norm := normalizeReason(reason)
+						norm := classifyFailReason(reason)
 						fd := protoFails[proto]
 						fd.mu.Lock()
 						fd.reasons[norm]++
@@ -780,8 +756,6 @@ func classifyFailReason(reason string) string {
 	// ── FILE / internal errors ────────────────────────────────────────────────
 	case strings.HasPrefix(r, "FILE:"):
 		return "OTHER › temp file error"
-	case r == "unknown":
-		return "OTHER › unknown (no reason captured)"
 	default:
 		if len(r) > 55 { r = r[:55] + "…" }
 		return "OTHER › " + r
@@ -942,7 +916,7 @@ func printFailureReport(protoFails map[string]*failDetail, byProto map[string][]
 }
 
 func validate(configURL, protocol string) validationResult {
-	result := validationResult{failReason: "unknown"}
+	var result validationResult
 
 	outboundJSON, parseErr := toSingBoxOutbound(configURL, protocol)
 	if parseErr != "" {
@@ -1002,8 +976,6 @@ func validate(configURL, protocol string) validationResult {
 		return result
 	}
 
-	time.Sleep(time.Duration(v.PostStartDelayMs) * time.Millisecond)
-
 	proxyURL, _ := url.Parse("http://" + addr)
 	client := &http.Client{
 		Timeout: time.Duration(v.HTTPRequestTimeoutMs) * time.Millisecond,
@@ -1024,7 +996,7 @@ func validate(configURL, protocol string) validationResult {
 	killGroup(cmd)
 
 	if success {
-		result.totalScore = 4
+		result.passed = true
 		result.latency = latency
 	} else {
 		sbErr := extractErr(stderr.String())
@@ -1052,13 +1024,8 @@ func waitForPort(addr string, maxWait, interval, dialTimeout time.Duration) bool
 }
 
 func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRetries int) (bool, time.Duration, string) {
-	// For proxy validation, HTTPS (CONNECT tunnel) must be used.
-	// Plain HTTP through proxy uses HTTP-forward mode which sing-box proxies
-	// don't support and return 502. Auto-upgrade any http:// → https://.
-	// Replace http:// with https:// — plain HTTP through proxy uses HTTP-forward
-	// mode which sing-box doesn't support (returns 502). HTTPS uses CONNECT tunnel.
-	// Do NOT keep the http:// version: trying both wastes time and causes
-	// "context expired" on the second URL when the HTTPS attempt times out.
+	// HTTPS only: plain HTTP uses HTTP-forward mode (sing-box returns 502).
+	// HTTPS uses CONNECT tunnel which works correctly. Replace any http:// → https://.
 	effectiveURLs := make([]string, 0, len(testURLs))
 	seen := make(map[string]bool)
 	for _, u := range testURLs {
@@ -1926,7 +1893,6 @@ func writeBatchFiles(allV2ray []string, allClash []string, allClashNames []strin
 	}
 }
 
-
 func writeFile(path string, lines []string) {
 	f, err := os.Create(path)
 	if err != nil {
@@ -1972,7 +1938,6 @@ func writeClashConfigAdvanced(path string, proxyEntries, proxyNames []string) {
 	defer w.Flush()
 	w.WriteString(content)
 }
-
 
 func configToClashYAML(line, proto, name string) (string, bool) {
 	switch proto {
@@ -2401,8 +2366,6 @@ func min500(batchIdx, total int) int {
 	return end - start
 }
 
-
-
 func writeSummary(results []configResult, failedLinks []string, duration float64, originalTotal int) {
 	byProtoOut := make(map[string]int)
 	for _, r := range results {
@@ -2508,8 +2471,6 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	w.WriteString("⭐ **Star our [Telegram posts](https://t.me/DeltaKroneckerGithub)** \n\n")
 	w.WriteString("Your stars fuel our motivation to keep improving!\n")
 }
-
-
 
 func decodeBase64(encoded []byte) (string, error) {
 	// Strip all whitespace variants (space, tab, CR, LF)
