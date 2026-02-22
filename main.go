@@ -777,8 +777,8 @@ func validateAll(lines []string) []configResult {
 
 			stopBar := make(chan struct{})
 			go func() {
-				barWidth := 25
-				tick := time.NewTicker(200 * time.Millisecond)
+				const barWidth = 25
+				tick := time.NewTicker(300 * time.Millisecond)
 				defer tick.Stop()
 				for {
 					select {
@@ -797,8 +797,8 @@ func validateAll(lines []string) []configResult {
 							filled = barWidth
 						}
 						bar := strings.Repeat("█", filled) + strings.Repeat("░", barWidth-filled)
-						fmt.Printf("\r  [%s] %5.1f%%  tested=%-7d  ✓%-6d  ✗%-6d",
-							bar, pct, tested, passed, failed)
+						line := fmt.Sprintf("\r  [%s] %5.1f%%  tested=%-7d  ✓%-6d  ✗%-6d   ", bar, pct, tested, passed, failed)
+						os.Stdout.WriteString(line)
 					}
 				}
 			}()
