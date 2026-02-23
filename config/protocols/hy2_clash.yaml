@@ -120,12 +120,20 @@ dns:
     - 194.187.251.67
 
 proxies:
-  - name: "Delta-Kronecker-hy2-001"
+  - name: "proxy-hy2-001"
     type: hysteria2
     server: "91.132.51.160"
     port: 844
     password: "5046SHWqk6"
     sni: "91.132.51.160"
+    skip-cert-verify: true
+    udp: true
+  - name: "proxy-hy2-002"
+    type: hysteria2
+    server: "130.61.50.75"
+    port: 6443
+    password: "zhangyang"
+    sni: "dash.cloudflare.com"
     skip-cert-verify: true
     udp: true
 
@@ -146,7 +154,8 @@ proxy-groups:
     tolerance: 50
     lazy: true
     proxies:
-      - "Delta-Kronecker-hy2-001"
+      - "proxy-hy2-001"
+      - "proxy-hy2-002"
 
   - name: "Auto"
     type: url-test
@@ -155,7 +164,8 @@ proxy-groups:
     tolerance: 50
     lazy: true
     proxies:
-      - "Delta-Kronecker-hy2-001"
+      - "proxy-hy2-001"
+      - "proxy-hy2-002"
 
   - name: "Fallback"
     type: fallback
@@ -163,7 +173,8 @@ proxy-groups:
     interval: 60
     lazy: true
     proxies:
-      - "Delta-Kronecker-hy2-001"
+      - "proxy-hy2-001"
+      - "proxy-hy2-002"
 
 rules:
   - MATCH,PROXY
