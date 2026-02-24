@@ -4,22 +4,22 @@
 
 | Protocol | Tested (unique) | valid | Pass Rate |
 |---|---|---|---|
-| VMESS | 73241 | 994 | 1.4% |
-| VLESS | 177120 | 4274 | 2.4% |
-| TROJAN | 24205 | 295 | 1.2% |
-| SS | 67635 | 2095 | 3.1% |
+| VMESS | 73303 | 1190 | 1.6% |
+| VLESS | 177893 | 3985 | 2.2% |
+| TROJAN | 24241 | 351 | 1.4% |
+| SS | 65713 | 2149 | 3.3% |
 | SSR | 192 | 0 | 0.0% |
-| HY2 | 2359 | 2 | 0.1% |
-| HY | 0 | 0 | 0.0% |
+| HY2 | 2392 | 9 | 0.4% |
+| HY | 6 | 0 | 0.0% |
 | TUIC | 180 | 0 | 0.0% |
-| **Total** | **344932** | **7660** | **2.2%** |
+| **Total** | **343920** | **7684** | **2.2%** |
 
 | Metric | Value |
 |---|---|
-| Raw fetched lines | 4868618 |
-| Unique after dedup | 344932 |
-| Valid configs | 7660 |
-| Processing time | 9114.90s |
+| Raw fetched lines | 4682569 |
+| Unique after dedup | 343920 |
+| Valid configs | 7684 |
+| Processing time | 11600.30s |
 
 ---
 
@@ -35,11 +35,11 @@
 
 | Protocol | Count | Link |
 |---|---|---|
-| VMESS | 994 | [vmess.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vmess.txt) |
-| VLESS | 4274 | [vless.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vless.txt) |
-| TROJAN | 295 | [trojan.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/trojan.txt) |
-| SS | 2095 | [ss.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/ss.txt) |
-| HY2 | 2 | [hy2.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/hy2.txt) |
+| VMESS | 1190 | [vmess.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vmess.txt) |
+| VLESS | 3985 | [vless.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vless.txt) |
+| TROJAN | 351 | [trojan.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/trojan.txt) |
+| SS | 2149 | [ss.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/ss.txt) |
+| HY2 | 9 | [hy2.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/hy2.txt) |
 
 ### Clash 
 
@@ -53,18 +53,6 @@ Groups: **PROXY** (selector) → **Load-Balance** · **Auto** · **Fallback**
 | trojan_clash.yaml | [trojan_clash.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/trojan_clash.yaml) |
 | ss_clash.yaml | [ss_clash.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/ss_clash.yaml) |
 | hy2_clash.yaml | [hy2_clash.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/hy2_clash.yaml) |
-
----
-
-## Special Protocols — All Collected Configs
-
-> All collected configs (before validation) for hy, hy2, tuic, ssr.
-
-| Protocol | All Collected | Link |
-|---|---|---|
-| HY2 | 2359 | [hy2_all.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/special-protocols/hy2_all.txt) |
-| TUIC | 180 | [tuic_all.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/special-protocols/tuic_all.txt) |
-| SSR | 192 | [ssr_all.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/special-protocols/ssr_all.txt) |
 
 ---
 
@@ -91,7 +79,7 @@ Groups: **PROXY** (selector) → **Load-Balance** · **Auto** · **Fallback**
 | Batch 013 | 500 | [batch_013.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_013.txt) |
 | Batch 014 | 500 | [batch_014.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_014.txt) |
 | Batch 015 | 500 | [batch_015.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_015.txt) |
-| Batch 016 | 160 | [batch_016.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_016.txt) |
+| Batch 016 | 184 | [batch_016.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_016.txt) |
 
 ### Clash Batches
 

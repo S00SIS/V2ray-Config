@@ -1,2 +1,9 @@
-hy2://5046SHWqk6@91.132.51.160:844/#proxy
-hy2://zhangyang@130.61.50.75:6443/?insecure=1&sni=dash.cloudflare.com#proxy
+hy2://1y4HweESOT@sss.ikun6.dpdns.org:27995/?insecure=1&sni=azure.microsoft.com#@DeltaKroneckerGithub
+hy2://Yet-Another-Public-Config-1@206.71.158.37:35000?obfs=salamander&obfs-password=Yet-Another-Public-Config-1&insecure=1&sni=YAPC-1.afshin.ir#@DeltaKroneckerGithub
+hy2://5046SHWqk6@91.132.51.160:844/ #@DeltaKroneckerGithub
+hy2://1y4HweESOT@107.175.6.241:27995/?insecure=1&sni=azure.microsoft.com#@DeltaKroneckerGithub
+hy2://Yet-Another-Public-Config-1@yapc-1.adamhayward.co.uk:35200?obfs=salamander&obfs-password=Yet-Another-Public-Config-1&sni=YAPC-1.afshin.ir#@DeltaKroneckerGithub
+hy2://Yet-Another-Public-Config-1@206.71.158.37:36300?obfs=salamander&obfs-password=Yet-Another-Public-Config-1&insecure=1&sni=YAPC-1.afshin.ir#@DeltaKroneckerGithub
+hy2://Yet-Another-Public-Config-1@yapc-1.adamhayward.co.uk:36300/?insecure=1&sni=YAPC-1.afshin.ir&obfs=salamander&obfs-password=Yet-Another-Public-Config-1#@DeltaKroneckerGithub
+hy2://Yet-Another-Public-Config-1@yapc-1.adamhayward.co.uk:36600/?sni=YAPC-1.afshin.ir&obfs=salamander&obfs-password=Yet-Another-Public-Config-1#@DeltaKroneckerGithub
+hy2://Yet-Another-Public-Config-1@yapc-1.adamhayward.co.uk:36400?obfs=salamander&obfs-password=Yet-Another-Public-Config-1&sni=YAPC-1.afshin.ir#@DeltaKroneckerGithub

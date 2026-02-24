@@ -59,7 +59,25 @@ dns:
     - tls://94.140.14.14:853
 
 proxies:
-  - name: "proxy-hy2-001"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "sss.ikun6.dpdns.org"
+    port: 27995
+    password: "1y4HweESOT"
+    sni: "azure.microsoft.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "206.71.158.37"
+    port: 35000
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
+  - name: "@DeltaKroneckerGithub"
     type: hysteria2
     server: "91.132.51.160"
     port: 844
@@ -67,14 +85,64 @@ proxies:
     sni: "91.132.51.160"
     skip-cert-verify: true
     udp: true
-  - name: "proxy-hy2-002"
+  - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "130.61.50.75"
-    port: 6443
-    password: "zhangyang"
-    sni: "dash.cloudflare.com"
+    server: "107.175.6.241"
+    port: 27995
+    password: "1y4HweESOT"
+    sni: "azure.microsoft.com"
     skip-cert-verify: true
     udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "yapc-1.adamhayward.co.uk"
+    port: 35200
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "206.71.158.37"
+    port: 36300
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "yapc-1.adamhayward.co.uk"
+    port: 36300
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "yapc-1.adamhayward.co.uk"
+    port: 36600
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "yapc-1.adamhayward.co.uk"
+    port: 36400
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
 
 proxy-groups:
   # ── Top-level selector ────────────────────────────────────────────────────
@@ -117,8 +185,15 @@ proxy-groups:
     tolerance: 150
     lazy: true
     proxies:
-      - "proxy-hy2-001"
-      - "proxy-hy2-002"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   - name: "LB-CDN"
     type: load-balance
@@ -128,8 +203,15 @@ proxy-groups:
     tolerance: 150
     lazy: true
     proxies:
-      - "proxy-hy2-001"
-      - "proxy-hy2-002"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   # ── Fastest-proxy groups ──────────────────────────────────────────────────
   - name: "FAST-ALL"
@@ -139,8 +221,15 @@ proxy-groups:
     tolerance: 50
     lazy: true
     proxies:
-      - "proxy-hy2-001"
-      - "proxy-hy2-002"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   - name: "FAST-CDN"
     type: url-test
@@ -149,8 +238,15 @@ proxy-groups:
     tolerance: 50
     lazy: true
     proxies:
-      - "proxy-hy2-001"
-      - "proxy-hy2-002"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   # ── UDP group ─────────────────────────────────────────────────────────────
   - name: "UDP-BEST"
@@ -160,15 +256,29 @@ proxy-groups:
     tolerance: 50
     lazy: true
     proxies:
-      - "proxy-hy2-001"
-      - "proxy-hy2-002"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   # ── Manual selector ───────────────────────────────────────────────────────
   - name: "MANUAL"
     type: select
     proxies:
-      - "proxy-hy2-001"
-      - "proxy-hy2-002"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
 rules:
   - MATCH,PROXY-BEST
