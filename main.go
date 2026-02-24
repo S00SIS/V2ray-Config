@@ -3617,36 +3617,6 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 
 	repoBase := "https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main"
 
-	w.WriteString("## Statistics\n\n")
-
-	w.WriteString("### Per-Protocol Input & Output\n\n")
-	fmt.Fprintf(w, "| Protocol | Tested (unique) | valid | Pass Rate |\n|---|---|---|---|\n")
-	totalIn := 0
-	totalOut := 0
-	for _, p := range cfg.ProtocolOrder {
-		in := gInputByProto[p]
-		out := byProtoOut[p]
-		totalIn += in
-		totalOut += out
-		rate := 0.0
-		if in > 0 {
-			rate = float64(out) / float64(in) * 100
-		}
-		fmt.Fprintf(w, "| %s | %d | %d | %.1f%% |\n", strings.ToUpper(p), in, out, rate)
-	}
-	overallRate := 0.0
-	if totalIn > 0 {
-		overallRate = float64(totalOut) / float64(totalIn) * 100
-	}
-	fmt.Fprintf(w, "| **Total** | **%d** | **%d** | **%.1f%%** |\n\n", totalIn, totalOut, overallRate)
-
-	fmt.Fprintf(w, "| Metric | Value |\n|---|---|\n")
-	fmt.Fprintf(w, "| Raw fetched lines | %d |\n", originalTotal)
-	fmt.Fprintf(w, "| Unique after dedup | %d |\n", totalIn)
-	fmt.Fprintf(w, "| Valid configs | %d |\n", len(results))
-	fmt.Fprintf(w, "| Processing time | %.2fs |\n\n", duration)
-
-	w.WriteString("---\n\n")
 	w.WriteString("## Main Files\n\n")
 
 	w.WriteString("### V2ray — All Configs\n\n")
@@ -3698,6 +3668,36 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 			i, i, repoBase, i)
 	}
 	w.WriteString("\n")
+
+	w.WriteString("---\n\n")
+	w.WriteString("## Statistics\n\n")
+
+	w.WriteString("### Per-Protocol Input & Output\n\n")
+	fmt.Fprintf(w, "| Protocol | Tested (unique) | valid | Pass Rate |\n|---|---|---|---|\n")
+	totalIn := 0
+	totalOut := 0
+	for _, p := range cfg.ProtocolOrder {
+		in := gInputByProto[p]
+		out := byProtoOut[p]
+		totalIn += in
+		totalOut += out
+		rate := 0.0
+		if in > 0 {
+			rate = float64(out) / float64(in) * 100
+		}
+		fmt.Fprintf(w, "| %s | %d | %d | %.1f%% |\n", strings.ToUpper(p), in, out, rate)
+	}
+	overallRate := 0.0
+	if totalIn > 0 {
+		overallRate = float64(totalOut) / float64(totalIn) * 100
+	}
+	fmt.Fprintf(w, "| **Total** | **%d** | **%d** | **%.1f%%** |\n\n", totalIn, totalOut, overallRate)
+
+	fmt.Fprintf(w, "| Metric | Value |\n|---|---|\n")
+	fmt.Fprintf(w, "| Raw fetched lines | %d |\n", originalTotal)
+	fmt.Fprintf(w, "| Unique after dedup | %d |\n", totalIn)
+	fmt.Fprintf(w, "| Valid configs | %d |\n", len(results))
+	fmt.Fprintf(w, "| Processing time | %.2fs |\n\n", duration)
 
 	w.WriteString("---\n\n")
 	w.WriteString("## 🔥 Keep This Project Going!\n\n")
