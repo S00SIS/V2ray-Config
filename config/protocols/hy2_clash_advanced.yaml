@@ -61,27 +61,7 @@ dns:
 proxies:
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "206.71.158.37"
-    port: 36300
-    password: "Yet-Another-Public-Config-1"
-    sni: "YAPC-1.afshin.ir"
-    skip-cert-verify: true
-    udp: true
-    obfs: "salamander"
-    obfs-password: "Yet-Another-Public-Config-1"
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
     server: "yapc-1.adamhayward.co.uk"
-    port: 36300
-    password: "Yet-Another-Public-Config-1"
-    sni: "YAPC-1.afshin.ir"
-    skip-cert-verify: true
-    udp: true
-    obfs: "salamander"
-    obfs-password: "Yet-Another-Public-Config-1"
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "206.71.158.37"
     port: 36600
     password: "Yet-Another-Public-Config-1"
     sni: "YAPC-1.afshin.ir"
@@ -91,7 +71,83 @@ proxies:
     obfs-password: "Yet-Another-Public-Config-1"
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
+    server: "160.16.104.77"
+    port: 443
+    password: "81206489-BD9D-4916-B1F4-D1554689EEA5"
+    sni: "ops-tyo.dexlos.com"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "2g7feub2"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "43.153.7.213"
+    port: 8443
+    password: "dMqSvWDoY0h8wJA4H7ZWJDFLDLF52065"
+    sni: "bing.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
     server: "yapc-1.adamhayward.co.uk"
+    port: 35200
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "206.71.158.37"
+    port: 35200
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "160.16.143.152"
+    port: 443
+    password: "4E8F0CEC-DF1E-4876-8897-56B7CED64D05"
+    sni: "ops-tyo.dexlos.com"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "2g7feub2"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "yapc-1.adamhayward.co.uk"
+    port: 36300
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "206.71.158.37"
+    port: 35000
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "130.61.50.75"
+    port: 6443
+    password: "zhangyang"
+    sni: "130.61.50.75"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "206.71.158.37"
     port: 36400
     password: "Yet-Another-Public-Config-1"
     sni: "YAPC-1.afshin.ir"
@@ -99,40 +155,6 @@ proxies:
     udp: true
     obfs: "salamander"
     obfs-password: "Yet-Another-Public-Config-1"
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "f643a7e8-t6ngg0-t74ix0-1m0fq.hk1.hyhuawei.com"
-    port: 443
-    password: "a698c4a6-c3c9-11ee-9693-f23c91cfbbc9"
-    sni: "f643a7e8-t6ngg0-t74ix0-1m0fq.hk1.hyhuawei.com"
-    skip-cert-verify: true
-    udp: true
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "yapc-1.adamhayward.co.uk"
-    port: 36600
-    password: "Yet-Another-Public-Config-1"
-    sni: "YAPC-1.afshin.ir"
-    skip-cert-verify: true
-    udp: true
-    obfs: "salamander"
-    obfs-password: "Yet-Another-Public-Config-1"
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "91.132.51.160"
-    port: 844
-    password: "5046SHWqk6"
-    sni: "91.132.51.160"
-    skip-cert-verify: true
-    udp: true
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "sss.ikun6.dpdns.org"
-    port: 27995
-    password: "1y4HweESOT"
-    sni: "azure.microsoft.com"
-    skip-cert-verify: true
-    udp: true
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
     server: "dd.openaccessnode.com"
@@ -143,14 +165,6 @@ proxies:
     udp: true
     obfs: "salamander"
     obfs-password: "@JavidnamanIran-Javid-SHAH-King-Reza-Pahlavi"
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "107.175.6.241"
-    port: 27995
-    password: "1y4HweESOT"
-    sni: "azure.microsoft.com"
-    skip-cert-verify: true
-    udp: true
 
 proxy-groups:
   # ── Top-level selector ────────────────────────────────────────────────────
@@ -203,6 +217,7 @@ proxy-groups:
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   - name: "LB-CDN"
     type: load-balance
@@ -212,6 +227,7 @@ proxy-groups:
     tolerance: 150
     lazy: true
     proxies:
+      - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
@@ -241,6 +257,7 @@ proxy-groups:
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   - name: "FAST-CDN"
     type: url-test
@@ -249,6 +266,7 @@ proxy-groups:
     tolerance: 50
     lazy: true
     proxies:
+      - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
@@ -278,11 +296,13 @@ proxy-groups:
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   # ── Manual selector ───────────────────────────────────────────────────────
   - name: "MANUAL"
     type: select
     proxies:
+      - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
