@@ -1297,7 +1297,6 @@ func prepareOutputDirs() error {
 		"config/batches/v2ray",
 		"config/batches/clash",
 		"config/batches/clash_advanced",
-		"config/special-protocols",
 	}
 	for _, dir := range dirs {
 		if err := os.MkdirAll(dir, 0755); err != nil {
@@ -1457,13 +1456,6 @@ func validateAll(lines []string) []configResult {
 		gInputByProto[p] = len(lines)
 	}
 
-	specialProtos := map[string]bool{"hy": true, "hy2": true, "tuic": true, "ssr": true}
-	for proto, lines := range byProto {
-		if specialProtos[proto] && len(lines) > 0 {
-			writeFile(filepath.Join("config/special-protocols", proto+"_all.txt"), lines)
-		}
-	}
-
 	if gLog != nil {
 		gLog.writeLine(fmt.Sprintf("[DEDUP] removed=%d duplicates", duplicates))
 		total := 0
@@ -1546,9 +1538,6 @@ func validateAll(lines []string) []configResult {
 			var wg sync.WaitGroup
 			batchStart := time.Now()
 
-			// CPU sample t0: taken right before workers start
-			cpuT0, cpuT0ok := readCPUSample()
-
 			for i, line := range batch {
 				wg.Add(1)
 				go func(idx int, l string) {
@@ -1564,45 +1553,20 @@ func validateAll(lines []string) []configResult {
 
 			wg.Wait()
 
-			// CPU sample t1: right after workers finish (before kill) — interval is the batch duration
-			cpuT1, cpuT1ok := readCPUSample()
-			memBefore := readMemStats()
-			procsBefore := countSingboxProcs()
-			occupiedBefore := checkOccupiedPorts(v.BasePort, actualBatchSize)
-
-			var cpuBatchPct float64
-			if cpuT0ok && cpuT1ok {
-				cpuBatchPct = cpuPercent(cpuT0, cpuT1)
-			}
+			procsAfter := countSingboxProcs()
+			occupiedAfter := checkOccupiedPorts(v.BasePort, actualBatchSize)
 
 			bt.killAll()
 			if v.ProcessKillWaitMs > 0 {
 				time.Sleep(time.Duration(v.ProcessKillWaitMs) * time.Millisecond)
 			}
 
-			// CPU sample t2: after kill+wait — compare with t1 to see drop
-			cpuT2, cpuT2ok := readCPUSample()
-			memAfter := readMemStats()
-			procsAfter := countSingboxProcs()
-			occupiedAfter := checkOccupiedPorts(v.BasePort, actualBatchSize)
-
-			var cpuAfterPct float64
-			if cpuT1ok && cpuT2ok {
-				cpuAfterPct = cpuPercent(cpuT1, cpuT2)
-			}
-
-			fmt.Printf("     🖥️  Before kill — procs:%-3d  ports-busy:%-3d  RAM:%dMB/%dMB  CPU:%.1f%%\n",
-				procsBefore, len(occupiedBefore), memBefore.usedMB, memBefore.totalMB, cpuBatchPct)
-
 			if procsAfter > 0 || len(occupiedAfter) > 0 {
-				fmt.Printf("     ⚠️  After kill  — procs:%-3d  ports-busy:%-3d  RAM:%dMB/%dMB  CPU:%.1f%%\n",
-					procsAfter, len(occupiedAfter), memAfter.usedMB, memAfter.totalMB, cpuAfterPct)
+				fmt.Printf("     ⚠️  After kill  — procs:%-3d  ports-busy:%-3d\n",
+					procsAfter, len(occupiedAfter))
 				if len(occupiedAfter) > 0 && len(occupiedAfter) <= 20 {
 					fmt.Printf("     ⚠️  Still-busy ports: %v\n", occupiedAfter)
 				}
-			} else {
-				fmt.Printf("     ✅ After kill  — procs:0    ports-busy:0    RAM:%dMB/%dMB  CPU:%.1f%%\n",
-					memAfter.usedMB, memAfter.totalMB, cpuAfterPct)
 			}
 
 			var bPassed, bFailed, bParse, bStart, bConn int
@@ -2923,15 +2887,12 @@ func writeOutputFiles(results []configResult) {
 	var all []string
 	var allClash []string
 	var allClashNames []string
-	protoCounters := make(map[string]int)
-
 	for _, r := range results {
-		named := renameTo(r.line, r.proto, cfg.Output.ConfigName)
+		named := renameTo(r.line, r.proto, "@DeltaKroneckerGithub")
 		all = append(all, named)
 		byProto[r.proto] = append(byProto[r.proto], named)
 
-		protoCounters[r.proto]++
-		cname := fmt.Sprintf("%s-%s-%03d", cfg.Output.ConfigName, r.proto, protoCounters[r.proto])
+		cname := "@DeltaKroneckerGithub"
 		if entry, ok := configToClashYAML(r.line, r.proto, cname); ok {
 			allClash = append(allClash, entry)
 			allClashNames = append(allClashNames, cname)
@@ -3091,18 +3052,33 @@ func vmessClashYAML(raw, name string) (string, bool) {
 		data = data[:idx]
 	}
 	data = strings.TrimSpace(data)
-	var jsonStr string
+
+	var d map[string]interface{}
+
 	if strings.HasPrefix(data, "{") {
-		jsonStr = data
-	} else {
-		decoded, err := decodeBase64([]byte(data))
-		if err != nil {
+		// Raw JSON
+		if err := json.Unmarshal([]byte(data), &d); err != nil {
 			return "", false
 		}
-		jsonStr = decoded
+	} else {
+		// Try base64 decode first
+		decoded, err := decodeBase64([]byte(data))
+		if err == nil {
+			if json.Unmarshal([]byte(decoded), &d) != nil {
+				d = nil
+			}
+		}
+		// Fall back to URI format (uuid@host:port?params)
+		if d == nil {
+			pd, parseErr := parseVMessURItoD(data)
+			if parseErr != "" {
+				return "", false
+			}
+			d = pd
+		}
 	}
-	var d map[string]interface{}
-	if err := json.Unmarshal([]byte(jsonStr), &d); err != nil {
+
+	if d == nil {
 		return "", false
 	}
 	server := strings.TrimSpace(fmt.Sprintf("%v", d["add"]))
@@ -3512,44 +3488,85 @@ func renameTo(config, protocol, newName string) string {
 	switch protocol {
 	case "vmess":
 		data := strings.TrimPrefix(config, "vmess://")
-		if idx := strings.LastIndex(data, "#"); idx != -1 {
-			data = data[:idx]
+		// Strip fragment first
+		fragIdx := strings.LastIndex(data, "#")
+		if fragIdx != -1 {
+			data = data[:fragIdx]
 		}
 		data = strings.TrimSpace(data)
-		var jsonStr string
+
+		// Detect URI format: contains @ before any base64 chars would be exhausted
+		// URI format looks like: uuid@host:port?params
+		// Base64/JSON format: eyJ... or {...
+		isURI := false
 		if strings.HasPrefix(data, "{") {
-			jsonStr = data
+			isURI = false
 		} else {
+			// Try base64 decode; if it yields valid JSON, it's base64 format
 			decoded, err := decodeBase64([]byte(data))
-			if err != nil {
+			if err == nil {
+				var tmp map[string]interface{}
+				if json.Unmarshal([]byte(decoded), &tmp) == nil {
+					// Successfully decoded as base64 JSON
+					tmp["ps"] = newName
+					keys := make([]string, 0, len(tmp))
+					for k := range tmp {
+						keys = append(keys, k)
+					}
+					sort.Strings(keys)
+					var buf bytes.Buffer
+					buf.WriteByte('{')
+					for i, k := range keys {
+						if i > 0 {
+							buf.WriteByte(',')
+						}
+						kj, _ := json.Marshal(k)
+						vj, _ := json.Marshal(tmp[k])
+						buf.Write(kj)
+						buf.WriteByte(':')
+						buf.Write(vj)
+					}
+					buf.WriteByte('}')
+					return "vmess://" + base64.StdEncoding.EncodeToString(buf.Bytes())
+				}
+			}
+			// Check for URI format: uuid@host
+			if atIdx := strings.Index(data, "@"); atIdx != -1 {
+				isURI = true
+			}
+		}
+
+		if !isURI {
+			// Raw JSON format
+			var d map[string]interface{}
+			if err := json.Unmarshal([]byte(data), &d); err != nil {
 				return config
 			}
-			jsonStr = decoded
-		}
-		var d map[string]interface{}
-		if err := json.Unmarshal([]byte(jsonStr), &d); err != nil {
-			return config
-		}
-		d["ps"] = newName
-		keys := make([]string, 0, len(d))
-		for k := range d {
-			keys = append(keys, k)
-		}
-		sort.Strings(keys)
-		var buf bytes.Buffer
-		buf.WriteByte('{')
-		for i, k := range keys {
-			if i > 0 {
-				buf.WriteByte(',')
+			d["ps"] = newName
+			keys := make([]string, 0, len(d))
+			for k := range d {
+				keys = append(keys, k)
 			}
-			kj, _ := json.Marshal(k)
-			vj, _ := json.Marshal(d[k])
-			buf.Write(kj)
-			buf.WriteByte(':')
-			buf.Write(vj)
+			sort.Strings(keys)
+			var buf bytes.Buffer
+			buf.WriteByte('{')
+			for i, k := range keys {
+				if i > 0 {
+					buf.WriteByte(',')
+				}
+				kj, _ := json.Marshal(k)
+				vj, _ := json.Marshal(d[k])
+				buf.Write(kj)
+				buf.WriteByte(':')
+				buf.Write(vj)
+			}
+			buf.WriteByte('}')
+			return "vmess://" + base64.StdEncoding.EncodeToString(buf.Bytes())
 		}
-		buf.WriteByte('}')
-		return "vmess://" + base64.StdEncoding.EncodeToString(buf.Bytes())
+
+		// URI format: vmess://uuid@host:port?params  → just set/replace fragment
+		return "vmess://" + data + "#" + url.PathEscape(newName)
+
 	default:
 		if idx := strings.Index(config, "#"); idx != -1 {
 			return config[:idx] + "#" + url.PathEscape(newName)
@@ -3654,20 +3671,6 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 		if byProtoOut[p] > 0 {
 			fmt.Fprintf(w, "| %s_clash.yaml | [%s_clash.yaml](%s/config/protocols/%s_clash.yaml) |\n",
 				p, p, repoBase, p)
-		}
-	}
-	w.WriteString("\n")
-
-	w.WriteString("---\n\n")
-	w.WriteString("## Special Protocols — All Collected Configs\n\n")
-	w.WriteString("> All collected configs (before validation) for hy, hy2, tuic, ssr.\n\n")
-	fmt.Fprintf(w, "| Protocol | All Collected | Link |\n|---|---|---|\n")
-	specialList := []string{"hy", "hy2", "tuic", "ssr"}
-	for _, p := range specialList {
-		n := gInputByProto[p]
-		if n > 0 {
-			fmt.Fprintf(w, "| %s | %d | [%s_all.txt](%s/config/special-protocols/%s_all.txt) |\n",
-				strings.ToUpper(p), n, p, repoBase, p)
 		}
 	}
 	w.WriteString("\n")
@@ -3872,82 +3875,6 @@ func checkOccupiedPorts(basePort, count int) []int {
 		}
 	}
 	return occupied
-}
-
-type cpuSample struct {
-	user, nice, system, idle, iowait, irq, softirq uint64
-}
-
-func readCPUSample() (cpuSample, bool) {
-	data, err := os.ReadFile("/proc/stat")
-	if err != nil {
-		return cpuSample{}, false
-	}
-	for _, line := range strings.Split(string(data), "\n") {
-		if !strings.HasPrefix(line, "cpu ") {
-			continue
-		}
-		fields := strings.Fields(line)
-		if len(fields) < 8 {
-			return cpuSample{}, false
-		}
-		parse := func(s string) uint64 { v, _ := strconv.ParseUint(s, 10, 64); return v }
-		return cpuSample{
-			user:    parse(fields[1]),
-			nice:    parse(fields[2]),
-			system:  parse(fields[3]),
-			idle:    parse(fields[4]),
-			iowait:  parse(fields[5]),
-			irq:     parse(fields[6]),
-			softirq: parse(fields[7]),
-		}, true
-	}
-	return cpuSample{}, false
-}
-
-func cpuPercent(a, b cpuSample) float64 {
-	totalA := a.user + a.nice + a.system + a.idle + a.iowait + a.irq + a.softirq
-	totalB := b.user + b.nice + b.system + b.idle + b.iowait + b.irq + b.softirq
-	totalDiff := float64(totalB - totalA)
-	if totalDiff <= 0 {
-		return 0
-	}
-	idleDiff := float64(b.idle+b.iowait) - float64(a.idle+a.iowait)
-	return (1.0 - idleDiff/totalDiff) * 100.0
-}
-
-type memStats struct {
-	totalMB     int
-	availableMB int
-	usedMB      int
-}
-
-func readMemStats() memStats {
-	data, err := os.ReadFile("/proc/meminfo")
-	if err != nil {
-		return memStats{}
-	}
-	var total, available uint64
-	for _, line := range strings.Split(string(data), "\n") {
-		fields := strings.Fields(line)
-		if len(fields) < 2 {
-			continue
-		}
-		val, _ := strconv.ParseUint(fields[1], 10, 64)
-		switch fields[0] {
-		case "MemTotal:":
-			total = val
-		case "MemAvailable:":
-			available = val
-		}
-	}
-	totalMB := int(total / 1024)
-	availMB := int(available / 1024)
-	return memStats{
-		totalMB:     totalMB,
-		availableMB: availMB,
-		usedMB:      totalMB - availMB,
-	}
 }
 
 func extractErr(stderr string) string {
