@@ -4,14 +4,22 @@
 
 | Protocol | Tested (unique) | valid | Pass Rate |
 |---|---|---|---|
+<<<<<<< Updated upstream
 | VMESS | 73303 | 1190 | 1.6% |
 | VLESS | 177893 | 3985 | 2.2% |
 | TROJAN | 24241 | 351 | 1.4% |
 | SS | 65713 | 2149 | 3.3% |
+=======
+| VMESS | 73315 | 1211 | 1.7% |
+| VLESS | 178795 | 4029 | 2.3% |
+| TROJAN | 24251 | 335 | 1.4% |
+| SS | 64833 | 2146 | 3.3% |
+>>>>>>> Stashed changes
 | SSR | 192 | 0 | 0.0% |
 | HY2 | 2392 | 9 | 0.4% |
 | HY | 6 | 0 | 0.0% |
 | TUIC | 180 | 0 | 0.0% |
+<<<<<<< Updated upstream
 | **Total** | **343920** | **7684** | **2.2%** |
 
 | Metric | Value |
@@ -20,6 +28,16 @@
 | Unique after dedup | 343920 |
 | Valid configs | 7684 |
 | Processing time | 11600.30s |
+=======
+| **Total** | **343964** | **7730** | **2.2%** |
+
+| Metric | Value |
+|---|---|
+| Raw fetched lines | 4625564 |
+| Unique after dedup | 343964 |
+| Valid configs | 7730 |
+| Processing time | 11625.06s |
+>>>>>>> Stashed changes
 
 ---
 
@@ -35,10 +53,17 @@
 
 | Protocol | Count | Link |
 |---|---|---|
+<<<<<<< Updated upstream
 | VMESS | 1190 | [vmess.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vmess.txt) |
 | VLESS | 3985 | [vless.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vless.txt) |
 | TROJAN | 351 | [trojan.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/trojan.txt) |
 | SS | 2149 | [ss.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/ss.txt) |
+=======
+| VMESS | 1211 | [vmess.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vmess.txt) |
+| VLESS | 4029 | [vless.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vless.txt) |
+| TROJAN | 335 | [trojan.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/trojan.txt) |
+| SS | 2146 | [ss.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/ss.txt) |
+>>>>>>> Stashed changes
 | HY2 | 9 | [hy2.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/hy2.txt) |
 
 ### Clash 
@@ -79,7 +104,11 @@ Groups: **PROXY** (selector) → **Load-Balance** · **Auto** · **Fallback**
 | Batch 013 | 500 | [batch_013.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_013.txt) |
 | Batch 014 | 500 | [batch_014.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_014.txt) |
 | Batch 015 | 500 | [batch_015.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_015.txt) |
+<<<<<<< Updated upstream
 | Batch 016 | 184 | [batch_016.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_016.txt) |
+=======
+| Batch 016 | 230 | [batch_016.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_016.txt) |
+>>>>>>> Stashed changes
 
 ### Clash Batches
 

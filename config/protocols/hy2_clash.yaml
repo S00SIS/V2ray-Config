@@ -121,6 +121,7 @@ dns:
 
 proxies:
   - name: "@DeltaKroneckerGithub"
+<<<<<<< Updated upstream
     type: hysteria2
     server: "sss.ikun6.dpdns.org"
     port: 27995
@@ -152,10 +153,18 @@ proxies:
     port: 27995
     password: "1y4HweESOT"
     sni: "azure.microsoft.com"
+=======
+    type: hysteria2
+    server: "130.61.50.75"
+    port: 6443
+    password: "zhangyang"
+    sni: "130.61.50.75"
+>>>>>>> Stashed changes
     skip-cert-verify: true
     udp: true
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
+<<<<<<< Updated upstream
     server: "yapc-1.adamhayward.co.uk"
     port: 35200
     password: "Yet-Another-Public-Config-1"
@@ -178,6 +187,10 @@ proxies:
     type: hysteria2
     server: "yapc-1.adamhayward.co.uk"
     port: 36300
+=======
+    server: "206.71.158.37"
+    port: 35200
+>>>>>>> Stashed changes
     password: "Yet-Another-Public-Config-1"
     sni: "YAPC-1.afshin.ir"
     skip-cert-verify: true
@@ -196,6 +209,37 @@ proxies:
     obfs-password: "Yet-Another-Public-Config-1"
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
+<<<<<<< Updated upstream
+=======
+    server: "f643a7e8-t6ngg0-t74ix0-1m0fq.hk1.hyhuawei.com"
+    port: 443
+    password: "a698c4a6-c3c9-11ee-9693-f23c91cfbbc9"
+    sni: "f643a7e8-t6ngg0-t74ix0-1m0fq.hk1.hyhuawei.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "dd.openaccessnode.com"
+    port: 989
+    password: "75193bef8d8fe82341e02dd083dc1399"
+    sni: "dd.ircybersec.org"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "@JavidnamanIran-Javid-SHAH-King-Reza-Pahlavi"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "206.71.158.37"
+    port: 36400
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+>>>>>>> Stashed changes
     server: "yapc-1.adamhayward.co.uk"
     port: 36400
     password: "Yet-Another-Public-Config-1"
@@ -204,6 +248,27 @@ proxies:
     udp: true
     obfs: "salamander"
     obfs-password: "Yet-Another-Public-Config-1"
+<<<<<<< Updated upstream
+=======
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "107.175.6.241"
+    port: 27995
+    password: "1y4HweESOT"
+    sni: "azure.microsoft.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "206.71.158.37"
+    port: 36300
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
+>>>>>>> Stashed changes
 
 proxy-groups:
   - name: "PROXY"
