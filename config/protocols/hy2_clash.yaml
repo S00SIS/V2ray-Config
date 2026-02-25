@@ -122,27 +122,35 @@ dns:
 proxies:
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "yapc-1.adamhayward.co.uk"
-    port: 36400
-    password: "Yet-Another-Public-Config-1"
-    sni: "YAPC-1.afshin.ir"
+    server: "206.71.158.41"
+    port: 35000
+    password: "b4bd0613-ff7c-4f2f-954d-185915e6ddad"
+    sni: "api.kermanshahi.org"
     skip-cert-verify: true
     udp: true
     obfs: "salamander"
-    obfs-password: "Yet-Another-Public-Config-1"
+    obfs-password: "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "43.153.7.213"
+    port: 8443
+    password: "dMqSvWDoY0h8wJA4H7ZWJDFLDLF52065"
+    sni: "bing.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "206.71.158.40"
+    port: 35000
+    password: "b4bd0613-ff7c-4f2f-954d-185915e6ddad"
+    sni: "api.kermanshahi.org"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi"
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
     server: "206.71.158.37"
-    port: 36400
-    password: "Yet-Another-Public-Config-1"
-    sni: "YAPC-1.afshin.ir"
-    skip-cert-verify: true
-    udp: true
-    obfs: "salamander"
-    obfs-password: "Yet-Another-Public-Config-1"
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "yapc-1.adamhayward.co.uk"
     port: 36600
     password: "Yet-Another-Public-Config-1"
     sni: "YAPC-1.afshin.ir"
@@ -152,8 +160,8 @@ proxies:
     obfs-password: "Yet-Another-Public-Config-1"
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "206.71.158.37"
-    port: 36300
+    server: "yapc-1.adamhayward.co.uk"
+    port: 35200
     password: "Yet-Another-Public-Config-1"
     sni: "YAPC-1.afshin.ir"
     skip-cert-verify: true
@@ -162,12 +170,32 @@ proxies:
     obfs-password: "Yet-Another-Public-Config-1"
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "iij.mggl.wang"
-    port: 35789
-    password: "79d73809-f5ed-4099-8588-ba77578def1d"
-    sni: "iij.mggl.wang"
+    server: "91.132.51.160"
+    port: 844
+    password: "5046SHWqk6"
+    sni: "91.132.51.160"
     skip-cert-verify: true
     udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "206.71.158.37"
+    port: 35000
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "yapc-1.adamhayward.co.uk"
+    port: 36400
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
     server: "107.174.181.241"
@@ -178,8 +206,16 @@ proxies:
     udp: true
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "206.71.158.37"
-    port: 36600
+    server: "iij.mggl.wang"
+    port: 35789
+    password: "79d73809-f5ed-4099-8588-ba77578def1d"
+    sni: "iij.mggl.wang"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "yapc-1.adamhayward.co.uk"
+    port: 36300
     password: "Yet-Another-Public-Config-1"
     sni: "YAPC-1.afshin.ir"
     skip-cert-verify: true
@@ -188,8 +224,8 @@ proxies:
     obfs-password: "Yet-Another-Public-Config-1"
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "yapc-1.adamhayward.co.uk"
-    port: 36300
+    server: "206.71.158.37"
+    port: 35200
     password: "Yet-Another-Public-Config-1"
     sni: "YAPC-1.afshin.ir"
     skip-cert-verify: true
@@ -222,6 +258,10 @@ proxy-groups:
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   - name: "Auto"
     type: url-test
@@ -238,6 +278,10 @@ proxy-groups:
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   - name: "Fallback"
     type: fallback
@@ -245,6 +289,10 @@ proxy-groups:
     interval: 60
     lazy: true
     proxies:
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
