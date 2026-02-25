@@ -1,6 +1,3 @@
-<img width="1536" height="628" alt="sing box" src="https://github.com/user-attachments/assets/197a79ee-eaf8-458e-a19c-53467a227a42" />
-
-
 ## Main Files
 
 ### V2ray — All Configs
