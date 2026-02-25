@@ -123,89 +123,13 @@ proxies:
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
     server: "yapc-1.adamhayward.co.uk"
-    port: 36600
+    port: 36400
     password: "Yet-Another-Public-Config-1"
     sni: "YAPC-1.afshin.ir"
     skip-cert-verify: true
     udp: true
     obfs: "salamander"
     obfs-password: "Yet-Another-Public-Config-1"
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "160.16.104.77"
-    port: 443
-    password: "81206489-BD9D-4916-B1F4-D1554689EEA5"
-    sni: "ops-tyo.dexlos.com"
-    skip-cert-verify: true
-    udp: true
-    obfs: "salamander"
-    obfs-password: "2g7feub2"
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "43.153.7.213"
-    port: 8443
-    password: "dMqSvWDoY0h8wJA4H7ZWJDFLDLF52065"
-    sni: "bing.com"
-    skip-cert-verify: true
-    udp: true
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "yapc-1.adamhayward.co.uk"
-    port: 35200
-    password: "Yet-Another-Public-Config-1"
-    sni: "YAPC-1.afshin.ir"
-    skip-cert-verify: true
-    udp: true
-    obfs: "salamander"
-    obfs-password: "Yet-Another-Public-Config-1"
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "206.71.158.37"
-    port: 35200
-    password: "Yet-Another-Public-Config-1"
-    sni: "YAPC-1.afshin.ir"
-    skip-cert-verify: true
-    udp: true
-    obfs: "salamander"
-    obfs-password: "Yet-Another-Public-Config-1"
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "160.16.143.152"
-    port: 443
-    password: "4E8F0CEC-DF1E-4876-8897-56B7CED64D05"
-    sni: "ops-tyo.dexlos.com"
-    skip-cert-verify: true
-    udp: true
-    obfs: "salamander"
-    obfs-password: "2g7feub2"
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "yapc-1.adamhayward.co.uk"
-    port: 36300
-    password: "Yet-Another-Public-Config-1"
-    sni: "YAPC-1.afshin.ir"
-    skip-cert-verify: true
-    udp: true
-    obfs: "salamander"
-    obfs-password: "Yet-Another-Public-Config-1"
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "206.71.158.37"
-    port: 35000
-    password: "Yet-Another-Public-Config-1"
-    sni: "YAPC-1.afshin.ir"
-    skip-cert-verify: true
-    udp: true
-    obfs: "salamander"
-    obfs-password: "Yet-Another-Public-Config-1"
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "130.61.50.75"
-    port: 6443
-    password: "zhangyang"
-    sni: "130.61.50.75"
-    skip-cert-verify: true
-    udp: true
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
     server: "206.71.158.37"
@@ -218,14 +142,60 @@ proxies:
     obfs-password: "Yet-Another-Public-Config-1"
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "dd.openaccessnode.com"
-    port: 989
-    password: "75193bef8d8fe82341e02dd083dc1399"
-    sni: "dd.ircybersec.org"
+    server: "yapc-1.adamhayward.co.uk"
+    port: 36600
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
     skip-cert-verify: true
     udp: true
     obfs: "salamander"
-    obfs-password: "@JavidnamanIran-Javid-SHAH-King-Reza-Pahlavi"
+    obfs-password: "Yet-Another-Public-Config-1"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "206.71.158.37"
+    port: 36300
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "iij.mggl.wang"
+    port: 35789
+    password: "79d73809-f5ed-4099-8588-ba77578def1d"
+    sni: "iij.mggl.wang"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "107.174.181.241"
+    port: 65160
+    password: "0b8a288c"
+    sni: "en.snu.ac.kr"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "206.71.158.37"
+    port: 36600
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "yapc-1.adamhayward.co.uk"
+    port: 36300
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
 
 proxy-groups:
   - name: "PROXY"
@@ -252,9 +222,6 @@ proxy-groups:
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
-      - "@DeltaKroneckerGithub"
-      - "@DeltaKroneckerGithub"
-      - "@DeltaKroneckerGithub"
 
   - name: "Auto"
     type: url-test
@@ -271,9 +238,6 @@ proxy-groups:
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
-      - "@DeltaKroneckerGithub"
-      - "@DeltaKroneckerGithub"
-      - "@DeltaKroneckerGithub"
 
   - name: "Fallback"
     type: fallback
@@ -281,9 +245,6 @@ proxy-groups:
     interval: 60
     lazy: true
     proxies:
-      - "@DeltaKroneckerGithub"
-      - "@DeltaKroneckerGithub"
-      - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
