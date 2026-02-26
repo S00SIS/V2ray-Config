@@ -1661,6 +1661,8 @@ func classifyFailReason(reason string) string {
 		return "PARSE › url parse error"
 	case strings.HasPrefix(r, "PARSE: unsupported cipher:"):
 		return "PARSE › unsupported SS cipher"
+	case strings.HasPrefix(r, "PARSE: unsupported transport:"):
+		return "PARSE › unsupported transport (kcp/quic/mkcp)"
 	case r == "PARSE: missing @" || r == "PARSE: missing server" ||
 		r == "PARSE: missing uuid" || r == "PARSE: missing password" ||
 		r == "PARSE: missing port" || r == "PARSE: missing auth":
@@ -2027,7 +2029,7 @@ func waitForPort(addr string, maxWait, interval, dialTimeout time.Duration) bool
 
 func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRetries int) (bool, time.Duration, string) {
 	// HTTPS only: plain HTTP uses HTTP-forward mode (sing-box returns 502).
-	// HTTPS uses CONNECT tunnel which works correctly. Replace any http:// → https://.
+	// HTTPS uses CONNECT tunnel which works correctly. Replace any http:// -> https://.
 	effectiveURLs := make([]string, 0, len(testURLs))
 	seen := make(map[string]bool)
 	for _, u := range testURLs {
@@ -2039,11 +2041,20 @@ func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRet
 			seen[u] = true
 		}
 	}
+	if len(effectiveURLs) == 0 {
+		return false, 0, "no test URLs"
+	}
+
 	var lastErr string
 	for attempt := 0; attempt <= maxRetries; attempt++ {
 		if ctx.Err() != nil {
 			return false, 0, "context expired"
 		}
+
+		// Track per-attempt failure modes to decide whether to retry.
+		resetCount := 0    // URLs that responded with "connection reset"
+		otherFailCount := 0 // URLs that failed for other reasons (timeout, EOF, bad HTTP status)
+
 		for _, testURL := range effectiveURLs {
 			if ctx.Err() != nil {
 				return false, 0, "context expired"
@@ -2052,28 +2063,37 @@ func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRet
 			req, err := http.NewRequestWithContext(ctx, "GET", testURL, nil)
 			if err != nil {
 				lastErr = err.Error()
+				otherFailCount++
 				continue
 			}
 			resp, err := client.Do(req)
 			if err != nil {
 				e := shortenErr(err.Error())
 				lastErr = e
-				// "connection refused" / "no route" / "unreachable" means the
-				// local sing-box HTTP proxy itself is dead — all test URLs will
-				// fail, so return immediately.
-				//
-				// "connection reset" is intentionally NOT included here because
-				// it can originate from the REMOTE test URL (e.g. Cloudflare CDN
-				// blocking the proxy's exit IP) rather than from sing-box.  In
-				// that case a different test URL (Google) may still succeed.
-				// We therefore let the inner loop continue to the next URL.
+
+				// Hard local failures: the local sing-box proxy is unreachable.
+				// Every remaining test URL will fail too — bail immediately.
 				if strings.Contains(e, "connection refused") ||
 					strings.Contains(e, "no route to host") ||
 					strings.Contains(e, "network unreachable") {
 					return false, 0, lastErr
 				}
+
+				// "connection reset" can originate from the REMOTE test target
+				// (e.g. Cloudflare blocking the proxy's exit IP) instead of
+				// from sing-box itself.  Another test URL (Google) might work,
+				// so continue the inner loop.  Count resets so we can fast-exit
+				// when every URL resets in the same attempt.
+				if strings.Contains(e, "connection reset") {
+					resetCount++
+					continue
+				}
+
+				// Any other transient error — try the next URL.
+				otherFailCount++
 				continue
 			}
+
 			latency := time.Since(start)
 			code := resp.StatusCode
 			resp.Body.Close()
@@ -2084,21 +2104,28 @@ func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRet
 			// 3) HTTP response came from the TARGET, not the proxy
 			// => any of these codes = proxy is alive
 
-			// 200/204: ideal - target fully reachable
 			if code == 200 || code == 204 {
 				return true, latency, ""
 			}
-			// 3xx redirects: target responded, proxy works
 			if code == 301 || code == 302 || code == 307 || code == 308 {
 				return true, latency, ""
 			}
-			// 400/403/404/429: target rejected our IP/request but proxy tunnel works
 			if code == 400 || code == 403 || code == 404 || code == 429 {
 				return true, latency, ""
 			}
-			// 5xx and anything else: ambiguous (could be proxy-level error), treat as fail
+			// 5xx or other: ambiguous — try next URL
 			lastErr = fmt.Sprintf("HTTP_%d", code)
+			otherFailCount++
 		}
+
+		// ── Post-attempt decision ─────────────────────────────────────────────
+		// If EVERY URL got "connection reset" and nothing else, the proxy is
+		// uniformly blocked/dead for all test targets.  Retrying wastes time
+		// and will not change the outcome — exit immediately.
+		if resetCount == len(effectiveURLs) && otherFailCount == 0 {
+			return false, 0, lastErr
+		}
+		// Mixed failures (some reset + some timeout/EOF) — retry may help.
 	}
 	return false, 0, lastErr
 }
@@ -2327,7 +2354,12 @@ func parseVMess(raw string) (string, string) {
 	}
 	network := "tcp"
 	if n, _ := d["net"].(string); n != "" {
-		network = n
+		network = strings.ToLower(n)
+	}
+	// sing-box does not support kcp/quic/mkcp transports — reject early.
+	switch network {
+	case "kcp", "mkcp", "quic":
+		return "", "unsupported transport: " + network
 	}
 	tls := ""
 	if tlsVal, _ := d["tls"].(string); tlsVal == "tls" {
@@ -2376,11 +2408,18 @@ func parseVLess(raw string) (string, string) {
 		return "", "port: " + err.Error()
 	}
 	q := u.Query()
-	// TrimSpace handles configs with trailing whitespace/newline in security value
+	// TrimSpace handles configs with stray whitespace/newline in the security value.
 	security := strings.TrimSpace(strings.ToLower(q.Get("security")))
 	network := strings.ToLower(q.Get("type"))
 	if network == "" {
 		network = "tcp"
+	}
+	// sing-box does not support kcp/quic/mkcp transports.
+	// Attempting to build a config with these will cause a SINGBOX_START failure;
+	// reject early with a PARSE error instead.
+	switch network {
+	case "kcp", "mkcp", "quic":
+		return "", "unsupported transport: " + network
 	}
 	sni := first(q.Get("sni"), q.Get("peer"), server)
 	// Filter flow: sing-box only supports xtls-rprx-vision; others cause FATAL config errors
@@ -2399,16 +2438,15 @@ func parseVLess(raw string) (string, string) {
 }
 
 func vlessTLS(security, sni, flow string, q url.Values) (string, string) {
-	// flowJSON is only safe to include with "reality" security.
-	// Sing-box rejects configs that specify xtls-rprx-vision with plain TLS,
-	// causing a large number of SINGBOX_START "invalid config JSON" errors.
 	flowJSON := ""
 	if flow != "" {
 		flowJSON = fmt.Sprintf(`,"flow":%q`, flow)
 	}
 	switch security {
 	case "tls", "xtls":
-		// Do NOT prepend flowJSON here — xtls flow is only valid with reality in sing-box.
+		// NOTE: do NOT prepend flowJSON for plain TLS.
+		// sing-box rejects "xtls-rprx-vision" flow when security is plain TLS
+		// (it is only valid alongside a reality configuration).
 		s := fmt.Sprintf(`,"tls":{"enabled":true,"insecure":true,"server_name":%q`, sni)
 		if fp := q.Get("fp"); fp != "" {
 			s += fmt.Sprintf(`,"utls":{"enabled":true,"fingerprint":%q}`, fp)
@@ -2490,6 +2528,11 @@ func parseTrojan(raw string) (string, string) {
 	}
 	tls += "}"
 	network := strings.ToLower(q.Get("type"))
+	// sing-box does not support kcp/quic/mkcp transports — reject early.
+	switch network {
+	case "kcp", "mkcp", "quic":
+		return "", "unsupported transport: " + network
+	}
 	transport := buildTransportJSON(network, first(q.Get("path"), "/"), q.Get("host"),
 		first(q.Get("serviceName"), q.Get("path")))
 	return fmt.Sprintf(`{"type":"trojan","tag":"proxy","server":%q,"server_port":%d,"password":%q%s%s}`,
@@ -2554,9 +2597,8 @@ func parseShadowsocks(raw string) (string, string) {
 	if !fastPathOK {
 		atIdx := strings.LastIndex(trimmed, "@")
 		if atIdx == -1 {
-			// No @ found — try treating the whole string as base64.
-			// Strip any query string first (e.g. ss://BASE64?plugin=obfs), since
-			// the '?' and '=' characters break base64 decoding.
+			// Strip any query string (e.g. ?plugin=obfs) before base64-decoding,
+			// because '?' and '=' break base64 alphabet validation.
 			b64Input := trimmed
 			if qi := strings.Index(b64Input, "?"); qi != -1 {
 				b64Input = b64Input[:qi]
@@ -2582,43 +2624,12 @@ func parseShadowsocks(raw string) (string, string) {
 		} else {
 			userPart := trimmed[:atIdx]
 			hostPart := trimmed[atIdx+1:]
-			// Extract query string for later use (method may live in ?encryption=)
-			queryStr := ""
 			if idx := strings.Index(hostPart, "?"); idx != -1 {
-				queryStr = hostPart[idx+1:]
 				hostPart = hostPart[:idx]
 			}
 			m, p, s, po, e := ssParseUserAndHost(userPart, hostPart)
 			if e != "" {
-				// Fallback: some implementations put the encryption method in
-				// query params (e.g. ?encryption=aes-256-gcm) and the userPart
-				// is only the raw password/key.
-				if queryStr != "" {
-					q, _ := url.ParseQuery(queryStr)
-					enc := first(q.Get("encryption"), q.Get("method"), q.Get("cipher"))
-					if enc != "" {
-						// Decode the password in case it's base64-encoded
-						pwd := userPart
-						if d, derr := decodeBase64([]byte(userPart)); derr == nil {
-							pwd = d
-						}
-						// Parse host:port
-						var host, portStr string
-						if lc := strings.LastIndex(hostPart, ":"); lc != -1 {
-							host = hostPart[:lc]
-							portStr = hostPart[lc+1:]
-						} else {
-							host = hostPart
-							portStr = "443"
-						}
-						if pv, pe := toPort(portStr); pe == nil && host != "" {
-							m, p, s, po, e = enc, pwd, host, pv, ""
-						}
-					}
-				}
-				if e != "" {
-					return "", e
-				}
+				return "", e
 			}
 			method, password, server, port = m, p, s, po
 		}
