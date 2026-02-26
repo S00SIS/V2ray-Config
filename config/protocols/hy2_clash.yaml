@@ -123,7 +123,7 @@ proxies:
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
     server: "yapc-1.adamhayward.co.uk"
-    port: 35200
+    port: 36400
     password: "Yet-Another-Public-Config-1"
     sni: "YAPC-1.afshin.ir"
     skip-cert-verify: true
@@ -132,22 +132,32 @@ proxies:
     obfs-password: "Yet-Another-Public-Config-1"
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "130.61.50.75"
-    port: 6443
-    password: "zhangyang"
-    sni: "130.61.50.75"
+    server: "hkbgp.jjxcloud.xyz"
+    port: 8443
+    password: "cd7e0971-4b98-41fc-9ecb-1267a2b0e4f4"
+    sni: "hkbgp.jjxcloud.xyz"
     skip-cert-verify: true
     udp: true
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "206.71.158.41"
+    server: "206.71.158.37"
     port: 35000
-    password: "b4bd0613-ff7c-4f2f-954d-185915e6ddad"
-    sni: "api.kermanshahi.org"
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
     skip-cert-verify: true
     udp: true
     obfs: "salamander"
-    obfs-password: "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi"
+    obfs-password: "Yet-Another-Public-Config-1"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "yapc-1.adamhayward.co.uk"
+    port: 36600
+    password: "Yet-Another-Public-Config-1"
+    sni: "YAPC-1.afshin.ir"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "Yet-Another-Public-Config-1"
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
     server: "107.174.181.241"
@@ -158,17 +168,7 @@ proxies:
     udp: true
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "206.71.158.37"
-    port: 36300
-    password: "Yet-Another-Public-Config-1"
-    sni: "YAPC-1.afshin.ir"
-    skip-cert-verify: true
-    udp: true
-    obfs: "salamander"
-    obfs-password: "Yet-Another-Public-Config-1"
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "206.71.158.40"
+    server: "206.71.158.41"
     port: 35000
     password: "b4bd0613-ff7c-4f2f-954d-185915e6ddad"
     sni: "api.kermanshahi.org"
