@@ -1426,6 +1426,7 @@ func fetchRaw(rawURL string, timeout time.Duration) fetchResult {
 type failDetail struct {
 	mu      sync.Mutex
 	reasons map[string]int
+	samples map[string][]string // up to 100 sample configs per reason
 }
 
 func validateAll(lines []string) []configResult {
@@ -1472,7 +1473,7 @@ func validateAll(lines []string) []configResult {
 
 	protoFails := make(map[string]*failDetail)
 	for _, p := range cfg.ProtocolOrder {
-		protoFails[p] = &failDetail{reasons: make(map[string]int)}
+		protoFails[p] = &failDetail{reasons: make(map[string]int), samples: make(map[string][]string)}
 	}
 
 	var testedCount int64
@@ -1585,6 +1586,10 @@ func validateAll(lines []string) []configResult {
 					fd := protoFails[proto]
 					fd.mu.Lock()
 					fd.reasons[norm]++
+					// Store up to 100 sample config URIs per reason for analysis
+					if len(fd.samples[norm]) < 100 {
+						fd.samples[norm] = append(fd.samples[norm], wr.line)
+					}
 					fd.mu.Unlock()
 
 					if strings.HasPrefix(reason, "PARSE:") {
@@ -1685,18 +1690,11 @@ func classifyFailReason(reason string) string {
 		switch {
 		case strings.Contains(body, "port not open"):
 			return "START › port timeout (sing-box didn't listen)"
-		case strings.Contains(body, "flow") && (strings.Contains(body, "reality") || strings.Contains(body, "only")):
-			return "START › flow only valid with reality TLS"
-		case strings.Contains(body, "flow"):
-			return "START › invalid flow (requires reality)"
-		case strings.Contains(body, "decode config") || strings.Contains(body, "decode outbound"):
-			if strings.Contains(body, "vless") { return "START › invalid vless outbound config" }
-			if strings.Contains(body, "vmess") { return "START › invalid vmess outbound config" }
-			if strings.Contains(body, "shadowsocks") { return "START › invalid shadowsocks config" }
-			if strings.Contains(body, "trojan") { return "START › invalid trojan config" }
+		case strings.Contains(body, "decode config"), strings.Contains(body, "outbound"):
+			if strings.Contains(body, "flow") {
+				return "START › invalid flow (requires TLS)"
+			}
 			return "START › invalid config JSON (sing-box rejected)"
-		case strings.Contains(body, "outbound"):
-			return "START › invalid outbound config"
 		case strings.Contains(body, "address already in use"):
 			return "START › port already in use"
 		case strings.Contains(body, "no such file"), strings.Contains(body, "not found"):
@@ -1902,6 +1900,16 @@ func printFailureReport(protoFails map[string]*failDetail, byProto map[string][]
 
 				fmt.Printf("│    %-52s %7d  %5.1f%%  %s\n",
 					displayKey, item.val, pct, bar)
+
+				// Print up to 100 sample configs for this failure reason
+				if samples := fd.samples[item.key]; len(samples) > 0 {
+					fmt.Printf("│    ┌─ SAMPLE CONFIGS (%d) ──────────────────────────────────────────\n", len(samples))
+					for i, s := range samples {
+						if len(s) > 140 { s = s[:140] + "…" }
+						fmt.Printf("│    │ [%3d] %s\n", i+1, s)
+					}
+					fmt.Printf("│    └──────────────────────────────────────────────────────────────\n")
+				}
 			}
 		}
 
@@ -2067,8 +2075,10 @@ func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRet
 			if err != nil {
 				e := shortenErr(err.Error())
 				lastErr = e
-				// Hard local failures: sing-box proxy itself is dead/unreachable.
+				// Connection refused / reset / no route = proxy is definitively dead.
+				// No point trying remaining test URLs.
 				if strings.Contains(e, "connection refused") ||
+					strings.Contains(e, "connection reset") ||
 					strings.Contains(e, "no route to host") ||
 					strings.Contains(e, "network unreachable") {
 					return false, 0, lastErr
@@ -2079,17 +2089,25 @@ func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRet
 			code := resp.StatusCode
 			resp.Body.Close()
 
-			// HTTPS CONNECT tunnel: any HTTP response = proxy tunnel works
+			// With HTTPS (CONNECT tunnel): reaching here means:
+			// 1) proxy tunnel was established successfully
+			// 2) TLS with the target completed
+			// 3) HTTP response came from the TARGET, not the proxy
+			// => any of these codes = proxy is alive
+
+			// 200/204: ideal - target fully reachable
 			if code == 200 || code == 204 {
 				return true, latency, ""
 			}
+			// 3xx redirects: target responded, proxy works
 			if code == 301 || code == 302 || code == 307 || code == 308 {
 				return true, latency, ""
 			}
-			// Target rejected our request but the proxy tunnel is alive
+			// 400/403/404/429: target rejected our IP/request but proxy tunnel works
 			if code == 400 || code == 403 || code == 404 || code == 429 {
 				return true, latency, ""
 			}
+			// 5xx and anything else: ambiguous (could be proxy-level error), treat as fail
 			lastErr = fmt.Sprintf("HTTP_%d", code)
 		}
 	}
@@ -2405,8 +2423,6 @@ func vlessTLS(security, sni, flow string, q url.Values) (string, string) {
 	}
 	switch security {
 	case "tls", "xtls":
-		// IMPORTANT: Do NOT include flowJSON — sing-box only allows xtls-rprx-vision
-		// flow with reality TLS. Including it with plain TLS causes START failures.
 		s := fmt.Sprintf(`,"tls":{"enabled":true,"insecure":true,"server_name":%q`, sni)
 		if fp := q.Get("fp"); fp != "" {
 			s += fmt.Sprintf(`,"utls":{"enabled":true,"fingerprint":%q}`, fp)
@@ -2415,6 +2431,7 @@ func vlessTLS(security, sni, flow string, q url.Values) (string, string) {
 			ab, _ := json.Marshal(strings.Split(alpnStr, ","))
 			s += fmt.Sprintf(`,"alpn":%s`, ab)
 		}
+		// DO NOT include flowJSON: sing-box only accepts xtls flow with reality TLS.
 		return s + "}", ""
 	case "reality":
 		pbk := q.Get("pbk")
@@ -2556,11 +2573,8 @@ func parseShadowsocks(raw string) (string, string) {
 	if !fastPathOK {
 		atIdx := strings.LastIndex(trimmed, "@")
 		if atIdx == -1 {
-			// Strip query string before b64 decode (e.g. ss://BASE64?plugin=obfs)
 			b64Src := trimmed
-			if qi := strings.Index(b64Src, "?"); qi != -1 {
-				b64Src = b64Src[:qi]
-			}
+			if qi := strings.Index(b64Src, "?"); qi != -1 { b64Src = b64Src[:qi] }
 			decoded, err := decodeBase64([]byte(b64Src))
 			if err != nil {
 				decoded = trimmed
@@ -3923,50 +3937,29 @@ func extractErr(stderr string) string {
 }
 
 func extractErrVerbose(stderr string) string {
-	// Like extractErr but prioritises lines containing "invalid", "failed", "decode",
-	// and also extracts the "msg" field from JSON-formatted sing-box log lines.
 	var first, best string
 	priority := []string{"invalid", "failed", "decode", "unsupported", "error"}
 	for _, line := range strings.Split(stderr, "\n") {
 		line = strings.TrimSpace(line)
-		if line == "" {
-			continue
-		}
+		if line == "" { continue }
 		lower := strings.ToLower(line)
-		if strings.Contains(lower, "warn") || strings.Contains(lower, "deprecated") {
-			continue
-		}
+		if strings.Contains(lower, "warn") || strings.Contains(lower, "deprecated") { continue }
 		if strings.Contains(lower, `"level":"info"`) || strings.Contains(lower, `"level":"debug"`) ||
-			strings.Contains(lower, "level=info") || strings.Contains(lower, "level=debug") {
-			continue
-		}
-		// Extract "msg" from JSON log: {"level":"error","msg":"..."}
+			strings.Contains(lower, "level=info") || strings.Contains(lower, "level=debug") { continue }
 		if idx := strings.Index(line, `"msg":"`); idx != -1 {
 			end := strings.Index(line[idx+7:], `"`)
-			if end != -1 {
-				line = line[idx+7 : idx+7+end]
-				lower = strings.ToLower(line)
-			}
+			if end != -1 { line = line[idx+7 : idx+7+end]; lower = strings.ToLower(line) }
 		}
-		if first == "" {
-			first = line
-		}
+		if first == "" { first = line }
 		if best == "" {
 			for _, kw := range priority {
-				if strings.Contains(lower, kw) {
-					best = line
-					break
-				}
+				if strings.Contains(lower, kw) { best = line; break }
 			}
 		}
 	}
 	r := best
-	if r == "" {
-		r = first
-	}
-	if len(r) > 180 {
-		r = r[:180] + "..."
-	}
+	if r == "" { r = first }
+	if len(r) > 180 { r = r[:180] + "..." }
 	return r
 }
 
