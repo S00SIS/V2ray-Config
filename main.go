@@ -2058,10 +2058,16 @@ func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRet
 			if err != nil {
 				e := shortenErr(err.Error())
 				lastErr = e
-				// Connection refused / reset / no route = proxy is definitively dead.
-				// No point trying remaining test URLs.
+				// "connection refused" / "no route" / "unreachable" means the
+				// local sing-box HTTP proxy itself is dead — all test URLs will
+				// fail, so return immediately.
+				//
+				// "connection reset" is intentionally NOT included here because
+				// it can originate from the REMOTE test URL (e.g. Cloudflare CDN
+				// blocking the proxy's exit IP) rather than from sing-box.  In
+				// that case a different test URL (Google) may still succeed.
+				// We therefore let the inner loop continue to the next URL.
 				if strings.Contains(e, "connection refused") ||
-					strings.Contains(e, "connection reset") ||
 					strings.Contains(e, "no route to host") ||
 					strings.Contains(e, "network unreachable") {
 					return false, 0, lastErr
@@ -2098,7 +2104,7 @@ func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRet
 }
 
 func buildSingBoxConfig(outboundJSON string, port int) string {
-	return fmt.Sprintf(`{"log":{"level":"error","timestamp":false},"dns":{"servers":[{"tag":"dns-remote","address":"https://1.1.1.1/dns-query","address_resolver":"dns-direct","strategy":"prefer_ipv4","detour":"proxy"},{"tag":"dns-direct","address":"223.5.5.5","strategy":"prefer_ipv4","detour":"direct"}],"rules":[{"outbound":"any","server":"dns-direct"}],"independent_cache":true},"inbounds":[{"type":"http","tag":"http-in","listen":"127.0.0.1","listen_port":%d}],"outbounds":[%s,{"type":"direct","tag":"direct"},{"type":"block","tag":"block"}]}`,
+	return fmt.Sprintf(`{"log":{"level":"error","timestamp":false},"dns":{"servers":[{"tag":"dns-remote","address":"https://8.8.8.8/dns-query","address_resolver":"dns-direct","strategy":"prefer_ipv4","detour":"proxy"},{"tag":"dns-direct","address":"8.8.8.8","strategy":"prefer_ipv4","detour":"direct"}],"rules":[{"outbound":"any","server":"dns-direct"}],"independent_cache":true},"inbounds":[{"type":"http","tag":"http-in","listen":"127.0.0.1","listen_port":%d}],"outbounds":[%s,{"type":"direct","tag":"direct"},{"type":"block","tag":"block"}]}`,
 		port, outboundJSON)
 }
 
@@ -2370,7 +2376,8 @@ func parseVLess(raw string) (string, string) {
 		return "", "port: " + err.Error()
 	}
 	q := u.Query()
-	security := strings.ToLower(q.Get("security"))
+	// TrimSpace handles configs with trailing whitespace/newline in security value
+	security := strings.TrimSpace(strings.ToLower(q.Get("security")))
 	network := strings.ToLower(q.Get("type"))
 	if network == "" {
 		network = "tcp"
@@ -2392,12 +2399,16 @@ func parseVLess(raw string) (string, string) {
 }
 
 func vlessTLS(security, sni, flow string, q url.Values) (string, string) {
+	// flowJSON is only safe to include with "reality" security.
+	// Sing-box rejects configs that specify xtls-rprx-vision with plain TLS,
+	// causing a large number of SINGBOX_START "invalid config JSON" errors.
 	flowJSON := ""
 	if flow != "" {
 		flowJSON = fmt.Sprintf(`,"flow":%q`, flow)
 	}
 	switch security {
 	case "tls", "xtls":
+		// Do NOT prepend flowJSON here — xtls flow is only valid with reality in sing-box.
 		s := fmt.Sprintf(`,"tls":{"enabled":true,"insecure":true,"server_name":%q`, sni)
 		if fp := q.Get("fp"); fp != "" {
 			s += fmt.Sprintf(`,"utls":{"enabled":true,"fingerprint":%q}`, fp)
@@ -2406,7 +2417,7 @@ func vlessTLS(security, sni, flow string, q url.Values) (string, string) {
 			ab, _ := json.Marshal(strings.Split(alpnStr, ","))
 			s += fmt.Sprintf(`,"alpn":%s`, ab)
 		}
-		return flowJSON + s + "}", ""
+		return s + "}", ""
 	case "reality":
 		pbk := q.Get("pbk")
 		if pbk == "" {
@@ -2543,7 +2554,14 @@ func parseShadowsocks(raw string) (string, string) {
 	if !fastPathOK {
 		atIdx := strings.LastIndex(trimmed, "@")
 		if atIdx == -1 {
-			decoded, err := decodeBase64([]byte(trimmed))
+			// No @ found — try treating the whole string as base64.
+			// Strip any query string first (e.g. ss://BASE64?plugin=obfs), since
+			// the '?' and '=' characters break base64 decoding.
+			b64Input := trimmed
+			if qi := strings.Index(b64Input, "?"); qi != -1 {
+				b64Input = b64Input[:qi]
+			}
+			decoded, err := decodeBase64([]byte(b64Input))
 			if err != nil {
 				decoded = trimmed
 			}
@@ -2564,12 +2582,43 @@ func parseShadowsocks(raw string) (string, string) {
 		} else {
 			userPart := trimmed[:atIdx]
 			hostPart := trimmed[atIdx+1:]
+			// Extract query string for later use (method may live in ?encryption=)
+			queryStr := ""
 			if idx := strings.Index(hostPart, "?"); idx != -1 {
+				queryStr = hostPart[idx+1:]
 				hostPart = hostPart[:idx]
 			}
 			m, p, s, po, e := ssParseUserAndHost(userPart, hostPart)
 			if e != "" {
-				return "", e
+				// Fallback: some implementations put the encryption method in
+				// query params (e.g. ?encryption=aes-256-gcm) and the userPart
+				// is only the raw password/key.
+				if queryStr != "" {
+					q, _ := url.ParseQuery(queryStr)
+					enc := first(q.Get("encryption"), q.Get("method"), q.Get("cipher"))
+					if enc != "" {
+						// Decode the password in case it's base64-encoded
+						pwd := userPart
+						if d, derr := decodeBase64([]byte(userPart)); derr == nil {
+							pwd = d
+						}
+						// Parse host:port
+						var host, portStr string
+						if lc := strings.LastIndex(hostPart, ":"); lc != -1 {
+							host = hostPart[:lc]
+							portStr = hostPart[lc+1:]
+						} else {
+							host = hostPart
+							portStr = "443"
+						}
+						if pv, pe := toPort(portStr); pe == nil && host != "" {
+							m, p, s, po, e = enc, pwd, host, pv, ""
+						}
+					}
+				}
+				if e != "" {
+					return "", e
+				}
 			}
 			method, password, server, port = m, p, s, po
 		}
