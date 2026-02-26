@@ -1685,11 +1685,18 @@ func classifyFailReason(reason string) string {
 		switch {
 		case strings.Contains(body, "port not open"):
 			return "START › port timeout (sing-box didn't listen)"
-		case strings.Contains(body, "decode config"), strings.Contains(body, "outbound"):
-			if strings.Contains(body, "flow") {
-				return "START › invalid flow (requires TLS)"
-			}
+		case strings.Contains(body, "flow") && (strings.Contains(body, "reality") || strings.Contains(body, "only")):
+			return "START › flow only valid with reality TLS"
+		case strings.Contains(body, "flow"):
+			return "START › invalid flow (requires reality)"
+		case strings.Contains(body, "decode config") || strings.Contains(body, "decode outbound"):
+			if strings.Contains(body, "vless") { return "START › invalid vless outbound config" }
+			if strings.Contains(body, "vmess") { return "START › invalid vmess outbound config" }
+			if strings.Contains(body, "shadowsocks") { return "START › invalid shadowsocks config" }
+			if strings.Contains(body, "trojan") { return "START › invalid trojan config" }
 			return "START › invalid config JSON (sing-box rejected)"
+		case strings.Contains(body, "outbound"):
+			return "START › invalid outbound config"
 		case strings.Contains(body, "address already in use"):
 			return "START › port already in use"
 		case strings.Contains(body, "no such file"), strings.Contains(body, "not found"):
@@ -1972,7 +1979,7 @@ func validateWithTracker(configURL, protocol string, localPorts chan int, bt *ba
 
 	if !started {
 		killGroup(cmd)
-		sbErr := extractErr(stderr.String())
+		sbErr := extractErrVerbose(stderr.String())
 		if sbErr == "" {
 			sbErr = fmt.Sprintf("port not open after %dms", v.SingboxStartTimeoutMs)
 		}
@@ -2003,9 +2010,9 @@ func validateWithTracker(configURL, protocol string, localPorts chan int, bt *ba
 		result.passed = true
 		result.latency = latency
 	} else {
-		sbErr := extractErr(stderr.String())
+		sbErr := extractErrVerbose(stderr.String())
 		if sbErr != "" {
-			result.failReason = "CONN: " + httpErr + " | SINGBOX: " + sbErr
+			result.failReason = "CONN: " + httpErr + " | SB:" + sbErr
 		} else {
 			result.failReason = "CONN: " + httpErr
 		}
@@ -2029,7 +2036,7 @@ func waitForPort(addr string, maxWait, interval, dialTimeout time.Duration) bool
 
 func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRetries int) (bool, time.Duration, string) {
 	// HTTPS only: plain HTTP uses HTTP-forward mode (sing-box returns 502).
-	// HTTPS uses CONNECT tunnel which works correctly. Replace any http:// -> https://.
+	// HTTPS uses CONNECT tunnel which works correctly. Replace any http:// → https://.
 	effectiveURLs := make([]string, 0, len(testURLs))
 	seen := make(map[string]bool)
 	for _, u := range testURLs {
@@ -2041,20 +2048,11 @@ func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRet
 			seen[u] = true
 		}
 	}
-	if len(effectiveURLs) == 0 {
-		return false, 0, "no test URLs"
-	}
-
 	var lastErr string
 	for attempt := 0; attempt <= maxRetries; attempt++ {
 		if ctx.Err() != nil {
 			return false, 0, "context expired"
 		}
-
-		// Track per-attempt failure modes to decide whether to retry.
-		resetCount := 0    // URLs that responded with "connection reset"
-		otherFailCount := 0 // URLs that failed for other reasons (timeout, EOF, bad HTTP status)
-
 		for _, testURL := range effectiveURLs {
 			if ctx.Err() != nil {
 				return false, 0, "context expired"
@@ -2063,69 +2061,37 @@ func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRet
 			req, err := http.NewRequestWithContext(ctx, "GET", testURL, nil)
 			if err != nil {
 				lastErr = err.Error()
-				otherFailCount++
 				continue
 			}
 			resp, err := client.Do(req)
 			if err != nil {
 				e := shortenErr(err.Error())
 				lastErr = e
-
-				// Hard local failures: the local sing-box proxy is unreachable.
-				// Every remaining test URL will fail too — bail immediately.
+				// Hard local failures: sing-box proxy itself is dead/unreachable.
 				if strings.Contains(e, "connection refused") ||
 					strings.Contains(e, "no route to host") ||
 					strings.Contains(e, "network unreachable") {
 					return false, 0, lastErr
 				}
-
-				// "connection reset" can originate from the REMOTE test target
-				// (e.g. Cloudflare blocking the proxy's exit IP) instead of
-				// from sing-box itself.  Another test URL (Google) might work,
-				// so continue the inner loop.  Count resets so we can fast-exit
-				// when every URL resets in the same attempt.
-				if strings.Contains(e, "connection reset") {
-					resetCount++
-					continue
-				}
-
-				// Any other transient error — try the next URL.
-				otherFailCount++
 				continue
 			}
-
 			latency := time.Since(start)
 			code := resp.StatusCode
 			resp.Body.Close()
 
-			// With HTTPS (CONNECT tunnel): reaching here means:
-			// 1) proxy tunnel was established successfully
-			// 2) TLS with the target completed
-			// 3) HTTP response came from the TARGET, not the proxy
-			// => any of these codes = proxy is alive
-
+			// HTTPS CONNECT tunnel: any HTTP response = proxy tunnel works
 			if code == 200 || code == 204 {
 				return true, latency, ""
 			}
 			if code == 301 || code == 302 || code == 307 || code == 308 {
 				return true, latency, ""
 			}
+			// Target rejected our request but the proxy tunnel is alive
 			if code == 400 || code == 403 || code == 404 || code == 429 {
 				return true, latency, ""
 			}
-			// 5xx or other: ambiguous — try next URL
 			lastErr = fmt.Sprintf("HTTP_%d", code)
-			otherFailCount++
 		}
-
-		// ── Post-attempt decision ─────────────────────────────────────────────
-		// If EVERY URL got "connection reset" and nothing else, the proxy is
-		// uniformly blocked/dead for all test targets.  Retrying wastes time
-		// and will not change the outcome — exit immediately.
-		if resetCount == len(effectiveURLs) && otherFailCount == 0 {
-			return false, 0, lastErr
-		}
-		// Mixed failures (some reset + some timeout/EOF) — retry may help.
 	}
 	return false, 0, lastErr
 }
@@ -2356,7 +2322,6 @@ func parseVMess(raw string) (string, string) {
 	if n, _ := d["net"].(string); n != "" {
 		network = strings.ToLower(n)
 	}
-	// sing-box does not support kcp/quic/mkcp transports — reject early.
 	switch network {
 	case "kcp", "mkcp", "quic":
 		return "", "unsupported transport: " + network
@@ -2408,15 +2373,11 @@ func parseVLess(raw string) (string, string) {
 		return "", "port: " + err.Error()
 	}
 	q := u.Query()
-	// TrimSpace handles configs with stray whitespace/newline in the security value.
 	security := strings.TrimSpace(strings.ToLower(q.Get("security")))
 	network := strings.ToLower(q.Get("type"))
 	if network == "" {
 		network = "tcp"
 	}
-	// sing-box does not support kcp/quic/mkcp transports.
-	// Attempting to build a config with these will cause a SINGBOX_START failure;
-	// reject early with a PARSE error instead.
 	switch network {
 	case "kcp", "mkcp", "quic":
 		return "", "unsupported transport: " + network
@@ -2444,9 +2405,8 @@ func vlessTLS(security, sni, flow string, q url.Values) (string, string) {
 	}
 	switch security {
 	case "tls", "xtls":
-		// NOTE: do NOT prepend flowJSON for plain TLS.
-		// sing-box rejects "xtls-rprx-vision" flow when security is plain TLS
-		// (it is only valid alongside a reality configuration).
+		// IMPORTANT: Do NOT include flowJSON — sing-box only allows xtls-rprx-vision
+		// flow with reality TLS. Including it with plain TLS causes START failures.
 		s := fmt.Sprintf(`,"tls":{"enabled":true,"insecure":true,"server_name":%q`, sni)
 		if fp := q.Get("fp"); fp != "" {
 			s += fmt.Sprintf(`,"utls":{"enabled":true,"fingerprint":%q}`, fp)
@@ -2528,7 +2488,6 @@ func parseTrojan(raw string) (string, string) {
 	}
 	tls += "}"
 	network := strings.ToLower(q.Get("type"))
-	// sing-box does not support kcp/quic/mkcp transports — reject early.
 	switch network {
 	case "kcp", "mkcp", "quic":
 		return "", "unsupported transport: " + network
@@ -2597,13 +2556,12 @@ func parseShadowsocks(raw string) (string, string) {
 	if !fastPathOK {
 		atIdx := strings.LastIndex(trimmed, "@")
 		if atIdx == -1 {
-			// Strip any query string (e.g. ?plugin=obfs) before base64-decoding,
-			// because '?' and '=' break base64 alphabet validation.
-			b64Input := trimmed
-			if qi := strings.Index(b64Input, "?"); qi != -1 {
-				b64Input = b64Input[:qi]
+			// Strip query string before b64 decode (e.g. ss://BASE64?plugin=obfs)
+			b64Src := trimmed
+			if qi := strings.Index(b64Src, "?"); qi != -1 {
+				b64Src = b64Src[:qi]
 			}
-			decoded, err := decodeBase64([]byte(b64Input))
+			decoded, err := decodeBase64([]byte(b64Src))
 			if err != nil {
 				decoded = trimmed
 			}
@@ -3962,6 +3920,54 @@ func extractErr(stderr string) string {
 		}
 	}
 	return strings.Join(errs, " | ")
+}
+
+func extractErrVerbose(stderr string) string {
+	// Like extractErr but prioritises lines containing "invalid", "failed", "decode",
+	// and also extracts the "msg" field from JSON-formatted sing-box log lines.
+	var first, best string
+	priority := []string{"invalid", "failed", "decode", "unsupported", "error"}
+	for _, line := range strings.Split(stderr, "\n") {
+		line = strings.TrimSpace(line)
+		if line == "" {
+			continue
+		}
+		lower := strings.ToLower(line)
+		if strings.Contains(lower, "warn") || strings.Contains(lower, "deprecated") {
+			continue
+		}
+		if strings.Contains(lower, `"level":"info"`) || strings.Contains(lower, `"level":"debug"`) ||
+			strings.Contains(lower, "level=info") || strings.Contains(lower, "level=debug") {
+			continue
+		}
+		// Extract "msg" from JSON log: {"level":"error","msg":"..."}
+		if idx := strings.Index(line, `"msg":"`); idx != -1 {
+			end := strings.Index(line[idx+7:], `"`)
+			if end != -1 {
+				line = line[idx+7 : idx+7+end]
+				lower = strings.ToLower(line)
+			}
+		}
+		if first == "" {
+			first = line
+		}
+		if best == "" {
+			for _, kw := range priority {
+				if strings.Contains(lower, kw) {
+					best = line
+					break
+				}
+			}
+		}
+	}
+	r := best
+	if r == "" {
+		r = first
+	}
+	if len(r) > 180 {
+		r = r[:180] + "..."
+	}
+	return r
 }
 
 func shortenErr(s string) string {
