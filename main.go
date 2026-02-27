@@ -2560,17 +2560,17 @@ func parseTrojan(raw string) (string, string) {
 		return "", "port: " + err.Error()
 	}
 	q := u.Query()
-	tls := fmt.Sprintf(`,"tls":{"enabled":true,"insecure":true,"server_name":%q`, sni)
-	if fp := q.Get("fp"); fp != "" {
-		tls += fmt.Sprintf(`,"utls":{"enabled":true,"fingerprint":%q}`, fp)
-	}
-	tls += "}"
 	network := strings.ToLower(q.Get("type"))
 	switch network {
 	case "xhttp", "splithttp", "kcp", "mkcp", "quic":
 		return "", "unsupported transport: " + network
 	}
 	sni := sanitizeSNI(first(q.Get("sni"), q.Get("peer"), ""), server)
+	tls := fmt.Sprintf(`,"tls":{"enabled":true,"insecure":true,"server_name":%q`, sni)
+	if fp := q.Get("fp"); fp != "" {
+		tls += fmt.Sprintf(`,"utls":{"enabled":true,"fingerprint":%q}`, fp)
+	}
+	tls += "}"
 	transport := buildTransportJSON(network, first(q.Get("path"), "/"), q.Get("host"),
 		first(q.Get("serviceName"), q.Get("path")))
 	return fmt.Sprintf(`{"type":"trojan","tag":"proxy","server":%q,"server_port":%d,"password":%q%s%s}`,
