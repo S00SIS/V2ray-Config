@@ -20,7 +20,7 @@
     ]
   },
   "protocols": ["vmess","vless","trojan","ss","ssr","hy2","hy","tuic"],
-  "protocol_order": ["vmess","vless","trojan","ss","ssr","hy2","hy","tuic"],
+  "protocol_order": ["vless","vmess","ss","trojan","ssr","hy2","hy","tuic"],
   "base64_links": [],
   "text_links": [],
   "output": {
