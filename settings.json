@@ -1,6 +1,6 @@
 {
   "validation": {
-    "num_workers": 500,
+    "num_workers": 100,
     "global_timeout_sec": 16,
     "singbox_start_timeout_ms": 6000,
     "singbox_start_interval_ms": 400,
@@ -8,7 +8,7 @@
     "http_request_timeout_ms": 14000,
     "http_dial_timeout_ms": 8000,
     "http_response_timeout_ms": 10000,
-    "max_retries": 3,
+    "max_retries": 0,
     "base_port": 10000,
     "batch_rest_ms": 1500,
     "process_kill_wait_ms": 1000,
