@@ -61,8 +61,16 @@ dns:
 proxies:
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
+    server: "ad72fc1d-t70f40-tb016b-1m7l4.hk1.hyhuawei.com"
+    port: 443
+    password: "bd515574-3b10-11ee-ac14-f23c9164ca5d"
+    sni: "ad72fc1d-t70f40-tb016b-1m7l4.hk1.hyhuawei.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
     server: "yapc-1.adamhayward.co.uk"
-    port: 36300
+    port: 36600
     password: "Yet-Another-Public-Config-1"
     sni: "YAPC-1.afshin.ir"
     skip-cert-verify: true
@@ -72,7 +80,7 @@ proxies:
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
     server: "yapc-1.adamhayward.co.uk"
-    port: 36400
+    port: 36300
     password: "Yet-Another-Public-Config-1"
     sni: "YAPC-1.afshin.ir"
     skip-cert-verify: true
@@ -123,6 +131,7 @@ proxy-groups:
     proxies:
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   - name: "LB-CDN"
     type: load-balance
@@ -132,6 +141,7 @@ proxy-groups:
     tolerance: 150
     lazy: true
     proxies:
+      - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
 
@@ -145,6 +155,7 @@ proxy-groups:
     proxies:
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   - name: "FAST-CDN"
     type: url-test
@@ -153,6 +164,7 @@ proxy-groups:
     tolerance: 50
     lazy: true
     proxies:
+      - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
 
@@ -166,11 +178,13 @@ proxy-groups:
     proxies:
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   # ── Manual selector ───────────────────────────────────────────────────────
   - name: "MANUAL"
     type: select
     proxies:
+      - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
 
