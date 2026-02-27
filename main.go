@@ -1426,7 +1426,7 @@ func fetchRaw(rawURL string, timeout time.Duration) fetchResult {
 type failDetail struct {
 	mu      sync.Mutex
 	reasons map[string]int
-	samples map[string][]string // up to 100 sample configs per reason
+	samples map[string][]string // up to 100 sample config URIs per reason
 }
 
 func validateAll(lines []string) []configResult {
@@ -1586,7 +1586,6 @@ func validateAll(lines []string) []configResult {
 					fd := protoFails[proto]
 					fd.mu.Lock()
 					fd.reasons[norm]++
-					// Store up to 100 sample config URIs per reason for analysis
 					if len(fd.samples[norm]) < 100 {
 						fd.samples[norm] = append(fd.samples[norm], wr.line)
 					}
@@ -1667,7 +1666,13 @@ func classifyFailReason(reason string) string {
 	case strings.HasPrefix(r, "PARSE: unsupported cipher:"):
 		return "PARSE › unsupported SS cipher"
 	case strings.HasPrefix(r, "PARSE: unsupported transport:"):
-		return "PARSE › unsupported transport (kcp/quic/mkcp)"
+		msg := strings.TrimPrefix(r, "PARSE: unsupported transport: ")
+		switch msg {
+		case "xhttp", "splithttp":
+			return "PARSE › unsupported transport (xhttp/splithttp)"
+		default:
+			return "PARSE › unsupported transport (kcp/quic/mkcp)"
+		}
 	case r == "PARSE: missing @" || r == "PARSE: missing server" ||
 		r == "PARSE: missing uuid" || r == "PARSE: missing password" ||
 		r == "PARSE: missing port" || r == "PARSE: missing auth":
@@ -1901,7 +1906,6 @@ func printFailureReport(protoFails map[string]*failDetail, byProto map[string][]
 				fmt.Printf("│    %-52s %7d  %5.1f%%  %s\n",
 					displayKey, item.val, pct, bar)
 
-				// Print up to 100 sample configs for this failure reason
 				if samples := fd.samples[item.key]; len(samples) > 0 {
 					fmt.Printf("│    ┌─ SAMPLE CONFIGS (%d) ──────────────────────────────────────────\n", len(samples))
 					for i, s := range samples {
@@ -2142,6 +2146,16 @@ func toSingBoxOutbound(configURL, protocol string) (string, string) {
 }
 
 func sanitizeProxyURL(raw string) string {
+	// ── HTML entity decode ──────────────────────────────────────────────
+	// Config sources (Telegram web, HTML pages) often HTML-encode ampersands:
+	// ?security=reality&amp;pbk=KEY → url.Parse reads "amp;pbk" not "pbk"
+	// so q.Get("pbk") returns "" → "reality missing public key" error on ~420 configs.
+	raw = strings.ReplaceAll(raw, "&amp;", "&")
+	raw = strings.ReplaceAll(raw, "&lt;", "<")
+	raw = strings.ReplaceAll(raw, "&gt;", ">")
+	raw = strings.ReplaceAll(raw, "&quot;", `"`)
+	raw = strings.ReplaceAll(raw, "&#39;", "'")
+
 	// Strip spaces and control characters that break URL parsing
 	raw = strings.Map(func(r rune) rune {
 		if r == ' ' || r == '\t' || r == '\r' || r == '\n' {
@@ -2170,6 +2184,25 @@ func sanitizeProxyURL(raw string) string {
 		return scheme + rest + query + frag
 	}
 	return scheme + encodeUserInfo(rest[:lastAt]) + "@" + rest[lastAt+1:] + query + frag
+}
+
+func normalizeUUID(u string) string {
+	// Standard UUID: 8-4-4-4-12 hex chars with dashes
+	// Some configs provide a UUID as 32 hex chars without dashes.
+	// sing-box requires the dashed format.
+	if len(u) == 32 {
+		allHex := true
+		for _, c := range u {
+			if !((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')) {
+				allHex = false
+				break
+			}
+		}
+		if allHex {
+			return u[0:8] + "-" + u[8:12] + "-" + u[12:16] + "-" + u[16:20] + "-" + u[20:32]
+		}
+	}
+	return u
 }
 
 func encodeUserInfo(s string) string {
@@ -2341,7 +2374,7 @@ func parseVMess(raw string) (string, string) {
 		network = strings.ToLower(n)
 	}
 	switch network {
-	case "kcp", "mkcp", "quic":
+	case "xhttp", "splithttp", "kcp", "mkcp", "quic":
 		return "", "unsupported transport: " + network
 	}
 	tls := ""
@@ -2378,7 +2411,7 @@ func parseVLess(raw string) (string, string) {
 	if err != nil {
 		return "", "url parse: " + err.Error()
 	}
-	uuid := u.User.Username()
+	uuid := normalizeUUID(u.User.Username())
 	if uuid == "" {
 		return "", "missing uuid"
 	}
@@ -2391,13 +2424,17 @@ func parseVLess(raw string) (string, string) {
 		return "", "port: " + err.Error()
 	}
 	q := u.Query()
+	// TrimSpace: handles configs where the security value has trailing whitespace
 	security := strings.TrimSpace(strings.ToLower(q.Get("security")))
 	network := strings.ToLower(q.Get("type"))
 	if network == "" {
 		network = "tcp"
 	}
+	// Reject transports not supported by installed sing-box:
+	// xhttp/splithttp causes ~5000 START failures → filter at PARSE
+	// kcp/mkcp/quic are Xray-only → never supported by sing-box
 	switch network {
-	case "kcp", "mkcp", "quic":
+	case "xhttp", "splithttp", "kcp", "mkcp", "quic":
 		return "", "unsupported transport: " + network
 	}
 	sni := first(q.Get("sni"), q.Get("peer"), server)
@@ -2423,6 +2460,8 @@ func vlessTLS(security, sni, flow string, q url.Values) (string, string) {
 	}
 	switch security {
 	case "tls", "xtls":
+		// Do NOT include flowJSON: sing-box only accepts xtls-rprx-vision flow
+		// with reality TLS. Adding it to plain TLS causes START failures.
 		s := fmt.Sprintf(`,"tls":{"enabled":true,"insecure":true,"server_name":%q`, sni)
 		if fp := q.Get("fp"); fp != "" {
 			s += fmt.Sprintf(`,"utls":{"enabled":true,"fingerprint":%q}`, fp)
@@ -2431,7 +2470,6 @@ func vlessTLS(security, sni, flow string, q url.Values) (string, string) {
 			ab, _ := json.Marshal(strings.Split(alpnStr, ","))
 			s += fmt.Sprintf(`,"alpn":%s`, ab)
 		}
-		// DO NOT include flowJSON: sing-box only accepts xtls flow with reality TLS.
 		return s + "}", ""
 	case "reality":
 		pbk := q.Get("pbk")
@@ -2506,7 +2544,7 @@ func parseTrojan(raw string) (string, string) {
 	tls += "}"
 	network := strings.ToLower(q.Get("type"))
 	switch network {
-	case "kcp", "mkcp", "quic":
+	case "xhttp", "splithttp", "kcp", "mkcp", "quic":
 		return "", "unsupported transport: " + network
 	}
 	transport := buildTransportJSON(network, first(q.Get("path"), "/"), q.Get("host"),
@@ -2573,6 +2611,7 @@ func parseShadowsocks(raw string) (string, string) {
 	if !fastPathOK {
 		atIdx := strings.LastIndex(trimmed, "@")
 		if atIdx == -1 {
+			// Strip query string before b64 decode: ss://BASE64?plugin=obfs
 			b64Src := trimmed
 			if qi := strings.Index(b64Src, "?"); qi != -1 { b64Src = b64Src[:qi] }
 			decoded, err := decodeBase64([]byte(b64Src))
@@ -3937,6 +3976,8 @@ func extractErr(stderr string) string {
 }
 
 func extractErrVerbose(stderr string) string {
+	// Picks the most informative sing-box error line.
+	// Extracts the "msg" field from JSON-format sing-box log lines.
 	var first, best string
 	priority := []string{"invalid", "failed", "decode", "unsupported", "error"}
 	for _, line := range strings.Split(stderr, "\n") {
@@ -3946,6 +3987,7 @@ func extractErrVerbose(stderr string) string {
 		if strings.Contains(lower, "warn") || strings.Contains(lower, "deprecated") { continue }
 		if strings.Contains(lower, `"level":"info"`) || strings.Contains(lower, `"level":"debug"`) ||
 			strings.Contains(lower, "level=info") || strings.Contains(lower, "level=debug") { continue }
+		// Extract msg field from JSON log: {"level":"error","msg":"decode failed: ..."}
 		if idx := strings.Index(line, `"msg":"`); idx != -1 {
 			end := strings.Index(line[idx+7:], `"`)
 			if end != -1 { line = line[idx+7 : idx+7+end]; lower = strings.ToLower(line) }
