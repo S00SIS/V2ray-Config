@@ -1426,7 +1426,7 @@ func fetchRaw(rawURL string, timeout time.Duration) fetchResult {
 type failDetail struct {
 	mu      sync.Mutex
 	reasons map[string]int
-	samples map[string][]string // up to 100 sample config URIs per reason
+	samples map[string][]string
 }
 
 func validateAll(lines []string) []configResult {
@@ -1665,14 +1665,11 @@ func classifyFailReason(reason string) string {
 		return "PARSE › url parse error"
 	case strings.HasPrefix(r, "PARSE: unsupported cipher:"):
 		return "PARSE › unsupported SS cipher"
+	case strings.HasPrefix(r, "PARSE: unsupported transport: xhttp"),
+		strings.HasPrefix(r, "PARSE: unsupported transport: splithttp"):
+		return "PARSE › unsupported transport (xhttp/splithttp)"
 	case strings.HasPrefix(r, "PARSE: unsupported transport:"):
-		msg := strings.TrimPrefix(r, "PARSE: unsupported transport: ")
-		switch msg {
-		case "xhttp", "splithttp":
-			return "PARSE › unsupported transport (xhttp/splithttp)"
-		default:
-			return "PARSE › unsupported transport (kcp/quic/mkcp)"
-		}
+		return "PARSE › unsupported transport (kcp/quic/mkcp)"
 	case r == "PARSE: missing @" || r == "PARSE: missing server" ||
 		r == "PARSE: missing uuid" || r == "PARSE: missing password" ||
 		r == "PARSE: missing port" || r == "PARSE: missing auth":
@@ -2146,10 +2143,10 @@ func toSingBoxOutbound(configURL, protocol string) (string, string) {
 }
 
 func sanitizeProxyURL(raw string) string {
-	// ── HTML entity decode ──────────────────────────────────────────────
-	// Config sources (Telegram web, HTML pages) often HTML-encode ampersands:
-	// ?security=reality&amp;pbk=KEY → url.Parse reads "amp;pbk" not "pbk"
-	// so q.Get("pbk") returns "" → "reality missing public key" error on ~420 configs.
+	// ── HTML entity decode ────────────────────────────────────────────────────
+	// Sources like Telegram web / HTML pages HTML-encode ampersands:
+	// ?security=reality&amp;pbk=KEY → url.Parse reads key as "amp;pbk" not "pbk"
+	// so q.Get("pbk") returns "" → "reality missing public key" for ~420 configs.
 	raw = strings.ReplaceAll(raw, "&amp;", "&")
 	raw = strings.ReplaceAll(raw, "&lt;", "<")
 	raw = strings.ReplaceAll(raw, "&gt;", ">")
@@ -2187,15 +2184,13 @@ func sanitizeProxyURL(raw string) string {
 }
 
 func normalizeUUID(u string) string {
-	// Standard UUID: 8-4-4-4-12 hex chars with dashes
-	// Some configs provide a UUID as 32 hex chars without dashes.
-	// sing-box requires the dashed format.
+	// Some configs provide UUID as 32 hex chars without dashes.
+	// sing-box requires the standard 8-4-4-4-12 dashed format.
 	if len(u) == 32 {
 		allHex := true
 		for _, c := range u {
 			if !((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')) {
-				allHex = false
-				break
+				allHex = false; break
 			}
 		}
 		if allHex {
@@ -2203,6 +2198,28 @@ func normalizeUUID(u string) string {
 		}
 	}
 	return u
+}
+
+func sanitizeSNI(sni, fallback string) string {
+	// SNI must be a valid ASCII hostname — no emoji, spaces, wildcards in SNI extension.
+	// Wildcard like *.domain.com: strip the "*." prefix → domain.com
+	// (TLS RFC 6066 does not permit wildcards in SNI)
+	if strings.HasPrefix(sni, "*.") {
+		sni = sni[2:]
+	}
+	if sni == "" {
+		return fallback
+	}
+	for _, c := range sni {
+		if c > 127 || (c != '.' && c != '-' && !(c >= 'a' && c <= 'z') &&
+			!(c >= 'A' && c <= 'Z') && !(c >= '0' && c <= '9')) {
+			return fallback
+		}
+	}
+	if len(sni) > 0 && (sni[0] == '.' || sni[0] == '-' || sni[len(sni)-1] == '.' || sni[len(sni)-1] == '-') {
+		return fallback
+	}
+	return sni
 }
 
 func encodeUserInfo(s string) string {
@@ -2252,7 +2269,7 @@ func parseVMessURItoD(data string) (map[string]interface{}, string) {
 		"scy": first(q.Get("encryption"), q.Get("scy"), "auto"),
 		"net": first(q.Get("type"), q.Get("net"), "tcp"),
 		"tls": tlsVal,
-		"sni": first(q.Get("sni"), q.Get("peer"), host),
+		"sni": sanitizeSNI(first(q.Get("sni"), q.Get("peer"), ""), host),
 		"path": q.Get("path"),
 		"host": q.Get("host"),
 		"serviceName": q.Get("serviceName"),
@@ -2424,20 +2441,21 @@ func parseVLess(raw string) (string, string) {
 		return "", "port: " + err.Error()
 	}
 	q := u.Query()
-	// TrimSpace: handles configs where the security value has trailing whitespace
+	// TrimSpace: handles configs with trailing whitespace in security value
 	security := strings.TrimSpace(strings.ToLower(q.Get("security")))
 	network := strings.ToLower(q.Get("type"))
 	if network == "" {
 		network = "tcp"
 	}
 	// Reject transports not supported by installed sing-box:
-	// xhttp/splithttp causes ~5000 START failures → filter at PARSE
-	// kcp/mkcp/quic are Xray-only → never supported by sing-box
+	// xhttp/splithttp → ~5000 START failures (rejected by sing-box config parser)
+	// kcp/mkcp/quic  → Xray-only, never supported by sing-box
 	switch network {
 	case "xhttp", "splithttp", "kcp", "mkcp", "quic":
 		return "", "unsupported transport: " + network
 	}
-	sni := first(q.Get("sni"), q.Get("peer"), server)
+	// sanitizeSNI: fixes wildcard SNI (*.domain.com→domain.com) and strips emoji/invalid chars
+	sni := sanitizeSNI(first(q.Get("sni"), q.Get("peer"), ""), server)
 	// Filter flow: sing-box only supports xtls-rprx-vision; others cause FATAL config errors
 	flow := q.Get("flow")
 	if !singboxSupportedFlows[flow] {
@@ -2449,8 +2467,14 @@ func parseVLess(raw string) (string, string) {
 	}
 	transport := buildTransportJSON(network, first(q.Get("path"), "/"), q.Get("host"),
 		first(q.Get("serviceName"), q.Get("path")))
-	return fmt.Sprintf(`{"type":"vless","tag":"proxy","server":%q,"server_port":%d,"uuid":%q%s%s}`,
-		server, port, uuid, tlsJSON, transport), ""
+	// packetEncoding: pass through to sing-box (supports xudp/packetaddr for VLESS)
+	packetEnc := q.Get("packetEncoding")
+	packetJSON := ""
+	if packetEnc == "xudp" || packetEnc == "packetaddr" {
+		packetJSON = fmt.Sprintf(`,"packet_encoding":%q`, packetEnc)
+	}
+	return fmt.Sprintf(`{"type":"vless","tag":"proxy","server":%q,"server_port":%d,"uuid":%q%s%s%s}`,
+		server, port, uuid, tlsJSON, transport, packetJSON), ""
 }
 
 func vlessTLS(security, sni, flow string, q url.Values) (string, string) {
@@ -2461,7 +2485,7 @@ func vlessTLS(security, sni, flow string, q url.Values) (string, string) {
 	switch security {
 	case "tls", "xtls":
 		// Do NOT include flowJSON: sing-box only accepts xtls-rprx-vision flow
-		// with reality TLS. Adding it to plain TLS causes START failures.
+		// with reality. Including it with plain TLS causes ~5000 START failures.
 		s := fmt.Sprintf(`,"tls":{"enabled":true,"insecure":true,"server_name":%q`, sni)
 		if fp := q.Get("fp"); fp != "" {
 			s += fmt.Sprintf(`,"utls":{"enabled":true,"fingerprint":%q}`, fp)
@@ -2536,7 +2560,6 @@ func parseTrojan(raw string) (string, string) {
 		return "", "port: " + err.Error()
 	}
 	q := u.Query()
-	sni := first(q.Get("sni"), q.Get("peer"), server)
 	tls := fmt.Sprintf(`,"tls":{"enabled":true,"insecure":true,"server_name":%q`, sni)
 	if fp := q.Get("fp"); fp != "" {
 		tls += fmt.Sprintf(`,"utls":{"enabled":true,"fingerprint":%q}`, fp)
@@ -2547,6 +2570,7 @@ func parseTrojan(raw string) (string, string) {
 	case "xhttp", "splithttp", "kcp", "mkcp", "quic":
 		return "", "unsupported transport: " + network
 	}
+	sni := sanitizeSNI(first(q.Get("sni"), q.Get("peer"), ""), server)
 	transport := buildTransportJSON(network, first(q.Get("path"), "/"), q.Get("host"),
 		first(q.Get("serviceName"), q.Get("path")))
 	return fmt.Sprintf(`{"type":"trojan","tag":"proxy","server":%q,"server_port":%d,"password":%q%s%s}`,
@@ -2611,7 +2635,6 @@ func parseShadowsocks(raw string) (string, string) {
 	if !fastPathOK {
 		atIdx := strings.LastIndex(trimmed, "@")
 		if atIdx == -1 {
-			// Strip query string before b64 decode: ss://BASE64?plugin=obfs
 			b64Src := trimmed
 			if qi := strings.Index(b64Src, "?"); qi != -1 { b64Src = b64Src[:qi] }
 			decoded, err := decodeBase64([]byte(b64Src))
@@ -3976,8 +3999,6 @@ func extractErr(stderr string) string {
 }
 
 func extractErrVerbose(stderr string) string {
-	// Picks the most informative sing-box error line.
-	// Extracts the "msg" field from JSON-format sing-box log lines.
 	var first, best string
 	priority := []string{"invalid", "failed", "decode", "unsupported", "error"}
 	for _, line := range strings.Split(stderr, "\n") {
@@ -3985,9 +4006,7 @@ func extractErrVerbose(stderr string) string {
 		if line == "" { continue }
 		lower := strings.ToLower(line)
 		if strings.Contains(lower, "warn") || strings.Contains(lower, "deprecated") { continue }
-		if strings.Contains(lower, `"level":"info"`) || strings.Contains(lower, `"level":"debug"`) ||
-			strings.Contains(lower, "level=info") || strings.Contains(lower, "level=debug") { continue }
-		// Extract msg field from JSON log: {"level":"error","msg":"decode failed: ..."}
+		if strings.Contains(lower, `"level":"info"`) || strings.Contains(lower, "level=info") { continue }
 		if idx := strings.Index(line, `"msg":"`); idx != -1 {
 			end := strings.Index(line[idx+7:], `"`)
 			if end != -1 { line = line[idx+7 : idx+7+end]; lower = strings.ToLower(line) }
@@ -3999,8 +4018,7 @@ func extractErrVerbose(stderr string) string {
 			}
 		}
 	}
-	r := best
-	if r == "" { r = first }
+	r := best; if r == "" { r = first }
 	if len(r) > 180 { r = r[:180] + "..." }
 	return r
 }
