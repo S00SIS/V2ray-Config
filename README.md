@@ -58,7 +58,7 @@ Groups: **PROXY** (selector) → **Load-Balance** · **Auto** · **Fallback**
 | Raw fetched lines | 8046 |
 | Unique after dedup | 3534 |
 | Valid configs | 0 |
-| Processing time | 313.45s |
+| Processing time | 313.43s |
 
 ---
 
