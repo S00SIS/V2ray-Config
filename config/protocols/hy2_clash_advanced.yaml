@@ -69,12 +69,14 @@ proxies:
     udp: true
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "62.210.124.146"
-    port: 22000
-    password: "dongtaiwang.com"
-    sni: "62.210.124.146"
+    server: "181.214.99.162"
+    port: 35000
+    password: "b4bd0613-ff7c-4f2f-954d-185915e6ddad"
+    sni: "api.kermanshahi.org"
     skip-cert-verify: true
     udp: true
+    obfs: "salamander"
+    obfs-password: "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi"
 
 proxy-groups:
   # ── Top-level selector ────────────────────────────────────────────────────
