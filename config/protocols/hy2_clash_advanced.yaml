@@ -61,14 +61,6 @@ dns:
 proxies:
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "156.226.173.8"
-    port: 8443
-    password: "9c23940e-efd8-4763-bfb5-54739b50893d"
-    sni: "hy5.hy2yydsapi.top"
-    skip-cert-verify: true
-    udp: true
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
     server: "181.214.99.162"
     port: 35000
     password: "b4bd0613-ff7c-4f2f-954d-185915e6ddad"
@@ -77,6 +69,14 @@ proxies:
     udp: true
     obfs: "salamander"
     obfs-password: "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "jp1.xn--mesx36n.com"
+    port: 23001
+    password: "1fe714a1-d35e-4fb4-b3c7-6037eeef2cfc"
+    sni: "jp1.xn--mesx36n.com"
+    skip-cert-verify: true
+    udp: true
 
 proxy-groups:
   # ── Top-level selector ────────────────────────────────────────────────────

@@ -10,10 +10,10 @@
 
 | Protocol | Count | Link |
 |---|---|---|
-| VLESS | 3890 | [vless.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vless.txt) |
-| VMESS | 866 | [vmess.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vmess.txt) |
-| SS | 3133 | [ss.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/ss.txt) |
-| TROJAN | 344 | [trojan.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/trojan.txt) |
+| VLESS | 3888 | [vless.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vless.txt) |
+| VMESS | 890 | [vmess.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vmess.txt) |
+| SS | 3183 | [ss.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/ss.txt) |
+| TROJAN | 355 | [trojan.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/trojan.txt) |
 | HY2 | 2 | [hy2.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/hy2.txt) |
 
 ### Clash 
@@ -55,7 +55,7 @@ Groups: **PROXY** (selector) → **Load-Balance** · **Auto** · **Fallback**
 | Batch 014 | 500 | [batch_014.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_014.txt) |
 | Batch 015 | 500 | [batch_015.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_015.txt) |
 | Batch 016 | 500 | [batch_016.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_016.txt) |
-| Batch 017 | 235 | [batch_017.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_017.txt) |
+| Batch 017 | 318 | [batch_017.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_017.txt) |
 
 ### Clash Batches
 
@@ -83,22 +83,22 @@ Groups: **PROXY** (selector) → **Load-Balance** · **Auto** · **Fallback**
 
 | Protocol | Tested (unique) | valid | Pass Rate |
 |---|---|---|---|
-| VLESS | 79039 | 3890 | 4.9% |
-| VMESS | 90715 | 866 | 1.0% |
-| SS | 78582 | 3133 | 4.0% |
-| TROJAN | 35670 | 344 | 1.0% |
-| SSR | 200 | 0 | 0.0% |
-| HY2 | 2665 | 2 | 0.1% |
+| VLESS | 79022 | 3888 | 4.9% |
+| VMESS | 90744 | 890 | 1.0% |
+| SS | 78789 | 3183 | 4.0% |
+| TROJAN | 35561 | 355 | 1.0% |
+| SSR | 198 | 0 | 0.0% |
+| HY2 | 2666 | 2 | 0.1% |
 | HY | 6 | 0 | 0.0% |
-| TUIC | 246 | 0 | 0.0% |
-| **Total** | **287123** | **8235** | **2.9%** |
+| TUIC | 235 | 0 | 0.0% |
+| **Total** | **287221** | **8318** | **2.9%** |
 
 | Metric | Value |
 |---|---|
-| Raw fetched lines | 4056719 |
-| Unique after dedup | 287123 |
-| Valid configs | 8235 |
-| Processing time | 13903.95s |
+| Raw fetched lines | 3969418 |
+| Unique after dedup | 287221 |
+| Valid configs | 8318 |
+| Processing time | 13717.58s |
 
 ---
 
