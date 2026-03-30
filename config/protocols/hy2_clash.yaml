@@ -122,20 +122,10 @@ dns:
 proxies:
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "181.214.99.162"
-    port: 35000
-    password: "b4bd0613-ff7c-4f2f-954d-185915e6ddad"
-    sni: "api.kermanshahi.org"
-    skip-cert-verify: true
-    udp: true
-    obfs: "salamander"
-    obfs-password: "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi"
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "jp1.xn--mesx36n.com"
-    port: 23001
-    password: "1fe714a1-d35e-4fb4-b3c7-6037eeef2cfc"
-    sni: "jp1.xn--mesx36n.com"
+    server: "130.61.50.75"
+    port: 6443
+    password: "zhangyang"
+    sni: "130.61.50.75"
     skip-cert-verify: true
     udp: true
 
@@ -157,7 +147,6 @@ proxy-groups:
     lazy: true
     proxies:
       - "@DeltaKroneckerGithub"
-      - "@DeltaKroneckerGithub"
 
   - name: "Auto"
     type: url-test
@@ -167,7 +156,6 @@ proxy-groups:
     lazy: true
     proxies:
       - "@DeltaKroneckerGithub"
-      - "@DeltaKroneckerGithub"
 
   - name: "Fallback"
     type: fallback
@@ -175,7 +163,6 @@ proxy-groups:
     interval: 60
     lazy: true
     proxies:
-      - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
 
 rules:
