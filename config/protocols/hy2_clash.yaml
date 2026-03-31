@@ -122,10 +122,26 @@ dns:
 proxies:
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "130.61.50.75"
-    port: 6443
-    password: "zhangyang"
-    sni: "130.61.50.75"
+    server: "144.31.224.14"
+    port: 443
+    password: "123456789StrongPass"
+    sni: "www.cloudflare.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "62.210.124.146"
+    port: 22000
+    password: "dongtaiwang.com"
+    sni: "62.210.124.146"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "195.154.54.131"
+    port: 40022
+    password: "dongtaiwang.com"
+    sni: "www.microsoft.com"
     skip-cert-verify: true
     udp: true
 
@@ -147,6 +163,8 @@ proxy-groups:
     lazy: true
     proxies:
       - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   - name: "Auto"
     type: url-test
@@ -156,6 +174,8 @@ proxy-groups:
     lazy: true
     proxies:
       - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   - name: "Fallback"
     type: fallback
@@ -163,6 +183,8 @@ proxy-groups:
     interval: 60
     lazy: true
     proxies:
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
 
 rules:
