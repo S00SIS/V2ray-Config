@@ -122,10 +122,34 @@ dns:
 proxies:
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "144.31.224.14"
+    server: "f643a7e8-t6ngg0-t74ix0-1m0fq.hk1.hyhuawei.com"
     port: 443
-    password: "123456789StrongPass"
-    sni: "www.cloudflare.com"
+    password: "a698c4a6-c3c9-11ee-9693-f23c91cfbbc9"
+    sni: "f643a7e8-t6ngg0-t74ix0-1m0fq.hk1.hyhuawei.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "9c25e30b-t6ccg0-tfpsin-1q3dm.hk1.hyhuawei.com"
+    port: 443
+    password: "c1785de0-212f-11ef-92aa-f23c9164ca5d"
+    sni: "9c25e30b-t6ccg0-tfpsin-1q3dm.hk1.hyhuawei.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "216.236.26.19"
+    port: 49930
+    password: "bb7d8763-4afa-465f-b066-35786781ced2"
+    sni: "216.236.26.19"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "22f48047-t6pb40-tasftf-duku.hk1.hyhuawei.com"
+    port: 443
+    password: "8e0f8ef2-5fe3-11ec-a8bf-f23c91cfbbc9"
+    sni: "22f48047-t6pb40-tasftf-duku.hk1.hyhuawei.com"
     skip-cert-verify: true
     udp: true
   - name: "@DeltaKroneckerGithub"
@@ -138,10 +162,20 @@ proxies:
     udp: true
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "195.154.54.131"
-    port: 40022
-    password: "dongtaiwang.com"
-    sni: "www.microsoft.com"
+    server: "api.kermanshahi.org"
+    port: 35000
+    password: "b4bd0613-ff7c-4f2f-954d-185915e6ddad"
+    sni: "api.kermanshahi.org"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "6b62b419-t6t0g0-tfjz9x-1t5n1.hk1.hyhuawei.com"
+    port: 443
+    password: "ea800f9e-ca6c-11ef-8e74-f23c913c8d2b"
+    sni: "6b62b419-t6t0g0-tfjz9x-1t5n1.hk1.hyhuawei.com"
     skip-cert-verify: true
     udp: true
 
@@ -165,6 +199,10 @@ proxy-groups:
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   - name: "Auto"
     type: url-test
@@ -176,6 +214,10 @@ proxy-groups:
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   - name: "Fallback"
     type: fallback
@@ -183,6 +225,10 @@ proxy-groups:
     interval: 60
     lazy: true
     proxies:
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
