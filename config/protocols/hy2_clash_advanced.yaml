@@ -69,18 +69,34 @@ proxies:
     udp: true
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "9c25e30b-t6ccg0-tfpsin-1q3dm.hk1.hyhuawei.com"
+    server: "6b62b419-t6t0g0-tfjz9x-1t5n1.hk1.hyhuawei.com"
     port: 443
-    password: "c1785de0-212f-11ef-92aa-f23c9164ca5d"
-    sni: "9c25e30b-t6ccg0-tfpsin-1q3dm.hk1.hyhuawei.com"
+    password: "ea800f9e-ca6c-11ef-8e74-f23c913c8d2b"
+    sni: "6b62b419-t6t0g0-tfjz9x-1t5n1.hk1.hyhuawei.com"
     skip-cert-verify: true
     udp: true
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "216.236.26.19"
-    port: 49930
-    password: "bb7d8763-4afa-465f-b066-35786781ced2"
-    sni: "216.236.26.19"
+    server: "cb6ccdef-t53wg0-thiwul-1gcq2.hk1.hyhuawei.com"
+    port: 443
+    password: "759bf004-6137-11ec-bd7c-f23c913c8d2b"
+    sni: "cb6ccdef-t53wg0-thiwul-1gcq2.hk1.hyhuawei.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "167.234.249.46"
+    port: 444
+    password: "sysadmin.sysadmin"
+    sni: "a.961229.xyz"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "130.61.50.75"
+    port: 6443
+    password: "zhangyang"
+    sni: "130.61.50.75"
     skip-cert-verify: true
     udp: true
   - name: "@DeltaKroneckerGithub"
@@ -89,32 +105,6 @@ proxies:
     port: 443
     password: "8e0f8ef2-5fe3-11ec-a8bf-f23c91cfbbc9"
     sni: "22f48047-t6pb40-tasftf-duku.hk1.hyhuawei.com"
-    skip-cert-verify: true
-    udp: true
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "62.210.124.146"
-    port: 22000
-    password: "dongtaiwang.com"
-    sni: "62.210.124.146"
-    skip-cert-verify: true
-    udp: true
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "api.kermanshahi.org"
-    port: 35000
-    password: "b4bd0613-ff7c-4f2f-954d-185915e6ddad"
-    sni: "api.kermanshahi.org"
-    skip-cert-verify: true
-    udp: true
-    obfs: "salamander"
-    obfs-password: "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi"
-  - name: "@DeltaKroneckerGithub"
-    type: hysteria2
-    server: "6b62b419-t6t0g0-tfjz9x-1t5n1.hk1.hyhuawei.com"
-    port: 443
-    password: "ea800f9e-ca6c-11ef-8e74-f23c913c8d2b"
-    sni: "6b62b419-t6t0g0-tfjz9x-1t5n1.hk1.hyhuawei.com"
     skip-cert-verify: true
     udp: true
 
@@ -165,7 +155,6 @@ proxy-groups:
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
-      - "@DeltaKroneckerGithub"
 
   - name: "LB-CDN"
     type: load-balance
@@ -175,7 +164,6 @@ proxy-groups:
     tolerance: 150
     lazy: true
     proxies:
-      - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
@@ -197,7 +185,6 @@ proxy-groups:
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
-      - "@DeltaKroneckerGithub"
 
   - name: "FAST-CDN"
     type: url-test
@@ -206,7 +193,6 @@ proxy-groups:
     tolerance: 50
     lazy: true
     proxies:
-      - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
@@ -228,13 +214,11 @@ proxy-groups:
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
-      - "@DeltaKroneckerGithub"
 
   # ── Manual selector ───────────────────────────────────────────────────────
   - name: "MANUAL"
     type: select
     proxies:
-      - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
