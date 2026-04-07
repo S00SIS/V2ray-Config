@@ -10,11 +10,10 @@
 
 | Protocol | Count | Link |
 |---|---|---|
-| VLESS | 3847 | [vless.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vless.txt) |
-| VMESS | 868 | [vmess.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vmess.txt) |
-| SS | 2621 | [ss.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/ss.txt) |
-| TROJAN | 297 | [trojan.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/trojan.txt) |
-| HY2 | 4 | [hy2.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/hy2.txt) |
+| VLESS | 3463 | [vless.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vless.txt) |
+| VMESS | 878 | [vmess.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vmess.txt) |
+| SS | 2650 | [ss.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/ss.txt) |
+| TROJAN | 282 | [trojan.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/trojan.txt) |
 
 ### Clash 
 
@@ -27,7 +26,6 @@ Groups: **PROXY** (selector) → **Load-Balance** · **Auto** · **Fallback**
 | vmess_clash.yaml | [vmess_clash.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/vmess_clash.yaml) |
 | ss_clash.yaml | [ss_clash.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/ss_clash.yaml) |
 | trojan_clash.yaml | [trojan_clash.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/trojan_clash.yaml) |
-| hy2_clash.yaml | [hy2_clash.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/protocols/hy2_clash.yaml) |
 
 ---
 
@@ -53,8 +51,7 @@ Groups: **PROXY** (selector) → **Load-Balance** · **Auto** · **Fallback**
 | Batch 012 | 500 | [batch_012.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_012.txt) |
 | Batch 013 | 500 | [batch_013.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_013.txt) |
 | Batch 014 | 500 | [batch_014.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_014.txt) |
-| Batch 015 | 500 | [batch_015.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_015.txt) |
-| Batch 016 | 137 | [batch_016.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_016.txt) |
+| Batch 015 | 273 | [batch_015.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/v2ray/batch_015.txt) |
 
 ### Clash Batches
 
@@ -71,7 +68,6 @@ Groups: **PROXY** (selector) → **Load-Balance** · **Auto** · **Fallback**
 | Batch 009 | [batch_009.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/clash/batch_009.yaml) |
 | Batch 010 | [batch_010.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/clash/batch_010.yaml) |
 | Batch 011 | [batch_011.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/clash/batch_011.yaml) |
-| Batch 012 | [batch_012.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/clash/batch_012.yaml) |
 
 ---
 
@@ -81,22 +77,22 @@ Groups: **PROXY** (selector) → **Load-Balance** · **Auto** · **Fallback**
 
 | Protocol | Tested (unique) | valid | Pass Rate |
 |---|---|---|---|
-| VLESS | 79227 | 3847 | 4.9% |
-| VMESS | 89726 | 868 | 1.0% |
-| SS | 75778 | 2621 | 3.5% |
-| TROJAN | 35070 | 297 | 0.8% |
-| SSR | 202 | 0 | 0.0% |
-| HY2 | 2676 | 4 | 0.1% |
+| VLESS | 79026 | 3463 | 4.4% |
+| VMESS | 89696 | 878 | 1.0% |
+| SS | 73120 | 2650 | 3.6% |
+| TROJAN | 34980 | 282 | 0.8% |
+| SSR | 197 | 0 | 0.0% |
+| HY2 | 2671 | 0 | 0.0% |
 | HY | 6 | 0 | 0.0% |
 | TUIC | 247 | 0 | 0.0% |
-| **Total** | **282932** | **7637** | **2.7%** |
+| **Total** | **279943** | **7273** | **2.6%** |
 
 | Metric | Value |
 |---|---|
-| Raw fetched lines | 3970792 |
-| Unique after dedup | 282932 |
-| Valid configs | 7637 |
-| Processing time | 13680.05s |
+| Raw fetched lines | 3961845 |
+| Unique after dedup | 279943 |
+| Valid configs | 7273 |
+| Processing time | 13621.88s |
 
 ---
 
