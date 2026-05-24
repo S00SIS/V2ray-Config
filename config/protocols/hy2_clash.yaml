@@ -122,7 +122,79 @@ dns:
 proxies:
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "45.15.140.128"
+    server: "45.12.134.57"
+    port: 444
+    password: "strong-secret-pass-777"
+    sni: "www.microsoft.com"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "cry_me_a_r1ver_2026"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "132.243.221.180"
+    port: 500
+    password: "8lXLWMYC7o"
+    sni: "www.amd.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "zf.9966690.xyz"
+    port: 60045
+    password: "a7c5d30b-ce9b-4e34-b5cb-66f8308790ef"
+    sni: "zf.9966690.xyz"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "YzgyOTkwNDk42TU23T365A=="
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "185.106.96.231"
+    port: 443
+    password: "10550754-cf62-3d3b-ba6a-50be27a275d7"
+    sni: "s559.ccgfw.top"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "zf.9966690.xyz"
+    port: 60008
+    password: "a7c5d30b-ce9b-4e34-b5cb-66f8308790ef"
+    sni: "zf.9966690.xyz"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "YzgyOTkwNDk4ZTU2NTdiNA=="
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "130.61.50.75"
+    port: 6443
+    password: "zhangyang"
+    sni: "130.61.50.75"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "31.59.39.192"
+    port: 500
+    password: "8vX6A657pl"
+    sni: "www.amd.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "103.231.73.181"
+    port: 444
+    password: "strong-secret-pass-777"
+    sni: "www.microsoft.com"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "cry_me_a_r1ver_2026"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "2.56.172.83"
     port: 444
     password: "strong-secret-pass-777"
     sni: "www.microsoft.com"
@@ -149,6 +221,14 @@ proxy-groups:
     lazy: true
     proxies:
       - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   - name: "Auto"
     type: url-test
@@ -158,6 +238,14 @@ proxy-groups:
     lazy: true
     proxies:
       - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   - name: "Fallback"
     type: fallback
@@ -165,6 +253,14 @@ proxy-groups:
     interval: 60
     lazy: true
     proxies:
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
 
 rules:
