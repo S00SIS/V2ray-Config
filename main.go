@@ -3918,6 +3918,11 @@ func min500(batchIdx, total int) int {
 	return end - start
 }
 
+
+
+
+
+
 func writeSummary(results []configResult, failedLinks []string, duration float64, originalTotal int) {
 	byProtoOut := make(map[string]int)
 	for _, r := range results {
@@ -3934,6 +3939,29 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 
 	repoBase := "https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main"
 
+	// ── SNI Files table (FIRST) ───────────────────────────────────────────────────────
+	w.WriteString("## SNI Configs (server=127.0.0.1, port=40443)\n\n")
+	w.WriteString("> These configs have the server address replaced with `127.0.0.1:40443`.\n")
+	w.WriteString("> Use them with a local tunnel or gateway that forwards to the real server.\n")
+	w.WriteString("> All TLS SNI/peer fields are preserved so TLS handshake still works correctly.\n\n")
+	fmt.Fprintf(w, "| File | Link |\n|---|---|\n")
+	fmt.Fprintf(w, "| All SNI configs (txt) | [all_configs_sni.txt](%s/config/sni/all_configs_sni.txt) |\n", repoBase)
+	w.WriteString("\n")
+
+	w.WriteString("#### SNI — By Protocol\n\n")
+	fmt.Fprintf(w, "| Protocol | Count | V2ray SNI Config |\n|---|---|---|\n")
+	for _, p := range cfg.ProtocolOrder {
+		if n := byProtoOut[p]; n > 0 {
+			fmt.Fprintf(w, "| %s | %d | [%s_sni.txt](%s/config/sni/protocols/%s_sni.txt) |\n",
+				strings.ToUpper(p), n,
+				p, repoBase, p)
+		}
+	}
+	w.WriteString("\n")
+
+	w.WriteString("---\n\n")
+	
+	// ── Main Files (without Clash SNI) ─────────────────────────────────────────────
 	w.WriteString("## Main Files\n\n")
 
 	w.WriteString("### V2ray — All Configs\n\n")
@@ -3961,8 +3989,10 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 		}
 	}
 	w.WriteString("\n")
-	
+
 	w.WriteString("---\n\n")
+	
+	// ── Batch Files (without SNI Clash batches) ──────────────────────────────────────
 	w.WriteString("## Batch Files — Random 500-Config Groups\n\n")
 	w.WriteString("> Each file contains 500 randomly selected configs from all protocols.\n\n")
 
@@ -3987,17 +4017,6 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	}
 	w.WriteString("\n")
 
-
-		// ── SNI Files table ───────────────────────────────────────────────────────
-	w.WriteString("### SNI Configs (server=127.0.0.1, port=40443)\n\n")
-	w.WriteString("> These configs have the server address replaced with `127.0.0.1:40443`.\n")
-	w.WriteString("> Use them with a local tunnel or gateway.\n")
-	fmt.Fprintf(w, "| File | Link |\n|---|---|\n")
-	fmt.Fprintf(w, "| All SNI configs (txt) | [all_configs_sni.txt](%s/config/sni/all_configs_sni.txt) |\n", repoBase)
-	fmt.Fprintf(w, "| clash_sni.yaml (all protocols) | [clash_sni.yaml](%s/config/sni/clash_sni.yaml) |\n", repoBase)
-	fmt.Fprintf(w, "| clash_advanced_sni.yaml | [clash_advanced_sni.yaml](%s/config/sni/clash_advanced_sni.yaml) |\n", repoBase)
-	w.WriteString("\n")
-
 	w.WriteString("### SNI V2ray Batches\n\n")
 	fmt.Fprintf(w, "| Batch | Count | Link |\n|---|---|---|\n")
 	for i := 1; i <= sniV2rayBatches; i++ {
@@ -4007,18 +4026,9 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	}
 	w.WriteString("\n")
 
-	w.WriteString("#### SNI — By Protocol\n\n")
-	fmt.Fprintf(w, "| Protocol | Count | V2ray |\n|---|---|---|\n")
-	for _, p := range cfg.ProtocolOrder {
-		if n := byProtoOut[p]; n > 0 {
-			fmt.Fprintf(w, "| %s | %d | [%s_sni.txt](%s/config/sni/protocols/%s_sni.txt) |\n",
-				strings.ToUpper(p), n,
-				p, repoBase, p)
-		}
-	}
-	w.WriteString("\n")
-
 	w.WriteString("---\n\n")
+	
+	// ── Statistics ────────────────────────────────────────────────────────────────
 	w.WriteString("## Statistics\n\n")
 
 	w.WriteString("### Per-Protocol Input & Output\n\n")
@@ -4055,6 +4065,15 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	w.WriteString("⭐ **Star our [Telegram posts](https://t.me/DeltaKroneckerGithub)** \n\n")
 	w.WriteString("Your stars fuel our motivation to keep improving!\n")
 }
+
+
+
+
+
+
+
+
+
 
 func decodeBase64(encoded []byte) (string, error) {
 	s := strings.Map(func(r rune) rune {
