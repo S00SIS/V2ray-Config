@@ -4013,8 +4013,6 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 		if n := byProtoOut[p]; n > 0 {
 			fmt.Fprintf(w, "| %s | %d | [%s_sni.txt](%s/config/sni/protocols/%s_sni.txt) |\n",
 				strings.ToUpper(p), n,
-				p, repoBase, p,
-				p, repoBase, p,
 				p, repoBase, p)
 		}
 	}
