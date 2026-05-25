@@ -3969,7 +3969,6 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	v2rayBatches := countBatchFiles("config/batches/v2ray")
 	clashBatches := countBatchFiles("config/batches/clash")
 	sniV2rayBatches := countBatchFiles("config/batches/sni_v2ray")
-	sniClashBatches := countBatchFiles("config/batches/sni_clash")
 
 	w.WriteString("### V2ray Batches\n\n")
 	fmt.Fprintf(w, "| Batch | Count | Link |\n|---|---|---|\n")
