@@ -43,7 +43,7 @@ Groups: **PROXY** (selector) → **Load-Balance** · **Auto** · **Fallback**
 
 | Protocol | Tested (unique) | valid | Pass Rate |
 |---|---|---|---|
-| VLESS | 2035 | 0 | 0.0% |
+| VLESS | 2067 | 0 | 0.0% |
 | VMESS | 0 | 0 | 0.0% |
 | SS | 0 | 0 | 0.0% |
 | TROJAN | 0 | 0 | 0.0% |
@@ -51,14 +51,14 @@ Groups: **PROXY** (selector) → **Load-Balance** · **Auto** · **Fallback**
 | HY2 | 0 | 0 | 0.0% |
 | HY | 0 | 0 | 0.0% |
 | TUIC | 0 | 0 | 0.0% |
-| **Total** | **2035** | **0** | **0.0%** |
+| **Total** | **2067** | **0** | **0.0%** |
 
 | Metric | Value |
 |---|---|
-| Raw fetched lines | 2388 |
-| Unique after dedup | 2035 |
+| Raw fetched lines | 2389 |
+| Unique after dedup | 2067 |
 | Valid configs | 0 |
-| Processing time | 182.20s |
+| Processing time | 182.27s |
 
 ---
 
