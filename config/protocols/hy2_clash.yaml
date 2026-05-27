@@ -122,10 +122,146 @@ dns:
 proxies:
   - name: "@DeltaKroneckerGithub"
     type: hysteria2
-    server: "130.61.50.75"
-    port: 6443
-    password: "zhangyang"
-    sni: "130.61.50.75"
+    server: "31.59.39.192"
+    port: 500
+    password: "8vX6A657pl"
+    sni: "www.amd.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "138.124.182.202"
+    port: 8443
+    password: "jOIItw1h4D"
+    sni: "latviyaotpusk1.home.kg"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "musicclips.videolinks.ru"
+    port: 8443
+    password: "rstnnl2705:56Uhk1CcaR5mCmGpaN0AsOAmRscZSIaM"
+    sni: "musicclips.videolinks.ru"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "hH0l2Acqz3RtodoSCNCpNJqDSZtp4Qw"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "zf.9966690.xyz"
+    port: 60023
+    password: "a7c5d30b-ce9b-4e34-b5cb-66f8308790ef"
+    sni: "zf.9966690.xyz"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "YzgyOTkwNDk42TU23T365A=="
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "47.242.216.193"
+    port: 30236
+    password: "6yhPOr3f9o"
+    sni: "47.242.216.193"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "s663.ccgfw.top"
+    port: 443
+    password: "6d49fae1-374d-313e-b360-1227b0ea8dea"
+    sni: "s663.ccgfw.top"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "cdntw.xhl666.top"
+    port: 13456
+    password: "033634aa-43d9-4fc1-ab30-c2e28bb2e607"
+    sni: "cdntw.xhl666.top"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "zfusp.9966690.xyz"
+    port: 60044
+    password: "a7c5d30b-ce9b-4e34-b5cb-66f8308790ef"
+    sni: "zfusp.9966690.xyz"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "YzgyOTkwNDk42TU23T365A=="
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "reddeadfan.rd-team.ru"
+    port: 2026
+    password: "rstnnl2705:QtmSqzxgO95zXwNcgVYSjDl02aRsjrrl"
+    sni: "reddeadfan.rd-team.ru"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "FxZylbqClUqVqAs2nezW9kPyFb2edZ2"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "zfusp.9966690.xyz"
+    port: 60019
+    password: "a7c5d30b-ce9b-4e34-b5cb-66f8308790ef"
+    sni: "zfusp.9966690.xyz"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "YzgyOTkwNDk42TU23T365A=="
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "zf.9966690.xyz"
+    port: 60022
+    password: "a7c5d30b-ce9b-4e34-b5cb-66f8308790ef"
+    sni: "zf.9966690.xyz"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "YzgyOTkwNDk42TU23T365A=="
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "204.12.170.168"
+    port: 443
+    password: "de72b066a61a39af"
+    sni: "claude.ai"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "726c9c641a068d74"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "nrealistic.nn-foto.ru"
+    port: 8932
+    password: "rstnnl2705:ZmRjX7MkeEqZ5GQUIT5VO53ARuy6nrmQ"
+    sni: "nrealistic.nn-foto.ru"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "CvxXZnSth1bVJKGFP2cof4rI52ifHJ2W"
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "s545.ccgfw.online"
+    port: 443
+    password: "6d49fae1-374d-313e-b360-1227b0ea8dea"
+    sni: "s545.ccgfw.online"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "vpn-tw-002.fastervpn.world"
+    port: 443
+    password: "H7mP2xY9kJ4nQ8wR5tF6vB3z"
+    sni: "vpn-tw-002.fastervpn.world"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub"
+    type: hysteria2
+    server: "hy2.123266.xyz"
+    port: 33333
+    password: "bce6c821-200d-421f-bf3d-7159e5246ea0"
+    sni: "hy2.123266.xyz"
     skip-cert-verify: true
     udp: true
 
@@ -147,6 +283,21 @@ proxy-groups:
     lazy: true
     proxies:
       - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   - name: "Auto"
     type: url-test
@@ -156,6 +307,21 @@ proxy-groups:
     lazy: true
     proxies:
       - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
 
   - name: "Fallback"
     type: fallback
@@ -163,6 +329,21 @@ proxy-groups:
     interval: 60
     lazy: true
     proxies:
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
+      - "@DeltaKroneckerGithub"
       - "@DeltaKroneckerGithub"
 
 rules:
