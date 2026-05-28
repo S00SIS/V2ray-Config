@@ -1,4 +1,4 @@
-## SNI Configs
+## SNI Configs (اگه نمی دونید چطوری ترکیب کنید، جدول های بعدی برای شماست)
 
 > If you don't know what SNI-Spoofing configurations are for, skip this table.
 
