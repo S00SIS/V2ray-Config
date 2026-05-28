@@ -3938,7 +3938,7 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	repoBase := "https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main"
 
 	// ── SINGLE SNI TABLE (everything together) ────────────────────────────────────
-	w.WriteString("## SNI Configs\n\n")
+	w.WriteString("## SNI Configs (اگه نمی دونید چطوری ترکیب کنید، جدول های بعدی برای شماست)\n\n")
 	w.WriteString("> If you don't know what SNI-Spoofing configurations are for, skip this table.\n")
 	w.WriteString("\n")
 	w.WriteString("> https://t.me/DeltaSNI برای آموزش و گفت و گو درباره روش های مبتنی بر این روش در گروه تلگرامی ما عضو بشید\n")
