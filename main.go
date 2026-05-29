@@ -1395,10 +1395,11 @@ func fetchAll(base64Links, textLinks []string) ([]string, []string) {
 				continue
 			}
 			okCount++
+			extracted := smartDecode(r.content)
 			if gLog != nil {
-				gLog.writeLine(fmt.Sprintf("[FETCH] OK    %s", r.url))
+				gLog.writeLine(fmt.Sprintf("[FETCH] OK    %s  lines=%d", r.url, len(extracted)))
 			}
-			lines = append(lines, strings.Split(strings.TrimSpace(r.content), "\n")...)
+			lines = append(lines, extracted...)
 		}
 		mu.Unlock()
 	}
@@ -1557,13 +1558,13 @@ func validateAll(lines []string) []configResult {
 
 			wg.Wait()
 
-			procsAfter := countSingboxProcs()
-			occupiedAfter := checkOccupiedPorts(v.BasePort, actualBatchSize)
-
 			bt.killAll()
 			if v.ProcessKillWaitMs > 0 {
 				time.Sleep(time.Duration(v.ProcessKillWaitMs) * time.Millisecond)
 			}
+
+			procsAfter := countSingboxProcs()
+			occupiedAfter := checkOccupiedPorts(v.BasePort, actualBatchSize)
 
 			if procsAfter > 0 || len(occupiedAfter) > 0 {
 				fmt.Printf("     ⚠️  After kill  — procs:%-3d  ports-busy:%-3d\n",
@@ -1647,13 +1648,27 @@ func validateAll(lines []string) []configResult {
 }
 
 func classifyFailReason(reason string) string {
+	// Strip full ANSI escape sequences (e.g. \x1b[31m...\x1b[0m)
 	stripANSI := func(s string) string {
-		return strings.Map(func(r rune) rune {
-			if r == 0x1b {
-				return -1
+		var out strings.Builder
+		i := 0
+		for i < len(s) {
+			if s[i] == 0x1b && i+1 < len(s) && s[i+1] == '[' {
+				// skip until 'm' or other terminator
+				j := i + 2
+				for j < len(s) && !(s[j] >= 'A' && s[j] <= 'Z') && !(s[j] >= 'a' && s[j] <= 'z') {
+					j++
+				}
+				if j < len(s) {
+					j++
+				}
+				i = j
+				continue
 			}
-			return r
-		}, s)
+			out.WriteByte(s[i])
+			i++
+		}
+		return out.String()
 	}
 	r := stripANSI(reason)
 
@@ -2054,26 +2069,24 @@ func validateWithTracker(configURL, protocol string, localPorts chan int, bt *ba
 }
 
 func waitForPort(addr string, maxWait, interval, dialTimeout time.Duration) bool {
-	elapsed := time.Duration(0)
-	for elapsed < maxWait {
-		time.Sleep(interval)
-		elapsed += interval
+	deadline := time.Now().Add(maxWait)
+	for {
 		conn, err := net.DialTimeout("tcp", addr, dialTimeout)
 		if err == nil {
 			conn.Close()
 			return true
 		}
+		if time.Now().Add(interval).After(deadline) {
+			return false
+		}
+		time.Sleep(interval)
 	}
-	return false
 }
 
 func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRetries int) (bool, time.Duration, string) {
 	effectiveURLs := make([]string, 0, len(testURLs))
 	seen := make(map[string]bool)
 	for _, u := range testURLs {
-		if strings.HasPrefix(u, "http://") {
-			u = "https://" + u[len("http://"):]
-		}
 		if !seen[u] {
 			effectiveURLs = append(effectiveURLs, u)
 			seen[u] = true
@@ -2126,7 +2139,7 @@ func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRet
 }
 
 func buildSingBoxConfig(outboundJSON string, port int) string {
-	return fmt.Sprintf(`{"log":{"level":"error","timestamp":false},"dns":{"servers":[{"tag":"dns-remote","address":"https://8.8.8.8/dns-query","address_resolver":"dns-direct","strategy":"prefer_ipv4","detour":"proxy"},{"tag":"dns-direct","address":"8.8.8.8","strategy":"prefer_ipv4","detour":"direct"}],"rules":[{"outbound":"any","server":"dns-direct"}],"independent_cache":true},"inbounds":[{"type":"http","tag":"http-in","listen":"127.0.0.1","listen_port":%d}],"outbounds":[%s,{"type":"direct","tag":"direct"},{"type":"block","tag":"block"}]}`,
+	return fmt.Sprintf(`{"log":{"level":"error","timestamp":false},"dns":{"servers":[{"tag":"dns-direct","address":"8.8.8.8","strategy":"prefer_ipv4","detour":"direct"}],"independent_cache":true},"inbounds":[{"type":"http","tag":"http-in","listen":"127.0.0.1","listen_port":%d}],"outbounds":[%s,{"type":"direct","tag":"direct"},{"type":"block","tag":"block"}]}`,
 		port, outboundJSON)
 }
 
@@ -2351,8 +2364,10 @@ func parseVMess(raw string) (string, string) {
 			atIdx := strings.Index(data, "@")
 			qIdx := strings.Index(data, "?")
 			if atIdx != -1 && (qIdx == -1 || atIdx < qIdx) {
+				sanitized := sanitizeProxyURL("vmess://" + data)
+				sanitized = strings.TrimPrefix(sanitized, "vmess://")
 				var parseErr string
-				d, parseErr = parseVMessURItoD(data)
+				d, parseErr = parseVMessURItoD(sanitized)
 				if parseErr != "" {
 					return "", parseErr
 				}
@@ -2481,7 +2496,7 @@ func vlessTLS(security, sni, flow string, q url.Values) (string, string) {
 			ab, _ := json.Marshal(strings.Split(alpnStr, ","))
 			s += fmt.Sprintf(`,"alpn":%s`, ab)
 		}
-		return s + "}", ""
+		return flowJSON + s + "}", ""
 	case "reality":
 		pbk := q.Get("pbk")
 		if pbk == "" {
@@ -2894,23 +2909,42 @@ func coreIdentity(line, protocol string) string {
 			data = data[:idx]
 		}
 		data = strings.TrimSpace(data)
-		var jsonStr string
-		if strings.HasPrefix(data, "{") {
-			jsonStr = data
-		} else {
-			decoded, err := decodeBase64([]byte(data))
-			if err != nil {
-				return line
+
+		// Try base64-JSON format first
+		if !strings.HasPrefix(data, "{") {
+			if decoded, err := decodeBase64([]byte(data)); err == nil {
+				var d struct {
+					Add  string      `json:"add"`
+					Port interface{} `json:"port"`
+					ID   string      `json:"id"`
+				}
+				if json.Unmarshal([]byte(decoded), &d) == nil && d.Add != "" {
+					return fmt.Sprintf("vmess://%s:%v#%s", d.Add, d.Port, d.ID)
+				}
 			}
-			jsonStr = decoded
 		}
-		var d struct {
-			Add  string      `json:"add"`
-			Port interface{} `json:"port"`
-			ID   string      `json:"id"`
+
+		// JSON inline format
+		if strings.HasPrefix(data, "{") {
+			var d struct {
+				Add  string      `json:"add"`
+				Port interface{} `json:"port"`
+				ID   string      `json:"id"`
+			}
+			if json.Unmarshal([]byte(data), &d) == nil && d.Add != "" {
+				return fmt.Sprintf("vmess://%s:%v#%s", d.Add, d.Port, d.ID)
+			}
 		}
-		json.Unmarshal([]byte(jsonStr), &d)
-		return fmt.Sprintf("vmess://%s:%v#%s", d.Add, d.Port, d.ID)
+
+		// URI format: vmess://uuid@host:port?...
+		if atIdx := strings.Index(data, "@"); atIdx != -1 {
+			u, err := url.Parse("vmess://" + data)
+			if err == nil && u.Hostname() != "" {
+				return fmt.Sprintf("vmess://%s:%s#%s", u.Hostname(), u.Port(), u.User.Username())
+			}
+		}
+
+		return line
 	case "ssr":
 		data := strings.TrimPrefix(line, "ssr://")
 		if idx := strings.LastIndex(data, "#"); idx != -1 {
@@ -3921,146 +3955,130 @@ func min500(batchIdx, total int) int {
 
 
 
+// autoGenMarker is appended to README.md as a separator between the
+// user-written content and the auto-generated statistics/links section.
+// Everything from this marker onward is replaced on every run.
+const autoGenMarker = "<!-- AUTO-GENERATED: DO NOT EDIT BELOW THIS LINE -->\n"
+
 func writeSummary(results []configResult, failedLinks []string, duration float64, originalTotal int) {
 	byProtoOut := make(map[string]int)
 	for _, r := range results {
 		byProtoOut[r.proto]++
 	}
 
+	repoBase := "https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main"
+
+	// ── Build the auto-generated block ───────────────────────────────────────────
+	var gen strings.Builder
+	gen.WriteString(autoGenMarker)
+	gen.WriteString("\n")
+
+
+
+	// V2ray files
+	gen.WriteString("## V2ray\n\n")
+	fmt.Fprintf(&gen, "| Protocol | Count | Link |\n|---|---|---|\n")
+	fmt.Fprintf(&gen, "| All | %d | [all_configs.txt](%s/config/all_configs.txt) |\n", len(results), repoBase)
+	for _, p := range cfg.ProtocolOrder {
+		if n := byProtoOut[p]; n > 0 {
+			fmt.Fprintf(&gen, "| %s | %d | [%s.txt](%s/config/protocols/%s.txt) |\n",
+				strings.ToUpper(p), n, p, repoBase, p)
+		}
+	}
+	gen.WriteString("\n---\n\n")
+
+
+	// SNI files
+	gen.WriteString("## SNI\n\n")
+	fmt.Fprintf(&gen, "| Protocol | Count | Link |\n|---|---|---|\n")
+	fmt.Fprintf(&gen, "| All | %d | [all_configs_sni.txt](%s/config/sni/all_configs_sni.txt) |\n", len(results), repoBase)
+	for _, p := range cfg.ProtocolOrder {
+		if n := byProtoOut[p]; n > 0 {
+			fmt.Fprintf(&gen, "| %s | %d | [%s_sni.txt](%s/config/sni/protocols/%s_sni.txt) |\n",
+				strings.ToUpper(p), n, p, repoBase, p)
+		}
+	}
+	gen.WriteString("\n---\n\n")
+
+	// V2ray batch files
+	v2rayBatches := countBatchFiles("config/batches/v2ray")
+	if v2rayBatches > 0 {
+		gen.WriteString("##V2ray Batches\n\n")
+		fmt.Fprintf(&gen, "| Batch | Count | Link |\n|---|---|---|\n")
+		for i := 1; i <= v2rayBatches; i++ {
+			cnt := min500(i, len(results))
+			fmt.Fprintf(&gen, "| %03d | %d | [batch_%03d.txt](%s/config/batches/v2ray/batch_%03d.txt) |\n",
+				i, cnt, i, repoBase, i)
+		}
+		gen.WriteString("\n")
+	}
+
+	// SNI batch files
+	sniV2rayBatches := countBatchFiles("config/batches/sni_v2ray")
+	if sniV2rayBatches > 0 {
+		gen.WriteString("## SNI Batches\n\n")
+		fmt.Fprintf(&gen, "| Batch | Count | Link |\n|---|---|---|\n")
+		for i := 1; i <= sniV2rayBatches; i++ {
+			cnt := min500(i, len(results))
+			fmt.Fprintf(&gen, "| %03d | %d | [batch_%03d.txt](%s/config/batches/sni_v2ray/batch_%03d.txt) |\n",
+				i, cnt, i, repoBase, i)
+		}
+		gen.WriteString("\n")
+	}
+
+		// Statistics
+	gen.WriteString("## Statistics\n\n")
+	totalIn, totalOut := 0, 0
+	fmt.Fprintf(&gen, "| Protocol | Tested | Valid | Pass%% |\n|---|---|---|---|\n")
+	for _, p := range cfg.ProtocolOrder {
+		in, out := gInputByProto[p], byProtoOut[p]
+		totalIn += in
+		totalOut += out
+		if in == 0 {
+			continue
+		}
+		rate := float64(out) / float64(in) * 100
+		fmt.Fprintf(&gen, "| %s | %d | %d | %.1f%% |\n", strings.ToUpper(p), in, out, rate)
+	}
+	overallRate := 0.0
+	if totalIn > 0 {
+		overallRate = float64(totalOut) / float64(totalIn) * 100
+	}
+	fmt.Fprintf(&gen, "| **Total** | **%d** | **%d** | **%.1f%%** |\n\n", totalIn, totalOut, overallRate)
+	fmt.Fprintf(&gen, "| Metric | Value |\n|---|---|\n")
+	fmt.Fprintf(&gen, "| Fetched | %d |\n", originalTotal)
+	fmt.Fprintf(&gen, "| Unique | %d |\n", totalIn)
+	fmt.Fprintf(&gen, "| Valid | %d |\n", len(results))
+	fmt.Fprintf(&gen, "| Time | %.2fs |\n\n", duration)
+	gen.WriteString("---\n\n")
+
+	// ── Read existing README.md and strip any previous auto-generated block ───────
+	existingContent := ""
+	if raw, err := os.ReadFile("read.md"); err == nil {
+		existing := string(raw)
+		if idx := strings.Index(existing, autoGenMarker); idx != -1 {
+			// Strip from marker onward; keep user-written content above it
+			existingContent = strings.TrimRight(existing[:idx], "\n\r ")
+		} else {
+			existingContent = strings.TrimRight(existing, "\n\r ")
+		}
+	}
+
+	// ── Write the final README.md ─────────────────────────────────────────────────
 	f, err := os.Create("README.md")
 	if err != nil {
+		fmt.Printf("❌ Cannot write README.md: %v\n", err)
 		return
 	}
 	defer f.Close()
 	w := bufio.NewWriter(f)
 	defer w.Flush()
 
-	repoBase := "https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main"
-
-	// ── SINGLE SNI TABLE (everything together) ────────────────────────────────────
-	w.WriteString("## SNI Configs (اگه نمی دونید چطوری ترکیب کنید، جدول های بعدی برای شماست)\n\n")
-	w.WriteString("> If you don't know what SNI-Spoofing configurations are for, skip this table.\n")
-	w.WriteString("\n")
-	w.WriteString("> https://t.me/DeltaSNI برای آموزش و گفت و گو درباره روش های مبتنی بر این روش در گروه تلگرامی ما عضو بشید\n")
-	w.WriteString("\n")
-	w.WriteString("> لطفا هر پروژه ای براتون مفید بود حتما استار بدید، با این کار انگیزه توسعه دهنده برای ادامه رو تامین می کنید🫀\n\n")
-	
-	fmt.Fprintf(w, "| Type | Count | Link |\n|---|---|---|\n")
-	
-	// Main SNI file
-	fmt.Fprintf(w, "| All SNI configs | — | [all_configs_sni.txt](%s/config/sni/all_configs_sni.txt) |\n", repoBase)
-	
-	// SNI by protocol
-	for _, p := range cfg.ProtocolOrder {
-		if n := byProtoOut[p]; n > 0 {
-			fmt.Fprintf(w, "| Protocol: %s | %d | [%s_sni.txt](%s/config/sni/protocols/%s_sni.txt) |\n",
-				strings.ToUpper(p), n, p, repoBase, p)
-		}
+	if existingContent != "" {
+		w.WriteString(existingContent)
+		w.WriteString("\n\n")
 	}
-	
-	// SNI V2ray Batches
-	sniV2rayBatches := countBatchFiles("config/batches/sni_v2ray")
-	for i := 1; i <= sniV2rayBatches; i++ {
-		cnt := min500(i, len(results))
-		fmt.Fprintf(w, "| Batch %03d | %d | [batch_%03d.txt](%s/config/batches/sni_v2ray/batch_%03d.txt) |\n",
-			i, cnt, i, repoBase, i)
-	}
-	
-	w.WriteString("\n---\n\n")
-	
-	// ── Main Files (V2ray + Clash, no SNI) ────────────────────────────────────────
-	w.WriteString("## Main Files\n\n")
-
-	w.WriteString("### V2ray — All Configs\n\n")
-	fmt.Fprintf(w, "| File | Link |\n|---|---|\n")
-	fmt.Fprintf(w, "| All configs (txt) | [all_configs.txt](%s/config/all_configs.txt) |\n\n", repoBase)
-
-	w.WriteString("### V2ray — By Protocol\n\n")
-	fmt.Fprintf(w, "| Protocol | Count | Link |\n|---|---|---|\n")
-	for _, p := range cfg.ProtocolOrder {
-		if n := byProtoOut[p]; n > 0 {
-			fmt.Fprintf(w, "| %s | %d | [%s.txt](%s/config/protocols/%s.txt) |\n",
-				strings.ToUpper(p), n, p, repoBase, p)
-		}
-	}
-	w.WriteString("\n")
-
-	w.WriteString("### Clash \n\n")
-	fmt.Fprintf(w, "Groups: **PROXY** (selector) → **Load-Balance** · **Auto** · **Fallback**\n\n")
-	fmt.Fprintf(w, "| File | Link |\n|---|---|\n")
-	fmt.Fprintf(w, "| clash.yaml (all protocols) | [clash.yaml](%s/config/clash.yaml) |\n", repoBase)
-	for _, p := range cfg.ProtocolOrder {
-		if byProtoOut[p] > 0 {
-			fmt.Fprintf(w, "| %s_clash.yaml | [%s_clash.yaml](%s/config/protocols/%s_clash.yaml) |\n",
-				p, p, repoBase, p)
-		}
-	}
-	w.WriteString("\n")
-
-	w.WriteString("---\n\n")
-	
-	// ── Batch Files (only regular V2ray and Clash, NO SNI batches) ────────────────
-	w.WriteString("## Batch Files — Random 500-Config Groups\n\n")
-	w.WriteString("> Each file contains 500 randomly selected configs from all protocols.\n\n")
-
-	v2rayBatches := countBatchFiles("config/batches/v2ray")
-	clashBatches := countBatchFiles("config/batches/clash")
-
-	w.WriteString("### V2ray Batches\n\n")
-	fmt.Fprintf(w, "| Batch | Count | Link |\n|---|---|---|\n")
-	for i := 1; i <= v2rayBatches; i++ {
-		cnt := min500(i, len(results))
-		fmt.Fprintf(w, "| Batch %03d | %d | [batch_%03d.txt](%s/config/batches/v2ray/batch_%03d.txt) |\n",
-			i, cnt, i, repoBase, i)
-	}
-	w.WriteString("\n")
-
-	w.WriteString("### Clash Batches\n\n")
-	fmt.Fprintf(w, "| Batch | Link |\n|---|---|\n")
-	for i := 1; i <= clashBatches; i++ {
-		fmt.Fprintf(w, "| Batch %03d | [batch_%03d.yaml](%s/config/batches/clash/batch_%03d.yaml) |\n",
-			i, i, repoBase, i)
-	}
-	w.WriteString("\n")
-
-	w.WriteString("---\n\n")
-	
-	// ── Statistics ────────────────────────────────────────────────────────────────
-	w.WriteString("## Statistics\n\n")
-
-	w.WriteString("### Per-Protocol Input & Output\n\n")
-	fmt.Fprintf(w, "| Protocol | Tested (unique) | valid | Pass Rate |\n|---|---|---|---|\n")
-	totalIn := 0
-	totalOut := 0
-	for _, p := range cfg.ProtocolOrder {
-		in := gInputByProto[p]
-		out := byProtoOut[p]
-		totalIn += in
-		totalOut += out
-		rate := 0.0
-		if in > 0 {
-			rate = float64(out) / float64(in) * 100
-		}
-		fmt.Fprintf(w, "| %s | %d | %d | %.1f%% |\n", strings.ToUpper(p), in, out, rate)
-	}
-	overallRate := 0.0
-	if totalIn > 0 {
-		overallRate = float64(totalOut) / float64(totalIn) * 100
-	}
-	fmt.Fprintf(w, "| **Total** | **%d** | **%d** | **%.1f%%** |\n\n", totalIn, totalOut, overallRate)
-
-	fmt.Fprintf(w, "| Metric | Value |\n|---|---|\n")
-	fmt.Fprintf(w, "| Raw fetched lines | %d |\n", originalTotal)
-	fmt.Fprintf(w, "| Unique after dedup | %d |\n", totalIn)
-	fmt.Fprintf(w, "| Valid configs | %d |\n", len(results))
-	fmt.Fprintf(w, "| Processing time | %.2fs |\n\n", duration)
-
-	w.WriteString("---\n\n")
-	w.WriteString("## 🔥 Keep This Project Going!\n\n")
-	w.WriteString("If you're finding this useful, please show your support:\n\n")
-	w.WriteString("⭐ **Star the repository on GitHub**\n\n")
-	w.WriteString("⭐ **Star our [Telegram posts](https://t.me/DeltaKroneckerGithub)** \n\n")
-	w.WriteString("Your stars fuel our motivation to keep improving!\n")
+	w.WriteString(gen.String())
 }
 
 
