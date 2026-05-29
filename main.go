@@ -36,21 +36,22 @@ type Settings struct {
 }
 
 type ValidationSettings struct {
-	NumWorkers             int      `json:"num_workers"`
-	GlobalTimeoutSec       float64  `json:"global_timeout_sec"`
-	SingboxStartTimeoutMs  int      `json:"singbox_start_timeout_ms"`
-	SingboxStartIntervalMs int      `json:"singbox_start_interval_ms"`
-	HTTPRequestTimeoutMs   int      `json:"http_request_timeout_ms"`
-	HTTPDialTimeoutMs      int      `json:"http_dial_timeout_ms"`
-	HTTPResponseTimeoutMs  int      `json:"http_response_timeout_ms"`
-	PortCheckTimeoutMs     int      `json:"port_check_timeout_ms"`
-	MaxRetries             int      `json:"max_retries"`
-	BasePort               int      `json:"base_port"`
-	BatchRestMs            int      `json:"batch_rest_ms"`
-	ProcessKillWaitMs      int      `json:"process_kill_wait_ms"`
-	FetchRetryCount        int      `json:"fetch_retry_count"`
-	FetchRetryDelayMs      int      `json:"fetch_retry_delay_ms"`
-	TestURLs               []string `json:"test_urls"`
+	NumWorkers               int      `json:"num_workers"`
+	GlobalTimeoutSec         float64  `json:"global_timeout_sec"`
+	SingboxStartTimeoutMs    int      `json:"singbox_start_timeout_ms"`
+	SingboxStartIntervalMs   int      `json:"singbox_start_interval_ms"`
+	HTTPRequestTimeoutMs     int      `json:"http_request_timeout_ms"`
+	HTTPDialTimeoutMs        int      `json:"http_dial_timeout_ms"`
+	HTTPResponseTimeoutMs    int      `json:"http_response_timeout_ms"`
+	PortCheckTimeoutMs       int      `json:"port_check_timeout_ms"`
+	MaxRetries               int      `json:"max_retries"`
+	BasePort                 int      `json:"base_port"`
+	BatchRestMs              int      `json:"batch_rest_ms"`
+	ProcessKillWaitMs        int      `json:"process_kill_wait_ms"`
+	FetchRetryCount          int      `json:"fetch_retry_count"`
+	FetchRetryDelayMs        int      `json:"fetch_retry_delay_ms"`
+	VlessSpecificTimeoutMs   int      `json:"vless_specific_timeout_ms"`
+	TestURLs                 []string `json:"test_urls"`
 }
 
 type OutputSettings struct {
@@ -408,6 +409,9 @@ type clashBase struct {
 var gClash clashBase
 
 var gInputByProto = make(map[string]int)
+
+var gNameCountMu sync.Mutex
+var gNameCount = make(map[string]int)
 
 func loadClashBase(path string) error {
 	data, err := os.ReadFile(path)
@@ -1222,6 +1226,10 @@ func fetchAllFromSubs(subURLs []string) ([]string, []string) {
 }
 
 func main() {
+	gNameCountMu.Lock()
+	gNameCount = make(map[string]int)
+	gNameCountMu.Unlock()
+
 	if err := loadSettings("settings.json"); err != nil {
 		fmt.Printf("❌ Failed to load settings.json: %v\n", err)
 		os.Exit(1)
@@ -2002,8 +2010,13 @@ func validateWithTracker(configURL, protocol string, localPorts chan int, bt *ba
 	}
 	defer os.Remove(configPath)
 
+	timeoutSec := v.GlobalTimeoutSec
+	if protocol == "vless" && v.VlessSpecificTimeoutMs > 0 {
+		timeoutSec = float64(v.VlessSpecificTimeoutMs) / 1000.0
+	}
+
 	ctx, cancel := context.WithTimeout(context.Background(),
-		time.Duration(float64(time.Second)*(v.GlobalTimeoutSec+2)))
+		time.Duration(float64(time.Second)*(timeoutSec+2)))
 	defer cancel()
 
 	var stderr bytes.Buffer
@@ -2035,9 +2048,14 @@ func validateWithTracker(configURL, protocol string, localPorts chan int, bt *ba
 		return result
 	}
 
+	httpTimeout := v.HTTPRequestTimeoutMs
+	if protocol == "vless" && v.VlessSpecificTimeoutMs > 0 {
+		httpTimeout = v.VlessSpecificTimeoutMs
+	}
+
 	proxyURL, _ := url.Parse("http://" + addr)
 	client := &http.Client{
-		Timeout: time.Duration(v.HTTPRequestTimeoutMs) * time.Millisecond,
+		Timeout: time.Duration(httpTimeout) * time.Millisecond,
 		Transport: &http.Transport{
 			Proxy: http.ProxyURL(proxyURL),
 			DialContext: (&net.Dialer{
@@ -3164,7 +3182,6 @@ func writeOutputFiles(results []configResult) {
 	var allClash []string
 	var allClashNames []string
 
-	// SNI variants
 	bySNIProto := make(map[string][]string)
 	bySNIProtoClash := make(map[string][]string)
 	bySNIProtoClashNames := make(map[string][]string)
@@ -3172,14 +3189,16 @@ func writeOutputFiles(results []configResult) {
 	var allSNIClash []string
 	var allSNIClashNames []string
 
-	const ownerName = "@DeltaKroneckerGithub"
+	const v2rayBase = "@DeltaKroneckerGithub_V2ray"
+	const clashBase = "@DeltaKroneckerGithub_Clash"
 
-	for _, r := range results {
-		named := renameTo(r.line, r.proto, ownerName)
+	for i, r := range results {
+		uniqueName := generateUniqueName(v2rayBase)
+		named := renameTo(r.line, r.proto, uniqueName)
 		all = append(all, named)
 		byProto[r.proto] = append(byProto[r.proto], named)
 
-		cname := ownerName
+		cname := generateUniqueName(clashBase)
 		if entry, ok := configToClashYAML(r.line, r.proto, cname); ok {
 			allClash = append(allClash, entry)
 			allClashNames = append(allClashNames, cname)
@@ -3187,20 +3206,22 @@ func writeOutputFiles(results []configResult) {
 			byProtoClashNames[r.proto] = append(byProtoClashNames[r.proto], cname)
 		}
 
-		// Build SNI variant
 		sniLine := toSNIConfig(r.line, r.proto)
 		if sniLine != "" {
-			sniNamed := renameTo(sniLine, r.proto, ownerName)
+			sniUniqueName := generateUniqueName(v2rayBase)
+			sniNamed := renameTo(sniLine, r.proto, sniUniqueName)
 			allSNI = append(allSNI, sniNamed)
 			bySNIProto[r.proto] = append(bySNIProto[r.proto], sniNamed)
 
-			if sniEntry, ok := configToClashYAML(sniLine, r.proto, cname); ok {
+			sniCname := generateUniqueName(clashBase)
+			if sniEntry, ok := configToClashYAML(sniLine, r.proto, sniCname); ok {
 				allSNIClash = append(allSNIClash, sniEntry)
-				allSNIClashNames = append(allSNIClashNames, cname)
+				allSNIClashNames = append(allSNIClashNames, sniCname)
 				bySNIProtoClash[r.proto] = append(bySNIProtoClash[r.proto], sniEntry)
-				bySNIProtoClashNames[r.proto] = append(bySNIProtoClashNames[r.proto], cname)
+				bySNIProtoClashNames[r.proto] = append(bySNIProtoClashNames[r.proto], sniCname)
 			}
 		}
+		_ = i
 	}
 
 	// ── Write original output files ──────────────────────────────────────────
@@ -4026,7 +4047,53 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 		gen.WriteString("\n")
 	}
 
-		// Statistics
+	gen.WriteString("## Clash\n\n")
+	fmt.Fprintf(&gen, "| Protocol | Count | Link |\n|---|---|---|\n")
+	fmt.Fprintf(&gen, "| All | %d | [clash.yaml](%s/config/clash.yaml) |\n", len(results), repoBase)
+	for _, p := range cfg.ProtocolOrder {
+		if n := byProtoOut[p]; n > 0 {
+			fmt.Fprintf(&gen, "| %s | %d | [%s_clash.yaml](%s/config/protocols/%s_clash.yaml) |\n",
+				strings.ToUpper(p), n, p, repoBase, p)
+		}
+	}
+	gen.WriteString("\n---\n\n")
+
+	gen.WriteString("## Clash SNI\n\n")
+	fmt.Fprintf(&gen, "| Protocol | Count | Link |\n|---|---|---|\n")
+	fmt.Fprintf(&gen, "| All | %d | [clash_sni.yaml](%s/config/sni/clash_sni.yaml) |\n", len(results), repoBase)
+	for _, p := range cfg.ProtocolOrder {
+		if n := byProtoOut[p]; n > 0 {
+			fmt.Fprintf(&gen, "| %s | %d | [%s_clash_sni.yaml](%s/config/sni/protocols/%s_clash_sni.yaml) |\n",
+				strings.ToUpper(p), n, p, repoBase, p)
+		}
+	}
+	gen.WriteString("\n---\n\n")
+
+	gen.WriteString("## Clash Batches\n\n")
+	clashBatches := countBatchFiles("config/batches/clash")
+	if clashBatches > 0 {
+		fmt.Fprintf(&gen, "| Batch | Count | Link |\n|---|---|---|\n")
+		for i := 1; i <= clashBatches; i++ {
+			cnt := min500(i, len(results))
+			fmt.Fprintf(&gen, "| %03d | %d | [batch_%03d.yaml](%s/config/batches/clash/batch_%03d.yaml) |\n",
+				i, cnt, i, repoBase, i)
+		}
+		gen.WriteString("\n---\n\n")
+	}
+
+	gen.WriteString("## Clash SNI Batches\n\n")
+	clashSNIBatches := countBatchFiles("config/batches/sni_clash")
+	if clashSNIBatches > 0 {
+		fmt.Fprintf(&gen, "| Batch | Count | Link |\n|---|---|---|\n")
+		for i := 1; i <= clashSNIBatches; i++ {
+			cnt := min500(i, len(results))
+			fmt.Fprintf(&gen, "| %03d | %d | [batch_%03d.yaml](%s/config/batches/sni_clash/batch_%03d.yaml) |\n",
+				i, cnt, i, repoBase, i)
+		}
+		gen.WriteString("\n---\n\n")
+	}
+
+	// Statistics
 	gen.WriteString("## Statistics\n\n")
 	totalIn, totalOut := 0, 0
 	fmt.Fprintf(&gen, "| Protocol | Tested | Valid | Pass%% |\n|---|---|---|---|\n")
@@ -4339,4 +4406,21 @@ func yamlQuote(s string) string {
 	s = strings.ReplaceAll(s, `\`, `\\`)
 	s = strings.ReplaceAll(s, `"`, `\"`)
 	return `"` + s + `"`
+}
+
+func generateUniqueName(base string) string {
+	gNameCountMu.Lock()
+	defer gNameCountMu.Unlock()
+
+	base = strings.TrimSpace(base)
+	if base == "" {
+		base = "proxy"
+	}
+	base = strings.ReplaceAll(base, " ", "_")
+	base = strings.ReplaceAll(base, "|", "_")
+
+	gNameCount[base]++
+	count := gNameCount[base]
+
+	return base + "_" + strconv.Itoa(count)
 }
