@@ -4093,31 +4093,7 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 		gen.WriteString("\n---\n\n")
 	}
 
-	// Statistics
-	gen.WriteString("## Statistics\n\n")
-	totalIn, totalOut := 0, 0
-	fmt.Fprintf(&gen, "| Protocol | Tested | Valid | Pass%% |\n|---|---|---|---|\n")
-	for _, p := range cfg.ProtocolOrder {
-		in, out := gInputByProto[p], byProtoOut[p]
-		totalIn += in
-		totalOut += out
-		if in == 0 {
-			continue
-		}
-		rate := float64(out) / float64(in) * 100
-		fmt.Fprintf(&gen, "| %s | %d | %d | %.1f%% |\n", strings.ToUpper(p), in, out, rate)
-	}
-	overallRate := 0.0
-	if totalIn > 0 {
-		overallRate = float64(totalOut) / float64(totalIn) * 100
-	}
-	fmt.Fprintf(&gen, "| **Total** | **%d** | **%d** | **%.1f%%** |\n\n", totalIn, totalOut, overallRate)
-	fmt.Fprintf(&gen, "| Metric | Value |\n|---|---|\n")
-	fmt.Fprintf(&gen, "| Fetched | %d |\n", originalTotal)
-	fmt.Fprintf(&gen, "| Unique | %d |\n", totalIn)
-	fmt.Fprintf(&gen, "| Valid | %d |\n", len(results))
-	fmt.Fprintf(&gen, "| Time | %.2fs |\n\n", duration)
-	gen.WriteString("---\n\n")
+
 
 	// ── Read existing README.md and strip any previous auto-generated block ───────
 	existingContent := ""
