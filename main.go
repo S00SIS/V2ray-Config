@@ -4012,7 +4012,7 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 		// V2ray batch files
 	v2rayBatches := countBatchFiles("config/batches/v2ray")
 	if v2rayBatches > 0 {
-		gen.WriteString("##V2ray Batches\n\n")
+		gen.WriteString("## V2ray Batches\n\n")
 		fmt.Fprintf(&gen, "| Batch | Count | Link |\n|---|---|---|\n")
 		for i := 1; i <= v2rayBatches; i++ {
 			cnt := min500(i, len(results))
