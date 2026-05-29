@@ -120,41 +120,25 @@ dns:
     - 194.187.251.67
 
 proxies:
-  - name: "@DeltaKroneckerGithub_Clash_7026"
+  - name: "@DeltaKroneckerGithub_Clash_6682"
     type: hysteria2
     server: "127.0.0.1"
     port: 40443
-    password: "qQe1z5kU8kN6SlKnDt9Ru3Qp"
-    sni: "vpn-de-001.fastervpn.world"
+    password: "jOIItw1h4D"
+    sni: "latviyaotpusk1.home.kg"
     skip-cert-verify: true
     udp: true
-  - name: "@DeltaKroneckerGithub_Clash_7028"
+  - name: "@DeltaKroneckerGithub_Clash_6684"
     type: hysteria2
     server: "127.0.0.1"
     port: 40443
-    password: "de72b066a61a39af"
-    sni: "claude.ai"
+    password: "a7c5d30b-ce9b-4e34-b5cb-66f8308790ef"
+    sni: "tw.9966690.xyz"
     skip-cert-verify: true
     udp: true
     obfs: "salamander"
-    obfs-password: "726c9c641a068d74"
-  - name: "@DeltaKroneckerGithub_Clash_7030"
-    type: hysteria2
-    server: "127.0.0.1"
-    port: 40443
-    password: "zhangyang"
-    sni: "dash.cloudflare.com"
-    skip-cert-verify: true
-    udp: true
-  - name: "@DeltaKroneckerGithub_Clash_7032"
-    type: hysteria2
-    server: "127.0.0.1"
-    port: 40443
-    password: "8vX6A657pl"
-    sni: "www.amd.com"
-    skip-cert-verify: true
-    udp: true
-  - name: "@DeltaKroneckerGithub_Clash_7034"
+    obfs-password: "YzgyOTkwNDk4ZTU2NT6iNA=="
+  - name: "@DeltaKroneckerGithub_Clash_6686"
     type: hysteria2
     server: "127.0.0.1"
     port: 40443
@@ -162,15 +146,7 @@ proxies:
     sni: "hy2.123266.xyz"
     skip-cert-verify: true
     udp: true
-  - name: "@DeltaKroneckerGithub_Clash_7036"
-    type: hysteria2
-    server: "127.0.0.1"
-    port: 40443
-    password: "qQe1z5kU8kN6SlKnDt9Ru3Qp"
-    sni: "vpn-de-002.fastervpn.world"
-    skip-cert-verify: true
-    udp: true
-  - name: "@DeltaKroneckerGithub_Clash_7038"
+  - name: "@DeltaKroneckerGithub_Clash_6688"
     type: hysteria2
     server: "127.0.0.1"
     port: 40443
@@ -180,6 +156,68 @@ proxies:
     udp: true
     obfs: "salamander"
     obfs-password: "cry_me_a_r1ver_2026"
+  - name: "@DeltaKroneckerGithub_Clash_6690"
+    type: hysteria2
+    server: "127.0.0.1"
+    port: 40443
+    password: "qQe1z5kU8kN6SlKnDt9Ru3Qp"
+    sni: "vpn-de-002.fastervpn.world"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub_Clash_6692"
+    type: hysteria2
+    server: "127.0.0.1"
+    port: 40443
+    password: "8vX6A657pl"
+    sni: "www.amd.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub_Clash_6694"
+    type: hysteria2
+    server: "127.0.0.1"
+    port: 40443
+    password: "qQe1z5kU8kN6SlKnDt9Ru3Qp"
+    sni: "vpn-de-001.fastervpn.world"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub_Clash_6696"
+    type: hysteria2
+    server: "127.0.0.1"
+    port: 40443
+    password: "zhangyang"
+    sni: "dash.cloudflare.com"
+    skip-cert-verify: true
+    udp: true
+  - name: "@DeltaKroneckerGithub_Clash_6698"
+    type: hysteria2
+    server: "127.0.0.1"
+    port: 40443
+    password: "25cccf16-5693-4c6e-9bb9-0e38da7d4475"
+    sni: "kh2.yuntong.click"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "eNM/NfxTsBqQIKcN0ezARS1z0f5mIxRd9GSwhVsyJlo="
+  - name: "@DeltaKroneckerGithub_Clash_6700"
+    type: hysteria2
+    server: "127.0.0.1"
+    port: 40443
+    password: "de72b066a61a39af"
+    sni: "claude.ai"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "726c9c641a068d74"
+  - name: "@DeltaKroneckerGithub_Clash_6702"
+    type: hysteria2
+    server: "127.0.0.1"
+    port: 40443
+    password: "a7c5d30b-ce9b-4e34-b5cb-66f8308790ef"
+    sni: "tw.9966690.xyz"
+    skip-cert-verify: true
+    udp: true
+    obfs: "salamander"
+    obfs-password: "YzgyOTkwNDk4ZTU2NT6iNA=="
 
 proxy-groups:
   - name: "PROXY"
@@ -198,13 +236,17 @@ proxy-groups:
     tolerance: 50
     lazy: true
     proxies:
-      - "@DeltaKroneckerGithub_Clash_7026"
-      - "@DeltaKroneckerGithub_Clash_7028"
-      - "@DeltaKroneckerGithub_Clash_7030"
-      - "@DeltaKroneckerGithub_Clash_7032"
-      - "@DeltaKroneckerGithub_Clash_7034"
-      - "@DeltaKroneckerGithub_Clash_7036"
-      - "@DeltaKroneckerGithub_Clash_7038"
+      - "@DeltaKroneckerGithub_Clash_6682"
+      - "@DeltaKroneckerGithub_Clash_6684"
+      - "@DeltaKroneckerGithub_Clash_6686"
+      - "@DeltaKroneckerGithub_Clash_6688"
+      - "@DeltaKroneckerGithub_Clash_6690"
+      - "@DeltaKroneckerGithub_Clash_6692"
+      - "@DeltaKroneckerGithub_Clash_6694"
+      - "@DeltaKroneckerGithub_Clash_6696"
+      - "@DeltaKroneckerGithub_Clash_6698"
+      - "@DeltaKroneckerGithub_Clash_6700"
+      - "@DeltaKroneckerGithub_Clash_6702"
 
   - name: "Auto"
     type: url-test
@@ -213,13 +255,17 @@ proxy-groups:
     tolerance: 50
     lazy: true
     proxies:
-      - "@DeltaKroneckerGithub_Clash_7026"
-      - "@DeltaKroneckerGithub_Clash_7028"
-      - "@DeltaKroneckerGithub_Clash_7030"
-      - "@DeltaKroneckerGithub_Clash_7032"
-      - "@DeltaKroneckerGithub_Clash_7034"
-      - "@DeltaKroneckerGithub_Clash_7036"
-      - "@DeltaKroneckerGithub_Clash_7038"
+      - "@DeltaKroneckerGithub_Clash_6682"
+      - "@DeltaKroneckerGithub_Clash_6684"
+      - "@DeltaKroneckerGithub_Clash_6686"
+      - "@DeltaKroneckerGithub_Clash_6688"
+      - "@DeltaKroneckerGithub_Clash_6690"
+      - "@DeltaKroneckerGithub_Clash_6692"
+      - "@DeltaKroneckerGithub_Clash_6694"
+      - "@DeltaKroneckerGithub_Clash_6696"
+      - "@DeltaKroneckerGithub_Clash_6698"
+      - "@DeltaKroneckerGithub_Clash_6700"
+      - "@DeltaKroneckerGithub_Clash_6702"
 
   - name: "Fallback"
     type: fallback
@@ -227,13 +273,17 @@ proxy-groups:
     interval: 60
     lazy: true
     proxies:
-      - "@DeltaKroneckerGithub_Clash_7026"
-      - "@DeltaKroneckerGithub_Clash_7028"
-      - "@DeltaKroneckerGithub_Clash_7030"
-      - "@DeltaKroneckerGithub_Clash_7032"
-      - "@DeltaKroneckerGithub_Clash_7034"
-      - "@DeltaKroneckerGithub_Clash_7036"
-      - "@DeltaKroneckerGithub_Clash_7038"
+      - "@DeltaKroneckerGithub_Clash_6682"
+      - "@DeltaKroneckerGithub_Clash_6684"
+      - "@DeltaKroneckerGithub_Clash_6686"
+      - "@DeltaKroneckerGithub_Clash_6688"
+      - "@DeltaKroneckerGithub_Clash_6690"
+      - "@DeltaKroneckerGithub_Clash_6692"
+      - "@DeltaKroneckerGithub_Clash_6694"
+      - "@DeltaKroneckerGithub_Clash_6696"
+      - "@DeltaKroneckerGithub_Clash_6698"
+      - "@DeltaKroneckerGithub_Clash_6700"
+      - "@DeltaKroneckerGithub_Clash_6702"
 
 rules:
   - MATCH,PROXY
