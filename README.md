@@ -72,7 +72,7 @@
 
 ---
 
-##V2ray Batches
+## V2ray Batches
 
 | Batch | Count | Link |
 |---|---|---|
