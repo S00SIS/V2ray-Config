@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"math/rand"
 	"net"
 	"net/http"
 	"net/url"
@@ -255,7 +256,7 @@ func validateAll(lines []string) ([]configResult, []string) {
 	var failedStart int64
 	var failedConn int64
 	var out []configResult
-	var tcpAllFailed []string
+	var tcpPingPassedAll []string
 	var tcpAllFailedMu sync.Mutex
 
 	v := cfg.Validation
@@ -263,6 +264,8 @@ func validateAll(lines []string) ([]configResult, []string) {
 	if batchSize <= 0 {
 		batchSize = 50
 	}
+
+	rng := rand.New(rand.NewSource(time.Now().UnixNano()))
 
 	// TCP ping settings
 	tcpTimeout := time.Duration(v.TCPPingTimeoutMs) * time.Millisecond
@@ -288,6 +291,11 @@ func validateAll(lines []string) ([]configResult, []string) {
 		if len(protoLines) == 0 {
 			continue
 		}
+
+		// Shuffle before processing (same as original)
+		rng.Shuffle(len(protoLines), func(i, j int) {
+			protoLines[i], protoLines[j] = protoLines[j], protoLines[i]
+		})
 
 		// ── Phase 1: TCP ping pre-check ───────────────────────────────────────
 		effBatchSize := tcpBatchSize
@@ -332,20 +340,10 @@ func validateAll(lines []string) ([]configResult, []string) {
 				proto, len(protoLines), len(pingPassed), pingTotalFailed, numPingBatches, pingElapsed))
 		}
 
-		// Collect lines that failed TCP ping
-		{
-			passedSet := make(map[string]bool, len(pingPassed))
-			for _, l := range pingPassed {
-				passedSet[l] = true
-			}
-			tcpAllFailedMu.Lock()
-			for _, l := range protoLines {
-				if !passedSet[l] {
-					tcpAllFailed = append(tcpAllFailed, l)
-				}
-			}
-			tcpAllFailedMu.Unlock()
-		}
+		// Track lines that passed TCP ping — used later to find sing-box failures
+		tcpAllFailedMu.Lock()
+		tcpPingPassedAll = append(tcpPingPassedAll, pingPassed...)
+		tcpAllFailedMu.Unlock()
 
 		if len(pingPassed) == 0 {
 			fmt.Printf("⚠️  [%s] No configs passed TCP ping — skipping full validation\n", strings.ToUpper(proto))
@@ -498,7 +496,18 @@ func validateAll(lines []string) ([]configResult, []string) {
 		return m
 	}())
 
-	return out, tcpAllFailed
+	// onlyTCPPass = passed TCP ping BUT failed sing-box validation
+	singBoxPassedSet := make(map[string]bool, len(out))
+	for _, r := range out {
+		singBoxPassedSet[r.line] = true
+	}
+	var onlyTCPPass []string
+	for _, l := range tcpPingPassedAll {
+		if !singBoxPassedSet[l] {
+			onlyTCPPass = append(onlyTCPPass, l)
+		}
+	}
+	return out, onlyTCPPass
 }
 
 // ── validateWithTracker ───────────────────────────────────────────────────────
