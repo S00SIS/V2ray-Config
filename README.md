@@ -24,7 +24,7 @@
 
 **گزینه اول:** استفاده از [Throne](https://github.com/throneproj/Throne/releases/)
 
-**گزینه دوم:** استفاده از [FLclash](https://github.com/chen08209/FlClash/releases/) (مناسب لینک‌های موجود در مخزن Clash)
+**گزینه دوم:** استفاده از [FLclash](https://github.com/chen08209/FlClash/releases/) (مناسب لینک‌های clash موجود در مخزن)
 
 ---
 
