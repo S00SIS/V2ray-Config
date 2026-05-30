@@ -3976,6 +3976,13 @@ func min500(batchIdx, total int) int {
 
 
 
+
+
+
+
+
+
+
 // autoGenMarker is appended to README.md as a separator between the
 // user-written content and the auto-generated statistics/links section.
 // Everything from this marker onward is replaced on every run.
@@ -4008,23 +4015,9 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	}
 	gen.WriteString("\n---\n\n")
 
-	
-		// V2ray batch files
-	v2rayBatches := countBatchFiles("config/batches/v2ray")
-	if v2rayBatches > 0 {
-		gen.WriteString("## V2ray Batches\n\n")
-		fmt.Fprintf(&gen, "| Batch | Count | Link |\n|---|---|---|\n")
-		for i := 1; i <= v2rayBatches; i++ {
-			cnt := min500(i, len(results))
-			fmt.Fprintf(&gen, "| %03d | %d | [batch_%03d.txt](%s/config/batches/v2ray/batch_%03d.txt) |\n",
-				i, cnt, i, repoBase, i)
-		}
-		gen.WriteString("\n")
-	}
-
 
 	// SNI files
-	gen.WriteString("## V2ray SNI\n\n")
+	gen.WriteString("## SNI\n\n")
 	fmt.Fprintf(&gen, "| Protocol | Count | Link |\n|---|---|---|\n")
 	fmt.Fprintf(&gen, "| All | %d | [all_configs_sni.txt](%s/config/sni/all_configs_sni.txt) |\n", len(results), repoBase)
 	for _, p := range cfg.ProtocolOrder {
@@ -4035,12 +4028,23 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	}
 	gen.WriteString("\n---\n\n")
 
-
+	// V2ray batch files
+	v2rayBatches := countBatchFiles("config/batches/v2ray")
+	if v2rayBatches > 0 {
+		gen.WriteString("##V2ray Batches\n\n")
+		fmt.Fprintf(&gen, "| Batch | Count | Link |\n|---|---|---|\n")
+		for i := 1; i <= v2rayBatches; i++ {
+			cnt := min500(i, len(results))
+			fmt.Fprintf(&gen, "| %03d | %d | [batch_%03d.txt](%s/config/batches/v2ray/batch_%03d.txt) |\n",
+				i, cnt, i, repoBase, i)
+		}
+		gen.WriteString("\n")
+	}
 
 	// SNI batch files
 	sniV2rayBatches := countBatchFiles("config/batches/sni_v2ray")
 	if sniV2rayBatches > 0 {
-		gen.WriteString("## V2ray SNI Batches\n\n")
+		gen.WriteString("## SNI Batches\n\n")
 		fmt.Fprintf(&gen, "| Batch | Count | Link |\n|---|---|---|\n")
 		for i := 1; i <= sniV2rayBatches; i++ {
 			cnt := min500(i, len(results))
@@ -4061,6 +4065,17 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	}
 	gen.WriteString("\n---\n\n")
 
+	gen.WriteString("## Clash SNI\n\n")
+	fmt.Fprintf(&gen, "| Protocol | Count | Link |\n|---|---|---|\n")
+	fmt.Fprintf(&gen, "| All | %d | [clash_sni.yaml](%s/config/sni/clash_sni.yaml) |\n", len(results), repoBase)
+	for _, p := range cfg.ProtocolOrder {
+		if n := byProtoOut[p]; n > 0 {
+			fmt.Fprintf(&gen, "| %s | %d | [%s_clash_sni.yaml](%s/config/sni/protocols/%s_clash_sni.yaml) |\n",
+				strings.ToUpper(p), n, p, repoBase, p)
+		}
+	}
+	gen.WriteString("\n---\n\n")
+
 	gen.WriteString("## Clash Batches\n\n")
 	clashBatches := countBatchFiles("config/batches/clash")
 	if clashBatches > 0 {
@@ -4072,17 +4087,6 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 		}
 		gen.WriteString("\n---\n\n")
 	}
-
-	gen.WriteString("## Clash SNI\n\n")
-	fmt.Fprintf(&gen, "| Protocol | Count | Link |\n|---|---|---|\n")
-	fmt.Fprintf(&gen, "| All | %d | [clash_sni.yaml](%s/config/sni/clash_sni.yaml) |\n", len(results), repoBase)
-	for _, p := range cfg.ProtocolOrder {
-		if n := byProtoOut[p]; n > 0 {
-			fmt.Fprintf(&gen, "| %s | %d | [%s_clash_sni.yaml](%s/config/sni/protocols/%s_clash_sni.yaml) |\n",
-				strings.ToUpper(p), n, p, repoBase, p)
-		}
-	}
-	gen.WriteString("\n---\n\n")
 
 	gen.WriteString("## Clash SNI Batches\n\n")
 	clashSNIBatches := countBatchFiles("config/batches/sni_clash")
@@ -4096,7 +4100,31 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 		gen.WriteString("\n---\n\n")
 	}
 
-
+	// Statistics
+	gen.WriteString("## Statistics\n\n")
+	totalIn, totalOut := 0, 0
+	fmt.Fprintf(&gen, "| Protocol | Tested | Valid | Pass%% |\n|---|---|---|---|\n")
+	for _, p := range cfg.ProtocolOrder {
+		in, out := gInputByProto[p], byProtoOut[p]
+		totalIn += in
+		totalOut += out
+		if in == 0 {
+			continue
+		}
+		rate := float64(out) / float64(in) * 100
+		fmt.Fprintf(&gen, "| %s | %d | %d | %.1f%% |\n", strings.ToUpper(p), in, out, rate)
+	}
+	overallRate := 0.0
+	if totalIn > 0 {
+		overallRate = float64(totalOut) / float64(totalIn) * 100
+	}
+	fmt.Fprintf(&gen, "| **Total** | **%d** | **%d** | **%.1f%%** |\n\n", totalIn, totalOut, overallRate)
+	fmt.Fprintf(&gen, "| Metric | Value |\n|---|---|\n")
+	fmt.Fprintf(&gen, "| Fetched | %d |\n", originalTotal)
+	fmt.Fprintf(&gen, "| Unique | %d |\n", totalIn)
+	fmt.Fprintf(&gen, "| Valid | %d |\n", len(results))
+	fmt.Fprintf(&gen, "| Time | %.2fs |\n\n", duration)
+	gen.WriteString("---\n\n")
 
 	// ── Read existing README.md and strip any previous auto-generated block ───────
 	existingContent := ""
@@ -4126,6 +4154,11 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	}
 	w.WriteString(gen.String())
 }
+
+
+
+
+
 
 
 
