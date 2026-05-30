@@ -39,7 +39,7 @@ jobs:
       run: |
         export GOPROXY=https://goproxy.io,direct
         go mod tidy
-        go build -ldflags="-s -w" -o aggregator main.go
+        go build -ldflags="-s -w" -o aggregator .
 
     - name: Run
       run: |
@@ -88,20 +88,21 @@ jobs:
 
     - name: Commit and Push
       run: |
-        # Configure git
-        git config user.name "GitHub Actions"
-        git config user.email "actions@github.com"
-        
-        # First, pull latest changes
-        git pull origin main --rebase --autostash
-        
-        # Now add and commit our changes
-        git add config/ README.md
-        
-        # Only commit if there are changes
-        if ! git diff --staged --quiet; then
-          git commit -m "Update configs [$(date -u '+%Y-%m-%d %H:%M UTC')]"
-          git push origin main
-        else
-          echo "No changes to commit"
-        fi
+            git config user.name "GitHub Actions"
+            git config user.email "actions@github.com"
+            
+            
+            # Pull latest changes cleanly
+            git pull origin main --rebase --autostash
+            
+            # Add freshly generated files (only if they exist)
+            git add config/ 2>/dev/null || true
+            git add README.md 2>/dev/null || true
+            
+            # Only commit if there are changes
+            if ! git diff --staged --quiet; then
+              git commit -m "Update configs [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+              git push origin main
+            else
+              echo "No changes to commit"
+            fi
