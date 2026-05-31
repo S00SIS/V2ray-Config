@@ -120,12 +120,12 @@ dns:
     - 194.187.251.67
 
 proxies:
-  - name: "@DeltaKroneckerGithub_Clash_7080"
+  - name: "@DeltaKroneckerGithub_Clash_8185"
     type: hysteria2
     server: "127.0.0.1"
     port: 40443
-    password: "zhangyang"
-    sni: "127.0.0.1"
+    password: "10550754-cf62-3d3b-ba6a-50be27a275d7"
+    sni: "s559.ccgfw.top"
     skip-cert-verify: true
     udp: true
 
@@ -146,7 +146,7 @@ proxy-groups:
     tolerance: 50
     lazy: true
     proxies:
-      - "@DeltaKroneckerGithub_Clash_7080"
+      - "@DeltaKroneckerGithub_Clash_8185"
 
   - name: "Auto"
     type: url-test
@@ -155,7 +155,7 @@ proxy-groups:
     tolerance: 50
     lazy: true
     proxies:
-      - "@DeltaKroneckerGithub_Clash_7080"
+      - "@DeltaKroneckerGithub_Clash_8185"
 
   - name: "Fallback"
     type: fallback
@@ -163,7 +163,7 @@ proxy-groups:
     interval: 60
     lazy: true
     proxies:
-      - "@DeltaKroneckerGithub_Clash_7080"
+      - "@DeltaKroneckerGithub_Clash_8185"
 
 rules:
   - MATCH,PROXY
