@@ -15,7 +15,7 @@
     "tcp_ping_batch_rest_ms": 200,
     "max_retries": 0,
     "base_port": 10000,
-    "batch_rest_ms": 500,
+    "batch_rest_ms": 1000,
     "process_kill_wait_ms": 400,
     "fetch_retry_count": 1,
     "fetch_retry_delay_ms": 1000,
