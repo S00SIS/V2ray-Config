@@ -190,37 +190,4 @@
 
 ---
 
-## Unreachable (TCP ping failed)
-
-> These configs failed TCP ping and were not validated. Total: **241425**
-
-| Batch | Link |
-|---|---|
-| 001 | [batch_001.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_001.txt) |
-| 002 | [batch_002.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_002.txt) |
-| 003 | [batch_003.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_003.txt) |
-| 004 | [batch_004.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_004.txt) |
-| 005 | [batch_005.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_005.txt) |
-| 006 | [batch_006.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_006.txt) |
-| 007 | [batch_007.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_007.txt) |
-| 008 | [batch_008.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_008.txt) |
-| 009 | [batch_009.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_009.txt) |
-| 010 | [batch_010.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_010.txt) |
-| 011 | [batch_011.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_011.txt) |
-| 012 | [batch_012.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_012.txt) |
-| 013 | [batch_013.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_013.txt) |
-| 014 | [batch_014.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_014.txt) |
-| 015 | [batch_015.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_015.txt) |
-| 016 | [batch_016.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_016.txt) |
-| 017 | [batch_017.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_017.txt) |
-| 018 | [batch_018.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_018.txt) |
-| 019 | [batch_019.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_019.txt) |
-| 020 | [batch_020.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_020.txt) |
-| 021 | [batch_021.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_021.txt) |
-| 022 | [batch_022.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_022.txt) |
-| 023 | [batch_023.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_023.txt) |
-| 024 | [batch_024.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_024.txt) |
-| 025 | [batch_025.txt](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/unreach/batch_025.txt) |
-
----
 
