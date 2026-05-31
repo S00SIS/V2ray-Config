@@ -51,6 +51,7 @@
 ---
 
 #   جاوید؛ ایران.
+---
 
 <!-- AUTO-GENERATED: DO NOT EDIT BELOW THIS LINE -->
 
@@ -166,28 +167,5 @@
 
 ---
 
-## Statistics
-
-| Protocol | Tested | Valid | Pass% |
-|---|---|---|---|
-| VLESS | 206700 | 751 | 0.4% |
-| VMESS | 80962 | 157 | 0.2% |
-| SS | 85725 | 980 | 1.1% |
-| TROJAN | 40738 | 2229 | 5.5% |
-| SSR | 526 | 0 | 0.0% |
-| HY2 | 4584 | 1 | 0.0% |
-| HY | 6 | 0 | 0.0% |
-| TUIC | 263 | 0 | 0.0% |
-| **Total** | **419504** | **4118** | **1.0%** |
-
-| Metric | Value |
-|---|---|
-| Fetched | 6577721 |
-| Unique | 419504 |
-| TCP Failed | 241425 |
-| Valid | 4118 |
-| Time | 8868.50s |
-
----
 
 
