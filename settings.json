@@ -1,6 +1,6 @@
 {
   "validation": {
-    "num_workers": 150,
+    "num_workers": 200,
     "global_timeout_sec": 12,
     "singbox_start_timeout_ms": 2500,
     "singbox_start_interval_ms": 200,
@@ -15,7 +15,7 @@
     "tcp_ping_batch_rest_ms": 200,
     "max_retries": 0,
     "base_port": 10000,
-    "batch_rest_ms": 1000,
+    "batch_rest_ms": 2000,
     "process_kill_wait_ms": 400,
     "fetch_retry_count": 1,
     "fetch_retry_delay_ms": 1000,
