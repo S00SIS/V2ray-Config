@@ -40,6 +40,7 @@
 
 برای اطلاع از سایر پروژه‌ها:  
 [t.me/DeltaKroneckerGithub](https://t.me/DeltaKroneckerGithub)
+نکته: بقیه پروتکل ها را به دلیل امار اتصال پایین موقتا غیر فعال کرده ام
 
 ---
 
