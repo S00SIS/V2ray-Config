@@ -58,7 +58,7 @@
 
 ---
 
-## SNI
+## V2ray SNI
 
 | Protocol | Count | Link |
 |---|---|---|
