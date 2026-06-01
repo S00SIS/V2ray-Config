@@ -81,17 +81,17 @@ func main() {
 	}
 
 	fmt.Println("🔍 Validating...")
-	results, tcpFailed := validateAll(allConfigs)
+	results, onlyTCPPass := validateAll(allConfigs)
 
 	elapsed := time.Since(start).Seconds()
 	fmt.Printf("\n✅ Valid configurations: %d\n", len(results))
-	fmt.Printf("⛔ TCP ping failed (unreach): %d\n", len(tcpFailed))
+	fmt.Printf("🔶 Only-TCP-Pass (advanced): %d\n", len(onlyTCPPass))
 
 	if gLog != nil {
 		gLog.logSummary(elapsed, results, failedLinks)
 	}
 
-	writeOutputFiles(results, tcpFailed)
-	writeSummary(results, failedLinks, elapsed, len(allConfigs), len(tcpFailed))
+	writeOutputFiles(results, onlyTCPPass)
+	writeSummary(results, failedLinks, elapsed, len(allConfigs), len(onlyTCPPass))
 	fmt.Println("✅ Done!")
 }
