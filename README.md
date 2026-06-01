@@ -176,7 +176,7 @@
 
 ## Only TCP Pass (for advanced users)
 
-> These configs passed TCP ping but failed sing-box validation. Total: **175473**
+> These configs passed TCP ping. Total: **175473**
 
 | Batch | Link |
 |---|---|
