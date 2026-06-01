@@ -100,7 +100,8 @@ func prepareOutputDirs() error {
 		"config/batches/sni_v2ray",
 		"config/batches/sni_clash",
 		"config/batches/sni_clash_advanced",
-		"config/only-tcp-pass",
+		"config/tcp-pass",
+		"config/tcp-pass-sni",
 	}
 	for _, dir := range dirs {
 		if err := os.MkdirAll(dir, 0755); err != nil {
@@ -206,7 +207,7 @@ func writeOutputFiles(results []configResult, tcpFailedLines []string) {
 	}
 
 	writeBatchFiles(all, allClash, allClashNames, allSNI, allSNIClash, allSNIClashNames)
-	writeOnlyTCPPassFiles(tcpFailedLines)
+	writeTCPPassFiles(tcpFailedLines)
 }
 
 // ── writeBatchFiles ───────────────────────────────────────────────────────────
@@ -539,11 +540,23 @@ func ssClashYAML(raw, name string) (string, bool) {
 		uname := u.User.Username()
 		pwd, hasPwd := u.User.Password()
 		if hasPwd {
+			// uname is plaintext method — reject if UUID
+			if isUUID(uname) {
+				return "", false
+			}
 			method, password = uname, pwd
 		} else {
-			if d, derr := decodeBase64([]byte(uname)); derr == nil && strings.Contains(d, ":") {
-				parts := strings.SplitN(d, ":", 2)
-				method, password = parts[0], parts[1]
+			if d, derr := decodeBase64([]byte(uname)); derr == nil {
+				if strings.HasPrefix(d, "ss://") {
+					inner := strings.TrimPrefix(d, "ss://")
+					if d2, e2 := decodeBase64([]byte(inner)); e2 == nil && strings.Contains(d2, ":") {
+						parts := strings.SplitN(d2, ":", 2)
+						method, password = parts[0], parts[1]
+					}
+				} else if strings.Contains(d, ":") {
+					parts := strings.SplitN(d, ":", 2)
+					method, password = parts[0], parts[1]
+				}
 			}
 		}
 		if method != "" {
@@ -1381,16 +1394,45 @@ func toSNISSR(line string) string {
 	return "ssr://" + base64.RawURLEncoding.EncodeToString([]byte(newFull))
 }
 
+// ── detectProto ──────────────────────────────────────────────────────────────
+
+func detectProto(line string) string {
+	for _, p := range cfg.Protocols {
+		if strings.HasPrefix(line, p+"://") {
+			return p
+		}
+	}
+	return ""
+}
+
 // ── writeOnlyTCPPassFiles ────────────────────────────────────────────────────
 // Writes configs that passed TCP ping but failed sing-box validation
-// into 10000-line batches under config/only-tcp-pass/
+// into 10000-line batches under config/tcp-pass/ and config/tcp-pass-sni/
 
-func writeOnlyTCPPassFiles(lines []string) {
+func writeTCPPassFiles(lines []string) {
 	if len(lines) == 0 {
 		return
 	}
+	const fixedName = "@DeltaKroneckerGithub"
 	const batchSize = 10000
-	total := len(lines)
+
+	// rename all to fixed name + build SNI versions
+	named := make([]string, 0, len(lines))
+	sniNamed := make([]string, 0, len(lines))
+	for _, line := range lines {
+		proto := detectProto(line)
+		n := renameTo(line, proto, fixedName)
+		named = append(named, n)
+
+		sniLine := toSNIConfig(line, proto)
+		if sniLine != "" {
+			sn := renameTo(sniLine, proto, fixedName)
+			sniNamed = append(sniNamed, sn)
+		}
+	}
+
+	// write original batches
+	total := len(named)
 	numBatches := (total + batchSize - 1) / batchSize
 	for i := 0; i < numBatches; i++ {
 		start := i * batchSize
@@ -1398,9 +1440,24 @@ func writeOnlyTCPPassFiles(lines []string) {
 		if end > total {
 			end = total
 		}
-		writeFile(fmt.Sprintf("config/only-tcp-pass/batch_%03d.txt", i+1), lines[start:end])
+		writeFile(fmt.Sprintf("config/tcp-pass/batch_%03d.txt", i+1), named[start:end])
 	}
-	fmt.Printf("📁 Only-TCP-Pass: wrote %d configs into %d files (config/only-tcp-pass/)\n", total, numBatches)
+	fmt.Printf("📁 TCP-Pass: wrote %d configs into %d files\n", total, numBatches)
+
+	// write SNI batches
+	if len(sniNamed) > 0 {
+		sniTotal := len(sniNamed)
+		sniNumBatches := (sniTotal + batchSize - 1) / batchSize
+		for i := 0; i < sniNumBatches; i++ {
+			start := i * batchSize
+			end := start + batchSize
+			if end > sniTotal {
+				end = sniTotal
+			}
+			writeFile(fmt.Sprintf("config/tcp-pass-sni/batch_%03d.txt", i+1), sniNamed[start:end])
+		}
+		fmt.Printf("📁 TCP-Pass-SNI: wrote %d configs into %d files\n", sniTotal, sniNumBatches)
+	}
 }
 
 // ── writeSummary (README) ─────────────────────────────────────────────────────
@@ -1532,19 +1589,32 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	fmt.Fprintf(&gen, "| Metric | Value |\n|---|---|\n")
 	fmt.Fprintf(&gen, "| Fetched | %d |\n", originalTotal)
 	fmt.Fprintf(&gen, "| Unique | %d |\n", totalIn)
-	fmt.Fprintf(&gen, "| Only-TCP-Pass | %d |\n", onlyTCPPassCount)
+	fmt.Fprintf(&gen, "| TCP Pass | %d |\n", onlyTCPPassCount)
 	fmt.Fprintf(&gen, "| Valid | %d |\n", len(results))
 	fmt.Fprintf(&gen, "| Time | %.2fs |\n\n", duration)
 	gen.WriteString("---\n\n")
 
 	// Only-TCP-Pass batches section
-	onlyTCPBatches := countBatchFiles("config/only-tcp-pass")
+	onlyTCPBatches := countBatchFiles("config/tcp-pass")
 	if onlyTCPBatches > 0 {
-		gen.WriteString("## Only TCP Pass (for advanced users)\n\n")
-		fmt.Fprintf(&gen, "> These configs passed TCP ping but failed sing-box validation. Total: **%d**\n\n", onlyTCPPassCount)
+		gen.WriteString("## TCP Pass (for advanced users)\n\n")
+		fmt.Fprintf(&gen, "> All configs that passed TCP ping. Total: **%d**\n\n", onlyTCPPassCount)
 		fmt.Fprintf(&gen, "| Batch | Link |\n|---|---|\n")
 		for i := 1; i <= onlyTCPBatches; i++ {
-			fmt.Fprintf(&gen, "| %03d | [batch_%03d.txt](%s/config/only-tcp-pass/batch_%03d.txt) |\n",
+			fmt.Fprintf(&gen, "| %03d | [batch_%03d.txt](%s/config/tcp-pass/batch_%03d.txt) |\n",
+				i, i, repoBase, i)
+		}
+		gen.WriteString("\n---\n\n")
+	}
+
+	// Only-TCP-Pass SNI batches section
+	onlyTCPSNIBatches := countBatchFiles("config/tcp-pass-sni")
+	if onlyTCPSNIBatches > 0 {
+		gen.WriteString("## TCP Pass SNI (for advanced users)\n\n")
+		fmt.Fprintf(&gen, "> SNI version of TCP Pass configs. Total: **%d**\n\n", onlyTCPPassCount)
+		fmt.Fprintf(&gen, "| Batch | Link |\n|---|---|\n")
+		for i := 1; i <= onlyTCPSNIBatches; i++ {
+			fmt.Fprintf(&gen, "| %03d | [batch_%03d.txt](%s/config/tcp-pass-sni/batch_%03d.txt) |\n",
 				i, i, repoBase, i)
 		}
 		gen.WriteString("\n---\n\n")
