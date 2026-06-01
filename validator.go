@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"math/rand"
 	"net"
 	"net/http"
 	"net/url"
@@ -264,6 +265,8 @@ func validateAll(lines []string) ([]configResult, []string) {
 		batchSize = 50
 	}
 
+	rng := rand.New(rand.NewSource(time.Now().UnixNano()))
+
 	// TCP ping settings
 	tcpTimeout := time.Duration(v.TCPPingTimeoutMs) * time.Millisecond
 	if tcpTimeout <= 0 {
@@ -288,6 +291,11 @@ func validateAll(lines []string) ([]configResult, []string) {
 		if len(protoLines) == 0 {
 			continue
 		}
+
+		// Shuffle before processing (same as original)
+		rng.Shuffle(len(protoLines), func(i, j int) {
+			protoLines[i], protoLines[j] = protoLines[j], protoLines[i]
+		})
 
 		// ── Phase 1: TCP ping pre-check ───────────────────────────────────────
 		effBatchSize := tcpBatchSize
