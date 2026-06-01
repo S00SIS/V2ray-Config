@@ -1,1681 +1,1019 @@
 package main
 
 import (
-	"bufio"
 	"bytes"
-	"encoding/base64"
-	"encoding/json"
+	"context"
 	"fmt"
 	"math/rand"
+	"net"
+	"net/http"
 	"net/url"
 	"os"
-	"path/filepath"
+	"os/exec"
 	"sort"
-	"strconv"
 	"strings"
 	"sync"
+	"sync/atomic"
+	"syscall"
 	"time"
 )
 
-// ── Name counter ──────────────────────────────────────────────────────────────
+// ── TCP ping pre-check ────────────────────────────────────────────────────────
+// Extracts the remote host:port from a proxy URI, does a raw TCP dial.
+// Returns true if the endpoint is reachable.
 
-var gNameCountMu sync.Mutex
-var gNameCount = make(map[string]int)
-
-func generateUniqueName(base string) string {
-	gNameCountMu.Lock()
-	defer gNameCountMu.Unlock()
-
-	base = strings.TrimSpace(base)
-	if base == "" {
-		base = "proxy"
+func tcpPingConfig(configURL, protocol string, timeout time.Duration, retries int) bool {
+	host, portNum := extractHostPort(configURL, protocol)
+	if host == "" || portNum == 0 {
+		// Can't extract — let it pass through to full validation
+		return true
 	}
-	base = strings.ReplaceAll(base, " ", "_")
-	base = strings.ReplaceAll(base, "|", "_")
-
-	gNameCount[base]++
-	count := gNameCount[base]
-
-	return base + "_" + strconv.Itoa(count)
-}
-
-// ── Clash base content ────────────────────────────────────────────────────────
-
-type clashBase struct {
-	simple   string
-	advanced string
-}
-
-var gClash clashBase
-
-func loadClashBase(path string) error {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return fmt.Errorf("clash_base.yaml: %w", err)
-	}
-	gClash.simple = string(data)
-	return nil
-}
-
-func loadClashBaseAdvanced(path string) error {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return fmt.Errorf("clash_base_advanced.yaml: %w", err)
-	}
-	gClash.advanced = string(data)
-	return nil
-}
-
-func injectClashProxies(baseContent string, proxyEntries []string, proxyNames []string) string {
-	const proxiesPlaceholder = "# ---PROXIES---\n"
-	const namesPlaceholder = "# ---PROXY-NAMES---\n"
-
-	var proxyBlock strings.Builder
-	for _, e := range proxyEntries {
-		proxyBlock.WriteString(e)
-	}
-
-	var namesBlock strings.Builder
-	for _, n := range proxyNames {
-		fmt.Fprintf(&namesBlock, "      - %s\n", yamlQuote(n))
-	}
-
-	result := strings.ReplaceAll(baseContent, proxiesPlaceholder, proxyBlock.String())
-	result = strings.ReplaceAll(result, namesPlaceholder, namesBlock.String())
-	return result
-}
-
-// ── prepareOutputDirs ─────────────────────────────────────────────────────────
-
-func prepareOutputDirs() error {
-	os.RemoveAll("config")
-	dirs := []string{
-		"config",
-		cfg.Output.ProtocolsDir,
-		"config/batches/v2ray",
-		"config/batches/clash",
-		"config/batches/clash_advanced",
-		"config/sni",
-		"config/sni/protocols",
-		"config/batches/sni_v2ray",
-		"config/batches/sni_clash",
-		"config/batches/sni_clash_advanced",
-		"config/tcp-pass",
-		"config/tcp-pass-sni",
-	}
-	for _, dir := range dirs {
-		if err := os.MkdirAll(dir, 0755); err != nil {
-			return err
+	addr := fmt.Sprintf("%s:%d", host, portNum)
+	for attempt := 0; attempt <= retries; attempt++ {
+		conn, err := net.DialTimeout("tcp", addr, timeout)
+		if err == nil {
+			conn.Close()
+			return true
 		}
 	}
-	return nil
+	return false
 }
 
-// ── writeOutputFiles ──────────────────────────────────────────────────────────
-
-func writeOutputFiles(results []configResult, tcpFailedLines []string) {
-	byProto := make(map[string][]string)
-	byProtoClash := make(map[string][]string)
-	byProtoClashNames := make(map[string][]string)
-	var all []string
-	var allClash []string
-	var allClashNames []string
-
-	bySNIProto := make(map[string][]string)
-	bySNIProtoClash := make(map[string][]string)
-	bySNIProtoClashNames := make(map[string][]string)
-	var allSNI []string
-	var allSNIClash []string
-	var allSNIClashNames []string
-
-	const v2rayName = "@DeltaKroneckerGithub"
-	const clashBaseN = "@DeltaKroneckerGithub_Clash"
-
-	for i, r := range results {
-		// v2ray: fixed name (no counter)
-		named := renameTo(r.line, r.proto, v2rayName)
-		all = append(all, named)
-		byProto[r.proto] = append(byProto[r.proto], named)
-
-		// clash: numbered name
-		cname := generateUniqueName(clashBaseN)
-		if entry, ok := configToClashYAML(r.line, r.proto, cname); ok {
-			allClash = append(allClash, entry)
-			allClashNames = append(allClashNames, cname)
-			byProtoClash[r.proto] = append(byProtoClash[r.proto], entry)
-			byProtoClashNames[r.proto] = append(byProtoClashNames[r.proto], cname)
+// extractHostPort gets the server host and port from a proxy URI without full parsing.
+func extractHostPort(configURL, protocol string) (string, int) {
+	switch protocol {
+	case "vmess":
+		// VMess can be base64-JSON or URI format — use the parser to get server/port
+		outbound, parseErr := parseVMess(configURL)
+		if parseErr != "" {
+			return "", 0
 		}
+		return extractFromSingBoxJSON(outbound)
 
-		sniLine := toSNIConfig(r.line, r.proto)
-		if sniLine != "" {
-			// v2ray SNI: fixed name
-			sniNamed := renameTo(sniLine, r.proto, v2rayName)
-			allSNI = append(allSNI, sniNamed)
-			bySNIProto[r.proto] = append(bySNIProto[r.proto], sniNamed)
+	case "ssr":
+		// SSR: host is parts[0], port is parts[1] of decoded body
+		trimmed := strings.TrimPrefix(configURL, "ssr://")
+		if idx := strings.LastIndex(trimmed, "#"); idx != -1 {
+			trimmed = trimmed[:idx]
+		}
+		decoded, err := decodeBase64([]byte(strings.TrimSpace(trimmed)))
+		if err != nil {
+			return "", 0
+		}
+		body := decoded
+		if i := strings.Index(decoded, "/?"); i != -1 {
+			body = decoded[:i]
+		} else if i := strings.Index(decoded, "?"); i != -1 {
+			body = decoded[:i]
+		}
+		parts := strings.SplitN(body, ":", 6)
+		if len(parts) < 2 {
+			return "", 0
+		}
+		port, err := toPort(parts[1])
+		if err != nil {
+			return "", 0
+		}
+		return parts[0], port
 
-			// clash SNI: numbered
-			sniCname := generateUniqueName(clashBaseN)
-			if sniEntry, ok := configToClashYAML(sniLine, r.proto, sniCname); ok {
-				allSNIClash = append(allSNIClash, sniEntry)
-				allSNIClashNames = append(allSNIClashNames, sniCname)
-				bySNIProtoClash[r.proto] = append(bySNIProtoClash[r.proto], sniEntry)
-				bySNIProtoClashNames[r.proto] = append(bySNIProtoClashNames[r.proto], sniCname)
+	case "hy2":
+		trimmed := strings.TrimPrefix(configURL, "hy2://")
+		if i := strings.LastIndex(trimmed, "#"); i != -1 {
+			trimmed = trimmed[:i]
+		}
+		if i := strings.Index(trimmed, "?"); i != -1 {
+			trimmed = trimmed[:i]
+		}
+		lastAt := strings.LastIndex(trimmed, "@")
+		if lastAt == -1 {
+			return "", 0
+		}
+		hostPort := trimmed[lastAt+1:]
+		if i := strings.Index(hostPort, "/"); i != -1 {
+			hostPort = hostPort[:i]
+		}
+		lastColon := strings.LastIndex(hostPort, ":")
+		if lastColon == -1 {
+			return hostPort, 443
+		}
+		port, err := toPort(hostPort[lastColon+1:])
+		if err != nil {
+			return "", 0
+		}
+		return hostPort[:lastColon], port
+
+	default:
+		// vless, trojan, ss, hy, tuic — standard URI host:port
+		u, err := url.Parse(sanitizeProxyURL(configURL))
+		if err != nil || u.Hostname() == "" {
+			return "", 0
+		}
+		portStr := u.Port()
+		if portStr == "" {
+			portStr = "443"
+		}
+		port, err := toPort(portStr)
+		if err != nil {
+			return "", 0
+		}
+		return u.Hostname(), port
+	}
+}
+
+// extractFromSingBoxJSON extracts server/server_port from a sing-box outbound JSON string.
+func extractFromSingBoxJSON(jsonStr string) (string, int) {
+	// Quick substring extraction — avoid full JSON unmarshal for speed
+	getStr := func(key string) string {
+		needle := `"` + key + `":"`
+		idx := strings.Index(jsonStr, needle)
+		if idx == -1 {
+			return ""
+		}
+		start := idx + len(needle)
+		end := strings.Index(jsonStr[start:], `"`)
+		if end == -1 {
+			return ""
+		}
+		return jsonStr[start : start+end]
+	}
+	getInt := func(key string) int {
+		needle := `"` + key + `":`
+		idx := strings.Index(jsonStr, needle)
+		if idx == -1 {
+			return 0
+		}
+		start := idx + len(needle)
+		end := start
+		for end < len(jsonStr) && (jsonStr[end] >= '0' && jsonStr[end] <= '9') {
+			end++
+		}
+		if end == start {
+			return 0
+		}
+		port, err := toPort(jsonStr[start:end])
+		if err != nil {
+			return 0
+		}
+		return port
+	}
+	return getStr("server"), getInt("server_port")
+}
+
+// ── tcpPingBatch ─────────────────────────────────────────────────────────────
+// Runs TCP ping on a batch of configs and returns only those that passed.
+
+func tcpPingBatch(lines []string, proto string, timeout time.Duration, retries, workers int) (passed []string, failed int) {
+	if workers <= 0 {
+		workers = 500 // default
+	}
+	if workers > len(lines) {
+		workers = len(lines)
+	}
+
+	type job struct {
+		idx  int
+		line string
+	}
+	type result struct {
+		idx  int
+		line string
+		ok   bool
+	}
+
+	jobs := make(chan job, len(lines))
+	resultsCh := make(chan result, len(lines))
+
+	var wg sync.WaitGroup
+	for w := 0; w < workers; w++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for j := range jobs {
+				ok := tcpPingConfig(j.line, proto, timeout, retries)
+				resultsCh <- result{idx: j.idx, line: j.line, ok: ok}
+			}
+		}()
+	}
+
+	for i, line := range lines {
+		jobs <- job{idx: i, line: line}
+	}
+	close(jobs)
+
+	go func() {
+		wg.Wait()
+		close(resultsCh)
+	}()
+
+	ordered := make([]result, len(lines))
+	for r := range resultsCh {
+		ordered[r.idx] = r
+	}
+
+	for _, r := range ordered {
+		if r.ok {
+			passed = append(passed, r.line)
+		} else {
+			failed++
+		}
+	}
+	return
+}
+
+// ── validateAll ───────────────────────────────────────────────────────────────
+
+var gInputByProto = make(map[string]int)
+
+func validateAll(lines []string) ([]configResult, []string) {
+	byProto, duplicates := dedup(lines)
+
+	for p, ls := range byProto {
+		gInputByProto[p] = len(ls)
+	}
+
+	if gLog != nil {
+		gLog.writeLine(fmt.Sprintf("[DEDUP] removed=%d duplicates", duplicates))
+		total := 0
+		for _, p := range cfg.ProtocolOrder {
+			n := len(byProto[p])
+			total += n
+			if n > 0 {
+				gLog.writeLine(fmt.Sprintf("[DEDUP] %-6s unique=%d", p, n))
 			}
 		}
-		_ = i
+		gLog.writeLine(fmt.Sprintf("[DEDUP] total unique=%d", total))
+		gLog.writeLine("")
 	}
 
-	// ── Original output files ──────────────────────────────────────────────────
-	writeFile(cfg.Output.MainFile, all)
-	for proto, lines := range byProto {
-		writeFile(filepath.Join(cfg.Output.ProtocolsDir, proto+".txt"), lines)
+	protoFails := make(map[string]*failDetail)
+	for _, p := range cfg.ProtocolOrder {
+		protoFails[p] = &failDetail{reasons: make(map[string]int), samples: make(map[string][]string)}
 	}
 
-	if gClash.simple != "" {
-		writeClashConfigSimple(filepath.Join(filepath.Dir(cfg.Output.MainFile), "clash.yaml"), allClash, allClashNames)
-		for proto, entries := range byProtoClash {
-			writeClashConfigSimple(filepath.Join(cfg.Output.ProtocolsDir, proto+"_clash.yaml"), entries, byProtoClashNames[proto])
-		}
+	var testedCount int64
+	var passedCount int64
+	var failedParse int64
+	var failedStart int64
+	var failedConn int64
+	var out []configResult
+	var tcpPingPassedAll []string
+	var tcpAllFailedMu sync.Mutex
+
+	v := cfg.Validation
+	batchSize := v.NumWorkers
+	if batchSize <= 0 {
+		batchSize = 50
 	}
-	if gClash.advanced != "" {
-		writeClashConfigAdvanced(filepath.Join(filepath.Dir(cfg.Output.MainFile), "clash_advanced.yaml"), allClash, allClashNames)
-		for proto, entries := range byProtoClash {
-			writeClashConfigAdvanced(filepath.Join(cfg.Output.ProtocolsDir, proto+"_clash_advanced.yaml"), entries, byProtoClashNames[proto])
-		}
-	}
-
-	// ── SNI output files ───────────────────────────────────────────────────────
-	sniDir := "config/sni"
-	sniProtosDir := "config/sni/protocols"
-
-	writeFile(filepath.Join(sniDir, "all_configs_sni.txt"), allSNI)
-	for proto, lines := range bySNIProto {
-		writeFile(filepath.Join(sniProtosDir, proto+"_sni.txt"), lines)
-	}
-
-	if gClash.simple != "" {
-		writeClashConfigSimple(filepath.Join(sniDir, "clash_sni.yaml"), allSNIClash, allSNIClashNames)
-		for proto, entries := range bySNIProtoClash {
-			writeClashConfigSimple(filepath.Join(sniProtosDir, proto+"_clash_sni.yaml"), entries, bySNIProtoClashNames[proto])
-		}
-	}
-	if gClash.advanced != "" {
-		writeClashConfigAdvanced(filepath.Join(sniDir, "clash_advanced_sni.yaml"), allSNIClash, allSNIClashNames)
-		for proto, entries := range bySNIProtoClash {
-			writeClashConfigAdvanced(filepath.Join(sniProtosDir, proto+"_clash_advanced_sni.yaml"), entries, bySNIProtoClashNames[proto])
-		}
-	}
-
-	writeBatchFiles(all, allClash, allClashNames, allSNI, allSNIClash, allSNIClashNames)
-	writeTCPPassFiles(tcpFailedLines)
-}
-
-// ── writeBatchFiles ───────────────────────────────────────────────────────────
-
-func writeBatchFiles(
-	allV2ray []string, allClash []string, allClashNames []string,
-	allSNIV2ray []string, allSNIClash []string, allSNIClashNames []string,
-) {
-	const batchSize = 500
 
 	rng := rand.New(rand.NewSource(time.Now().UnixNano()))
 
-	shuffledV2ray := make([]string, len(allV2ray))
-	copy(shuffledV2ray, allV2ray)
-	rng.Shuffle(len(shuffledV2ray), func(i, j int) { shuffledV2ray[i], shuffledV2ray[j] = shuffledV2ray[j], shuffledV2ray[i] })
-
-	type clashPair struct {
-		entry string
-		name  string
+	// TCP ping settings
+	tcpTimeout := time.Duration(v.TCPPingTimeoutMs) * time.Millisecond
+	if tcpTimeout <= 0 {
+		tcpTimeout = 3000 * time.Millisecond
 	}
-	shuffledClash := make([]clashPair, len(allClash))
-	for i := range allClash {
-		shuffledClash[i] = clashPair{entry: allClash[i], name: allClashNames[i]}
+	tcpRetries := v.TCPPingRetries
+	if tcpRetries < 0 {
+		tcpRetries = 0
 	}
-	rng.Shuffle(len(shuffledClash), func(i, j int) { shuffledClash[i], shuffledClash[j] = shuffledClash[j], shuffledClash[i] })
-
-	for batchIdx := 0; batchIdx*batchSize < len(shuffledV2ray); batchIdx++ {
-		start := batchIdx * batchSize
-		end := start + batchSize
-		if end > len(shuffledV2ray) {
-			end = len(shuffledV2ray)
-		}
-		writeFile(fmt.Sprintf("config/batches/v2ray/batch_%03d.txt", batchIdx+1), shuffledV2ray[start:end])
+	tcpWorkers := v.TCPPingWorkers
+	if tcpWorkers <= 0 {
+		tcpWorkers = 500
 	}
-
-	if len(shuffledClash) > 0 {
-		for batchIdx := 0; batchIdx*batchSize < len(shuffledClash); batchIdx++ {
-			start := batchIdx * batchSize
-			end := start + batchSize
-			if end > len(shuffledClash) {
-				end = len(shuffledClash)
-			}
-			batch := shuffledClash[start:end]
-			entries := make([]string, len(batch))
-			names := make([]string, len(batch))
-			for i, p := range batch {
-				entries[i] = p.entry
-				names[i] = p.name
-			}
-			if gClash.simple != "" {
-				writeClashConfigSimple(fmt.Sprintf("config/batches/clash/batch_%03d.yaml", batchIdx+1), entries, names)
-			}
-			if gClash.advanced != "" {
-				writeClashConfigAdvanced(fmt.Sprintf("config/batches/clash_advanced/batch_%03d.yaml", batchIdx+1), entries, names)
-			}
-		}
+	tcpBatchSize := v.TCPPingBatchSize
+	if tcpBatchSize <= 0 {
+		tcpBatchSize = 0 // 0 = no batching, run all at once
 	}
+	tcpBatchRest := time.Duration(v.TCPPingBatchRestMs) * time.Millisecond
 
-	// SNI batches
-	shuffledSNIV2ray := make([]string, len(allSNIV2ray))
-	copy(shuffledSNIV2ray, allSNIV2ray)
-	rng.Shuffle(len(shuffledSNIV2ray), func(i, j int) { shuffledSNIV2ray[i], shuffledSNIV2ray[j] = shuffledSNIV2ray[j], shuffledSNIV2ray[i] })
-
-	shuffledSNIClash := make([]clashPair, len(allSNIClash))
-	for i := range allSNIClash {
-		shuffledSNIClash[i] = clashPair{entry: allSNIClash[i], name: allSNIClashNames[i]}
-	}
-	rng.Shuffle(len(shuffledSNIClash), func(i, j int) { shuffledSNIClash[i], shuffledSNIClash[j] = shuffledSNIClash[j], shuffledSNIClash[i] })
-
-	for batchIdx := 0; batchIdx*batchSize < len(shuffledSNIV2ray); batchIdx++ {
-		start := batchIdx * batchSize
-		end := start + batchSize
-		if end > len(shuffledSNIV2ray) {
-			end = len(shuffledSNIV2ray)
-		}
-		writeFile(fmt.Sprintf("config/batches/sni_v2ray/batch_%03d.txt", batchIdx+1), shuffledSNIV2ray[start:end])
-	}
-
-	if len(shuffledSNIClash) > 0 {
-		for batchIdx := 0; batchIdx*batchSize < len(shuffledSNIClash); batchIdx++ {
-			start := batchIdx * batchSize
-			end := start + batchSize
-			if end > len(shuffledSNIClash) {
-				end = len(shuffledSNIClash)
-			}
-			batch := shuffledSNIClash[start:end]
-			entries := make([]string, len(batch))
-			names := make([]string, len(batch))
-			for i, p := range batch {
-				entries[i] = p.entry
-				names[i] = p.name
-			}
-			if gClash.simple != "" {
-				writeClashConfigSimple(fmt.Sprintf("config/batches/sni_clash/batch_%03d.yaml", batchIdx+1), entries, names)
-			}
-			if gClash.advanced != "" {
-				writeClashConfigAdvanced(fmt.Sprintf("config/batches/sni_clash_advanced/batch_%03d.yaml", batchIdx+1), entries, names)
-			}
-		}
-	}
-}
-
-// ── Low-level file writers ────────────────────────────────────────────────────
-
-func writeFile(path string, lines []string) {
-	f, err := os.Create(path)
-	if err != nil {
-		fmt.Printf("❌ Cannot write %s: %v\n", path, err)
-		return
-	}
-	defer f.Close()
-	w := bufio.NewWriterSize(f, 256*1024)
-	for _, line := range lines {
-		w.WriteString(line + "\n")
-	}
-	w.Flush()
-}
-
-func writeClashConfigSimple(path string, proxyEntries, proxyNames []string) {
-	if len(proxyEntries) == 0 || gClash.simple == "" {
-		return
-	}
-	content := injectClashProxies(gClash.simple, proxyEntries, proxyNames)
-	f, err := os.Create(path)
-	if err != nil {
-		fmt.Printf("❌ Cannot write %s: %v\n", path, err)
-		return
-	}
-	defer f.Close()
-	w := bufio.NewWriterSize(f, 512*1024)
-	defer w.Flush()
-	w.WriteString(content)
-}
-
-func writeClashConfigAdvanced(path string, proxyEntries, proxyNames []string) {
-	if len(proxyEntries) == 0 || gClash.advanced == "" {
-		return
-	}
-	content := injectClashProxies(gClash.advanced, proxyEntries, proxyNames)
-	f, err := os.Create(path)
-	if err != nil {
-		fmt.Printf("❌ Cannot write %s: %v\n", path, err)
-		return
-	}
-	defer f.Close()
-	w := bufio.NewWriterSize(f, 512*1024)
-	defer w.Flush()
-	w.WriteString(content)
-}
-
-// ── configToClashYAML ─────────────────────────────────────────────────────────
-
-func configToClashYAML(line, proto, name string) (string, bool) {
-	switch proto {
-	case "vmess":
-		return vmessClashYAML(line, name)
-	case "vless":
-		return vlessClashYAML(line, name)
-	case "trojan":
-		return trojanClashYAML(line, name)
-	case "ss":
-		return ssClashYAML(line, name)
-	case "hy2":
-		return hy2ClashYAML(line, name)
-	case "hy":
-		return hyClashYAML(line, name)
-	case "tuic":
-		return tuicClashYAML(line, name)
-	case "ssr":
-		return "", false
-	}
-	return "", false
-}
-
-// ── Clash YAML builders ───────────────────────────────────────────────────────
-
-func vmessClashYAML(raw, name string) (string, bool) {
-	data := strings.TrimPrefix(raw, "vmess://")
-	if idx := strings.LastIndex(data, "#"); idx != -1 {
-		data = data[:idx]
-	}
-	data = strings.TrimSpace(data)
-
-	var d map[string]interface{}
-	if strings.HasPrefix(data, "{") {
-		if err := json.Unmarshal([]byte(data), &d); err != nil {
-			return "", false
-		}
-	} else {
-		decoded, err := decodeBase64([]byte(data))
-		if err != nil {
-			return "", false
-		}
-		if err := json.Unmarshal([]byte(decoded), &d); err != nil {
-			return "", false
-		}
-	}
-
-	server := fmt.Sprintf("%v", d["add"])
-	portStr := fmt.Sprintf("%v", d["port"])
-	uuid := fmt.Sprintf("%v", d["id"])
-	if server == "" || uuid == "" {
-		return "", false
-	}
-	port, err := toPort(portStr)
-	if err != nil {
-		return "", false
-	}
-
-	alterId := 0
-	if v, ok := d["aid"]; ok {
-		switch x := v.(type) {
-		case float64:
-			alterId = int(x)
-		case string:
-			alterId, _ = strconv.Atoi(x)
-		}
-	}
-	cipher := strDefault(d["scy"], "auto")
-	network := strings.ToLower(strDefault(d["net"], "tcp"))
-	tlsVal := strDefault(d["tls"], "")
-	sni := strDefault(d["sni"], server)
-	path := strDefault(d["path"], "/")
-	host := strDefault(d["host"], "")
-	grpcService := strDefault(d["serviceName"], "")
-
-	var sb strings.Builder
-	fmt.Fprintf(&sb, "  - name: %s\n    type: vmess\n    server: %s\n    port: %d\n    uuid: %s\n    alterId: %d\n    cipher: %s\n    udp: true\n",
-		yamlQuote(name), yamlQuote(server), port, yamlQuote(uuid), alterId, yamlQuote(cipher))
-
-	if tlsVal == "tls" {
-		fmt.Fprintf(&sb, "    tls: true\n    skip-cert-verify: true\n    servername: %s\n", yamlQuote(sni))
-	}
-	appendNetworkClash(&sb, network, path, host, grpcService)
-	return sb.String(), true
-}
-
-func vlessClashYAML(raw, name string) (string, bool) {
-	u, err := url.Parse(sanitizeProxyURL(raw))
-	if err != nil {
-		return "", false
-	}
-	uuid := normalizeUUID(u.User.Username())
-	server := u.Hostname()
-	port, err := toPort(u.Port())
-	if err != nil || uuid == "" || server == "" {
-		return "", false
-	}
-	q := u.Query()
-	security := strings.ToLower(q.Get("security"))
-	network := strings.ToLower(q.Get("type"))
-	if network == "" {
-		network = "tcp"
-	}
-	sni := first(q.Get("sni"), q.Get("peer"), server)
-	fp := first(q.Get("fp"), "")
-	flow := q.Get("flow")
-	path := first(q.Get("path"), "/")
-	host := q.Get("host")
-	grpcService := first(q.Get("serviceName"), q.Get("path"))
-
-	var sb strings.Builder
-	fmt.Fprintf(&sb, "  - name: %s\n    type: vless\n    server: %s\n    port: %d\n    uuid: %s\n    udp: true\n",
-		yamlQuote(name), yamlQuote(server), port, yamlQuote(uuid))
-
-	if security == "reality" {
-		pbk := q.Get("pbk")
-		sid := q.Get("sid")
-		fmt.Fprintf(&sb, "    tls: true\n    skip-cert-verify: true\n    servername: %s\n", yamlQuote(sni))
-		if fp != "" {
-			fmt.Fprintf(&sb, "    client-fingerprint: %s\n", yamlQuote(fp))
-		}
-		fmt.Fprintf(&sb, "    reality-opts:\n      public-key: %s\n      short-id: %s\n", yamlQuote(pbk), yamlQuote(sid))
-	} else if security == "tls" || security == "xtls" {
-		fmt.Fprintf(&sb, "    tls: true\n    skip-cert-verify: true\n    servername: %s\n", yamlQuote(sni))
-		if fp != "" {
-			fmt.Fprintf(&sb, "    client-fingerprint: %s\n", yamlQuote(fp))
-		}
-	}
-	if flow != "" && singboxSupportedFlows[flow] {
-		fmt.Fprintf(&sb, "    flow: %s\n", yamlQuote(flow))
-	}
-	appendNetworkClash(&sb, network, path, host, grpcService)
-	return sb.String(), true
-}
-
-func trojanClashYAML(raw, name string) (string, bool) {
-	u, err := url.Parse(sanitizeProxyURL(raw))
-	if err != nil {
-		return "", false
-	}
-	password := u.User.Username()
-	server := u.Hostname()
-	port, err := toPort(u.Port())
-	if err != nil || password == "" || server == "" {
-		return "", false
-	}
-	q := u.Query()
-	sni := first(q.Get("sni"), q.Get("peer"), server)
-	network := strings.ToLower(q.Get("type"))
-	path := first(q.Get("path"), "/")
-	host := q.Get("host")
-	grpcService := first(q.Get("serviceName"), q.Get("path"))
-
-	var sb strings.Builder
-	fmt.Fprintf(&sb, "  - name: %s\n    type: trojan\n    server: %s\n    port: %d\n    password: %s\n    sni: %s\n    skip-cert-verify: true\n    udp: true\n",
-		yamlQuote(name), yamlQuote(server), port, yamlQuote(password), yamlQuote(sni))
-	appendNetworkClash(&sb, network, path, host, grpcService)
-	return sb.String(), true
-}
-
-func ssClashYAML(raw, name string) (string, bool) {
-	trimmed := strings.TrimPrefix(raw, "ss://")
-	if idx := strings.LastIndex(trimmed, "#"); idx != -1 {
-		trimmed = trimmed[:idx]
-	}
-	trimmed = strings.TrimSpace(trimmed)
-
-	queryStr := ""
-	if qi := strings.Index(trimmed, "?"); qi != -1 {
-		queryStr = trimmed[qi+1:]
-		trimmed = trimmed[:qi]
-	}
-
-	var method, password, server string
-	var port int
-
-	parsed := false
-	if u, err := url.Parse("ss://" + trimmed); err == nil && u.User != nil && u.Hostname() != "" {
-		uname := u.User.Username()
-		pwd, hasPwd := u.User.Password()
-		if hasPwd {
-			// uname is plaintext method — reject if UUID
-			if isUUID(uname) {
-				return "", false
-			}
-			method, password = uname, pwd
-		} else {
-			if d, derr := decodeBase64([]byte(uname)); derr == nil {
-				if strings.HasPrefix(d, "ss://") {
-					inner := strings.TrimPrefix(d, "ss://")
-					if d2, e2 := decodeBase64([]byte(inner)); e2 == nil && strings.Contains(d2, ":") {
-						parts := strings.SplitN(d2, ":", 2)
-						method, password = parts[0], parts[1]
-					}
-				} else if strings.Contains(d, ":") {
-					parts := strings.SplitN(d, ":", 2)
-					method, password = parts[0], parts[1]
-				}
-			}
-		}
-		if method != "" {
-			portStr := u.Port()
-			if portStr == "" {
-				portStr = "443"
-			}
-			if p, perr := toPort(portStr); perr == nil {
-				server = u.Hostname()
-				port = p
-				parsed = true
-			}
-		}
-	}
-
-	if !parsed {
-		atIdx := strings.LastIndex(trimmed, "@")
-		if atIdx == -1 {
-			return "", false
-		}
-		m, p, s, po, e := ssParseUserAndHost(trimmed[:atIdx], trimmed[atIdx+1:])
-		if e != "" {
-			return "", false
-		}
-		method, password, server, port = m, p, s, po
-	}
-
-	method = strings.ToLower(method)
-	if server == "" {
-		return "", false
-	}
-
-	var sb strings.Builder
-	fmt.Fprintf(&sb, "  - name: %s\n    type: ss\n    server: %s\n    port: %d\n    cipher: %s\n    password: %s\n    udp: true\n",
-		yamlQuote(name), yamlQuote(server), port, yamlQuote(method), yamlQuote(password))
-
-	if queryStr != "" {
-		q, _ := url.ParseQuery(queryStr)
-		if plugin := q.Get("plugin"); plugin != "" {
-			pluginParts := strings.SplitN(plugin, ";", 2)
-			if len(pluginParts) > 0 {
-				pluginName := pluginParts[0]
-				switch {
-				case pluginName == "obfs-local" || pluginName == "obfs":
-					fmt.Fprintf(&sb, "    plugin: obfs\n    plugin-opts:\n")
-					if len(pluginParts) > 1 {
-						opts := parsePluginOpts(pluginParts[1])
-						if mode, ok := opts["obfs"]; ok {
-							fmt.Fprintf(&sb, "      mode: %s\n", yamlQuote(mode))
-						}
-						if h, ok := opts["obfs-host"]; ok {
-							fmt.Fprintf(&sb, "      host: %s\n", yamlQuote(h))
-						}
-					}
-				case pluginName == "v2ray-plugin":
-					fmt.Fprintf(&sb, "    plugin: v2ray-plugin\n    plugin-opts:\n")
-					if len(pluginParts) > 1 {
-						opts := parsePluginOpts(pluginParts[1])
-						mode := first(opts["mode"], "websocket")
-						fmt.Fprintf(&sb, "      mode: %s\n", yamlQuote(mode))
-						if path, ok := opts["path"]; ok {
-							fmt.Fprintf(&sb, "      path: %s\n", yamlQuote(path))
-						}
-						if h, ok := opts["host"]; ok {
-							fmt.Fprintf(&sb, "      host: %s\n", yamlQuote(h))
-						}
-						if _, hasTLS := opts["tls"]; hasTLS {
-							fmt.Fprintf(&sb, "      tls: true\n")
-						}
-					}
-				}
-			}
-		}
-	}
-	return sb.String(), true
-}
-
-func parsePluginOpts(s string) map[string]string {
-	opts := make(map[string]string)
-	for _, part := range strings.Split(s, ";") {
-		part = strings.TrimSpace(part)
-		if part == "" {
+	for _, proto := range cfg.ProtocolOrder {
+		protoLines := byProto[proto]
+		if len(protoLines) == 0 {
 			continue
 		}
-		if idx := strings.Index(part, "="); idx != -1 {
-			opts[part[:idx]] = part[idx+1:]
-		} else {
-			opts[part] = ""
-		}
-	}
-	return opts
-}
 
-func hy2ClashYAML(raw, name string) (string, bool) {
-	trimmed := strings.TrimPrefix(raw, "hy2://")
-	if i := strings.LastIndex(trimmed, "#"); i != -1 {
-		trimmed = trimmed[:i]
-	}
-	queryStr := ""
-	if i := strings.Index(trimmed, "?"); i != -1 {
-		queryStr = trimmed[i+1:]
-		trimmed = trimmed[:i]
-	}
-	lastAt := strings.LastIndex(trimmed, "@")
-	if lastAt == -1 {
-		return "", false
-	}
-	password := trimmed[:lastAt]
-	hostPort := trimmed[lastAt+1:]
-	if password == "" {
-		return "", false
-	}
-	if i := strings.Index(hostPort, "/"); i != -1 {
-		hostPort = hostPort[:i]
-	}
-	lastColon := strings.LastIndex(hostPort, ":")
-	if lastColon == -1 {
-		return "", false
-	}
-	server := hostPort[:lastColon]
-	port, err := toPort(hostPort[lastColon+1:])
-	if err != nil || server == "" {
-		return "", false
-	}
-	q, _ := url.ParseQuery(queryStr)
-	var sb strings.Builder
-	fmt.Fprintf(&sb, "  - name: %s\n    type: hysteria2\n    server: %s\n    port: %d\n    password: %s\n    sni: %s\n    skip-cert-verify: true\n    udp: true\n",
-		yamlQuote(name), yamlQuote(server), port, yamlQuote(password), yamlQuote(first(q.Get("sni"), server)))
-	if obfs := q.Get("obfs"); obfs != "" {
-		fmt.Fprintf(&sb, "    obfs: %s\n", yamlQuote(obfs))
-		if obfsPwd := q.Get("obfs-password"); obfsPwd != "" {
-			fmt.Fprintf(&sb, "    obfs-password: %s\n", yamlQuote(obfsPwd))
-		}
-	}
-	return sb.String(), true
-}
+		// Shuffle before processing (same as original)
+		rng.Shuffle(len(protoLines), func(i, j int) {
+			protoLines[i], protoLines[j] = protoLines[j], protoLines[i]
+		})
 
-func hyClashYAML(raw, name string) (string, bool) {
-	u, err := url.Parse(sanitizeProxyURL(raw))
-	if err != nil {
-		return "", false
-	}
-	server := u.Hostname()
-	if server == "" {
-		return "", false
-	}
-	port, err := toPort(u.Port())
-	if err != nil {
-		return "", false
-	}
-	q := u.Query()
-	auth := first(q.Get("auth"), u.User.Username())
-	if auth == "" {
-		return "", false
-	}
-	up, _ := strconv.Atoi(first(q.Get("upmbps"), "10"))
-	down, _ := strconv.Atoi(first(q.Get("downmbps"), "50"))
-	if up <= 0 {
-		up = 10
-	}
-	if down <= 0 {
-		down = 50
-	}
-	var sb strings.Builder
-	fmt.Fprintf(&sb, "  - name: %s\n    type: hysteria\n    server: %s\n    port: %d\n    auth-str: %s\n    up: %d\n    down: %d\n    sni: %s\n    skip-cert-verify: true\n    udp: true\n",
-		yamlQuote(name), yamlQuote(server), port, yamlQuote(auth), up, down,
-		yamlQuote(first(q.Get("peer"), q.Get("sni"), server)))
-	if obfs := q.Get("obfs"); obfs != "" {
-		fmt.Fprintf(&sb, "    obfs: %s\n", yamlQuote(obfs))
-	}
-	if proto := q.Get("protocol"); proto != "" {
-		fmt.Fprintf(&sb, "    protocol: %s\n", yamlQuote(proto))
-	}
-	if alpnStr := q.Get("alpn"); alpnStr != "" {
-		parts := strings.Split(alpnStr, ",")
-		quoted := make([]string, len(parts))
-		for i, a := range parts {
-			quoted[i] = yamlQuote(strings.TrimSpace(a))
+		// ── Phase 1: TCP ping pre-check ───────────────────────────────────────
+		effBatchSize := tcpBatchSize
+		if effBatchSize <= 0 || effBatchSize >= len(protoLines) {
+			effBatchSize = len(protoLines) // single pass
 		}
-		fmt.Fprintf(&sb, "    alpn: [%s]\n", strings.Join(quoted, ", "))
-	}
-	return sb.String(), true
-}
+		numPingBatches := (len(protoLines) + effBatchSize - 1) / effBatchSize
 
-func tuicClashYAML(raw, name string) (string, bool) {
-	u, err := url.Parse(sanitizeProxyURL(raw))
-	if err != nil {
-		return "", false
-	}
-	uuid := u.User.Username()
-	password, _ := u.User.Password()
-	server := u.Hostname()
-	port, err := toPort(u.Port())
-	if err != nil || uuid == "" || server == "" {
-		return "", false
-	}
-	q := u.Query()
-	congestion := first(q.Get("congestion_control"), q.Get("congestion-controller"), "bbr")
-	var sb strings.Builder
-	fmt.Fprintf(&sb, "  - name: %s\n    type: tuic\n    server: %s\n    port: %d\n    uuid: %s\n    password: %s\n    sni: %s\n    skip-cert-verify: true\n    udp: true\n    congestion-controller: %s\n    reduce-rtt: true\n",
-		yamlQuote(name), yamlQuote(server), port, yamlQuote(uuid), yamlQuote(password),
-		yamlQuote(first(q.Get("sni"), server)), congestion)
-	if udpRelay := first(q.Get("udp_relay_mode"), q.Get("udp-relay-mode")); udpRelay != "" {
-		fmt.Fprintf(&sb, "    udp-relay-mode: %s\n", yamlQuote(udpRelay))
-	}
-	return sb.String(), true
-}
+		fmt.Printf("\n🔌 [%s] TCP ping pre-check — %d configs | batches=%d batch_size=%d workers=%d timeout=%dms\n",
+			strings.ToUpper(proto), len(protoLines), numPingBatches, effBatchSize, tcpWorkers, v.TCPPingTimeoutMs)
 
-func appendNetworkClash(sb *strings.Builder, network, path, host, grpcService string) {
-	if path == "" {
-		path = "/"
-	}
-	switch network {
-	case "ws":
-		fmt.Fprintf(sb, "    network: ws\n    ws-opts:\n      path: %s\n", yamlQuote(path))
-		if host != "" {
-			fmt.Fprintf(sb, "      headers:\n        Host: %s\n", yamlQuote(host))
-		}
-	case "grpc":
-		fmt.Fprintf(sb, "    network: grpc\n    grpc-opts:\n      grpc-service-name: %s\n", yamlQuote(grpcService))
-	case "h2", "http":
-		fmt.Fprintf(sb, "    network: h2\n    h2-opts:\n      path: %s\n", yamlQuote(path))
-		if host != "" {
-			fmt.Fprintf(sb, "      host: [%s]\n", yamlQuote(host))
-		}
-	case "httpupgrade":
-		fmt.Fprintf(sb, "    network: httpupgrade\n    httpupgrade-opts:\n      path: %s\n", yamlQuote(path))
-		if host != "" {
-			fmt.Fprintf(sb, "      host: %s\n", yamlQuote(host))
-		}
-	case "splithttp", "xhttp":
-		fmt.Fprintf(sb, "    network: splithttp\n    splithttp-opts:\n      path: %s\n", yamlQuote(path))
-		if host != "" {
-			fmt.Fprintf(sb, "      host: %s\n", yamlQuote(host))
-		}
-	}
-}
+		pingAllStart := time.Now()
+		var pingPassed []string
+		pingTotalFailed := 0
 
-// ── Clash URI converters (used by fetcher/smartDecode) ────────────────────────
-
-func clashPortStr(v interface{}) string {
-	if v == nil {
-		return "443"
-	}
-	switch x := v.(type) {
-	case int:
-		return strconv.Itoa(x)
-	case float64:
-		return strconv.Itoa(int(x))
-	case string:
-		s := strings.TrimSpace(x)
-		if s == "" {
-			return "443"
-		}
-		return s
-	}
-	return "443"
-}
-
-func clashBandwidthMbps(v interface{}) int {
-	if v == nil {
-		return 10
-	}
-	switch x := v.(type) {
-	case int:
-		if x <= 0 {
-			return 10
-		}
-		return x
-	case float64:
-		if int(x) <= 0 {
-			return 10
-		}
-		return int(x)
-	case string:
-		s := strings.ToLower(strings.TrimSpace(x))
-		for _, suffix := range []string{" mbps", "mbps", " mb/s", "mb/s", " mbit/s"} {
-			s = strings.TrimSuffix(s, suffix)
-		}
-		n, err := strconv.Atoi(strings.TrimSpace(s))
-		if err != nil || n <= 0 {
-			return 10
-		}
-		return n
-	}
-	return 10
-}
-
-func clashWsPath(opts *ClashWSOpts) string {
-	if opts == nil || opts.Path == "" {
-		return "/"
-	}
-	return opts.Path
-}
-
-func clashWsHost(opts *ClashWSOpts) string {
-	if opts == nil {
-		return ""
-	}
-	if h := opts.Headers["Host"]; h != "" {
-		return h
-	}
-	if h := opts.Headers["host"]; h != "" {
-		return h
-	}
-	return ""
-}
-
-func clashGRPCService(opts *ClashGRPCOpts) string {
-	if opts == nil {
-		return ""
-	}
-	return opts.ServiceName
-}
-
-func clashSNI(p ClashProxy) string {
-	if p.SNI != "" {
-		return p.SNI
-	}
-	if p.SniAlt != "" {
-		return p.SniAlt
-	}
-	return p.Server
-}
-
-func clashFingerprint(p ClashProxy) string {
-	if p.Fingerprint != "" {
-		return p.Fingerprint
-	}
-	return p.FingerprintAlt
-}
-
-func clashTransportParams(p ClashProxy, q url.Values) {
-	network := strings.ToLower(p.Network)
-	if network == "" {
-		network = "tcp"
-	}
-	q.Set("type", network)
-	switch network {
-	case "ws":
-		q.Set("path", clashWsPath(p.WSOpts))
-		if h := clashWsHost(p.WSOpts); h != "" {
-			q.Set("host", h)
-		}
-	case "grpc":
-		if svc := clashGRPCService(p.GRPCOpts); svc != "" {
-			q.Set("serviceName", svc)
-			q.Set("path", svc)
-		}
-	case "h2", "http":
-		if p.H2Opts != nil {
-			if len(p.H2Opts.Path) > 0 {
-				q.Set("path", p.H2Opts.Path[0])
+		for pb := 0; pb < numPingBatches; pb++ {
+			pbStart := pb * effBatchSize
+			pbEnd := pbStart + effBatchSize
+			if pbEnd > len(protoLines) {
+				pbEnd = len(protoLines)
 			}
-			if len(p.H2Opts.Host) > 0 {
-				q.Set("host", p.H2Opts.Host[0])
+			pbLines := protoLines[pbStart:pbEnd]
+
+			t0 := time.Now()
+			pbPassed, pbFailed := tcpPingBatch(pbLines, proto, tcpTimeout, tcpRetries, tcpWorkers)
+			pingPassed = append(pingPassed, pbPassed...)
+			pingTotalFailed += pbFailed
+
+			fmt.Printf("   📡 Ping batch %d/%d  ✅%d ❌%d  in %.1fs\n",
+				pb+1, numPingBatches, len(pbPassed), pbFailed, time.Since(t0).Seconds())
+
+			if pb < numPingBatches-1 && tcpBatchRest > 0 {
+				time.Sleep(tcpBatchRest)
 			}
 		}
-	case "httpupgrade":
-		if p.HTTPUpgradeOpts != nil {
-			if p.HTTPUpgradeOpts.Path != "" {
-				q.Set("path", p.HTTPUpgradeOpts.Path)
-			}
-			if p.HTTPUpgradeOpts.Host != "" {
-				q.Set("host", p.HTTPUpgradeOpts.Host)
-			}
-		}
-	case "splithttp":
-		if p.SplitHTTPOpts != nil {
-			if p.SplitHTTPOpts.Path != "" {
-				q.Set("path", p.SplitHTTPOpts.Path)
-			}
-			if p.SplitHTTPOpts.Host != "" {
-				q.Set("host", p.SplitHTTPOpts.Host)
-			}
-		}
-	}
-}
 
-func clashVMessToURI(p ClashProxy) string {
-	if p.Server == "" || p.UUID == "" {
-		return ""
-	}
-	portStr := clashPortStr(p.Port)
-	alterId := 0
-	if p.AlterID != nil {
-		switch x := p.AlterID.(type) {
-		case int:
-			alterId = x
-		case float64:
-			alterId = int(x)
-		case string:
-			alterId, _ = strconv.Atoi(x)
+		pingElapsed := time.Since(pingAllStart).Seconds()
+		fmt.Printf("   ✅ TCP ping total: passed=%d  skipped=%d  in %.1fs\n",
+			len(pingPassed), pingTotalFailed, pingElapsed)
+		if gLog != nil {
+			gLog.writeLine(fmt.Sprintf("[TCP_PING] proto=%-6s total=%d passed=%d failed=%d batches=%d elapsed=%.1fs",
+				proto, len(protoLines), len(pingPassed), pingTotalFailed, numPingBatches, pingElapsed))
 		}
-	}
-	cipher := p.Cipher
-	if cipher == "" {
-		cipher = "auto"
-	}
-	network := strings.ToLower(p.Network)
-	if network == "" {
-		network = "tcp"
-	}
-	tlsVal := ""
-	if p.TLS {
-		tlsVal = "tls"
-	}
-	sni := clashSNI(p)
-	path := "/"
-	host := ""
-	grpcService := ""
-	switch network {
-	case "ws":
-		path = clashWsPath(p.WSOpts)
-		host = clashWsHost(p.WSOpts)
-	case "grpc":
-		grpcService = clashGRPCService(p.GRPCOpts)
-	case "h2", "http":
-		if p.H2Opts != nil {
-			if len(p.H2Opts.Path) > 0 {
-				path = p.H2Opts.Path[0]
-			}
-			if len(p.H2Opts.Host) > 0 {
-				host = p.H2Opts.Host[0]
-			}
-		}
-	case "httpupgrade":
-		if p.HTTPUpgradeOpts != nil {
-			path = p.HTTPUpgradeOpts.Path
-			host = p.HTTPUpgradeOpts.Host
-		}
-	case "splithttp":
-		if p.SplitHTTPOpts != nil {
-			path = p.SplitHTTPOpts.Path
-			host = p.SplitHTTPOpts.Host
-		}
-	}
-	if path == "" {
-		path = "/"
-	}
-	d := map[string]interface{}{
-		"v": "2", "ps": p.Name, "add": p.Server, "port": portStr,
-		"id": p.UUID, "aid": alterId, "scy": cipher, "net": network,
-		"tls": tlsVal, "sni": sni, "host": host, "path": path, "serviceName": grpcService,
-	}
-	data, err := json.Marshal(d)
-	if err != nil {
-		return ""
-	}
-	return "vmess://" + base64.StdEncoding.EncodeToString(data)
-}
 
-func clashVLessToURI(p ClashProxy) string {
-	if p.Server == "" || p.UUID == "" {
-		return ""
-	}
-	portStr := clashPortStr(p.Port)
-	security := "none"
-	if p.RealityOpts != nil {
-		security = "reality"
-	} else if p.TLS {
-		security = "tls"
-	}
-	sni := clashSNI(p)
-	q := url.Values{}
-	clashTransportParams(p, q)
-	q.Set("security", security)
-	if security != "none" {
-		q.Set("sni", sni)
-		if fp := clashFingerprint(p); fp != "" {
-			q.Set("fp", fp)
-		}
-		if len(p.ALPN) > 0 {
-			q.Set("alpn", strings.Join(p.ALPN, ","))
-		}
-	}
-	if security == "reality" && p.RealityOpts != nil {
-		q.Set("pbk", p.RealityOpts.PublicKey)
-		q.Set("sid", p.RealityOpts.ShortID)
-	}
-	if p.Flow != "" {
-		q.Set("flow", p.Flow)
-	}
-	return fmt.Sprintf("vless://%s@%s:%s?%s#%s",
-		url.PathEscape(p.UUID), p.Server, portStr, q.Encode(), url.PathEscape(p.Name))
-}
+		// Track lines that passed TCP ping — used later to find sing-box failures
+		tcpAllFailedMu.Lock()
+		tcpPingPassedAll = append(tcpPingPassedAll, pingPassed...)
+		tcpAllFailedMu.Unlock()
 
-func clashTrojanToURI(p ClashProxy) string {
-	if p.Server == "" || p.Password == "" {
-		return ""
-	}
-	portStr := clashPortStr(p.Port)
-	sni := clashSNI(p)
-	q := url.Values{}
-	clashTransportParams(p, q)
-	q.Set("sni", sni)
-	if fp := clashFingerprint(p); fp != "" {
-		q.Set("fp", fp)
-	}
-	if len(p.ALPN) > 0 {
-		q.Set("alpn", strings.Join(p.ALPN, ","))
-	}
-	return fmt.Sprintf("trojan://%s@%s:%s?%s#%s",
-		url.PathEscape(p.Password), p.Server, portStr, q.Encode(), url.PathEscape(p.Name))
-}
+		if len(pingPassed) == 0 {
+			fmt.Printf("⚠️  [%s] No configs passed TCP ping — skipping full validation\n", strings.ToUpper(proto))
+			continue
+		}
 
-func clashSSToURI(p ClashProxy) string {
-	if p.Server == "" || p.Cipher == "" || p.Password == "" {
-		return ""
-	}
-	portStr := clashPortStr(p.Port)
-	userInfo := base64.StdEncoding.EncodeToString([]byte(p.Cipher + ":" + p.Password))
-	q := url.Values{}
-	switch p.Plugin {
-	case "obfs":
-		mode := ""
-		host := ""
-		if p.PluginOpts != nil {
-			if m, ok := p.PluginOpts["mode"].(string); ok {
-				mode = m
+		// ── Phase 2: Full sing-box validation ─────────────────────────────────
+		protoTotal := len(pingPassed)
+		totalBatches := (protoTotal + batchSize - 1) / batchSize
+		protoStart := time.Now()
+
+		fmt.Printf("🔵 [%s] Full validation — %d configs in %d batches of %d\n",
+			strings.ToUpper(proto), protoTotal, totalBatches, batchSize)
+
+		if gLog != nil {
+			gLog.logProtoStart(proto, protoTotal)
+		}
+
+		var protoPassed int64
+
+		for batchIdx := 0; batchIdx < totalBatches; batchIdx++ {
+			start := batchIdx * batchSize
+			end := start + batchSize
+			if end > protoTotal {
+				end = protoTotal
 			}
-			if h, ok := p.PluginOpts["host"].(string); ok {
-				host = h
+			batch := pingPassed[start:end]
+			actualBatchSize := len(batch)
+
+			localPorts := make(chan int, actualBatchSize)
+			for i := 0; i < actualBatchSize; i++ {
+				localPorts <- v.BasePort + i
 			}
-		}
-		pluginStr := "obfs-local"
-		if mode != "" {
-			pluginStr += ";obfs=" + mode
-		}
-		if host != "" {
-			pluginStr += ";obfs-host=" + host
-		}
-		q.Set("plugin", pluginStr)
-	case "v2ray-plugin":
-		if p.PluginOpts != nil {
-			mode, _ := p.PluginOpts["mode"].(string)
-			if mode == "websocket" || mode == "" {
-				pluginStr := "v2ray-plugin"
-				wsPath := "/"
-				if pt, ok := p.PluginOpts["path"].(string); ok && pt != "" {
-					wsPath = pt
+
+			bt := &batchTracker{}
+
+			type workerResult struct {
+				line string
+				res  validationResult
+			}
+			workerResults := make([]workerResult, actualBatchSize)
+
+			var wg sync.WaitGroup
+			batchStart := time.Now()
+
+			for i, line := range batch {
+				wg.Add(1)
+				go func(idx int, l string) {
+					defer wg.Done()
+					globalIdx := atomic.AddInt64(&testedCount, 1)
+					res := validateWithTracker(l, proto, localPorts, bt)
+					if gLog != nil {
+						gLog.logResult(globalIdx, proto, l, res)
+					}
+					workerResults[idx] = workerResult{line: l, res: res}
+				}(i, line)
+			}
+
+			wg.Wait()
+
+			bt.killAll()
+			if v.ProcessKillWaitMs > 0 {
+				time.Sleep(time.Duration(v.ProcessKillWaitMs) * time.Millisecond)
+			}
+
+			procsAfter := countSingboxProcs()
+			occupiedAfter := checkOccupiedPorts(v.BasePort, actualBatchSize)
+
+			if procsAfter > 0 || len(occupiedAfter) > 0 {
+				fmt.Printf("     ⚠️  After kill  — procs:%-3d  ports-busy:%-3d\n",
+					procsAfter, len(occupiedAfter))
+				if len(occupiedAfter) > 0 && len(occupiedAfter) <= 20 {
+					fmt.Printf("     ⚠️  Still-busy ports: %v\n", occupiedAfter)
 				}
-				wsHost := p.Server
-				if h, ok := p.PluginOpts["host"].(string); ok && h != "" {
-					wsHost = h
+			}
+
+			var bPassed, bFailed, bParse, bStart, bConn int
+
+			for _, wr := range workerResults {
+				res := wr.res
+				if res.passed {
+					bPassed++
+					atomic.AddInt64(&passedCount, 1)
+					atomic.AddInt64(&protoPassed, 1)
+					out = append(out, configResult{line: wr.line, proto: proto})
+				} else {
+					bFailed++
+					reason := res.failReason
+					norm := classifyFailReason(reason)
+					fd := protoFails[proto]
+					fd.mu.Lock()
+					fd.reasons[norm]++
+					if len(fd.samples[norm]) < 100 {
+						fd.samples[norm] = append(fd.samples[norm], wr.line)
+					}
+					fd.mu.Unlock()
+
+					if strings.HasPrefix(reason, "PARSE:") {
+						bParse++
+						atomic.AddInt64(&failedParse, 1)
+					} else if strings.HasPrefix(reason, "SINGBOX_START:") || strings.HasPrefix(reason, "START:") {
+						bStart++
+						atomic.AddInt64(&failedStart, 1)
+					} else {
+						bConn++
+						atomic.AddInt64(&failedConn, 1)
+					}
 				}
-				tls, _ := p.PluginOpts["tls"].(bool)
-				pluginStr += ";mode=websocket;path=" + wsPath + ";host=" + wsHost
-				if tls {
-					pluginStr += ";tls"
-				}
-				q.Set("plugin", pluginStr)
-			} else {
-				return ""
+			}
+
+			batchElapsed := time.Since(batchStart).Seconds()
+			batchPassRate := 0.0
+			if actualBatchSize > 0 {
+				batchPassRate = float64(bPassed) / float64(actualBatchSize) * 100
+			}
+			totalDone := (batchIdx + 1) * batchSize
+			if totalDone > protoTotal {
+				totalDone = protoTotal
+			}
+
+			fmt.Printf("  📦 Batch %d/%d [%d configs]  ✅%d ❌%d  Rate:%.1f%%  Time:%.1fs\n",
+				batchIdx+1, totalBatches, actualBatchSize, bPassed, bFailed, batchPassRate, batchElapsed)
+			fmt.Printf("     Parse✗:%-5d  Start✗:%-5d  Conn✗:%-5d  Total:%d/%d\n",
+				bParse, bStart, bConn, totalDone, protoTotal)
+
+			if batchIdx < totalBatches-1 && v.BatchRestMs > 0 {
+				fmt.Printf("     💤 %dms rest...\n", v.BatchRestMs)
+				time.Sleep(time.Duration(v.BatchRestMs) * time.Millisecond)
 			}
 		}
-	}
-	uri := fmt.Sprintf("ss://%s@%s:%s", userInfo, p.Server, portStr)
-	if len(q) > 0 {
-		uri += "?" + q.Encode()
-	}
-	return uri + "#" + url.PathEscape(p.Name)
-}
 
-func clashSSRToURI(p ClashProxy) string {
-	if p.Server == "" || p.Password == "" {
-		return ""
+		protoElapsed := time.Since(protoStart).Seconds()
+		protoPassRate := float64(protoPassed) / float64(protoTotal) * 100
+		fmt.Printf("✅ [%s] Done — passed=%d/%d (%.1f%%) in %.1fs\n",
+			strings.ToUpper(proto), protoPassed, protoTotal, protoPassRate, protoElapsed)
 	}
-	portStr := clashPortStr(p.Port)
-	protocol := p.Protocol
-	if protocol == "" {
-		protocol = "origin"
-	}
-	cipher := p.Cipher
-	if cipher == "" {
-		cipher = "none"
-	}
-	obfs := p.Obfs
-	if obfs == "" {
-		obfs = "plain"
-	}
-	b64pass := base64.RawURLEncoding.EncodeToString([]byte(p.Password))
-	body := fmt.Sprintf("%s:%s:%s:%s:%s:%s", p.Server, portStr, protocol, cipher, obfs, b64pass)
-	b64obfsParam := base64.RawURLEncoding.EncodeToString([]byte(p.ObfsParam))
-	b64protoParam := base64.RawURLEncoding.EncodeToString([]byte(p.ProtocolParam))
-	b64name := base64.RawURLEncoding.EncodeToString([]byte(p.Name))
-	params := fmt.Sprintf("obfsparam=%s&protoparam=%s&remarks=%s", b64obfsParam, b64protoParam, b64name)
-	full := body + "/?" + params
-	return "ssr://" + base64.RawURLEncoding.EncodeToString([]byte(full))
-}
 
-func clashHy2ToURI(p ClashProxy) string {
-	if p.Server == "" || p.Password == "" {
-		return ""
-	}
-	portStr := clashPortStr(p.Port)
-	sni := clashSNI(p)
-	q := url.Values{}
-	q.Set("sni", sni)
-	if len(p.ALPN) > 0 {
-		q.Set("alpn", strings.Join(p.ALPN, ","))
-	}
-	if p.ObfsPassword != "" {
-		q.Set("obfs", "salamander")
-		q.Set("obfs-password", p.ObfsPassword)
-	}
-	return fmt.Sprintf("hy2://%s@%s:%s?%s#%s",
-		url.PathEscape(p.Password), p.Server, portStr, q.Encode(), url.PathEscape(p.Name))
-}
+	fmt.Printf("\n📊 Tested=%d | Passed=%d | ParseFail=%d | StartFail=%d | ConnFail=%d\n",
+		atomic.LoadInt64(&testedCount),
+		atomic.LoadInt64(&passedCount),
+		atomic.LoadInt64(&failedParse),
+		atomic.LoadInt64(&failedStart),
+		atomic.LoadInt64(&failedConn))
 
-func clashHyToURI(p ClashProxy) string {
-	if p.Server == "" {
-		return ""
-	}
-	auth := first(p.AuthStr, p.AuthStrAlt, p.Auth)
-	if auth == "" {
-		return ""
-	}
-	portStr := clashPortStr(p.Port)
-	sni := clashSNI(p)
-	up := clashBandwidthMbps(p.Up)
-	down := clashBandwidthMbps(p.Down)
-	q := url.Values{}
-	q.Set("peer", sni)
-	q.Set("sni", sni)
-	q.Set("upmbps", strconv.Itoa(up))
-	q.Set("downmbps", strconv.Itoa(down))
-	if len(p.ALPN) > 0 {
-		q.Set("alpn", strings.Join(p.ALPN, ","))
-	}
-	if p.Obfs != "" {
-		q.Set("obfs", p.Obfs)
-	}
-	if p.Protocol != "" {
-		q.Set("protocol", p.Protocol)
-	}
-	return fmt.Sprintf("hy://%s@%s:%s?%s#%s",
-		url.PathEscape(auth), p.Server, portStr, q.Encode(), url.PathEscape(p.Name))
-}
-
-func clashTUICToURI(p ClashProxy) string {
-	if p.Server == "" || p.UUID == "" {
-		return ""
-	}
-	portStr := clashPortStr(p.Port)
-	password := p.Password
-	if password == "" {
-		password = p.Token
-	}
-	sni := clashSNI(p)
-	q := url.Values{}
-	q.Set("sni", sni)
-	if len(p.ALPN) > 0 {
-		q.Set("alpn", strings.Join(p.ALPN, ","))
-	}
-	if p.PluginOpts != nil {
-		if congestion, ok := p.PluginOpts["congestion-controller"].(string); ok && congestion != "" {
-			q.Set("congestion_control", congestion)
+	printFailureReport(protoFails, func() map[string][]string {
+		m := make(map[string][]string)
+		for p, ls := range byProto {
+			m[p] = ls
 		}
-	}
-	return fmt.Sprintf("tuic://%s:%s@%s:%s?%s#%s",
-		url.PathEscape(p.UUID), url.PathEscape(password),
-		p.Server, portStr, q.Encode(), url.PathEscape(p.Name))
+		return m
+	}())
+
+	// tcpPass = ALL configs that passed TCP ping (regardless of sing-box result)
+	return out, tcpPingPassedAll
 }
 
-func clashProxyToURI(p ClashProxy) string {
-	ptype := strings.ToLower(strings.TrimSpace(p.Type))
-	switch ptype {
-	case "vmess":
-		return clashVMessToURI(p)
-	case "vless":
-		return clashVLessToURI(p)
-	case "trojan":
-		return clashTrojanToURI(p)
-	case "ss", "shadowsocks":
-		return clashSSToURI(p)
-	case "ssr", "shadowsocksr":
-		return clashSSRToURI(p)
-	case "hy2", "hysteria2":
-		return clashHy2ToURI(p)
-	case "hy", "hysteria":
-		return clashHyToURI(p)
-	case "tuic":
-		return clashTUICToURI(p)
+// ── validateWithTracker ───────────────────────────────────────────────────────
+
+func validateWithTracker(configURL, protocol string, localPorts chan int, bt *batchTracker) validationResult {
+	var result validationResult
+
+	outboundJSON, parseErr := toSingBoxOutbound(configURL, protocol)
+	if parseErr != "" {
+		result.failReason = "PARSE: " + parseErr
+		return result
 	}
-	return ""
-}
 
-// ── SNI config conversion ─────────────────────────────────────────────────────
+	port := <-localPorts
+	defer func() { localPorts <- port }()
 
-func toSNIConfig(line, proto string) string {
-	switch proto {
-	case "vmess":
-		return toSNIVMess(line)
-	case "vless", "trojan", "hy2", "hy", "tuic", "ss":
-		return toSNIGeneric(line, proto)
-	case "ssr":
-		return toSNISSR(line)
+	v := cfg.Validation
+	fullConfig := buildSingBoxConfig(outboundJSON, port)
+
+	configFile, err := os.CreateTemp("", "sb-*.json")
+	if err != nil {
+		result.failReason = "FILE: " + err.Error()
+		return result
 	}
-	return ""
-}
+	configPath := configFile.Name()
+	configFile.Close()
 
-func toSNIVMess(line string) string {
-	data := strings.TrimPrefix(line, "vmess://")
-	fragSuffix := ""
-	if idx := strings.LastIndex(data, "#"); idx != -1 {
-		fragSuffix = data[idx:]
-		data = data[:idx]
+	if err := os.WriteFile(configPath, []byte(fullConfig), 0644); err != nil {
+		os.Remove(configPath)
+		result.failReason = "FILE: " + err.Error()
+		return result
 	}
-	data = strings.TrimSpace(data)
+	defer os.Remove(configPath)
 
-	var d map[string]interface{}
-	var isURI bool
+	timeoutSec := v.GlobalTimeoutSec
+	if protocol == "vless" && v.VlessSpecificTimeoutMs > 0 {
+		timeoutSec = float64(v.VlessSpecificTimeoutMs) / 1000.0
+	}
 
-	if strings.HasPrefix(data, "{") {
-		if err := json.Unmarshal([]byte(data), &d); err != nil {
-			return ""
+	ctx, cancel := context.WithTimeout(context.Background(),
+		time.Duration(float64(time.Second)*(timeoutSec+2)))
+	defer cancel()
+
+	var stderr bytes.Buffer
+	cmd := exec.CommandContext(ctx, singBoxPath(), "run", "-c", configPath)
+	cmd.Stderr = &stderr
+	cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
+
+	if err := cmd.Start(); err != nil {
+		result.failReason = "START: " + err.Error()
+		return result
+	}
+
+	bt.register(cmd)
+
+	addr := fmt.Sprintf("127.0.0.1:%d", port)
+	started := waitForPort(addr,
+		time.Duration(v.SingboxStartTimeoutMs)*time.Millisecond,
+		time.Duration(v.SingboxStartIntervalMs)*time.Millisecond,
+		time.Duration(v.PortCheckTimeoutMs)*time.Millisecond,
+	)
+
+	if !started {
+		killGroup(cmd)
+		sbErr := extractErrVerbose(stderr.String())
+		if sbErr == "" {
+			sbErr = fmt.Sprintf("port not open after %dms", v.SingboxStartTimeoutMs)
 		}
+		result.failReason = "SINGBOX_START: " + sbErr
+		return result
+	}
+
+	httpTimeout := v.HTTPRequestTimeoutMs
+	if protocol == "vless" && v.VlessSpecificTimeoutMs > 0 {
+		httpTimeout = v.VlessSpecificTimeoutMs
+	}
+
+	proxyURL, _ := url.Parse("http://" + addr)
+	client := &http.Client{
+		Timeout: time.Duration(httpTimeout) * time.Millisecond,
+		Transport: &http.Transport{
+			Proxy: http.ProxyURL(proxyURL),
+			DialContext: (&net.Dialer{
+				Timeout:   time.Duration(v.HTTPDialTimeoutMs) * time.Millisecond,
+				KeepAlive: 0,
+			}).DialContext,
+			MaxIdleConns:          1,
+			MaxIdleConnsPerHost:   1,
+			DisableKeepAlives:     true,
+			ResponseHeaderTimeout: time.Duration(v.HTTPResponseTimeoutMs) * time.Millisecond,
+		},
+	}
+
+	success, latency, httpErr := tryHTTP(ctx, client, v.TestURLs, v.MaxRetries)
+	killGroup(cmd)
+
+	if success {
+		result.passed = true
+		result.latency = latency
 	} else {
-		decoded, err := decodeBase64([]byte(data))
+		sbErr := extractErrVerbose(stderr.String())
+		if sbErr != "" {
+			result.failReason = "CONN: " + httpErr + " | SB:" + sbErr
+		} else {
+			result.failReason = "CONN: " + httpErr
+		}
+	}
+	return result
+}
+
+// ── waitForPort ───────────────────────────────────────────────────────────────
+
+func waitForPort(addr string, maxWait, interval, dialTimeout time.Duration) bool {
+	deadline := time.Now().Add(maxWait)
+	for {
+		conn, err := net.DialTimeout("tcp", addr, dialTimeout)
 		if err == nil {
-			if json.Unmarshal([]byte(decoded), &d) != nil {
-				d = nil
+			conn.Close()
+			return true
+		}
+		if time.Now().Add(interval).After(deadline) {
+			return false
+		}
+		time.Sleep(interval)
+	}
+}
+
+// ── tryHTTP ───────────────────────────────────────────────────────────────────
+
+func tryHTTP(ctx context.Context, client *http.Client, testURLs []string, maxRetries int) (bool, time.Duration, string) {
+	effectiveURLs := make([]string, 0, len(testURLs))
+	seen := make(map[string]bool)
+	for _, u := range testURLs {
+		if !seen[u] {
+			effectiveURLs = append(effectiveURLs, u)
+			seen[u] = true
+		}
+	}
+	var lastErr string
+	for attempt := 0; attempt <= maxRetries; attempt++ {
+		if ctx.Err() != nil {
+			return false, 0, "context expired"
+		}
+		for _, testURL := range effectiveURLs {
+			if ctx.Err() != nil {
+				return false, 0, "context expired"
 			}
-		}
-		if d == nil {
-			if atIdx := strings.Index(data, "@"); atIdx != -1 {
-				isURI = true
+			start := time.Now()
+			req, err := http.NewRequestWithContext(ctx, "GET", testURL, nil)
+			if err != nil {
+				lastErr = err.Error()
+				continue
 			}
-		}
-	}
-
-	if isURI {
-		atIdx := strings.LastIndex(data, "@")
-		if atIdx == -1 {
-			return ""
-		}
-		userPart := data[:atIdx]
-		rest := data[atIdx+1:]
-		qIdx := strings.Index(rest, "?")
-		querySuffix := ""
-		if qIdx != -1 {
-			querySuffix = rest[qIdx:]
-		}
-		return fmt.Sprintf("vmess://%s@%s:%d%s%s", userPart, sniHost, sniPort, querySuffix, fragSuffix)
-	}
-
-	if d == nil {
-		return ""
-	}
-	d["add"] = sniHost
-	d["port"] = strconv.Itoa(sniPort)
-
-	keys := make([]string, 0, len(d))
-	for k := range d {
-		keys = append(keys, k)
-	}
-	sort.Strings(keys)
-	var buf bytes.Buffer
-	buf.WriteByte('{')
-	for i, k := range keys {
-		if i > 0 {
-			buf.WriteByte(',')
-		}
-		kj, _ := json.Marshal(k)
-		vj, _ := json.Marshal(d[k])
-		buf.Write(kj)
-		buf.WriteByte(':')
-		buf.Write(vj)
-	}
-	buf.WriteByte('}')
-	return "vmess://" + base64.StdEncoding.EncodeToString(buf.Bytes()) + fragSuffix
-}
-
-func toSNIGeneric(line, proto string) string {
-	schemeEnd := strings.Index(line, "://")
-	if schemeEnd == -1 {
-		return ""
-	}
-	scheme := line[:schemeEnd+3]
-	rest := line[schemeEnd+3:]
-
-	frag := ""
-	if idx := strings.LastIndex(rest, "#"); idx != -1 {
-		frag = rest[idx:]
-		rest = rest[:idx]
-	}
-	query := ""
-	if idx := strings.Index(rest, "?"); idx != -1 {
-		query = rest[idx:]
-		rest = rest[:idx]
-	}
-	path := ""
-	if idx := strings.Index(rest, "/"); idx != -1 {
-		path = rest[idx:]
-		rest = rest[:idx]
-	}
-
-	atIdx := strings.LastIndex(rest, "@")
-	var userInfo, hostPort string
-	if atIdx != -1 {
-		userInfo = rest[:atIdx+1]
-		hostPort = rest[atIdx+1:]
-	} else {
-		hostPort = rest
-	}
-
-	newHostPort := fmt.Sprintf("%s:%d", sniHost, sniPort)
-	_ = hostPort
-	return scheme + userInfo + newHostPort + path + query + frag
-}
-
-func toSNISSR(line string) string {
-	trimmed := strings.TrimPrefix(line, "ssr://")
-	decoded, err := decodeBase64([]byte(trimmed))
-	if err != nil {
-		return ""
-	}
-	params := ""
-	body := decoded
-	if i := strings.Index(decoded, "/?"); i != -1 {
-		params = decoded[i:]
-		body = decoded[:i]
-	} else if i := strings.Index(decoded, "?"); i != -1 {
-		params = decoded[i:]
-		body = decoded[:i]
-	}
-	parts := strings.SplitN(body, ":", 6)
-	if len(parts) < 6 {
-		return ""
-	}
-	parts[0] = sniHost
-	parts[1] = strconv.Itoa(sniPort)
-	newFull := strings.Join(parts, ":") + params
-	return "ssr://" + base64.RawURLEncoding.EncodeToString([]byte(newFull))
-}
-
-// ── detectProto ──────────────────────────────────────────────────────────────
-
-func detectProto(line string) string {
-	for _, p := range cfg.Protocols {
-		if strings.HasPrefix(line, p+"://") {
-			return p
-		}
-	}
-	return ""
-}
-
-// ── writeOnlyTCPPassFiles ────────────────────────────────────────────────────
-// Writes configs that passed TCP ping but failed sing-box validation
-// into 10000-line batches under config/tcp-pass/ and config/tcp-pass-sni/
-
-func writeTCPPassFiles(lines []string) {
-	if len(lines) == 0 {
-		return
-	}
-	const fixedName = "@DeltaKroneckerGithub"
-	const batchSize = 10000
-
-	// rename all to fixed name + build SNI versions
-	named := make([]string, 0, len(lines))
-	sniNamed := make([]string, 0, len(lines))
-	for _, line := range lines {
-		proto := detectProto(line)
-		n := renameTo(line, proto, fixedName)
-		named = append(named, n)
-
-		sniLine := toSNIConfig(line, proto)
-		if sniLine != "" {
-			sn := renameTo(sniLine, proto, fixedName)
-			sniNamed = append(sniNamed, sn)
-		}
-	}
-
-	// write original batches
-	total := len(named)
-	numBatches := (total + batchSize - 1) / batchSize
-	for i := 0; i < numBatches; i++ {
-		start := i * batchSize
-		end := start + batchSize
-		if end > total {
-			end = total
-		}
-		writeFile(fmt.Sprintf("config/tcp-pass/batch_%03d.txt", i+1), named[start:end])
-	}
-	fmt.Printf("📁 TCP-Pass: wrote %d configs into %d files\n", total, numBatches)
-
-	// write SNI batches
-	if len(sniNamed) > 0 {
-		sniTotal := len(sniNamed)
-		sniNumBatches := (sniTotal + batchSize - 1) / batchSize
-		for i := 0; i < sniNumBatches; i++ {
-			start := i * batchSize
-			end := start + batchSize
-			if end > sniTotal {
-				end = sniTotal
+			resp, err := client.Do(req)
+			if err != nil {
+				e := shortenErr(err.Error())
+				lastErr = e
+				if strings.Contains(e, "connection refused") ||
+					strings.Contains(e, "connection reset") ||
+					strings.Contains(e, "no route to host") ||
+					strings.Contains(e, "network unreachable") {
+					return false, 0, lastErr
+				}
+				continue
 			}
-			writeFile(fmt.Sprintf("config/tcp-pass-sni/batch_%03d.txt", i+1), sniNamed[start:end])
+			latency := time.Since(start)
+			code := resp.StatusCode
+			resp.Body.Close()
+
+			if code == 200 || code == 204 {
+				return true, latency, ""
+			}
+			if code == 301 || code == 302 || code == 307 || code == 308 {
+				return true, latency, ""
+			}
+			if code == 400 || code == 403 || code == 404 || code == 429 {
+				return true, latency, ""
+			}
+			lastErr = fmt.Sprintf("HTTP_%d", code)
 		}
-		fmt.Printf("📁 TCP-Pass-SNI: wrote %d configs into %d files\n", sniTotal, sniNumBatches)
+	}
+	return false, 0, lastErr
+}
+
+// ── buildSingBoxConfig ────────────────────────────────────────────────────────
+
+func buildSingBoxConfig(outboundJSON string, port int) string {
+	return fmt.Sprintf(`{"log":{"level":"error","timestamp":false},"dns":{"servers":[{"tag":"dns-direct","address":"8.8.8.8","strategy":"prefer_ipv4","detour":"direct"}],"independent_cache":true},"inbounds":[{"type":"http","tag":"http-in","listen":"127.0.0.1","listen_port":%d}],"outbounds":[%s,{"type":"direct","tag":"direct"},{"type":"block","tag":"block"}]}`,
+		port, outboundJSON)
+}
+
+// ── Failure classification ────────────────────────────────────────────────────
+
+func classifyFailReason(reason string) string {
+	stripANSI := func(s string) string {
+		var out strings.Builder
+		i := 0
+		for i < len(s) {
+			if s[i] == 0x1b && i+1 < len(s) && s[i+1] == '[' {
+				j := i + 2
+				for j < len(s) && !(s[j] >= 'A' && s[j] <= 'Z') && !(s[j] >= 'a' && s[j] <= 'z') {
+					j++
+				}
+				if j < len(s) {
+					j++
+				}
+				i = j
+				continue
+			}
+			out.WriteByte(s[i])
+			i++
+		}
+		return out.String()
+	}
+	r := stripANSI(reason)
+
+	switch {
+	case strings.HasPrefix(r, "PARSE: base64:"):
+		return "PARSE › base64 decode error"
+	case strings.HasPrefix(r, "PARSE: json:"):
+		return "PARSE › json decode error"
+	case strings.HasPrefix(r, "PARSE: url parse:"):
+		return "PARSE › url parse error"
+	case strings.HasPrefix(r, "PARSE: unsupported cipher:"):
+		return "PARSE › unsupported SS cipher"
+	case strings.HasPrefix(r, "PARSE: unsupported transport:"):
+		msg := strings.TrimPrefix(r, "PARSE: unsupported transport: ")
+		switch msg {
+		case "xhttp", "splithttp":
+			return "PARSE › unsupported transport (xhttp/splithttp)"
+		default:
+			return "PARSE › unsupported transport (kcp/quic/mkcp)"
+		}
+	case r == "PARSE: missing @" || r == "PARSE: missing server" ||
+		r == "PARSE: missing uuid" || r == "PARSE: missing password" ||
+		r == "PARSE: missing port" || r == "PARSE: missing auth":
+		return "PARSE › " + strings.TrimPrefix(r, "PARSE: ")
+	case strings.HasPrefix(r, "PARSE: port:"):
+		return "PARSE › invalid port value"
+	case strings.HasPrefix(r, "PARSE: reality:"):
+		return "PARSE › reality missing public key"
+	case strings.HasPrefix(r, "PARSE: unknown security:"):
+		return "PARSE › unknown security type"
+	case strings.HasPrefix(r, "PARSE:"):
+		msg := strings.TrimPrefix(r, "PARSE: ")
+		if len(msg) > 48 {
+			msg = msg[:48] + "…"
+		}
+		return "PARSE › " + msg
+
+	case strings.HasPrefix(r, "SINGBOX_START:"), strings.HasPrefix(r, "START:"):
+		body := r
+		if i := strings.Index(body, ": "); i != -1 {
+			body = body[i+2:]
+		}
+		switch {
+		case strings.Contains(body, "port not open"):
+			return "START › port timeout (sing-box didn't listen)"
+		case strings.Contains(body, "decode config"), strings.Contains(body, "outbound"):
+			if strings.Contains(body, "flow") {
+				return "START › invalid flow (requires TLS)"
+			}
+			return "START › invalid config JSON (sing-box rejected)"
+		case strings.Contains(body, "address already in use"):
+			return "START › port already in use"
+		case strings.Contains(body, "no such file"), strings.Contains(body, "not found"):
+			return "START › sing-box binary not found"
+		case strings.Contains(body, "permission denied"):
+			return "START › permission denied"
+		case strings.Contains(body, "method"):
+			return "START › unsupported SS method"
+		default:
+			if len(body) > 55 {
+				body = body[:55] + "…"
+			}
+			return "START › " + body
+		}
+
+	case strings.HasPrefix(r, "CONN:"):
+		body := strings.TrimPrefix(r, "CONN: ")
+		if i := strings.Index(body, " | SINGBOX:"); i != -1 {
+			body = body[:i]
+		}
+		if strings.HasPrefix(body, "Get ") {
+			real := body
+			if i := strings.Index(body, `": `); i != -1 {
+				real = body[i+3:]
+			} else if i := strings.LastIndex(body, ": "); i != -1 && i > 10 {
+				real = body[i+2:]
+			}
+			body = real
+		}
+		switch {
+		case strings.Contains(body, "context deadline exceeded"), strings.Contains(body, "context canceled"):
+			return "CONN › request timed out (no response from proxy)"
+		case strings.Contains(body, "connection refused"):
+			return "CONN › connection refused (proxy died)"
+		case body == "EOF" || strings.HasSuffix(body, ": EOF") || body == "unexpected EOF":
+			return "CONN › EOF (proxy closed connection)"
+		case strings.Contains(body, "EOF"):
+			return "CONN › EOF (proxy closed connection)"
+		case strings.Contains(body, "no such host"), strings.Contains(body, "lookup"):
+			return "CONN › DNS resolution failed"
+		case strings.Contains(body, "i/o timeout"):
+			return "CONN › i/o timeout"
+		case strings.Contains(body, "connection reset"):
+			return "CONN › connection reset by peer"
+		case strings.Contains(body, "no route to host"):
+			return "CONN › no route to host"
+		case strings.Contains(body, "network unreachable"):
+			return "CONN › network unreachable"
+		case strings.Contains(body, "tls:"), strings.Contains(body, "TLS"), strings.Contains(body, "certificate"):
+			return "CONN › TLS handshake failed"
+		case body == "HTTP_502":
+			return "CONN › HTTP 502 (proxy rejected CONNECT)"
+		case body == "HTTP_501":
+			return "CONN › HTTP 501 (no CONNECT support)"
+		case strings.Contains(body, "HTTP_"):
+			return "CONN › unexpected HTTP status: " + body
+		case strings.Contains(body, "proxyconnect"):
+			return "CONN › proxy CONNECT failed"
+		case strings.Contains(body, "context expired"):
+			return "CONN › test URL timed out (proxy dead or unreachable)"
+		default:
+			if len(body) > 55 {
+				body = body[:55] + "…"
+			}
+			return "CONN › " + body
+		}
+
+	case strings.HasPrefix(r, "FILE:"):
+		return "OTHER › temp file error"
+	default:
+		if len(r) > 55 {
+			r = r[:55] + "…"
+		}
+		return "OTHER › " + r
 	}
 }
 
-// ── writeSummary (README) ─────────────────────────────────────────────────────
+// ── printFailureReport ────────────────────────────────────────────────────────
 
-const autoGenMarker = "<!-- AUTO-GENERATED: DO NOT EDIT BELOW THIS LINE -->\n"
-
-func writeSummary(results []configResult, failedLinks []string, duration float64, originalTotal int, onlyTCPPassCount int) {
-	byProtoOut := make(map[string]int)
-	for _, r := range results {
-		byProtoOut[r.proto]++
+func printFailureReport(protoFails map[string]*failDetail, byProto map[string][]string) {
+	type kv struct {
+		key string
+		val int
 	}
 
-	repoBase := "https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main"
+	const W = 78
 
-	var gen strings.Builder
-	gen.WriteString(autoGenMarker)
-	gen.WriteString("\n")
+	hr := func(ch string) { fmt.Println(strings.Repeat(ch, W)) }
 
-	gen.WriteString("## V2ray\n\n")
-	fmt.Fprintf(&gen, "| Protocol | Count | Link |\n|---|---|---|\n")
-	fmt.Fprintf(&gen, "| All | %d | [all_configs.txt](%s/config/all_configs.txt) |\n", len(results), repoBase)
-	for _, p := range cfg.ProtocolOrder {
-		if n := byProtoOut[p]; n > 0 {
-			fmt.Fprintf(&gen, "| %s | %d | [%s.txt](%s/config/protocols/%s.txt) |\n",
-				strings.ToUpper(p), n, p, repoBase, p)
-		}
+	fmt.Println()
+	hr("═")
+	title := "  FAILURE ANALYSIS REPORT"
+	fmt.Printf("%-*s%s\n", W-len(title)-1, title, "")
+	fmt.Printf("  %-*s\n", W-3, "Detailed breakdown of why each config failed, grouped by root cause.")
+	hr("═")
+
+	type protoRow struct {
+		name      string
+		total     int
+		passed    int
+		parseFail int
+		startFail int
+		connFail  int
+		otherFail int
 	}
-	gen.WriteString("\n---\n\n")
+	var rows []protoRow
 
-	gen.WriteString("## SNI\n\n")
-	fmt.Fprintf(&gen, "| Protocol | Count | Link |\n|---|---|---|\n")
-	fmt.Fprintf(&gen, "| All | %d | [all_configs_sni.txt](%s/config/sni/all_configs_sni.txt) |\n", len(results), repoBase)
-	for _, p := range cfg.ProtocolOrder {
-		if n := byProtoOut[p]; n > 0 {
-			fmt.Fprintf(&gen, "| %s | %d | [%s_sni.txt](%s/config/sni/protocols/%s_sni.txt) |\n",
-				strings.ToUpper(p), n, p, repoBase, p)
-		}
-	}
-	gen.WriteString("\n---\n\n")
-
-	v2rayBatches := countBatchFiles("config/batches/v2ray")
-	if v2rayBatches > 0 {
-		gen.WriteString("## V2ray Batches\n\n")
-		fmt.Fprintf(&gen, "| Batch | Count | Link |\n|---|---|---|\n")
-		for i := 1; i <= v2rayBatches; i++ {
-			cnt := min500(i, len(results))
-			fmt.Fprintf(&gen, "| %03d | %d | [batch_%03d.txt](%s/config/batches/v2ray/batch_%03d.txt) |\n",
-				i, cnt, i, repoBase, i)
-		}
-		gen.WriteString("\n")
-	}
-
-	sniV2rayBatches := countBatchFiles("config/batches/sni_v2ray")
-	if sniV2rayBatches > 0 {
-		gen.WriteString("## SNI Batches\n\n")
-		fmt.Fprintf(&gen, "| Batch | Count | Link |\n|---|---|---|\n")
-		for i := 1; i <= sniV2rayBatches; i++ {
-			cnt := min500(i, len(results))
-			fmt.Fprintf(&gen, "| %03d | %d | [batch_%03d.txt](%s/config/batches/sni_v2ray/batch_%03d.txt) |\n",
-				i, cnt, i, repoBase, i)
-		}
-		gen.WriteString("\n")
-	}
-
-	gen.WriteString("## Clash\n\n")
-	fmt.Fprintf(&gen, "| Protocol | Count | Link |\n|---|---|---|\n")
-	fmt.Fprintf(&gen, "| All | %d | [clash.yaml](%s/config/clash.yaml) |\n", len(results), repoBase)
-	for _, p := range cfg.ProtocolOrder {
-		if n := byProtoOut[p]; n > 0 {
-			fmt.Fprintf(&gen, "| %s | %d | [%s_clash.yaml](%s/config/protocols/%s_clash.yaml) |\n",
-				strings.ToUpper(p), n, p, repoBase, p)
-		}
-	}
-	gen.WriteString("\n---\n\n")
-
-	gen.WriteString("## Clash SNI\n\n")
-	fmt.Fprintf(&gen, "| Protocol | Count | Link |\n|---|---|---|\n")
-	fmt.Fprintf(&gen, "| All | %d | [clash_sni.yaml](%s/config/sni/clash_sni.yaml) |\n", len(results), repoBase)
-	for _, p := range cfg.ProtocolOrder {
-		if n := byProtoOut[p]; n > 0 {
-			fmt.Fprintf(&gen, "| %s | %d | [%s_clash_sni.yaml](%s/config/sni/protocols/%s_clash_sni.yaml) |\n",
-				strings.ToUpper(p), n, p, repoBase, p)
-		}
-	}
-	gen.WriteString("\n---\n\n")
-
-	gen.WriteString("## Clash Batches\n\n")
-	clashBatches := countBatchFiles("config/batches/clash")
-	if clashBatches > 0 {
-		fmt.Fprintf(&gen, "| Batch | Count | Link |\n|---|---|---|\n")
-		for i := 1; i <= clashBatches; i++ {
-			cnt := min500(i, len(results))
-			fmt.Fprintf(&gen, "| %03d | %d | [batch_%03d.yaml](%s/config/batches/clash/batch_%03d.yaml) |\n",
-				i, cnt, i, repoBase, i)
-		}
-		gen.WriteString("\n---\n\n")
-	}
-
-	gen.WriteString("## Clash SNI Batches\n\n")
-	clashSNIBatches := countBatchFiles("config/batches/sni_clash")
-	if clashSNIBatches > 0 {
-		fmt.Fprintf(&gen, "| Batch | Count | Link |\n|---|---|---|\n")
-		for i := 1; i <= clashSNIBatches; i++ {
-			cnt := min500(i, len(results))
-			fmt.Fprintf(&gen, "| %03d | %d | [batch_%03d.yaml](%s/config/batches/sni_clash/batch_%03d.yaml) |\n",
-				i, cnt, i, repoBase, i)
-		}
-		gen.WriteString("\n---\n\n")
-	}
-
-	gen.WriteString("## Statistics\n\n")
-	totalIn, totalOut := 0, 0
-	fmt.Fprintf(&gen, "| Protocol | Tested | Valid | Pass%% |\n|---|---|---|---|\n")
-	for _, p := range cfg.ProtocolOrder {
-		in, out := gInputByProto[p], byProtoOut[p]
-		totalIn += in
-		totalOut += out
-		if in == 0 {
+	for _, proto := range cfg.ProtocolOrder {
+		fd := protoFails[proto]
+		if fd == nil {
 			continue
 		}
-		rate := float64(out) / float64(in) * 100
-		fmt.Fprintf(&gen, "| %s | %d | %d | %.1f%% |\n", strings.ToUpper(p), in, out, rate)
-	}
-	overallRate := 0.0
-	if totalIn > 0 {
-		overallRate = float64(totalOut) / float64(totalIn) * 100
-	}
-	fmt.Fprintf(&gen, "| **Total** | **%d** | **%d** | **%.1f%%** |\n\n", totalIn, totalOut, overallRate)
-	fmt.Fprintf(&gen, "| Metric | Value |\n|---|---|\n")
-	fmt.Fprintf(&gen, "| Fetched | %d |\n", originalTotal)
-	fmt.Fprintf(&gen, "| Unique | %d |\n", totalIn)
-	fmt.Fprintf(&gen, "| TCP Pass | %d |\n", onlyTCPPassCount)
-	fmt.Fprintf(&gen, "| Valid | %d |\n", len(results))
-	fmt.Fprintf(&gen, "| Time | %.2fs |\n\n", duration)
-	gen.WriteString("---\n\n")
-
-	// Only-TCP-Pass batches section
-	onlyTCPBatches := countBatchFiles("config/tcp-pass")
-	if onlyTCPBatches > 0 {
-		gen.WriteString("## TCP Pass (for advanced users)\n\n")
-		fmt.Fprintf(&gen, "> All configs that passed TCP ping. Total: **%d**\n\n", onlyTCPPassCount)
-		fmt.Fprintf(&gen, "| Batch | Link |\n|---|---|\n")
-		for i := 1; i <= onlyTCPBatches; i++ {
-			fmt.Fprintf(&gen, "| %03d | [batch_%03d.txt](%s/config/tcp-pass/batch_%03d.txt) |\n",
-				i, i, repoBase, i)
+		total := len(byProto[proto])
+		if total == 0 {
+			continue
 		}
-		gen.WriteString("\n---\n\n")
-	}
 
-	// Only-TCP-Pass SNI batches section
-	onlyTCPSNIBatches := countBatchFiles("config/tcp-pass-sni")
-	if onlyTCPSNIBatches > 0 {
-		gen.WriteString("## TCP Pass SNI (for advanced users)\n\n")
-		fmt.Fprintf(&gen, "> SNI version of TCP Pass configs. Total: **%d**\n\n", onlyTCPPassCount)
-		fmt.Fprintf(&gen, "| Batch | Link |\n|---|---|\n")
-		for i := 1; i <= onlyTCPSNIBatches; i++ {
-			fmt.Fprintf(&gen, "| %03d | [batch_%03d.txt](%s/config/tcp-pass-sni/batch_%03d.txt) |\n",
-				i, i, repoBase, i)
+		var pf, sf, cf, of int
+		for key, cnt := range fd.reasons {
+			switch {
+			case strings.HasPrefix(key, "PARSE"):
+				pf += cnt
+			case strings.HasPrefix(key, "START"):
+				sf += cnt
+			case strings.HasPrefix(key, "CONN"):
+				cf += cnt
+			default:
+				of += cnt
+			}
 		}
-		gen.WriteString("\n---\n\n")
+		totalFail := pf + sf + cf + of
+		rows = append(rows, protoRow{proto, total, total - totalFail, pf, sf, cf, of})
 	}
 
-	existingContent := ""
-	if raw, err := os.ReadFile("read.md"); err == nil {
-		existing := string(raw)
-		if idx := strings.Index(existing, autoGenMarker); idx != -1 {
-			existingContent = strings.TrimRight(existing[:idx], "\n\r ")
-		} else {
-			existingContent = strings.TrimRight(existing, "\n\r ")
+	fmt.Println()
+	fmt.Printf("  %-7s %7s %7s %6s  %9s %9s %9s %8s  %s\n",
+		"PROTO", "TOTAL", "PASSED", "PASS%", "PARSE✗", "START✗", "CONN✗", "OTHER✗", "PASS-RATE BAR")
+	fmt.Println("  " + strings.Repeat("─", W-2))
+	for _, row := range rows {
+		passRate := float64(row.passed) / float64(row.total) * 100
+		barLen := int(passRate / 5)
+		bar := strings.Repeat("▓", barLen) + strings.Repeat("░", 20-barLen)
+		fmt.Printf("  %-7s %7d %7d %5.1f%%  %9d %9d %9d %8d  %s\n",
+			strings.ToUpper(row.name),
+			row.total, row.passed, passRate,
+			row.parseFail, row.startFail, row.connFail, row.otherFail,
+			bar)
+	}
+	fmt.Println()
+
+	for _, proto := range cfg.ProtocolOrder {
+		fd := protoFails[proto]
+		if fd == nil {
+			continue
 		}
-	}
-
-	f, err := os.Create("README.md")
-	if err != nil {
-		fmt.Printf("❌ Cannot write README.md: %v\n", err)
-		return
-	}
-	defer f.Close()
-	w := bufio.NewWriter(f)
-	defer w.Flush()
-
-	if existingContent != "" {
-		w.WriteString(existingContent)
-		w.WriteString("\n\n")
-	}
-	w.WriteString(gen.String())
-}
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
-
-func yamlQuote(s string) string {
-	s = strings.ReplaceAll(s, `\`, `\\`)
-	s = strings.ReplaceAll(s, `"`, `\"`)
-	return `"` + s + `"`
-}
-
-func countBatchFiles(dir string) int {
-	entries, err := os.ReadDir(dir)
-	if err != nil {
-		return 0
-	}
-	count := 0
-	for _, e := range entries {
-		if !e.IsDir() {
-			count++
+		total := len(byProto[proto])
+		if total == 0 {
+			continue
 		}
-	}
-	return count
-}
 
-func min500(batchIdx, total int) int {
-	start := (batchIdx - 1) * 500
-	if start >= total {
-		return 0
+		totalFails := 0
+		for _, c := range fd.reasons {
+			totalFails += c
+		}
+		passed := total - totalFails
+		passRate := float64(passed) / float64(total) * 100
+
+		fmt.Printf("┌─ %-6s ─────────────────────────────────────────────────────────────\n",
+			strings.ToUpper(proto))
+		fmt.Printf("│  Total: %-6d  Passed: %-6d  Failed: %-6d  Pass rate: %.1f%%\n",
+			total, passed, totalFails, passRate)
+
+		if totalFails == 0 {
+			fmt.Println("│  ✓ No failures recorded.")
+			fmt.Println("└" + strings.Repeat("─", W-1))
+			continue
+		}
+
+		sections := []struct{ prefix, label string }{
+			{"PARSE", "Parse Failures  (config could not be decoded/interpreted)"},
+			{"START", "Start Failures  (sing-box refused or couldn't start)"},
+			{"CONN", "Conn Failures   (proxy started but connection failed)"},
+			{"OTHER", "Other / Unknown"},
+		}
+
+		for _, sec := range sections {
+			var items []kv
+			secTotal := 0
+			for k, v := range fd.reasons {
+				if strings.HasPrefix(k, sec.prefix) {
+					items = append(items, kv{k, v})
+					secTotal += v
+				}
+			}
+			if len(items) == 0 {
+				continue
+			}
+			sort.Slice(items, func(i, j int) bool { return items[i].val > items[j].val })
+
+			secPct := float64(secTotal) / float64(totalFails) * 100
+			fmt.Printf("│\n│  ▶ %s\n", sec.label)
+			fmt.Printf("│    Sub-total: %d configs (%.1f%% of all failures)\n", secTotal, secPct)
+			fmt.Printf("│    %-52s %7s  %6s  %s\n", "Reason", "Count", "of-sec", "Bar")
+			fmt.Printf("│    %s\n", strings.Repeat("·", 72))
+
+			for _, item := range items {
+				pct := float64(item.val) / float64(secTotal) * 100
+				barLen := int(pct / 5)
+				if barLen > 20 {
+					barLen = 20
+				}
+				bar := strings.Repeat("█", barLen)
+
+				displayKey := item.key
+				if i := strings.Index(displayKey, " › "); i != -1 {
+					displayKey = displayKey[i+3:]
+				}
+				if len(displayKey) > 51 {
+					displayKey = displayKey[:51] + "…"
+				}
+
+				fmt.Printf("│    %-52s %7d  %5.1f%%  %s\n",
+					displayKey, item.val, pct, bar)
+
+				if samples := fd.samples[item.key]; len(samples) > 0 {
+					fmt.Printf("│    ┌─ SAMPLE CONFIGS (%d) ──────────────────────────────────────────\n", len(samples))
+					for i, s := range samples {
+						if len(s) > 140 {
+							s = s[:140] + "…"
+						}
+						fmt.Printf("│    │ [%3d] %s\n", i+1, s)
+					}
+					fmt.Printf("│    └──────────────────────────────────────────────────────────────\n")
+				}
+			}
+		}
+
+		fmt.Println("└" + strings.Repeat("─", W-1))
 	}
-	end := start + 500
-	if end > total {
-		return total - start
+
+	var grandTotal, grandPassed, grandFail int
+	for _, row := range rows {
+		grandTotal += row.total
+		grandPassed += row.passed
+		grandFail += row.total - row.passed
 	}
-	return end - start
+	fmt.Println()
+	hr("═")
+	if grandTotal > 0 {
+		fmt.Printf("  OVERALL  Total=%-7d  Passed=%-7d  Failed=%-7d  Pass rate=%.1f%%\n",
+			grandTotal, grandPassed, grandFail,
+			float64(grandPassed)/float64(grandTotal)*100)
+	}
+	hr("═")
+	fmt.Println()
 }
