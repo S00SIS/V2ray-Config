@@ -100,7 +100,7 @@ func prepareOutputDirs() error {
 		"config/batches/sni_v2ray",
 		"config/batches/sni_clash",
 		"config/batches/sni_clash_advanced",
-		"config/unreach",
+		"config/only-tcp-pass",
 	}
 	for _, dir := range dirs {
 		if err := os.MkdirAll(dir, 0755); err != nil {
@@ -206,7 +206,7 @@ func writeOutputFiles(results []configResult, tcpFailedLines []string) {
 	}
 
 	writeBatchFiles(all, allClash, allClashNames, allSNI, allSNIClash, allSNIClashNames)
-	writeUnreachFiles(tcpFailedLines)
+	writeOnlyTCPPassFiles(tcpFailedLines)
 }
 
 // ── writeBatchFiles ───────────────────────────────────────────────────────────
@@ -1381,10 +1381,11 @@ func toSNISSR(line string) string {
 	return "ssr://" + base64.RawURLEncoding.EncodeToString([]byte(newFull))
 }
 
-// ── writeUnreachFiles ────────────────────────────────────────────────────────
-// Writes configs that failed TCP ping into 10000-line batches under config/unreach/
+// ── writeOnlyTCPPassFiles ────────────────────────────────────────────────────
+// Writes configs that passed TCP ping but failed sing-box validation
+// into 10000-line batches under config/only-tcp-pass/
 
-func writeUnreachFiles(lines []string) {
+func writeOnlyTCPPassFiles(lines []string) {
 	if len(lines) == 0 {
 		return
 	}
@@ -1397,16 +1398,16 @@ func writeUnreachFiles(lines []string) {
 		if end > total {
 			end = total
 		}
-		writeFile(fmt.Sprintf("config/unreach/batch_%03d.txt", i+1), lines[start:end])
+		writeFile(fmt.Sprintf("config/only-tcp-pass/batch_%03d.txt", i+1), lines[start:end])
 	}
-	fmt.Printf("📁 Unreach: wrote %d configs into %d files (config/unreach/)\n", total, numBatches)
+	fmt.Printf("📁 Only-TCP-Pass: wrote %d configs into %d files (config/only-tcp-pass/)\n", total, numBatches)
 }
 
 // ── writeSummary (README) ─────────────────────────────────────────────────────
 
 const autoGenMarker = "<!-- AUTO-GENERATED: DO NOT EDIT BELOW THIS LINE -->\n"
 
-func writeSummary(results []configResult, failedLinks []string, duration float64, originalTotal int, tcpFailedCount int) {
+func writeSummary(results []configResult, failedLinks []string, duration float64, originalTotal int, onlyTCPPassCount int) {
 	byProtoOut := make(map[string]int)
 	for _, r := range results {
 		byProtoOut[r.proto]++
@@ -1531,19 +1532,19 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	fmt.Fprintf(&gen, "| Metric | Value |\n|---|---|\n")
 	fmt.Fprintf(&gen, "| Fetched | %d |\n", originalTotal)
 	fmt.Fprintf(&gen, "| Unique | %d |\n", totalIn)
-	fmt.Fprintf(&gen, "| TCP Failed | %d |\n", tcpFailedCount)
+	fmt.Fprintf(&gen, "| Only-TCP-Pass | %d |\n", onlyTCPPassCount)
 	fmt.Fprintf(&gen, "| Valid | %d |\n", len(results))
 	fmt.Fprintf(&gen, "| Time | %.2fs |\n\n", duration)
 	gen.WriteString("---\n\n")
 
-	// Unreach batches section
-	unreachBatches := countBatchFiles("config/unreach")
-	if unreachBatches > 0 {
-		gen.WriteString("## Unreachable (TCP ping failed)\n\n")
-		fmt.Fprintf(&gen, "> These configs failed TCP ping and were not validated. Total: **%d**\n\n", tcpFailedCount)
+	// Only-TCP-Pass batches section
+	onlyTCPBatches := countBatchFiles("config/only-tcp-pass")
+	if onlyTCPBatches > 0 {
+		gen.WriteString("## Only TCP Pass (for advanced users)\n\n")
+		fmt.Fprintf(&gen, "> These configs passed TCP ping but failed sing-box validation. Total: **%d**\n\n", onlyTCPPassCount)
 		fmt.Fprintf(&gen, "| Batch | Link |\n|---|---|\n")
-		for i := 1; i <= unreachBatches; i++ {
-			fmt.Fprintf(&gen, "| %03d | [batch_%03d.txt](%s/config/unreach/batch_%03d.txt) |\n",
+		for i := 1; i <= onlyTCPBatches; i++ {
+			fmt.Fprintf(&gen, "| %03d | [batch_%03d.txt](%s/config/only-tcp-pass/batch_%03d.txt) |\n",
 				i, i, repoBase, i)
 		}
 		gen.WriteString("\n---\n\n")
