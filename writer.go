@@ -538,12 +538,26 @@ func ssClashYAML(raw, name string) (string, bool) {
 	if u, err := url.Parse("ss://" + trimmed); err == nil && u.User != nil && u.Hostname() != "" {
 		uname := u.User.Username()
 		pwd, hasPwd := u.User.Password()
+		if isUUIDOrToken(uname) && !hasPwd {
+			return "", false
+		}
 		if hasPwd {
+			if isUUIDOrToken(uname) {
+				return "", false
+			}
 			method, password = uname, pwd
 		} else {
-			if d, derr := decodeBase64([]byte(uname)); derr == nil && strings.Contains(d, ":") {
-				parts := strings.SplitN(d, ":", 2)
-				method, password = parts[0], parts[1]
+			if d, derr := decodeBase64([]byte(uname)); derr == nil {
+				if strings.HasPrefix(d, "ss://") {
+					inner := strings.TrimPrefix(d, "ss://")
+					if d2, e2 := decodeBase64([]byte(inner)); e2 == nil && strings.Contains(d2, ":") {
+						parts := strings.SplitN(d2, ":", 2)
+						method, password = parts[0], parts[1]
+					}
+				} else if strings.Contains(d, ":") {
+					parts := strings.SplitN(d, ":", 2)
+					method, password = parts[0], parts[1]
+				}
 			}
 		}
 		if method != "" {
