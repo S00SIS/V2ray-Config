@@ -329,6 +329,38 @@ var singboxSupportedSSCiphers = map[string]bool{
 	"none": true, "plain": true,
 }
 
+// isUUID returns true only for standard UUID format (8-4-4-4-12 hex)
+func isUUID(s string) bool {
+	if len(s) != 36 {
+		return false
+	}
+	for i, c := range s {
+		if i == 8 || i == 13 || i == 18 || i == 23 {
+			if c != '-' {
+				return false
+			}
+		} else {
+			if !((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')) {
+				return false
+			}
+		}
+	}
+	return true
+}
+
+// isUUIDOrToken checks a string that has ALREADY been decoded/resolved.
+// Returns true if it looks like a UUID or has no colon (not a method:password pair).
+func isUUIDOrToken(s string) bool {
+	if isUUID(s) {
+		return true
+	}
+	// after decoding, a valid SS userinfo must contain ":"
+	if !strings.Contains(s, ":") {
+		return true
+	}
+	return false
+}
+
 func parseShadowsocks(raw string) (string, string) {
 	trimmed := strings.TrimPrefix(raw, "ss://")
 	if idx := strings.LastIndex(trimmed, "#"); idx != -1 {
@@ -339,6 +371,7 @@ func parseShadowsocks(raw string) (string, string) {
 	var method, password, server string
 	var port int
 
+	// ── Fast path: standard URI with @ ──────────────────────────────────────────
 	fastPathOK := false
 	if fastU, err := url.Parse("ss://" + trimmed); err == nil &&
 		fastU.User != nil && fastU.Hostname() != "" {
@@ -349,13 +382,47 @@ func parseShadowsocks(raw string) (string, string) {
 		if portStr == "" {
 			portStr = "443"
 		}
+
 		var m, p string
 		if hasPwd {
+			// user:pass already split by url.Parse — uname is method, pwd is password
+			// reject if method looks like UUID
+			if isUUID(uname) {
+				return "", "not a shadowsocks config (UUID/token-based, likely vless/trojan)"
+			}
 			m, p = uname, pwd
 		} else {
-			if d, derr := decodeBase64([]byte(uname)); derr == nil && strings.Contains(d, ":") {
-				parts := strings.SplitN(d, ":", 2)
-				m, p = parts[0], parts[1]
+			// uname might be base64(method:pass) OR base64(ss://base64(method:pass))
+			if d, derr := decodeBase64([]byte(uname)); derr == nil {
+				// double-encoded: decoded starts with ss://
+				if strings.HasPrefix(d, "ss://") {
+					inner := strings.TrimPrefix(d, "ss://")
+					// strip any fragment/query from inner
+					if qi := strings.Index(inner, "?"); qi != -1 { inner = inner[:qi] }
+					if fi := strings.LastIndex(inner, "#"); fi != -1 { inner = inner[:fi] }
+					// inner may have @host:port or just be base64(method:pass)
+					if atI := strings.LastIndex(inner, "@"); atI != -1 {
+						// decode the user part of the inner URI
+						innerUser := inner[:atI]
+						if d2, e2 := decodeBase64([]byte(innerUser)); e2 == nil && strings.Contains(d2, ":") {
+							parts2 := strings.SplitN(d2, ":", 2)
+							m, p = parts2[0], parts2[1]
+						} else if strings.Contains(innerUser, ":") {
+							parts2 := strings.SplitN(innerUser, ":", 2)
+							m, p = parts2[0], parts2[1]
+						}
+					} else {
+						// inner is just base64(method:pass), host:port from outer
+						if d2, e2 := decodeBase64([]byte(inner)); e2 == nil && strings.Contains(d2, ":") {
+							parts2 := strings.SplitN(d2, ":", 2)
+							m, p = parts2[0], parts2[1]
+						}
+					}
+				} else if strings.Contains(d, ":") {
+					// normal base64(method:pass)
+					parts := strings.SplitN(d, ":", 2)
+					m, p = parts[0], parts[1]
+				}
 			}
 		}
 		if m != "" && host != "" {
@@ -366,6 +433,7 @@ func parseShadowsocks(raw string) (string, string) {
 		}
 	}
 
+	// ── Slow path: no @ in trimmed, try full base64 decode ───────────────────────
 	if !fastPathOK {
 		atIdx := strings.LastIndex(trimmed, "@")
 		if atIdx == -1 {
@@ -377,6 +445,13 @@ func parseShadowsocks(raw string) (string, string) {
 			if err != nil {
 				decoded = trimmed
 			}
+			// handle double-encoded: decoded starts with ss://
+			if strings.HasPrefix(decoded, "ss://") {
+				decoded = strings.TrimPrefix(decoded, "ss://")
+				if d2, e2 := decodeBase64([]byte(decoded)); e2 == nil {
+					decoded = d2
+				}
+			}
 			atIdx2 := strings.LastIndex(decoded, "@")
 			if atIdx2 == -1 {
 				return "", "missing @"
@@ -385,6 +460,10 @@ func parseShadowsocks(raw string) (string, string) {
 			hostPart := decoded[atIdx2+1:]
 			if idx := strings.Index(hostPart, "?"); idx != -1 {
 				hostPart = hostPart[:idx]
+			}
+			// reject if userPart is literally a UUID (not base64)
+			if isUUID(userPart) {
+				return "", "not a shadowsocks config (UUID/token-based, likely vless/trojan)"
 			}
 			m, p, s, po, e := ssParseUserAndHost(userPart, hostPart)
 			if e != "" {
@@ -396,6 +475,10 @@ func parseShadowsocks(raw string) (string, string) {
 			hostPart := trimmed[atIdx+1:]
 			if idx := strings.Index(hostPart, "?"); idx != -1 {
 				hostPart = hostPart[:idx]
+			}
+			// reject if userPart is literally a UUID (not base64)
+			if isUUID(userPart) {
+				return "", "not a shadowsocks config (UUID/token-based, likely vless/trojan)"
 			}
 			m, p, s, po, e := ssParseUserAndHost(userPart, hostPart)
 			if e != "" {
@@ -440,6 +523,13 @@ func ssParseUserAndHost(userPart, hostPart string) (method, password, server str
 	}
 
 	decoded := decodeUser(userPart)
+	// after decode, reject UUIDs and strings with no colon
+	if isUUID(decoded) {
+		return "", "", "", 0, "not a shadowsocks config (UUID/token-based)"
+	}
+	if !strings.Contains(decoded, ":") {
+		return "", "", "", 0, "invalid user info (no method:password separator)"
+	}
 	parts := strings.SplitN(decoded, ":", 2)
 	if len(parts) != 2 || parts[0] == "" {
 		return "", "", "", 0, "invalid user info"
