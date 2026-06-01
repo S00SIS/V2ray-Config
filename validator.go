@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"math/rand"
 	"net"
 	"net/http"
 	"net/url"
@@ -264,6 +265,8 @@ func validateAll(lines []string) ([]configResult, []string) {
 		batchSize = 50
 	}
 
+	rng := rand.New(rand.NewSource(time.Now().UnixNano()))
+
 	// TCP ping settings
 	tcpTimeout := time.Duration(v.TCPPingTimeoutMs) * time.Millisecond
 	if tcpTimeout <= 0 {
@@ -288,6 +291,11 @@ func validateAll(lines []string) ([]configResult, []string) {
 		if len(protoLines) == 0 {
 			continue
 		}
+
+		// Shuffle before processing (same as original)
+		rng.Shuffle(len(protoLines), func(i, j int) {
+			protoLines[i], protoLines[j] = protoLines[j], protoLines[i]
+		})
 
 		// ── Phase 1: TCP ping pre-check ───────────────────────────────────────
 		effBatchSize := tcpBatchSize
@@ -488,18 +496,8 @@ func validateAll(lines []string) ([]configResult, []string) {
 		return m
 	}())
 
-	// onlyTCPPass = passed TCP ping BUT failed sing-box validation
-	singBoxPassedSet := make(map[string]bool, len(out))
-	for _, r := range out {
-		singBoxPassedSet[r.line] = true
-	}
-	var onlyTCPPass []string
-	for _, l := range tcpPingPassedAll {
-		if !singBoxPassedSet[l] {
-			onlyTCPPass = append(onlyTCPPass, l)
-		}
-	}
-	return out, onlyTCPPass
+	// tcpPass = ALL configs that passed TCP ping (regardless of sing-box result)
+	return out, tcpPingPassedAll
 }
 
 // ── validateWithTracker ───────────────────────────────────────────────────────
