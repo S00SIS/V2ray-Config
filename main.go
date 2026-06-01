@@ -85,7 +85,7 @@ func main() {
 
 	elapsed := time.Since(start).Seconds()
 	fmt.Printf("\n✅ Valid configurations: %d\n", len(results))
-	fmt.Printf("🔶 Only-TCP-Pass (advanced): %d\n", len(onlyTCPPass))
+	fmt.Printf("🔶 TCP Pass (advanced): %d\n", len(onlyTCPPass))
 
 	if gLog != nil {
 		gLog.logSummary(elapsed, results, failedLinks)
