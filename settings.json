@@ -19,7 +19,7 @@
     "process_kill_wait_ms": 800,
     "fetch_retry_count": 1,
     "fetch_retry_delay_ms": 1000,
-    "vless_specific_timeout_ms": 20,
+    "vless_specific_timeout_ms": 0,
     "test_urls": [
       "http://cp.cloudflare.com/",
       "http://www.gstatic.com/generate_204",
