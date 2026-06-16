@@ -1,47 +1,3 @@
-# ⚡ نکات مهم برای استفاده از کانفیگ‌ها
-
----
-
-## ⚠️ نکته فنی مهم
-
-در شرایط فعلی، کانفیگ‌ها را در دسته‌های **بیشتر از ۱۰۰ عدد** تست نکنید. همه رد می‌شوند.
----
-
-## 🛠️ اگر V2rayN جواب نداد
-
-**گزینه اول:** استفاده از [Throne](https://github.com/throneproj/Throne/releases/)
-
-**گزینه دوم:** استفاده از [FLclash](https://github.com/chen08209/FlClash/releases/) (مناسب لینک‌های موجود در مخزن Clash)
-
----
-
-## 🔐 کانفیگ‌های SNI
-- این روش سرعت به مراتب بالاتری دارد.
--  این کانفیگ ها را نمی توانید به شکل معمول استفاده کنید، برای اموزش یا سرچ کنید ویدیو زیر را ببینید.
--  📺 [آموزش ویدیویی](https://youtu.be/AcI7JdFCcjs)
--  متود با اختلال مواجه شده باید تعداد زیادی کانفیگ را تست کنید، همچنین می توانید تعدادی کانفیگ سالم SNI هم از ربات دریافت کنید.
-
----
-
-## 📢 کانال تلگرام
-
-برای اطلاع از سایر پروژه‌ها:  
-[t.me/DeltaKroneckerGithub](https://t.me/DeltaKroneckerGithub)
-نکته: بقیه پروتکل ها را به دلیل امار اتصال پایین موقتا غیر فعال کرده ام
-
----
-
-## ⭐ یک درخواست
-
-هر پروژه‌ای که برایتان مفید بوده را **ستاره** بدهید.  
-این انگیزه توسعه‌دهنده را بیشتر می‌کند و نتیجه‌اش دسترسی بهتر همه به اینترنت آزاد است.
-
----
-
-#   جاوید؛ ایران.
-
-<!-- AUTO-GENERATED: DO NOT EDIT BELOW THIS LINE -->
-
 ## V2ray
 
 | Protocol | Count | Link |
@@ -167,26 +123,6 @@
 | 012 | 500 | [batch_012.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/sni_clash/batch_012.yaml) |
 | 013 | 500 | [batch_013.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/sni_clash/batch_013.yaml) |
 | 014 | 303 | [batch_014.yaml](https://github.com/Delta-Kronecker/V2ray-Config/raw/refs/heads/main/config/batches/sni_clash/batch_014.yaml) |
-
----
-
-## Statistics
-
-| Protocol | Tested | Valid | Pass% |
-|---|---|---|---|
-| VLESS | 198745 | 1573 | 0.8% |
-| TROJAN | 43248 | 2819 | 6.5% |
-| SS | 128816 | 1384 | 1.1% |
-| VMESS | 61883 | 1027 | 1.7% |
-| **Total** | **432692** | **6803** | **1.6%** |
-
-| Metric | Value |
-|---|---|
-| Fetched | 9654411 |
-| Unique | 432692 |
-| TCP Pass | 194277 |
-| Valid | 6803 |
-| Time | 7163.76s |
 
 ---
 
