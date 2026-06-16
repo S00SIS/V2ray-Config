@@ -1487,7 +1487,7 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	}
 	gen.WriteString("\n---\n\n")
 
-	gen.WriteString("## SNI\n\n")
+	gen.WriteString("## 127.0.0.1:40443 \n\n")
 	fmt.Fprintf(&gen, "| Protocol | Count | Link |\n|---|---|---|\n")
 	fmt.Fprintf(&gen, "| All | %d | [all_configs_sni.txt](%s/config/sni/all_configs_sni.txt) |\n", len(results), repoBase)
 	for _, p := range cfg.ProtocolOrder {
@@ -1512,7 +1512,7 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 
 	sniV2rayBatches := countBatchFiles("config/batches/sni_v2ray")
 	if sniV2rayBatches > 0 {
-		gen.WriteString("## SNI Batches\n\n")
+		gen.WriteString("## 127.0.0.1:40443 Batches\n\n")
 		fmt.Fprintf(&gen, "| Batch | Count | Link |\n|---|---|---|\n")
 		for i := 1; i <= sniV2rayBatches; i++ {
 			cnt := min500(i, len(results))
@@ -1533,7 +1533,7 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	}
 	gen.WriteString("\n---\n\n")
 
-	gen.WriteString("## Clash SNI\n\n")
+	gen.WriteString("## Clash 127.0.0.1:40443 \n\n")
 	fmt.Fprintf(&gen, "| Protocol | Count | Link |\n|---|---|---|\n")
 	fmt.Fprintf(&gen, "| All | %d | [clash_sni.yaml](%s/config/sni/clash_sni.yaml) |\n", len(results), repoBase)
 	for _, p := range cfg.ProtocolOrder {
@@ -1556,7 +1556,7 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 		gen.WriteString("\n---\n\n")
 	}
 
-	gen.WriteString("## Clash SNI Batches\n\n")
+	gen.WriteString("## Clash 127.0.0.1:40443 Batches\n\n")
 	clashSNIBatches := countBatchFiles("config/batches/sni_clash")
 	if clashSNIBatches > 0 {
 		fmt.Fprintf(&gen, "| Batch | Count | Link |\n|---|---|---|\n")
@@ -1567,32 +1567,6 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 		}
 		gen.WriteString("\n---\n\n")
 	}
-
-	gen.WriteString("## Statistics\n\n")
-	totalIn, totalOut := 0, 0
-	fmt.Fprintf(&gen, "| Protocol | Tested | Valid | Pass%% |\n|---|---|---|---|\n")
-	for _, p := range cfg.ProtocolOrder {
-		in, out := gInputByProto[p], byProtoOut[p]
-		totalIn += in
-		totalOut += out
-		if in == 0 {
-			continue
-		}
-		rate := float64(out) / float64(in) * 100
-		fmt.Fprintf(&gen, "| %s | %d | %d | %.1f%% |\n", strings.ToUpper(p), in, out, rate)
-	}
-	overallRate := 0.0
-	if totalIn > 0 {
-		overallRate = float64(totalOut) / float64(totalIn) * 100
-	}
-	fmt.Fprintf(&gen, "| **Total** | **%d** | **%d** | **%.1f%%** |\n\n", totalIn, totalOut, overallRate)
-	fmt.Fprintf(&gen, "| Metric | Value |\n|---|---|\n")
-	fmt.Fprintf(&gen, "| Fetched | %d |\n", originalTotal)
-	fmt.Fprintf(&gen, "| Unique | %d |\n", totalIn)
-	fmt.Fprintf(&gen, "| TCP Pass | %d |\n", onlyTCPPassCount)
-	fmt.Fprintf(&gen, "| Valid | %d |\n", len(results))
-	fmt.Fprintf(&gen, "| Time | %.2fs |\n\n", duration)
-	gen.WriteString("---\n\n")
 
 	// Only-TCP-Pass batches section
 	onlyTCPBatches := countBatchFiles("config/tcp-pass")
@@ -1610,7 +1584,7 @@ func writeSummary(results []configResult, failedLinks []string, duration float64
 	// Only-TCP-Pass SNI batches section
 	onlyTCPSNIBatches := countBatchFiles("config/tcp-pass-sni")
 	if onlyTCPSNIBatches > 0 {
-		gen.WriteString("## TCP Pass SNI (for advanced users)\n\n")
+		gen.WriteString("## TCP Pass 127.0.0.1:40443 (for advanced users)\n\n")
 		fmt.Fprintf(&gen, "> SNI version of TCP Pass configs. Total: **%d**\n\n", onlyTCPPassCount)
 		fmt.Fprintf(&gen, "| Batch | Link |\n|---|---|\n")
 		for i := 1; i <= onlyTCPSNIBatches; i++ {
