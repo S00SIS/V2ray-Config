@@ -120,6 +120,7 @@ dns:
     - 194.187.251.67
 
 proxies:
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12772"
     type: vmess
     server: "127.0.0.1"
@@ -140,6 +141,22 @@ proxies:
     skip-cert-verify: true
     servername: "supervpn.super.com"
   - name: "@DeltaKronecker_Clash_12782"
+=======
+  - name: "@DeltaKronecker_Clash_12758"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "f836c736-87fc-4fde-aabc-00857ecdff3e"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/cctv13.m3u8"
+      headers:
+        Host: "129.146.77.248"
+  - name: "@DeltaKronecker_Clash_12775"
+>>>>>>> Stashed changes
     type: vmess
     server: "127.0.0.1"
     port: 40443
@@ -147,6 +164,7 @@ proxies:
     alterId: 0
     cipher: "auto"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12785"
     type: vmess
     server: "127.0.0.1"
@@ -534,6 +552,9 @@ proxies:
       headers:
         Host: "OV-Italy1.09vpn.com"
   - name: "@DeltaKronecker_Clash_12968"
+=======
+  - name: "@DeltaKronecker_Clash_12782"
+>>>>>>> Stashed changes
     type: vmess
     server: "127.0.0.1"
     port: 40443
@@ -541,6 +562,7 @@ proxies:
     alterId: 0
     cipher: "auto"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12971"
     type: vmess
     server: "127.0.0.1"
@@ -558,10 +580,43 @@ proxies:
       headers:
         Host: "v2ray1.dozapp.xyz"
   - name: "@DeltaKronecker_Clash_12973"
+=======
+  - name: "@DeltaKronecker_Clash_12787"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12798"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "96408f9a-df03-448b-b7e4-ec8e2c216682"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/vmess"
+      headers:
+        Host: "myvpshosting.name.ng"
+  - name: "@DeltaKronecker_Clash_12804"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12806"
+>>>>>>> Stashed changes
     type: vmess
     server: "127.0.0.1"
     port: 40443
     uuid: "04621bae-ab36-11ec-b909-0242ac120002"
+<<<<<<< Updated upstream
     alterId: 0
     cipher: "auto"
     udp: true
@@ -574,6 +629,20 @@ proxies:
     cipher: "auto"
     udp: true
   - name: "@DeltaKronecker_Clash_12978"
+=======
+    alterId: 1
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12813"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12815"
+>>>>>>> Stashed changes
     type: vmess
     server: "127.0.0.1"
     port: 40443
@@ -581,22 +650,74 @@ proxies:
     alterId: 0
     cipher: "auto"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12984"
     type: vmess
     server: "127.0.0.1"
     port: 40443
     uuid: "a3e3a710-79f8-4ae0-b83c-607aab40d197"
+=======
+  - name: "@DeltaKronecker_Clash_12821"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "04621bae-ab36-11ec-b909-0242ac120002"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12823"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "959a8caf-4cea-43d0-a548-3628e7ddfafc"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12825"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12830"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "5c040f1d-45db-43bd-8d46-e4950e433735"
+    alterId: 0
+    cipher: "aes-128-gcm"
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    servername: "supervpn.super.com"
+  - name: "@DeltaKronecker_Clash_12832"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "3c61ea53-a550-4252-8211-956f9f7dc2d0"
+>>>>>>> Stashed changes
     alterId: 0
     cipher: "auto"
     udp: true
     network: ws
     ws-opts:
+<<<<<<< Updated upstream
       path: "/vmess/"
   - name: "@DeltaKronecker_Clash_12987"
     type: vmess
     server: "127.0.0.1"
     port: 40443
     uuid: "6733c357-ba11-4e9f-f00f-7d87f2776ff9"
+=======
+      path: "/"
+  - name: "@DeltaKronecker_Clash_12844"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "5155860e-d07d-46c3-9128-3afbd84626c7"
+>>>>>>> Stashed changes
     alterId: 0
     cipher: "auto"
     udp: true
@@ -604,6 +725,7 @@ proxies:
     ws-opts:
       path: "/cctv13.m3u8"
       headers:
+<<<<<<< Updated upstream
         Host: "jp02.a0a.xyz"
   - name: "@DeltaKronecker_Clash_12989"
     type: vmess
@@ -614,6 +736,50 @@ proxies:
     cipher: "auto"
     udp: true
   - name: "@DeltaKronecker_Clash_12991"
+=======
+        Host: "kr02.a0a.xyz"
+  - name: "@DeltaKronecker_Clash_12846"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "cd3dacbc-2b7b-4718-83ad-ab870f87e12e"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12852"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12858"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "b5b183b6-a4f0-41ad-a015-ba9f000ad7ed"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12860"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "04621bae-ab36-11ec-b909-0242ac120002"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12865"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "e02c67a8-d769-4d73-833a-ab6acdb86e6e"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12870"
+>>>>>>> Stashed changes
     type: vmess
     server: "127.0.0.1"
     port: 40443
@@ -621,6 +787,7 @@ proxies:
     alterId: 0
     cipher: "auto"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_13000"
     type: vmess
     server: "127.0.0.1"
@@ -634,11 +801,35 @@ proxies:
     server: "127.0.0.1"
     port: 40443
     uuid: "bc82b8e0-026b-4b7e-8fa7-69977b6d9dc0"
+=======
+  - name: "@DeltaKronecker_Clash_12875"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "b06054ae-f249-438e-998a-8e67bd8df653"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12877"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "41a7089a-040b-4538-8b8d-010902405bde"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12884"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "5c040f1d-45db-43bd-8d46-e4950e433735"
+>>>>>>> Stashed changes
     alterId: 0
     cipher: "auto"
     udp: true
     tls: true
     skip-cert-verify: true
+<<<<<<< Updated upstream
     servername: "127.0.0.1"
     network: ws
     ws-opts:
@@ -681,6 +872,10 @@ proxies:
       headers:
         Host: "v2ray1.dozapp.xyz"
   - name: "@DeltaKronecker_Clash_13031"
+=======
+    servername: "supervpn.super.com"
+  - name: "@DeltaKronecker_Clash_12886"
+>>>>>>> Stashed changes
     type: vmess
     server: "127.0.0.1"
     port: 40443
@@ -696,6 +891,7 @@ proxies:
       path: "/linkvws"
       headers:
         Host: "inna.cfd"
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_13034"
     type: vmess
     server: "127.0.0.1"
@@ -709,13 +905,150 @@ proxies:
     server: "127.0.0.1"
     port: 40443
     uuid: "3d358ea5-465b-46ac-a2df-98ca1555194f"
+=======
+  - name: "@DeltaKronecker_Clash_12891"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "04621bae-ab36-11ec-b909-0242ac120002"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12905"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "f8975871-a7a0-4906-8835-a23c1258ca1e"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "google.whatsapp.snapp.torob.basalam.zula.uplaod-music.ir."
+  - name: "@DeltaKronecker_Clash_12907"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "d13fc2f5-3e05-4795-81eb-44143a09e552"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12910"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "9db4c708-aef8-4359-821b-38e47990be0d"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/"
+  - name: "@DeltaKronecker_Clash_12912"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "60441548-b68e-43b2-8191-e3b884be4b3c"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    servername: "v2ray1.dozapp.xyz"
+    network: ws
+    ws-opts:
+      path: "/lMnsZUN4/"
+      headers:
+        Host: "v2ray1.dozapp.xyz"
+  - name: "@DeltaKronecker_Clash_12914"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "5c040f1d-45db-43bd-8d46-e4950e433735"
+    alterId: 0
+    cipher: "aes-128-gcm"
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    servername: "45.90.106.24"
+  - name: "@DeltaKronecker_Clash_12918"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "cbb3f877-d1fb-344c-87a9-d153bffd5484"
+    alterId: 2
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12920"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "b7d93549-0f3f-4af2-9f4d-4340867a23b4"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12927"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "d13fc2f5-3e05-4795-81eb-44143a09e552"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12935"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "5c040f1d-45db-43bd-8d46-e4950e433735"
+    alterId: 0
+    cipher: "aes-128-gcm"
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    servername: "supervpn.super.com"
+  - name: "@DeltaKronecker_Clash_12937"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "ae91113b-915f-4a56-b998-e52d8a12da39"
+>>>>>>> Stashed changes
     alterId: 0
     cipher: "auto"
     udp: true
     tls: true
     skip-cert-verify: true
     servername: "127.0.0.1"
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_13041"
+=======
+    network: grpc
+    grpc-opts:
+      grpc-service-name: ""
+  - name: "@DeltaKronecker_Clash_12940"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "d13fc2f5-3e05-4795-81eb-44143a09e552"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12942"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "11c3627f-31e8-4695-dfbd-34076e2f1f5d"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/cctv13.m3u8"
+      headers:
+        Host: "jp01.a0a.xyz"
+  - name: "@DeltaKronecker_Clash_12946"
+>>>>>>> Stashed changes
     type: vmess
     server: "127.0.0.1"
     port: 40443
@@ -723,6 +1056,247 @@ proxies:
     alterId: 0
     cipher: "auto"
     udp: true
+<<<<<<< Updated upstream
+=======
+  - name: "@DeltaKronecker_Clash_12954"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "03fcc618-b93d-6796-6aed-8a38c975d581"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    servername: "seribus.org"
+    network: ws
+    ws-opts:
+      path: "linkvws"
+      headers:
+        Host: "seribus.org"
+  - name: "@DeltaKronecker_Clash_12965"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "bc82b8e0-026b-4b7e-8fa7-69977b6d9dc0"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    servername: "127.0.0.1"
+    network: ws
+    ws-opts:
+      path: "/ws/"
+      headers:
+        Host: "polartime.link"
+  - name: "@DeltaKronecker_Clash_12967"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "f8975871-a7a0-4906-8835-a23c1258ca1e"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "google.whatsapp.snapp.torob.basalam.zula.uplaod-music.ir."
+  - name: "@DeltaKronecker_Clash_12974"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "f8975871-a7a0-4906-8835-a23c1258ca1e"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/"
+      headers:
+        Host: "google.whatsapp.snapp.torob.basalam.zula.uplaod-music.ir."
+  - name: "@DeltaKronecker_Clash_12979"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "05b8c783-7f59-47f9-9923-06a465679f6a"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/vmess/"
+  - name: "@DeltaKronecker_Clash_12981"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "550e8400-e29b-41d4-a716-446655440000"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12983"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "d4d715a6-0a2e-4304-df2f-d5efd85a5a5d"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12986"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "9665280c-a3d1-4aab-ef9f-a3a497337d91"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/9665280c"
+  - name: "@DeltaKronecker_Clash_12989"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "2f50f5ef-1a3a-4585-a3c9-3a860d37b134"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: h2
+    h2-opts:
+      path: "/ABCDE"
+  - name: "@DeltaKronecker_Clash_12991"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "04621bae-ab36-11ec-b909-0242ac120002"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12995"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "04621bae-ab36-11ec-b909-0242ac120002"
+    alterId: 1
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_13000"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "60441548-b68e-43b2-8191-e3b884be4b3c"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    servername: "v2ray1.dozapp.xyz"
+    network: ws
+    ws-opts:
+      path: "/lMnsZUN4/"
+      headers:
+        Host: "v2ray1.dozapp.xyz"
+  - name: "@DeltaKronecker_Clash_13002"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "e7c302f3-90d6-42dd-9d7d-94a3683a3707"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_13004"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "b5e9480a-b7aa-40a4-f9a7-5299b5e363b4"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/"
+  - name: "@DeltaKronecker_Clash_13006"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "d4603cc2-e0ee-4651-83f5-1db5b7168177"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_13009"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_13011"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "d13fc2f5-3e05-4795-81eb-44143a09e552"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_13013"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "f0a2fbe5-29bf-468c-ddc1-b524552d1a23"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/youtube"
+  - name: "@DeltaKronecker_Clash_13015"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "848af33c-81f2-40c9-93b2-4681d056936b"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    servername: "127.0.0.1"
+    network: ws
+    ws-opts:
+      path: "/vmess/"
+      headers:
+        Host: "OV-Italy1.09vpn.com"
+  - name: "@DeltaKronecker_Clash_13017"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+  - name: "@DeltaKronecker_Clash_13022"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "6733c357-ba11-4e9f-f00f-7d87f2776ff9"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+    network: ws
+    ws-opts:
+      path: "/cctv13.m3u8"
+      headers:
+        Host: "jp02.a0a.xyz"
+  - name: "@DeltaKronecker_Clash_13026"
+    type: vmess
+    server: "127.0.0.1"
+    port: 40443
+    uuid: "04621bae-ab36-11ec-b909-0242ac120002"
+    alterId: 0
+    cipher: "auto"
+    udp: true
+>>>>>>> Stashed changes
 
 proxy-groups:
   - name: "PROXY"
@@ -741,6 +1315,7 @@ proxy-groups:
     tolerance: 50
     lazy: true
     proxies:
+<<<<<<< Updated upstream
       - "@DeltaKronecker_Clash_12772"
       - "@DeltaKronecker_Clash_12776"
       - "@DeltaKronecker_Clash_12782"
@@ -801,6 +1376,69 @@ proxy-groups:
       - "@DeltaKronecker_Clash_13034"
       - "@DeltaKronecker_Clash_13037"
       - "@DeltaKronecker_Clash_13041"
+=======
+      - "@DeltaKronecker_Clash_12758"
+      - "@DeltaKronecker_Clash_12775"
+      - "@DeltaKronecker_Clash_12782"
+      - "@DeltaKronecker_Clash_12787"
+      - "@DeltaKronecker_Clash_12798"
+      - "@DeltaKronecker_Clash_12804"
+      - "@DeltaKronecker_Clash_12806"
+      - "@DeltaKronecker_Clash_12813"
+      - "@DeltaKronecker_Clash_12815"
+      - "@DeltaKronecker_Clash_12821"
+      - "@DeltaKronecker_Clash_12823"
+      - "@DeltaKronecker_Clash_12825"
+      - "@DeltaKronecker_Clash_12830"
+      - "@DeltaKronecker_Clash_12832"
+      - "@DeltaKronecker_Clash_12844"
+      - "@DeltaKronecker_Clash_12846"
+      - "@DeltaKronecker_Clash_12852"
+      - "@DeltaKronecker_Clash_12858"
+      - "@DeltaKronecker_Clash_12860"
+      - "@DeltaKronecker_Clash_12865"
+      - "@DeltaKronecker_Clash_12870"
+      - "@DeltaKronecker_Clash_12875"
+      - "@DeltaKronecker_Clash_12877"
+      - "@DeltaKronecker_Clash_12884"
+      - "@DeltaKronecker_Clash_12886"
+      - "@DeltaKronecker_Clash_12891"
+      - "@DeltaKronecker_Clash_12905"
+      - "@DeltaKronecker_Clash_12907"
+      - "@DeltaKronecker_Clash_12910"
+      - "@DeltaKronecker_Clash_12912"
+      - "@DeltaKronecker_Clash_12914"
+      - "@DeltaKronecker_Clash_12918"
+      - "@DeltaKronecker_Clash_12920"
+      - "@DeltaKronecker_Clash_12927"
+      - "@DeltaKronecker_Clash_12935"
+      - "@DeltaKronecker_Clash_12937"
+      - "@DeltaKronecker_Clash_12940"
+      - "@DeltaKronecker_Clash_12942"
+      - "@DeltaKronecker_Clash_12946"
+      - "@DeltaKronecker_Clash_12954"
+      - "@DeltaKronecker_Clash_12965"
+      - "@DeltaKronecker_Clash_12967"
+      - "@DeltaKronecker_Clash_12974"
+      - "@DeltaKronecker_Clash_12979"
+      - "@DeltaKronecker_Clash_12981"
+      - "@DeltaKronecker_Clash_12983"
+      - "@DeltaKronecker_Clash_12986"
+      - "@DeltaKronecker_Clash_12989"
+      - "@DeltaKronecker_Clash_12991"
+      - "@DeltaKronecker_Clash_12995"
+      - "@DeltaKronecker_Clash_13000"
+      - "@DeltaKronecker_Clash_13002"
+      - "@DeltaKronecker_Clash_13004"
+      - "@DeltaKronecker_Clash_13006"
+      - "@DeltaKronecker_Clash_13009"
+      - "@DeltaKronecker_Clash_13011"
+      - "@DeltaKronecker_Clash_13013"
+      - "@DeltaKronecker_Clash_13015"
+      - "@DeltaKronecker_Clash_13017"
+      - "@DeltaKronecker_Clash_13022"
+      - "@DeltaKronecker_Clash_13026"
+>>>>>>> Stashed changes
 
   - name: "Auto"
     type: url-test
@@ -809,6 +1447,7 @@ proxy-groups:
     tolerance: 50
     lazy: true
     proxies:
+<<<<<<< Updated upstream
       - "@DeltaKronecker_Clash_12772"
       - "@DeltaKronecker_Clash_12776"
       - "@DeltaKronecker_Clash_12782"
@@ -869,6 +1508,69 @@ proxy-groups:
       - "@DeltaKronecker_Clash_13034"
       - "@DeltaKronecker_Clash_13037"
       - "@DeltaKronecker_Clash_13041"
+=======
+      - "@DeltaKronecker_Clash_12758"
+      - "@DeltaKronecker_Clash_12775"
+      - "@DeltaKronecker_Clash_12782"
+      - "@DeltaKronecker_Clash_12787"
+      - "@DeltaKronecker_Clash_12798"
+      - "@DeltaKronecker_Clash_12804"
+      - "@DeltaKronecker_Clash_12806"
+      - "@DeltaKronecker_Clash_12813"
+      - "@DeltaKronecker_Clash_12815"
+      - "@DeltaKronecker_Clash_12821"
+      - "@DeltaKronecker_Clash_12823"
+      - "@DeltaKronecker_Clash_12825"
+      - "@DeltaKronecker_Clash_12830"
+      - "@DeltaKronecker_Clash_12832"
+      - "@DeltaKronecker_Clash_12844"
+      - "@DeltaKronecker_Clash_12846"
+      - "@DeltaKronecker_Clash_12852"
+      - "@DeltaKronecker_Clash_12858"
+      - "@DeltaKronecker_Clash_12860"
+      - "@DeltaKronecker_Clash_12865"
+      - "@DeltaKronecker_Clash_12870"
+      - "@DeltaKronecker_Clash_12875"
+      - "@DeltaKronecker_Clash_12877"
+      - "@DeltaKronecker_Clash_12884"
+      - "@DeltaKronecker_Clash_12886"
+      - "@DeltaKronecker_Clash_12891"
+      - "@DeltaKronecker_Clash_12905"
+      - "@DeltaKronecker_Clash_12907"
+      - "@DeltaKronecker_Clash_12910"
+      - "@DeltaKronecker_Clash_12912"
+      - "@DeltaKronecker_Clash_12914"
+      - "@DeltaKronecker_Clash_12918"
+      - "@DeltaKronecker_Clash_12920"
+      - "@DeltaKronecker_Clash_12927"
+      - "@DeltaKronecker_Clash_12935"
+      - "@DeltaKronecker_Clash_12937"
+      - "@DeltaKronecker_Clash_12940"
+      - "@DeltaKronecker_Clash_12942"
+      - "@DeltaKronecker_Clash_12946"
+      - "@DeltaKronecker_Clash_12954"
+      - "@DeltaKronecker_Clash_12965"
+      - "@DeltaKronecker_Clash_12967"
+      - "@DeltaKronecker_Clash_12974"
+      - "@DeltaKronecker_Clash_12979"
+      - "@DeltaKronecker_Clash_12981"
+      - "@DeltaKronecker_Clash_12983"
+      - "@DeltaKronecker_Clash_12986"
+      - "@DeltaKronecker_Clash_12989"
+      - "@DeltaKronecker_Clash_12991"
+      - "@DeltaKronecker_Clash_12995"
+      - "@DeltaKronecker_Clash_13000"
+      - "@DeltaKronecker_Clash_13002"
+      - "@DeltaKronecker_Clash_13004"
+      - "@DeltaKronecker_Clash_13006"
+      - "@DeltaKronecker_Clash_13009"
+      - "@DeltaKronecker_Clash_13011"
+      - "@DeltaKronecker_Clash_13013"
+      - "@DeltaKronecker_Clash_13015"
+      - "@DeltaKronecker_Clash_13017"
+      - "@DeltaKronecker_Clash_13022"
+      - "@DeltaKronecker_Clash_13026"
+>>>>>>> Stashed changes
 
   - name: "Fallback"
     type: fallback
@@ -876,6 +1578,7 @@ proxy-groups:
     interval: 60
     lazy: true
     proxies:
+<<<<<<< Updated upstream
       - "@DeltaKronecker_Clash_12772"
       - "@DeltaKronecker_Clash_12776"
       - "@DeltaKronecker_Clash_12782"
@@ -936,6 +1639,69 @@ proxy-groups:
       - "@DeltaKronecker_Clash_13034"
       - "@DeltaKronecker_Clash_13037"
       - "@DeltaKronecker_Clash_13041"
+=======
+      - "@DeltaKronecker_Clash_12758"
+      - "@DeltaKronecker_Clash_12775"
+      - "@DeltaKronecker_Clash_12782"
+      - "@DeltaKronecker_Clash_12787"
+      - "@DeltaKronecker_Clash_12798"
+      - "@DeltaKronecker_Clash_12804"
+      - "@DeltaKronecker_Clash_12806"
+      - "@DeltaKronecker_Clash_12813"
+      - "@DeltaKronecker_Clash_12815"
+      - "@DeltaKronecker_Clash_12821"
+      - "@DeltaKronecker_Clash_12823"
+      - "@DeltaKronecker_Clash_12825"
+      - "@DeltaKronecker_Clash_12830"
+      - "@DeltaKronecker_Clash_12832"
+      - "@DeltaKronecker_Clash_12844"
+      - "@DeltaKronecker_Clash_12846"
+      - "@DeltaKronecker_Clash_12852"
+      - "@DeltaKronecker_Clash_12858"
+      - "@DeltaKronecker_Clash_12860"
+      - "@DeltaKronecker_Clash_12865"
+      - "@DeltaKronecker_Clash_12870"
+      - "@DeltaKronecker_Clash_12875"
+      - "@DeltaKronecker_Clash_12877"
+      - "@DeltaKronecker_Clash_12884"
+      - "@DeltaKronecker_Clash_12886"
+      - "@DeltaKronecker_Clash_12891"
+      - "@DeltaKronecker_Clash_12905"
+      - "@DeltaKronecker_Clash_12907"
+      - "@DeltaKronecker_Clash_12910"
+      - "@DeltaKronecker_Clash_12912"
+      - "@DeltaKronecker_Clash_12914"
+      - "@DeltaKronecker_Clash_12918"
+      - "@DeltaKronecker_Clash_12920"
+      - "@DeltaKronecker_Clash_12927"
+      - "@DeltaKronecker_Clash_12935"
+      - "@DeltaKronecker_Clash_12937"
+      - "@DeltaKronecker_Clash_12940"
+      - "@DeltaKronecker_Clash_12942"
+      - "@DeltaKronecker_Clash_12946"
+      - "@DeltaKronecker_Clash_12954"
+      - "@DeltaKronecker_Clash_12965"
+      - "@DeltaKronecker_Clash_12967"
+      - "@DeltaKronecker_Clash_12974"
+      - "@DeltaKronecker_Clash_12979"
+      - "@DeltaKronecker_Clash_12981"
+      - "@DeltaKronecker_Clash_12983"
+      - "@DeltaKronecker_Clash_12986"
+      - "@DeltaKronecker_Clash_12989"
+      - "@DeltaKronecker_Clash_12991"
+      - "@DeltaKronecker_Clash_12995"
+      - "@DeltaKronecker_Clash_13000"
+      - "@DeltaKronecker_Clash_13002"
+      - "@DeltaKronecker_Clash_13004"
+      - "@DeltaKronecker_Clash_13006"
+      - "@DeltaKronecker_Clash_13009"
+      - "@DeltaKronecker_Clash_13011"
+      - "@DeltaKronecker_Clash_13013"
+      - "@DeltaKronecker_Clash_13015"
+      - "@DeltaKronecker_Clash_13017"
+      - "@DeltaKronecker_Clash_13022"
+      - "@DeltaKronecker_Clash_13026"
+>>>>>>> Stashed changes
 
 rules:
   - MATCH,PROXY

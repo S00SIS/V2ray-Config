@@ -120,11 +120,16 @@ dns:
     - 194.187.251.67
 
 proxies:
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11402"
+=======
+  - name: "@DeltaKronecker_Clash_11350"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "hbGrpfvNrJsUmKmPbR3iY2"
     udp: true
   - name: "@DeltaKronecker_Clash_11404"
@@ -135,6 +140,25 @@ proxies:
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
     udp: true
   - name: "@DeltaKronecker_Clash_11406"
+=======
+    password: "aduB9HGxQHjA2SBMRjkHX6"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11352"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "qwerREWQ@@"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11354"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11356"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
@@ -147,6 +171,7 @@ proxies:
       path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11408"
     type: ss
     server: "127.0.0.1"
@@ -181,10 +206,14 @@ proxies:
       host: "woshinidie-et3.pages.dev"
       tls: true
   - name: "@DeltaKronecker_Clash_11414"
+=======
+  - name: "@DeltaKronecker_Clash_11358"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "mmdZ63jsXPCYFtgyarEXNzNTScEJhq6CaEXJzC9AYZpqstCbNEeKoqm7Xsw5eTzsUg4ujh7Lu1mQFVwAQpyGmnewPi3UH9XH"
     udp: true
   - name: "@DeltaKronecker_Clash_11416"
@@ -276,12 +305,18 @@ proxies:
       host: "woshinidie-et3.pages.dev"
       tls: true
   - name: "@DeltaKronecker_Clash_11436"
+=======
+    password: "xfscSDcb-SeEqqRb.omzVGgVgNpXh3bA1u"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11360"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11438"
     type: ss
     server: "127.0.0.1"
@@ -413,6 +448,9 @@ proxies:
     password: "gYCYXfkUQEs2TaJQ"
     udp: true
   - name: "@DeltaKronecker_Clash_11470"
+=======
+  - name: "@DeltaKronecker_Clash_11362"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
@@ -425,6 +463,7 @@ proxies:
       path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11472"
     type: ss
     server: "127.0.0.1"
@@ -440,6 +479,9 @@ proxies:
     password: "U7+at2Sny7zODyHS1OS6QRepL8-5maNUFF"
     udp: true
   - name: "@DeltaKronecker_Clash_11476"
+=======
+  - name: "@DeltaKronecker_Clash_11364"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
@@ -452,6 +494,7 @@ proxies:
       path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11478"
     type: ss
     server: "127.0.0.1"
@@ -466,10 +509,14 @@ proxies:
       host: "woshinidie-et3.pages.dev"
       tls: true
   - name: "@DeltaKronecker_Clash_11480"
+=======
+  - name: "@DeltaKronecker_Clash_11366"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "mzeMYBJYp4Bo7nA1qYLvv7QG73igtAA85nt4pr8A9ntx2qhDfYgRtiJ7iH7VrcneQKNmtvpbsvvFKPaUATYELi18iH56Ttr4"
     udp: true
   - name: "@DeltaKronecker_Clash_11482"
@@ -1349,12 +1396,18 @@ proxies:
       host: "woshinidie-et3.pages.dev"
       tls: true
   - name: "@DeltaKronecker_Clash_11686"
+=======
+    password: "r_NRe-+WRq2zVqMpCnJtTESlT8WyffHyFy"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11368"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "aes-256-gcm"
     password: "8JCsPssfgS8tiRwiMlhARg=="
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11688"
     type: ss
     server: "127.0.0.1"
@@ -1383,12 +1436,16 @@ proxies:
     password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
     udp: true
   - name: "@DeltaKronecker_Clash_11694"
+=======
+  - name: "@DeltaKronecker_Clash_11370"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "aes-128-gcm"
     password: "shadowsocks"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11696"
     type: ss
     server: "127.0.0.1"
@@ -1463,10 +1520,14 @@ proxies:
       host: "ylnhh.us.ci"
       tls: true
   - name: "@DeltaKronecker_Clash_11710"
+=======
+  - name: "@DeltaKronecker_Clash_11372"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "qItG8SueYQcP"
     udp: true
   - name: "@DeltaKronecker_Clash_11712"
@@ -1565,12 +1626,18 @@ proxies:
       host: "woshinidie-et3.pages.dev"
       tls: true
   - name: "@DeltaKronecker_Clash_11734"
+=======
+    password: "Uk8lfmvhYnx5rJvXxKrRqGRynd9gIpJ.iY"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11374"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11736"
     type: ss
     server: "127.0.0.1"
@@ -1625,20 +1692,98 @@ proxies:
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
   - name: "@DeltaKronecker_Clash_11746"
+=======
+  - name: "@DeltaKronecker_Clash_11376"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "f8npKgNzdkss2ytn"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11378"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11748"
+=======
+  - name: "@DeltaKronecker_Clash_11380"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11750"
+=======
+  - name: "@DeltaKronecker_Clash_11382"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11384"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11386"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11388"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11390"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11392"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "hbGrpfvNrJsUmKmPbR3iY2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11394"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
@@ -1651,6 +1796,7 @@ proxies:
       path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11752"
     type: ss
     server: "127.0.0.1"
@@ -1819,27 +1965,354 @@ proxies:
     password: "shadowsocks"
     udp: true
   - name: "@DeltaKronecker_Clash_11786"
+=======
+  - name: "@DeltaKronecker_Clash_11396"
+>>>>>>> Stashed changes
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+<<<<<<< Updated upstream
+  - name: "@DeltaKronecker_Clash_11788"
+=======
+  - name: "@DeltaKronecker_Clash_11398"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11400"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/79960b0b-7d31-4263-8915-6511b0e137a8/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11402"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11404"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
-    password: "hRd=IXkjozMEKLeGR_0q09jtwly5J2la2O"
+    password: "WOir3lXBhMHDcLFPQdEZXPu37_pTQDCXfm"
     udp: true
-  - name: "@DeltaKronecker_Clash_11788"
+  - name: "@DeltaKronecker_Clash_11406"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "qwerREWQ@@"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11408"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11410"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11412"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11414"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11416"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11418"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "qwerREWQ@@"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11420"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11790"
+=======
+  - name: "@DeltaKronecker_Clash_11422"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "2022-blake3-aes-256-gcm"
+    password: "fnvo82p9y4AKykZXyIFtnodFy6fQmWnVlI2SvGleOB0="
+    udp: true
+  - name: "@DeltaKronecker_Clash_11424"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "EBDRo9THx4CqiFU7h5gfov76oNwzZURAh0ZwbWjBKddtUhvz"
     udp: true
   - name: "@DeltaKronecker_Clash_11792"
+=======
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11426"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "GTZI5AbjNAeWQG0oVNptvWJogHNKiiKA"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11428"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11430"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11432"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11434"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "IIMxFMyq3FwyPd21UGWgmNJCAiYN9m2vOo"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11436"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11438"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11440"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11442"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11444"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11446"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "PWpjPo3tqhPN4yRZ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11448"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11450"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "RSzEIkk2EsHEAVj15N5E/A=="
+    udp: true
+  - name: "@DeltaKronecker_Clash_11452"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11454"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "Uk8lfmvhYnx5rJvXxKrRqGRynd9gIpJ.iY"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11456"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11458"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11460"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11462"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "9XwYyZsK8SNzQDtY"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11464"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "1hhrqrokj3ag"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11466"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "Y6R9pAtvxxzmGC"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11468"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11470"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
@@ -1852,6 +2325,7 @@ proxies:
       path: "3e96ef7d-8637-42c2-ac73-75182196e755/?ed=2560"
       host: "mfvpn.fuchen.indevs.in"
       tls: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11794"
     type: ss
     server: "127.0.0.1"
@@ -1860,10 +2334,14 @@ proxies:
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
   - name: "@DeltaKronecker_Clash_11796"
+=======
+  - name: "@DeltaKronecker_Clash_11472"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
+<<<<<<< Updated upstream
     password: "RSzEIkk2EsHEAVj15N5E/A=="
     udp: true
   - name: "@DeltaKronecker_Clash_11798"
@@ -1949,12 +2427,18 @@ proxies:
     password: "WSyL4XTwNsdv"
     udp: true
   - name: "@DeltaKronecker_Clash_11818"
+=======
+    password: "3e96ef7d-8637-42c2-ac73-75182196e755"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11474"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "aes-128-gcm"
     password: "shadowsocks"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11820"
     type: ss
     server: "127.0.0.1"
@@ -2030,10 +2514,21 @@ proxies:
       host: "woshinidie-et3.pages.dev"
       tls: true
   - name: "@DeltaKronecker_Clash_11836"
+=======
+  - name: "@DeltaKronecker_Clash_11476"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "gWBgmKb8AL1uRK0jZ44AoOPaC5lVTOHZmi"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11478"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "aes-256-gcm"
+<<<<<<< Updated upstream
     password: "7e1dd4c55bf85da5"
     udp: true
   - name: "@DeltaKronecker_Clash_11838"
@@ -2058,13 +2553,22 @@ proxies:
     password: "hbGrpfvNrJsUmKmPbR3iY2"
     udp: true
   - name: "@DeltaKronecker_Clash_11844"
+=======
+    password: "cdBIDV42DCwnfIN"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11480"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11846"
+=======
+  - name: "@DeltaKronecker_Clash_11482"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
@@ -2077,10 +2581,1713 @@ proxies:
       path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+<<<<<<< Updated upstream
+=======
+  - name: "@DeltaKronecker_Clash_11484"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "i6qj1Qi9bKvFfIM0"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11486"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "bwjNPcwgz5+1gCyi+rB+nfqugw38B7tqVa"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11488"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/79960b0b-7d31-4263-8915-6511b0e137a8/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11490"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11492"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "G5p6ww4o67HB"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11494"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11496"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11498"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "245o3Vnmo1cAee4QNJ6f2H4XsJnfWnAm6EcjFeHWKF2tSuXvnwc6C4v7ajzwi1Y8jX2dMpe6qV5m475XsfnKvCjYSpGb1Xpj"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11500"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11502"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11504"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11506"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11508"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11510"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11512"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "RexnBgU7EV5ADxG"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11514"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11516"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11518"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11520"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11522"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11524"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11526"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11528"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11530"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "fG2artUmHfNT2cX7"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11532"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "TEzjfAYq2IjtuoS"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11534"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "hkasb5cVrs4jE18jCEJxB4Gr55hVGW24y35gU9GIIeyT31Fw"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11536"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "Uk8lfmvhYnx5rJvXxKrRqGRynd9gIpJ.iY"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11538"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11540"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11542"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11544"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11546"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "Y6R9pAtvxxzmGC"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11548"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11550"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11552"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11554"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11556"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "c1fd0b29-6c18-4042-87a2-f5bd7878dc0a"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11558"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11560"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11562"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "gYCYXfkUQEs2TaJQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11564"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11566"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11568"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11570"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11572"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "faBAoD54k87UJG7"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11574"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11576"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "3e96ef7d-8637-42c2-ac73-75182196e755"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11578"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "WOir3lXBhMHDcLFPQdEZXPu37_pTQDCXfm"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11580"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "123"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11582"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11584"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11586"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11588"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11590"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11592"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11594"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11596"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11598"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "jR5Wg32XzEgCXk4MPCgvd1G1Ts8WHBLsXMUaqMa5DUXMuqMmdZgCbMipXDhoAmj73qA9oY85zXK35L5m631Tn7in2p3KLbWF"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11600"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11602"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "yKVMoB3AwiTEznpnoq2FYR"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11604"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11606"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "XUyydU7CVkhD5BJ4Ke6jyj"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11608"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "hRd=IXkjozMEKLeGR_0q09jtwly5J2la2O"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11610"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11612"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11614"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "Ll6cYfXM5DzQbdtMMb72A_jqVnNljU3yqe"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11616"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11618"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "eDfN7SODQceIOmIAbtJJtK"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11620"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "7e731ec3-f8e1-43f6-92cf-3978d14705c4"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11622"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11624"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11626"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "7SEstdmLhf-aFK_G9eaYHKT_YpSov58B"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11628"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11630"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11632"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11634"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "GA9KzeEgvfxNrgmM"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11636"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11638"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11640"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11642"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11644"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11646"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11648"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11650"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "hbGrpfvNrJsUmKmPbR3iY2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11652"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "hbGrpfvNrJsUmKmPbR3iY2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11654"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "hCCWOcIsK5wrFz4OX70rWf"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11656"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "ENxrMVhaagn43lKk0lcOwzo2-z8ShXiA-A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11658"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "TWG7J1KR5KsPaV5qZI+rieueKxxafZSpCH"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11660"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11662"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11664"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11666"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11668"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "G5p6ww4o67HB"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11670"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "ezyeH22iGS1UDeew5zzbTimqecrGBKSS1IsEqh"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11672"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11674"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11676"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "hCCWOcIsK5wrFz4OX70rWf"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11678"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "qYEN5HX4JKeVCdEC"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11680"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11682"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "mzeMYBJYp4Bo7nA1qYLvv7QG73igtAA85nt4pr8A9ntx2qhDfYgRtiJ7iH7VrcneQKNmtvpbsvvFKPaUATYELi18iH56Ttr4"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11684"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11686"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11688"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11690"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11692"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11694"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "cAqbBYBB0f9CAmpU_mc_7FyvvLCcwzt0"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11696"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "7SEstdmLhf-aFK_G9eaYHKT_YpSov58B"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11698"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11700"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "Y6R9pAtvxxzmGC"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11702"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11704"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11706"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11708"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11710"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11712"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "Lt5RzodU956LERWHkvuF34"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11714"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11716"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "BwcAUZk8hUFAkDGN"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11718"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "FAdUvMJUq5vDgKEq"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11720"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11722"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "cAqbBYBB0f9CAmpU_mc_7FyvvLCcwzt0"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11724"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11726"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "RSzEIkk2EsHEAVj15N5E/A=="
+    udp: true
+  - name: "@DeltaKronecker_Clash_11728"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "Y5EJZojVMENvkDVFYliEqE"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11730"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "RexnBgU7EV5ADxG"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11732"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11734"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11736"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "3e96ef7d-8637-42c2-ac73-75182196e755"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "3e96ef7d-8637-42c2-ac73-75182196e755/?ed=2560"
+      host: "mfvpn.fuchen.indevs.in"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11738"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11740"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "245o3Vnmo1cAee4QNJ6f2H4XsJnfWnAm6EcjFeHWKF2tSuXvnwc6C4v7ajzwi1Y8jX2dMpe6qV5m475XsfnKvCjYSpGb1Xpj"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11742"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11744"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "Y6R9pAtvxxzmGC"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11746"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11748"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11750"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "VJeAjiJ40F2Il17Elv285W"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11752"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11754"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11756"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "285EcC4cC36iYtLufehoPhvgeBMdPTs1FKSKGtEgifgUEjD3wAcxvm134xdo9XedyZKCJyUMtXo7d2gyFjJzAShv5DcxP927"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11758"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "1hhrqrokj3ag"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11760"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11762"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "CJmTCCx7Ltud"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11764"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "TPqX8edgbAURcAMb"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11766"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11768"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11770"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11772"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11774"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "e4FCWrgpkji3QY"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11776"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11778"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11780"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11782"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11784"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11786"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11788"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "XKFKl2rULjIp74"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11790"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11792"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "7e1dd4c55bf85da5"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11794"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11796"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11798"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "bwjNPcwgz5+1gCyi+rB+nfqugw38B7tqVa"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11800"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11802"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "HSZuyJQcWe8dxNdF"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11804"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "e4FCWrgpkji3QY"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11806"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11808"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "XKFKl2rULjIp74"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11810"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11812"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/79960b0b-7d31-4263-8915-6511b0e137a8/?ed=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11814"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "U7+at2Sny7zODyHS1OS6QRepL8-5maNUFF"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11816"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11818"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "RexnBgU7EV5ADxG"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11820"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "CJmTCCx7Ltud"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11822"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11824"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11826"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11828"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "RSzEIkk2EsHEAVj15N5E/A=="
+    udp: true
+  - name: "@DeltaKronecker_Clash_11830"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11832"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "qwerREWQ@@"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11834"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "mzeMYBJYp4Bo7nA1qYLvv7QG73igtAA85nt4pr8A9ntx2qhDfYgRtiJ7iH7VrcneQKNmtvpbsvvFKPaUATYELi18iH56Ttr4"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11836"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11838"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "GTZI5AbjNAeWQG0oVNptvWJogHNKiiKA"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11840"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "2022-blake3-aes-256-gcm"
+    password: "bIp0spSuoM1jadkc20X5GBw1/xqE+tT32rxyQCRTdks=:Huf5VbS7uzTylCYqhqINu0cHsXe38LVGLEZ1/5jj/60="
+    udp: true
+  - name: "@DeltaKronecker_Clash_11842"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11844"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "mzeMYBJYp4Bo7nA1qYLvv7QG73igtAA85nt4pr8A9ntx2qhDfYgRtiJ7iH7VrcneQKNmtvpbsvvFKPaUATYELi18iH56Ttr4"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11846"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+>>>>>>> Stashed changes
   - name: "@DeltaKronecker_Clash_11848"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
+=======
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11850"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11852"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11854"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "kDWvXYZoTBcGkC4"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11856"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11858"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11860"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11862"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11864"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "RSzEIkk2EsHEAVj15N5E/A=="
+    udp: true
+  - name: "@DeltaKronecker_Clash_11866"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11868"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11870"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11872"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "q2jToxsx4vTevqrFiLGuwRx96SXM3C96id1MWpnSECHq3MaTWnEV76aN5PYEigRfqf7rxAcuAMWUzYNxrYRG6QhMcYw5QnqL"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11874"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11876"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11878"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11880"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11882"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11884"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "faBAoD54k87UJG7"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11886"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11888"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "3e96ef7d-8637-42c2-ac73-75182196e755"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "3e96ef7d-8637-42c2-ac73-75182196e755/?ed=2560"
+      host: "mfvpn.fuchen.indevs.in"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11890"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11892"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "qItG8SueYQcP"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11894"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11896"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11898"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "2zQoJHz22Zbvh37yxZWJ6JzFtLhttZCLop8WFfpcJ4166JAenuKTvDuUnebBnz8PGPoXLWsEm1nkzbTnJaiTsSx9wXZkyL3i"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11900"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11902"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+>>>>>>> Stashed changes
     cipher: "none"
     password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
     udp: true
@@ -2089,6 +4296,7 @@ proxies:
       mode: "websocket"
       path: "/14b02e2a-8930-4afb-8412-ea4a4954ca5b/?ed\\=2560"
       host: "ylnhh.us.ci"
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11850"
     type: ss
     server: "127.0.0.1"
@@ -2097,22 +4305,56 @@ proxies:
     password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
     udp: true
   - name: "@DeltaKronecker_Clash_11852"
+=======
+      tls: true
+  - name: "@DeltaKronecker_Clash_11904"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
     password: "79960b0b-7d31-4263-8915-6511b0e137a8"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11854"
+=======
+  - name: "@DeltaKronecker_Clash_11906"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "d1a445d8-d280-4465-893b-087b972a3aa1"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11908"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11910"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
+<<<<<<< Updated upstream
     password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+=======
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11912"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "3e96ef7d-8637-42c2-ac73-75182196e755"
+>>>>>>> Stashed changes
     udp: true
     plugin: v2ray-plugin
     plugin-opts:
       mode: "websocket"
+<<<<<<< Updated upstream
       path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
@@ -2124,6 +4366,19 @@ proxies:
     password: "shadowsocks"
     udp: true
   - name: "@DeltaKronecker_Clash_11858"
+=======
+      path: "3e96ef7d-8637-42c2-ac73-75182196e755/?ed\\=2560"
+      host: "mfvpn.fuchen.indevs.in"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11914"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11916"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
@@ -2136,21 +4391,151 @@ proxies:
       path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11860"
+=======
+  - name: "@DeltaKronecker_Clash_11918"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11920"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "ezyeH22iGS1UDeew5zzbTimqecrGBKSS1IsEqh"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11922"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11924"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "RSo52SbxW40r"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11926"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "TEzjfAYq2IjtuoS"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11928"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "hbGrpfvNrJsUmKmPbR3iY2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11930"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11932"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11934"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11936"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11938"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11940"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "aes-128-gcm"
     password: "shadowsocks"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11862"
+=======
+  - name: "@DeltaKronecker_Clash_11942"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "Y6R9pAtvxxzmGC"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11944"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11946"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11948"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11950"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "aes-256-cfb"
-    password: "daFYagqDdBdA6VTX"
+    password: "qwerREWQ@@"
     udp: true
-  - name: "@DeltaKronecker_Clash_11864"
+  - name: "@DeltaKronecker_Clash_11952"
     type: ss
     server: "127.0.0.1"
     port: 40443
@@ -2163,6 +4548,196 @@ proxies:
       path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+  - name: "@DeltaKronecker_Clash_11954"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11956"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11958"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11960"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11962"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11964"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "WOir3lXBhMHDcLFPQdEZXPu37_pTQDCXfm"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11966"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "hkasb5cVrs4jE18jCEJxB4Gr55hVGW24y35gU9GIIeyT31Fw"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11968"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11970"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "q2jToxsx4vTevqrFiLGuwRx96SXM3C96id1MWpnSECHq3MaTWnEV76aN5PYEigRfqf7rxAcuAMWUzYNxrYRG6QhMcYw5QnqL"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11972"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11974"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11976"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11978"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "7e731ec3-f8e1-43f6-92cf-3978d14705c4"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11980"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11982"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11984"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11986"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "WOir3lXBhMHDcLFPQdEZXPu37_pTQDCXfm"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11988"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/14b02e2a-8930-4afb-8412-ea4a4954ca5b/?ed\\=2560"
+      host: "ylnhh.us.ci"
+      tls: true
+  - name: "@DeltaKronecker_Clash_11990"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11992"
+>>>>>>> Stashed changes
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "daFYagqDdBdA6VTX"
+    udp: true
+<<<<<<< Updated upstream
+  - name: "@DeltaKronecker_Clash_11864"
+=======
+  - name: "@DeltaKronecker_Clash_11994"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "qwerREWQ@@"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11996"
+>>>>>>> Stashed changes
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11866"
     type: ss
     server: "127.0.0.1"
@@ -2198,12 +4773,16 @@ proxies:
       host: "woshinidie-et3.pages.dev"
       tls: true
   - name: "@DeltaKronecker_Clash_11874"
+=======
+  - name: "@DeltaKronecker_Clash_11998"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
-    password: "https://t.me/WangCai2🇨🇳"
+    password: "https"
     udp: true
+<<<<<<< Updated upstream
     plugin: v2ray-plugin
     plugin-opts:
       mode: "websocket"
@@ -2211,12 +4790,16 @@ proxies:
       host: "woshinidie-et3.pages.dev"
       tls: true
   - name: "@DeltaKronecker_Clash_11876"
+=======
+  - name: "@DeltaKronecker_Clash_12000"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
     password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11878"
     type: ss
     server: "127.0.0.1"
@@ -2265,6 +4848,9 @@ proxies:
       host: "woshinidie-et3.pages.dev"
       tls: true
   - name: "@DeltaKronecker_Clash_11888"
+=======
+  - name: "@DeltaKronecker_Clash_12002"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
@@ -2277,13 +4863,59 @@ proxies:
       path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11890"
+=======
+  - name: "@DeltaKronecker_Clash_12004"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12006"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/14b02e2a-8930-4afb-8412-ea4a4954ca5b/?ed=2560"
+      host: "ylnhh.us.ci"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12008"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12010"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12012"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "uROuEqsL8IUMMVb4wDwnGU"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12014"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "aes-128-gcm"
     password: "shadowsocks"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11892"
     type: ss
     server: "127.0.0.1"
@@ -2292,10 +4924,20 @@ proxies:
     password: "UkXRsXvR6buDMG2Y"
     udp: true
   - name: "@DeltaKronecker_Clash_11894"
+=======
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12016"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "245o3Vnmo1cAee4QNJ6f2H4XsJnfWnAm6EcjFeHWKF2tSuXvnwc6C4v7ajzwi1Y8jX2dMpe6qV5m475XsfnKvCjYSpGb1Xpj"
     udp: true
   - name: "@DeltaKronecker_Clash_11896"
@@ -2340,26 +4982,55 @@ proxies:
     password: "0195c476-63f8-7232-ac42-0ac1eaabe934"
     udp: true
   - name: "@DeltaKronecker_Clash_11906"
-    type: ss
-    server: "127.0.0.1"
-    port: 40443
-    cipher: "none"
-    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+=======
+    password: "jR5Wg32XzEgCXk4MPCgvd1G1Ts8WHBLsXMUaqMa5DUXMuqMmdZgCbMipXDhoAmj73qA9oY85zXK35L5m631Tn7in2p3KLbWF"
     udp: true
-  - name: "@DeltaKronecker_Clash_11908"
-    type: ss
-    server: "127.0.0.1"
-    port: 40443
-    cipher: "chacha20-ietf-poly1305"
-    password: "oZIoA69Q8yhcQV8ka3Pa3A"
-    udp: true
-  - name: "@DeltaKronecker_Clash_11910"
+  - name: "@DeltaKronecker_Clash_12018"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
     password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
     udp: true
+<<<<<<< Updated upstream
+  - name: "@DeltaKronecker_Clash_11908"
+=======
+  - name: "@DeltaKronecker_Clash_12020"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12022"
+>>>>>>> Stashed changes
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_11910"
+=======
+    password: "CJmTCCx7Ltud"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12024"
+>>>>>>> Stashed changes
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+<<<<<<< Updated upstream
     plugin: v2ray-plugin
     plugin-opts:
       mode: "websocket"
@@ -2367,12 +5038,50 @@ proxies:
       host: "woshinidie-et3.pages.dev"
       tls: true
   - name: "@DeltaKronecker_Clash_11912"
+=======
+  - name: "@DeltaKronecker_Clash_12026"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12028"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "d2890c8f-8d15-42b7-80e3-687fab8b2c7a"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12030"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "daFYagqDdBdA6VTX"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12032"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12034"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
     password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
     udp: true
+<<<<<<< Updated upstream
     plugin: v2ray-plugin
     plugin-opts:
       mode: "websocket"
@@ -2568,6 +5277,16 @@ proxies:
     password: "RSo52SbxW40r"
     udp: true
   - name: "@DeltaKronecker_Clash_11954"
+=======
+  - name: "@DeltaKronecker_Clash_12036"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "FAdUvMJUq5vDgKEq"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12038"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
@@ -2580,6 +5299,7 @@ proxies:
       path: "/94ce96d3-840d-4320-9b9b-07bdba018212/?ed\\=2560"
       host: "ss.lrdxw.club"
       tls: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_11956"
     type: ss
     server: "127.0.0.1"
@@ -2909,11 +5629,14 @@ proxies:
     cipher: "chacha20-ietf-poly1305"
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
+=======
+>>>>>>> Stashed changes
   - name: "@DeltaKronecker_Clash_12040"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
+<<<<<<< Updated upstream
     password: "https://t.me/WangCai2🇨🇳"
     udp: true
     plugin: v2ray-plugin
@@ -2988,6 +5711,8 @@ proxies:
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
+=======
+>>>>>>> Stashed changes
     password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
     udp: true
     plugin: v2ray-plugin
@@ -2996,6 +5721,7 @@ proxies:
       path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12058"
     type: ss
     server: "127.0.0.1"
@@ -3045,26 +5771,49 @@ proxies:
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
   - name: "@DeltaKronecker_Clash_12070"
+=======
+  - name: "@DeltaKronecker_Clash_12042"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "aes-256-gcm"
+<<<<<<< Updated upstream
     password: "XKFKl2rULjIp74"
     udp: true
   - name: "@DeltaKronecker_Clash_12072"
-    type: ss
-    server: "127.0.0.1"
-    port: 40443
-    cipher: "aes-256-gcm"
-    password: "e2949272-400e-4ef1-8657-6c2a994e5434"
+=======
+    password: "RexnBgU7EV5ADxG"
     udp: true
-  - name: "@DeltaKronecker_Clash_12074"
+  - name: "@DeltaKronecker_Clash_12044"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
     udp: true
+  - name: "@DeltaKronecker_Clash_12046"
+>>>>>>> Stashed changes
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+<<<<<<< Updated upstream
+    password: "e2949272-400e-4ef1-8657-6c2a994e5434"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12074"
+=======
+    password: "kSLjbrBc84"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12048"
+>>>>>>> Stashed changes
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12076"
     type: ss
     server: "127.0.0.1"
@@ -3087,10 +5836,21 @@ proxies:
     password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
     udp: true
   - name: "@DeltaKronecker_Clash_12082"
+=======
+  - name: "@DeltaKronecker_Clash_12050"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+    password: "37UjXyUwwn80NJVOg76r3lrR6xg3f2yG"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12052"
+>>>>>>> Stashed changes
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "mzeMYBJYp4Bo7nA1qYLvv7QG73igtAA85nt4pr8A9ntx2qhDfYgRtiJ7iH7VrcneQKNmtvpbsvvFKPaUATYELi18iH56Ttr4"
     udp: true
   - name: "@DeltaKronecker_Clash_12084"
@@ -3108,53 +5868,285 @@ proxies:
     password: "CJmTCCx7Ltud"
     udp: true
   - name: "@DeltaKronecker_Clash_12088"
+=======
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12054"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "aes-128-gcm"
     password: "shadowsocks"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12090"
+=======
+  - name: "@DeltaKronecker_Clash_12056"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12058"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12060"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "y9VURyNzJWNRYEGQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12062"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12064"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12066"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12068"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12070"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "bf7v334KKDV3YDhH"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12072"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12074"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12092"
+=======
+  - name: "@DeltaKronecker_Clash_12076"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "gaM3vd5zfR1ay1v7hfn4X6"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12078"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12080"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12082"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "hbGrpfvNrJsUmKmPbR3iY2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12084"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
+<<<<<<< Updated upstream
     password: "https://t.me/WangCai2🇨🇳"
     udp: true
   - name: "@DeltaKronecker_Clash_12094"
+=======
+    password: "3e96ef7d-8637-42c2-ac73-75182196e755"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12086"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "do1DZ-_QvkFWXzsjc_w8eT5-TeYP6U3Q"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12088"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "aes-128-gcm"
     password: "shadowsocks"
     udp: true
+<<<<<<< Updated upstream
+=======
+  - name: "@DeltaKronecker_Clash_12090"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "7e731ec3-f8e1-43f6-92cf-3978d14705c4"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12092"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "RSzEIkk2EsHEAVj15N5E/A=="
+    udp: true
+  - name: "@DeltaKronecker_Clash_12094"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "01iK5R1qq8MGGUyN9P20au"
+    udp: true
+>>>>>>> Stashed changes
   - name: "@DeltaKronecker_Clash_12096"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "aes-256-gcm"
     password: "XKFKl2rULjIp74"
+=======
+    cipher: "chacha20-ietf-poly1305"
+    password: "7e731ec3-f8e1-43f6-92cf-3978d14705c4"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12098"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "none"
     password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+=======
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12100"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12102"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "do1DZ-_QvkFWXzsjc_w8eT5-TeYP6U3Q"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12104"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "0767dc96-e68a-43ac-a929-68b664700267"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12106"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12108"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12110"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12112"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12114"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+>>>>>>> Stashed changes
     udp: true
     plugin: v2ray-plugin
     plugin-opts:
       mode: "websocket"
+<<<<<<< Updated upstream
       path: "14b02e2a-8930-4afb-8412-ea4a4954ca5b/?ed\\=2560"
       host: "ylnhh.us.ci"
   - name: "@DeltaKronecker_Clash_12100"
+=======
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12116"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
@@ -3167,6 +6159,7 @@ proxies:
       path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12102"
     type: ss
     server: "127.0.0.1"
@@ -3181,40 +6174,1841 @@ proxies:
       host: "woshinidie-et3.pages.dev"
       tls: true
   - name: "@DeltaKronecker_Clash_12104"
+=======
+  - name: "@DeltaKronecker_Clash_12118"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "KnJGad3FqTvjqbaX"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12120"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12122"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12124"
+>>>>>>> Stashed changes
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+<<<<<<< Updated upstream
     password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
     udp: true
   - name: "@DeltaKronecker_Clash_12106"
+=======
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12126"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
     password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12108"
-    type: ss
-    server: "127.0.0.1"
-    port: 40443
-    cipher: "aes-256-gcm"
-    password: "TEzjfAYq2IjtuoS"
-    udp: true
-  - name: "@DeltaKronecker_Clash_12110"
+=======
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12128"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
-    password: "7e731ec3-f8e1-43f6-92cf-3978d14705c4"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
-  - name: "@DeltaKronecker_Clash_12112"
+  - name: "@DeltaKronecker_Clash_12130"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
     udp: true
+  - name: "@DeltaKronecker_Clash_12132"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12134"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "aduB9HGxQHjA2SBMRjkHX6"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12136"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "ZpNDDKRu9MagNvaf"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12138"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "2zQoJHz22Zbvh37yxZWJ6JzFtLhttZCLop8WFfpcJ4166JAenuKTvDuUnebBnz8PGPoXLWsEm1nkzbTnJaiTsSx9wXZkyL3i"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12140"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "kSLjbrBc84"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12142"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12144"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12146"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "792e0bdb-01db-450c-94c4-925151eb396e"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12148"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12150"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12152"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "5dd517da-34e6-473d-9f4c-cebbffeb7f51"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/"
+      host: "twilight-dust-88e8.ptarasuk2025.workers.dev"
+  - name: "@DeltaKronecker_Clash_12154"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12156"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12158"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "qwerREWQ@@"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12160"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12162"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "qwerREWQ@@"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12164"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "cAqbBYBB0f9CAmpU_mc_7FyvvLCcwzt0"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12166"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12168"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12170"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "RSzEIkk2EsHEAVj15N5E/A=="
+    udp: true
+  - name: "@DeltaKronecker_Clash_12172"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12174"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "7e731ec3-f8e1-43f6-92cf-3978d14705c4"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12176"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12178"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "7e731ec3-f8e1-43f6-92cf-3978d14705c4"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12180"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12182"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12184"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12186"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12188"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "768b923a-4918-46ad-96e7-9cf5543ddc4c"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12190"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "qwerREWQ@@"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12192"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12194"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "RexnBgU7EV5ADxG"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12196"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "WSyL4XTwNsdv"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12198"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12200"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12202"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12204"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12206"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12208"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "EBDRo9THx4CqiFU7h5gfov76oNwzZURAh0ZwbWjBKddtUhvz"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12210"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12212"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12214"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "qwerREWQ@@"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12216"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/14b02e2a-8930-4afb-8412-ea4a4954ca5b/?ed\\=2560"
+      host: "ylnhh.us.ci"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12218"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12220"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12222"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12224"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/14b02e2a-8930-4afb-8412-ea4a4954ca5b/?ed\\=2560"
+      host: "ylnhh.us.ci"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12226"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12228"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12230"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "3e96ef7d-8637-42c2-ac73-75182196e755"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/3e96ef7d-8637-42c2-ac73-75182196e755/?ed=2560"
+      host: "mfvpn.fuchen.indevs.in"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12232"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12234"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "3e96ef7d-8637-42c2-ac73-75182196e755"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "3e96ef7d-8637-42c2-ac73-75182196e755/?ed=2560"
+      host: "mfvpn.fuchen.indevs.in"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12236"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "KP6FQVmJhlXPgvPhrw2gnI"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12238"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "diOMBU5IDvJcFqyNPbRjYR"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12240"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12242"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12244"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "2022-blake3-aes-256-gcm"
+    password: "bIp0spSuoM1jadkc20X5GBw1/xqE+tT32rxyQCRTdks=:Huf5VbS7uzTylCYqhqINu0cHsXe38LVGLEZ1/5jj/60="
+    udp: true
+  - name: "@DeltaKronecker_Clash_12246"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "hbGrpfvNrJsUmKmPbR3iY2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12248"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12250"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12252"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12254"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12256"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12258"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "TPqX8edgbAURcAMb"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12260"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "KP6FQVmJhlXPgvPhrw2gnI"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12262"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12264"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "mmdZ63jsXPCYFtgyarEXNzNTScEJhq6CaEXJzC9AYZpqstCbNEeKoqm7Xsw5eTzsUg4ujh7Lu1mQFVwAQpyGmnewPi3UH9XH"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12266"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "TEzjfAYq2IjtuoS"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12268"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "e2949272-400e-4ef1-8657-6c2a994e5434"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12270"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12272"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "14b02e2a-8930-4afb-8412-ea4a4954ca5b/?ed\\=2560"
+      host: "ylnhh.us.ci"
+  - name: "@DeltaKronecker_Clash_12274"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12276"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12278"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12280"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12282"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "98bee4a3-2ade-49ae-bf5c-997c745be2e7"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12284"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "qwerREWQ@@"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12286"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "14b02e2a-8930-4afb-8412-ea4a4954ca5b/?ed\\=2560"
+      host: "ylnhh.us.ci"
+  - name: "@DeltaKronecker_Clash_12288"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12290"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12292"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12294"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12296"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "qYEN5HX4JKeVCdEC"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12298"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "ZET59LF6DvCC8KVt"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12300"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12302"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12304"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12306"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12308"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12310"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "CJmTCCx7Ltud"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12312"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12314"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/79960b0b-7d31-4263-8915-6511b0e137a8/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12316"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12318"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12320"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12322"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12324"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12326"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12328"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12330"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-cfb"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12332"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12334"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12336"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12338"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "bf7v334KKDV3YDhH"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12340"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12342"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "WSyL4XTwNsdv"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12344"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12346"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "UkXRsXvR6buDMG2Y"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12348"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12350"
+    type: ss
+    server: "82.38.31.185"
+    port: 8080
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12352"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "fG2artUmHfNT2cX7"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12354"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12356"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12358"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12360"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12362"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12364"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12366"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "6U3psR0sQuQxWXoBHB4KTD3YacwQwS21XvSEy9"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12368"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12370"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "7e731ec3-f8e1-43f6-92cf-3978d14705c4"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12372"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12374"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12376"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12378"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "65a9e62f-93a6-40eb-b51d-0d832124eb31"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12380"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12382"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "9XwYyZsK8SNzQDtY"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12384"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "hkasb5cVrs4jE18jCEJxB4Gr55hVGW24y35gU9GIIeyT31Fw"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12386"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12388"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "RSzEIkk2EsHEAVj15N5E/A=="
+    udp: true
+  - name: "@DeltaKronecker_Clash_12390"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "7SEstdmLhf-aFK_G9eaYHKT_YpSov58B"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12392"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12394"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12396"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "ZET59LF6DvCC8KVt"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12398"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12400"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12402"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-cfb"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12404"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "3e96ef7d-8637-42c2-ac73-75182196e755"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12406"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "qwerREWQ@@"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12408"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12410"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "WOir3lXBhMHDcLFPQdEZXPu37_pTQDCXfm"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12412"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "ktaE_kXdYsjA9ZefxXzQmg"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12414"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/14b02e2a-8930-4afb-8412-ea4a4954ca5b/?ed\\=2560"
+      host: "ylnhh.us.ci"
+  - name: "@DeltaKronecker_Clash_12416"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12418"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12420"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12422"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12424"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12426"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12428"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12430"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12432"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "792e0bdb-01db-450c-94c4-925151eb396e"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12434"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12436"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12438"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "3e96ef7d-8637-42c2-ac73-75182196e755"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "3e96ef7d-8637-42c2-ac73-75182196e755/?ed=2560"
+      host: "mfvpn.fuchen.indevs.in"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12440"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12442"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12444"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "qwerREWQ@@"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12446"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "RSzEIkk2EsHEAVj15N5E/A=="
+    udp: true
+  - name: "@DeltaKronecker_Clash_12448"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "XKFKl2rULjIp74"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12450"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "ebEfGowZtV1BEFXZOtgAXi"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12452"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "G5p6ww4o67HB"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12454"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12456"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12458"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12460"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12462"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "hbGrpfvNrJsUmKmPbR3iY2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12464"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "3e96ef7d-8637-42c2-ac73-75182196e755"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/3e96ef7d-8637-42c2-ac73-75182196e755/?ed=2560"
+      host: "mfvpn.fuchen.indevs.in"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12466"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12468"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12470"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "qwerREWQ@@"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12472"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12474"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "lGqs95QkFHo2NV"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12476"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12478"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "exirmYvciExTzc4Q"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12480"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "G5p6ww4o67HB"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12482"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12484"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12486"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "bwjNPcwgz5+1gCyi+rB+nfqugw38B7tqVa"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12488"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12490"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "KP6FQVmJhlXPgvPhrw2gnI"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12492"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12494"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12496"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12498"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12500"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12502"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "lGqs95QkFHo2NV"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12504"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12506"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12508"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12510"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12512"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "ezyeH22iGS1UDeew5zzbTimqecrGBKSS1IsEqh"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12514"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12516"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12518"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12520"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "mmdZ63jsXPCYFtgyarEXNzNTScEJhq6CaEXJzC9AYZpqstCbNEeKoqm7Xsw5eTzsUg4ujh7Lu1mQFVwAQpyGmnewPi3UH9XH"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12522"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "q2jToxsx4vTevqrFiLGuwRx96SXM3C96id1MWpnSECHq3MaTWnEV76aN5PYEigRfqf7rxAcuAMWUzYNxrYRG6QhMcYw5QnqL"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12524"
+>>>>>>> Stashed changes
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "TEzjfAYq2IjtuoS"
+    udp: true
+<<<<<<< Updated upstream
+  - name: "@DeltaKronecker_Clash_12110"
+=======
+  - name: "@DeltaKronecker_Clash_12526"
+>>>>>>> Stashed changes
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
+    password: "7e731ec3-f8e1-43f6-92cf-3978d14705c4"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12112"
+=======
+    password: "6U3psR0sQuQxWXoBHB4KTD3YacwQwS21XvSEy9"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12528"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12530"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "3e96ef7d-8637-42c2-ac73-75182196e755"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12532"
+>>>>>>> Stashed changes
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12114"
     type: ss
     server: "127.0.0.1"
@@ -4937,38 +9731,58 @@ proxies:
       path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+=======
+>>>>>>> Stashed changes
   - name: "@DeltaKronecker_Clash_12534"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "G5p6ww4o67HB"
+=======
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12536"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
+=======
+    password: "Xsy8Ox4yOV3xLlpxtjzs3X"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12538"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "k1dBOmOB4oqi7Ump37a1bQ"
+=======
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12540"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "chacha20-ietf"
     password: "asd123456"
+=======
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12542"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "none"
     password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
     udp: true
@@ -4978,17 +9792,28 @@ proxies:
       path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+=======
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+>>>>>>> Stashed changes
   - name: "@DeltaKronecker_Clash_12544"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "chacha20-ietf-poly1305"
     password: "CJmTCCx7Ltud"
+=======
+    cipher: "none"
+    password: "3e96ef7d-8637-42c2-ac73-75182196e755"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12546"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "none"
     password: "79960b0b-7d31-4263-8915-6511b0e137a8"
     udp: true
@@ -4998,17 +9823,30 @@ proxies:
       path: "/79960b0b-7d31-4263-8915-6511b0e137a8/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+=======
+    cipher: "chacha20-ietf-poly1305"
+    password: "cAqbBYBB0f9CAmpU_mc_7FyvvLCcwzt0"
+    udp: true
+>>>>>>> Stashed changes
   - name: "@DeltaKronecker_Clash_12548"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
+<<<<<<< Updated upstream
     password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+=======
+    password: "https://t.me/WangCai2🇨🇳"
+>>>>>>> Stashed changes
     udp: true
     plugin: v2ray-plugin
     plugin-opts:
       mode: "websocket"
+<<<<<<< Updated upstream
       path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+=======
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+>>>>>>> Stashed changes
       host: "woshinidie-et3.pages.dev"
       tls: true
   - name: "@DeltaKronecker_Clash_12550"
@@ -5016,6 +9854,7 @@ proxies:
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
+<<<<<<< Updated upstream
     password: "79960b0b-7d31-4263-8915-6511b0e137a8"
     udp: true
   - name: "@DeltaKronecker_Clash_12552"
@@ -5044,6 +9883,8 @@ proxies:
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
+=======
+>>>>>>> Stashed changes
     password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
     udp: true
     plugin: v2ray-plugin
@@ -5052,13 +9893,25 @@ proxies:
       path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12560"
+=======
+  - name: "@DeltaKronecker_Clash_12552"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12554"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12562"
     type: ss
     server: "127.0.0.1"
@@ -5128,6 +9981,9 @@ proxies:
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
     udp: true
   - name: "@DeltaKronecker_Clash_12578"
+=======
+  - name: "@DeltaKronecker_Clash_12556"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
@@ -5137,37 +9993,152 @@ proxies:
     plugin: v2ray-plugin
     plugin-opts:
       mode: "websocket"
+<<<<<<< Updated upstream
       path: "3e96ef7d-8637-42c2-ac73-75182196e755/?ed=2560"
       host: "mfvpn.fuchen.indevs.in"
       tls: true
   - name: "@DeltaKronecker_Clash_12580"
+=======
+      path: "/3e96ef7d-8637-42c2-ac73-75182196e755/?ed\\=2560"
+      host: "mfvpn.fuchen.indevs.in"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12558"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "XKFKl2rULjIp74"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12560"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "cdBIDV42DCwnfIN"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12562"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "qwerREWQ@@"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12564"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12582"
+=======
+  - name: "@DeltaKronecker_Clash_12566"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "Lt5RzodU956LERWHkvuF34"
+=======
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12568"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "h2GNP6xzss0xQ5kf7BNcJI"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12570"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "cdBIDV42DCwnfIN"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12572"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12574"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/79960b0b-7d31-4263-8915-6511b0e137a8/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12576"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "a3BQM2r0DYKRjEDii0HdnE"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12578"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12580"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "hbGrpfvNrJsUmKmPbR3iY2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12582"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12584"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "chacha20-ietf-poly1305"
     password: "cAqbBYBB0f9CAmpU_mc_7FyvvLCcwzt0"
+=======
+    cipher: "2022-blake3-aes-256-gcm"
+    password: "fnvo82p9y4AKykZXyIFtnodFy6fQmWnVlI2SvGleOB0="
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12586"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "chacha20-ietf-poly1305"
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
     udp: true
+=======
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+>>>>>>> Stashed changes
   - name: "@DeltaKronecker_Clash_12588"
     type: ss
     server: "127.0.0.1"
@@ -5180,12 +10151,17 @@ proxies:
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "37UjXyUwwn80NJVOg76r3lrR6xg3f2yG"
+=======
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12592"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "none"
     password: "https://t.me/WangCai2🇨🇳"
     udp: true
@@ -5195,73 +10171,127 @@ proxies:
       path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+=======
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+>>>>>>> Stashed changes
   - name: "@DeltaKronecker_Clash_12594"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "chacha20-ietf-poly1305"
     password: "7SEstdmLhf-aFK_G9eaYHKT_YpSov58B"
+=======
+    cipher: "aes-256-cfb"
+    password: "QWDDvVE9npNurQfA"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12596"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
+<<<<<<< Updated upstream
     password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+=======
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12598"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "2zQoJHz22Zbvh37yxZWJ6JzFtLhttZCLop8WFfpcJ4166JAenuKTvDuUnebBnz8PGPoXLWsEm1nkzbTnJaiTsSx9wXZkyL3i"
+=======
+    password: "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12600"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "chacha20-ietf-poly1305"
     password: "q2jToxsx4vTevqrFiLGuwRx96SXM3C96id1MWpnSECHq3MaTWnEV76aN5PYEigRfqf7rxAcuAMWUzYNxrYRG6QhMcYw5QnqL"
     udp: true
+=======
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+>>>>>>> Stashed changes
   - name: "@DeltaKronecker_Clash_12602"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "aes-128-gcm"
     password: "shadowsocks"
+=======
+    cipher: "aes-256-cfb"
+    password: "qwerREWQ@@"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12604"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "aes-128-gcm"
     password: "shadowsocks"
+=======
+    cipher: "none"
+    password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12606"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "hbGrpfvNrJsUmKmPbR3iY2"
+=======
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12608"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "aes-128-gcm"
     password: "shadowsocks"
+=======
+    cipher: "chacha20-ietf-poly1305"
+    password: "ARgvGZywA+gacgGV26Bvmu05+wZmRW/j+AdU+Z8Bt44="
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12610"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "k1dBOmOB4oqi7Ump37a1bQ"
+=======
+    password: "245o3Vnmo1cAee4QNJ6f2H4XsJnfWnAm6EcjFeHWKF2tSuXvnwc6C4v7ajzwi1Y8jX2dMpe6qV5m475XsfnKvCjYSpGb1Xpj"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12612"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "none"
     password: "3e96ef7d-8637-42c2-ac73-75182196e755"
     udp: true
@@ -5286,24 +10316,67 @@ proxies:
     cipher: "chacha20-ietf-poly1305"
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
     udp: true
+=======
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12614"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "y9VURyNzJWNRYEGQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12616"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12618"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-gcm"
+    password: "7e1dd4c55bf85da5"
+    udp: true
+>>>>>>> Stashed changes
   - name: "@DeltaKronecker_Clash_12620"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "chacha20-ietf-poly1305"
     password: "q2jToxsx4vTevqrFiLGuwRx96SXM3C96id1MWpnSECHq3MaTWnEV76aN5PYEigRfqf7rxAcuAMWUzYNxrYRG6QhMcYw5QnqL"
+=======
+    cipher: "aes-256-gcm"
+    password: "7ad7df5a-23bd-459b-9bef-c428f26fff4a"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12622"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "chacha20-ietf-poly1305"
     password: "G5p6ww4o67HB"
+=======
+    cipher: "none"
+    password: "0195c476-63f8-7232-ac42-0ac1eaabe934"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12624"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "none"
     password: "3e96ef7d-8637-42c2-ac73-75182196e755"
     udp: true
@@ -5313,17 +10386,28 @@ proxies:
       path: "/3e96ef7d-8637-42c2-ac73-75182196e755/?ed=2560"
       host: "mfvpn.fuchen.indevs.in"
       tls: true
+=======
+    cipher: "chacha20-ietf-poly1305"
+    password: "I-bP3lFh.dTG3XitF7XtVK83CZ7rI2Ut=n"
+    udp: true
+>>>>>>> Stashed changes
   - name: "@DeltaKronecker_Clash_12626"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "none"
     password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+=======
+    cipher: "aes-256-cfb"
+    password: "U6qnYRhfyDmn8sgn"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12628"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "aes-128-gcm"
     password: "shadowsocks"
     udp: true
@@ -5334,24 +10418,46 @@ proxies:
     cipher: "aes-256-cfb"
     password: "qwerREWQ@@"
     udp: true
+=======
+    cipher: "chacha20-ietf-poly1305"
+    password: "Jx2HKJK7kiti86e8AnQIbX"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12630"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+>>>>>>> Stashed changes
   - name: "@DeltaKronecker_Clash_12632"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "aes-256-cfb"
     password: "qwerREWQ@@"
+=======
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12634"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "eDfN7SODQceIOmIAbtJJtK"
+=======
+    password: "bQZl7HDxSabr1FurTYQHFU"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12636"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "aes-128-gcm"
     password: "shadowsocks"
     udp: true
@@ -5490,6 +10596,8 @@ proxies:
     type: ss
     server: "127.0.0.1"
     port: 40443
+=======
+>>>>>>> Stashed changes
     cipher: "none"
     password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
     udp: true
@@ -5499,6 +10607,7 @@ proxies:
       path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12674"
     type: ss
     server: "127.0.0.1"
@@ -5507,17 +10616,34 @@ proxies:
     password: "kDWvXYZoTBcGkC4"
     udp: true
   - name: "@DeltaKronecker_Clash_12676"
+=======
+  - name: "@DeltaKronecker_Clash_12638"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12640"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "gWBgmKb8AL1uRK0jZ44AoOPaC5lVTOHZmi"
     udp: true
   - name: "@DeltaKronecker_Clash_12678"
+=======
+    password: "6U3psR0sQuQxWXoBHB4KTD3YacwQwS21XvSEy9"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12642"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "jR5Wg32XzEgCXk4MPCgvd1G1Ts8WHBLsXMUaqMa5DUXMuqMmdZgCbMipXDhoAmj73qA9oY85zXK35L5m631Tn7in2p3KLbWF"
     udp: true
   - name: "@DeltaKronecker_Clash_12680"
@@ -5535,6 +10661,24 @@ proxies:
     password: "Jx2HKJK7kiti86e8AnQIbX"
     udp: true
   - name: "@DeltaKronecker_Clash_12684"
+=======
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12644"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12646"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
@@ -5547,13 +10691,177 @@ proxies:
       path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12686"
+=======
+  - name: "@DeltaKronecker_Clash_12648"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12650"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "3e96ef7d-8637-42c2-ac73-75182196e755"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12652"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "aes-128-gcm"
     password: "shadowsocks"
     udp: true
+<<<<<<< Updated upstream
+=======
+  - name: "@DeltaKronecker_Clash_12654"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "q2jToxsx4vTevqrFiLGuwRx96SXM3C96id1MWpnSECHq3MaTWnEV76aN5PYEigRfqf7rxAcuAMWUzYNxrYRG6QhMcYw5QnqL"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12656"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12658"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12660"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12662"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/14b02e2a-8930-4afb-8412-ea4a4954ca5b/?ed\\=2560"
+      host: "ylnhh.us.ci"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12664"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "qItG8SueYQcP"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12666"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12668"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12670"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12672"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "daFYagqDdBdA6VTX"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12674"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12676"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12678"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12680"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "3e96ef7d-8637-42c2-ac73-75182196e755"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12682"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "EBDRo9THx4CqiFU7h5gfov76oNwzZURAh0ZwbWjBKddtUhvz"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12684"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "bIOoi5TuImG2KccxV7-jcA7Cez+vun-c_E"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12686"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "mzeMYBJYp4Bo7nA1qYLvv7QG73igtAA85nt4pr8A9ntx2qhDfYgRtiJ7iH7VrcneQKNmtvpbsvvFKPaUATYELi18iH56Ttr4"
+    udp: true
+>>>>>>> Stashed changes
   - name: "@DeltaKronecker_Clash_12688"
     type: ss
     server: "127.0.0.1"
@@ -5571,33 +10879,59 @@ proxies:
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "aes-128-gcm"
     password: "shadowsocks"
     udp: true
+=======
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+>>>>>>> Stashed changes
   - name: "@DeltaKronecker_Clash_12692"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "none"
+<<<<<<< Updated upstream
     password: "https://t.me/WangCai2🇨🇳"
+=======
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+>>>>>>> Stashed changes
     udp: true
     plugin: v2ray-plugin
     plugin-opts:
       mode: "websocket"
+<<<<<<< Updated upstream
       path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+=======
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+>>>>>>> Stashed changes
       host: "woshinidie-et3.pages.dev"
       tls: true
   - name: "@DeltaKronecker_Clash_12694"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "none"
     password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+=======
+    cipher: "chacha20-ietf-poly1305"
+    password: "oZIoA69Q8yhcQV8ka3Pa3A"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12696"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "none"
     password: "https://t.me/WangCai2🇨🇳"
     udp: true
@@ -5607,10 +10941,16 @@ proxies:
       path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+=======
+    cipher: "aes-256-cfb"
+    password: "a3GFYt36Sm82Vys9"
+    udp: true
+>>>>>>> Stashed changes
   - name: "@DeltaKronecker_Clash_12698"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "none"
     password: "https://t.me/WangCai2🇨🇳"
     udp: true
@@ -5620,38 +10960,62 @@ proxies:
       path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+=======
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+>>>>>>> Stashed changes
   - name: "@DeltaKronecker_Clash_12700"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "aes-128-gcm"
     password: "shadowsocks"
+=======
+    cipher: "aes-256-gcm"
+    password: "Y6R9pAtvxxzmGC"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12702"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "G5p6ww4o67HB"
+=======
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12704"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "aes-256-gcm"
     password: "Y6R9pAtvxxzmGC"
+=======
+    cipher: "chacha20-ietf-poly1305"
+    password: "QFWzCw2uX9B9i6qAYeFBIE"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12706"
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
+=======
+    password: "IYpqqRAiDyCF7sXg"
+>>>>>>> Stashed changes
     udp: true
   - name: "@DeltaKronecker_Clash_12708"
     type: ss
     server: "127.0.0.1"
     port: 40443
+<<<<<<< Updated upstream
     cipher: "chacha20-ietf-poly1305"
     password: "yKVMoB3AwiTEznpnoq2FYR"
     udp: true
@@ -5745,10 +11109,17 @@ proxies:
     password: "79960b0b-7d31-4263-8915-6511b0e137a8"
     udp: true
   - name: "@DeltaKronecker_Clash_12732"
+=======
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12710"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "6U3psR0sQuQxWXoBHB4KTD3YacwQwS21XvSEy9"
     udp: true
   - name: "@DeltaKronecker_Clash_12734"
@@ -5779,17 +11150,43 @@ proxies:
       host: "woshinidie-et3.pages.dev"
       tls: true
   - name: "@DeltaKronecker_Clash_12740"
+=======
+    password: "hCCWOcIsK5wrFz4OX70rWf"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12712"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "chacha20-ietf-poly1305"
+<<<<<<< Updated upstream
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
     udp: true
   - name: "@DeltaKronecker_Clash_12742"
+=======
+    password: "7SEstdmLhf-aFK_G9eaYHKT_YpSov58B"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12714"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12716"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "KP6FQVmJhlXPgvPhrw2gnI"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12718"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "aes-256-gcm"
+<<<<<<< Updated upstream
     password: "TEzjfAYq2IjtuoS"
     udp: true
   - name: "@DeltaKronecker_Clash_12744"
@@ -5862,6 +11259,11 @@ proxies:
     password: "k1dBOmOB4oqi7Ump37a1bQ"
     udp: true
   - name: "@DeltaKronecker_Clash_12762"
+=======
+    password: "PCnnH6SQSnfoS27"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12720"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
@@ -5874,6 +11276,7 @@ proxies:
       path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
       host: "woshinidie-et3.pages.dev"
       tls: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12764"
     type: ss
     server: "127.0.0.1"
@@ -5882,12 +11285,16 @@ proxies:
     password: "oZIoA69Q8yhcQV8ka3Pa3A"
     udp: true
   - name: "@DeltaKronecker_Clash_12766"
+=======
+  - name: "@DeltaKronecker_Clash_12722"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "aes-128-gcm"
     password: "shadowsocks"
     udp: true
+<<<<<<< Updated upstream
   - name: "@DeltaKronecker_Clash_12768"
     type: ss
     server: "127.0.0.1"
@@ -5896,11 +11303,154 @@ proxies:
     password: "e4FCWrgpkji3QY"
     udp: true
   - name: "@DeltaKronecker_Clash_12770"
+=======
+  - name: "@DeltaKronecker_Clash_12724"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "uROuEqsL8IUMMVb4wDwnGU"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12726"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "768b923a-4918-46ad-96e7-9cf5543ddc4c"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12728"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12730"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12732"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12734"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12736"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12738"
+>>>>>>> Stashed changes
     type: ss
     server: "127.0.0.1"
     port: 40443
     cipher: "aes-256-cfb"
+<<<<<<< Updated upstream
     password: "KnJGad3FqTvjqbaX"
+=======
+    password: "EXN3S3eQpjE7EJu8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12740"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "79960b0b-7d31-4263-8915-6511b0e137a8"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12742"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "UkXRsXvR6buDMG2Y"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12744"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-256-cfb"
+    password: "HSZuyJQcWe8dxNdF"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12746"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "/59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12748"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "14b02e2a-8930-4afb-8412-ea4a4954ca5b"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "14b02e2a-8930-4afb-8412-ea4a4954ca5b/?ed\\=2560"
+      host: "ylnhh.us.ci"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12750"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12752"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "chacha20-ietf-poly1305"
+    password: "jR5Wg32XzEgCXk4MPCgvd1G1Ts8WHBLsXMUaqMa5DUXMuqMmdZgCbMipXDhoAmj73qA9oY85zXK35L5m631Tn7in2p3KLbWF"
+    udp: true
+  - name: "@DeltaKronecker_Clash_12754"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "none"
+    password: "https://t.me/WangCai2🇨🇳"
+    udp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: "websocket"
+      path: "59fc5f8c-5697-4eb8-acf2-8ae363f203a2/?ed\\=2560"
+      host: "woshinidie-et3.pages.dev"
+      tls: true
+  - name: "@DeltaKronecker_Clash_12756"
+    type: ss
+    server: "127.0.0.1"
+    port: 40443
+    cipher: "aes-128-gcm"
+    password: "shadowsocks"
+>>>>>>> Stashed changes
     udp: true
 
 proxy-groups:
@@ -5920,6 +11470,35 @@ proxy-groups:
     tolerance: 50
     lazy: true
     proxies:
+<<<<<<< Updated upstream
+=======
+      - "@DeltaKronecker_Clash_11350"
+      - "@DeltaKronecker_Clash_11352"
+      - "@DeltaKronecker_Clash_11354"
+      - "@DeltaKronecker_Clash_11356"
+      - "@DeltaKronecker_Clash_11358"
+      - "@DeltaKronecker_Clash_11360"
+      - "@DeltaKronecker_Clash_11362"
+      - "@DeltaKronecker_Clash_11364"
+      - "@DeltaKronecker_Clash_11366"
+      - "@DeltaKronecker_Clash_11368"
+      - "@DeltaKronecker_Clash_11370"
+      - "@DeltaKronecker_Clash_11372"
+      - "@DeltaKronecker_Clash_11374"
+      - "@DeltaKronecker_Clash_11376"
+      - "@DeltaKronecker_Clash_11378"
+      - "@DeltaKronecker_Clash_11380"
+      - "@DeltaKronecker_Clash_11382"
+      - "@DeltaKronecker_Clash_11384"
+      - "@DeltaKronecker_Clash_11386"
+      - "@DeltaKronecker_Clash_11388"
+      - "@DeltaKronecker_Clash_11390"
+      - "@DeltaKronecker_Clash_11392"
+      - "@DeltaKronecker_Clash_11394"
+      - "@DeltaKronecker_Clash_11396"
+      - "@DeltaKronecker_Clash_11398"
+      - "@DeltaKronecker_Clash_11400"
+>>>>>>> Stashed changes
       - "@DeltaKronecker_Clash_11402"
       - "@DeltaKronecker_Clash_11404"
       - "@DeltaKronecker_Clash_11406"
@@ -6598,6 +12177,7 @@ proxy-groups:
       - "@DeltaKronecker_Clash_12752"
       - "@DeltaKronecker_Clash_12754"
       - "@DeltaKronecker_Clash_12756"
+<<<<<<< Updated upstream
       - "@DeltaKronecker_Clash_12758"
       - "@DeltaKronecker_Clash_12760"
       - "@DeltaKronecker_Clash_12762"
@@ -6605,6 +12185,8 @@ proxy-groups:
       - "@DeltaKronecker_Clash_12766"
       - "@DeltaKronecker_Clash_12768"
       - "@DeltaKronecker_Clash_12770"
+=======
+>>>>>>> Stashed changes
 
   - name: "Auto"
     type: url-test
@@ -6613,6 +12195,35 @@ proxy-groups:
     tolerance: 50
     lazy: true
     proxies:
+<<<<<<< Updated upstream
+=======
+      - "@DeltaKronecker_Clash_11350"
+      - "@DeltaKronecker_Clash_11352"
+      - "@DeltaKronecker_Clash_11354"
+      - "@DeltaKronecker_Clash_11356"
+      - "@DeltaKronecker_Clash_11358"
+      - "@DeltaKronecker_Clash_11360"
+      - "@DeltaKronecker_Clash_11362"
+      - "@DeltaKronecker_Clash_11364"
+      - "@DeltaKronecker_Clash_11366"
+      - "@DeltaKronecker_Clash_11368"
+      - "@DeltaKronecker_Clash_11370"
+      - "@DeltaKronecker_Clash_11372"
+      - "@DeltaKronecker_Clash_11374"
+      - "@DeltaKronecker_Clash_11376"
+      - "@DeltaKronecker_Clash_11378"
+      - "@DeltaKronecker_Clash_11380"
+      - "@DeltaKronecker_Clash_11382"
+      - "@DeltaKronecker_Clash_11384"
+      - "@DeltaKronecker_Clash_11386"
+      - "@DeltaKronecker_Clash_11388"
+      - "@DeltaKronecker_Clash_11390"
+      - "@DeltaKronecker_Clash_11392"
+      - "@DeltaKronecker_Clash_11394"
+      - "@DeltaKronecker_Clash_11396"
+      - "@DeltaKronecker_Clash_11398"
+      - "@DeltaKronecker_Clash_11400"
+>>>>>>> Stashed changes
       - "@DeltaKronecker_Clash_11402"
       - "@DeltaKronecker_Clash_11404"
       - "@DeltaKronecker_Clash_11406"
@@ -7291,6 +12902,7 @@ proxy-groups:
       - "@DeltaKronecker_Clash_12752"
       - "@DeltaKronecker_Clash_12754"
       - "@DeltaKronecker_Clash_12756"
+<<<<<<< Updated upstream
       - "@DeltaKronecker_Clash_12758"
       - "@DeltaKronecker_Clash_12760"
       - "@DeltaKronecker_Clash_12762"
@@ -7298,6 +12910,8 @@ proxy-groups:
       - "@DeltaKronecker_Clash_12766"
       - "@DeltaKronecker_Clash_12768"
       - "@DeltaKronecker_Clash_12770"
+=======
+>>>>>>> Stashed changes
 
   - name: "Fallback"
     type: fallback
@@ -7305,6 +12919,35 @@ proxy-groups:
     interval: 60
     lazy: true
     proxies:
+<<<<<<< Updated upstream
+=======
+      - "@DeltaKronecker_Clash_11350"
+      - "@DeltaKronecker_Clash_11352"
+      - "@DeltaKronecker_Clash_11354"
+      - "@DeltaKronecker_Clash_11356"
+      - "@DeltaKronecker_Clash_11358"
+      - "@DeltaKronecker_Clash_11360"
+      - "@DeltaKronecker_Clash_11362"
+      - "@DeltaKronecker_Clash_11364"
+      - "@DeltaKronecker_Clash_11366"
+      - "@DeltaKronecker_Clash_11368"
+      - "@DeltaKronecker_Clash_11370"
+      - "@DeltaKronecker_Clash_11372"
+      - "@DeltaKronecker_Clash_11374"
+      - "@DeltaKronecker_Clash_11376"
+      - "@DeltaKronecker_Clash_11378"
+      - "@DeltaKronecker_Clash_11380"
+      - "@DeltaKronecker_Clash_11382"
+      - "@DeltaKronecker_Clash_11384"
+      - "@DeltaKronecker_Clash_11386"
+      - "@DeltaKronecker_Clash_11388"
+      - "@DeltaKronecker_Clash_11390"
+      - "@DeltaKronecker_Clash_11392"
+      - "@DeltaKronecker_Clash_11394"
+      - "@DeltaKronecker_Clash_11396"
+      - "@DeltaKronecker_Clash_11398"
+      - "@DeltaKronecker_Clash_11400"
+>>>>>>> Stashed changes
       - "@DeltaKronecker_Clash_11402"
       - "@DeltaKronecker_Clash_11404"
       - "@DeltaKronecker_Clash_11406"
@@ -7983,6 +13626,7 @@ proxy-groups:
       - "@DeltaKronecker_Clash_12752"
       - "@DeltaKronecker_Clash_12754"
       - "@DeltaKronecker_Clash_12756"
+<<<<<<< Updated upstream
       - "@DeltaKronecker_Clash_12758"
       - "@DeltaKronecker_Clash_12760"
       - "@DeltaKronecker_Clash_12762"
@@ -7990,6 +13634,8 @@ proxy-groups:
       - "@DeltaKronecker_Clash_12766"
       - "@DeltaKronecker_Clash_12768"
       - "@DeltaKronecker_Clash_12770"
+=======
+>>>>>>> Stashed changes
 
 rules:
   - MATCH,PROXY
