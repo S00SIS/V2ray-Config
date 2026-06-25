@@ -128,8 +128,8 @@ func writeOutputFiles(results []configResult, tcpFailedLines []string) {
 	var allSNIClash []string
 	var allSNIClashNames []string
 
-	const v2rayName = "@DeltaKroneckerGithub"
-	const clashBaseN = "@DeltaKroneckerGithub_Clash"
+	const v2rayName = "@DeltaKronecker"
+	const clashBaseN = "@DeltaKronecker_Clash"
 
 	for i, r := range results {
 		// v2ray: fixed name (no counter)
@@ -1413,7 +1413,7 @@ func writeTCPPassFiles(lines []string) {
 	if len(lines) == 0 {
 		return
 	}
-	const fixedName = "@DeltaKroneckerGithub"
+	const fixedName = "@DeltaKronecker"
 	const batchSize = 10000
 
 	// rename all to fixed name + build SNI versions
