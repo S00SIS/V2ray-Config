@@ -128,8 +128,8 @@ func writeOutputFiles(results []configResult, tcpFailedLines []string) {
 	var allSNIClash []string
 	var allSNIClashNames []string
 
-	const v2rayName = "@DeltaKronecker"
-	const clashBaseN = "@DeltaKronecker_Clash"
+	const v2rayName = "@DeltaKroneckerGithub"
+	const clashBaseN = "@DeltaKroneckerGithub_Clash"
 
 	for i, r := range results {
 		// v2ray: fixed name (no counter)
