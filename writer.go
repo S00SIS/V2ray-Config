@@ -1413,7 +1413,7 @@ func writeTCPPassFiles(lines []string) {
 	if len(lines) == 0 {
 		return
 	}
-	const fixedName = "@DeltaKronecker"
+	const fixedName = "@DeltaKroneckerGithub"
 	const batchSize = 10000
 
 	// rename all to fixed name + build SNI versions
